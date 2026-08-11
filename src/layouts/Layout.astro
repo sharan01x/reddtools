@@ -27,16 +27,16 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <script is:inline>
+  <script is:inline define:vars={{ posthogKey: import.meta.env.PUBLIC_POSTHOG_KEY, posthogHost: import.meta.env.PUBLIC_POSTHOG_HOST }}>
     (function() {
       if (typeof window === 'undefined') return;
-      if (location.hostname.includes('localhost')) return;
+      if (!posthogKey || posthogKey === 'POSTHOG_KEY') return;
       var script = document.createElement('script');
       script.async = true;
       script.src = 'https://us-assets.i.posthog.com/posthog.js';
       script.onload = function() {
         if (window.posthog) {
-          window.posthog.init('POSTHOG_KEY', { api_host: 'https://us.i.posthog.com', capture_pageview: true });
+          window.posthog.init(posthogKey, { api_host: posthogHost || 'https://us.i.posthog.com', capture_pageview: true });
         }
       };
       document.head.appendChild(script);
