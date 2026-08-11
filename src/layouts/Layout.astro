@@ -40,15 +40,13 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
     }
   </script>
 
-  <!-- Google AdSense (loads only when publisher ID is set) -->
-  <script is:inline define:vars={{ adsenseClient: import.meta.env.PUBLIC_ADSENSE_CLIENT }}>
-    if (adsenseClient) {
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + adsenseClient;
-      s.crossOrigin = 'anonymous';
-      document.head.appendChild(s);
-    }
+  <!-- Google AdSense -->
+  <script is:inline>
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5515034734309671';
+    s.crossOrigin = 'anonymous';
+    document.head.appendChild(s);
   </script>
 </head>
 <body>
@@ -117,7 +115,7 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
         <span class="ad-label">Advertisement</span>
         <ins class="adsbygoogle"
           style="display:block"
-          data-ad-client={import.meta.env.PUBLIC_ADSENSE_CLIENT}
+          data-ad-client="ca-pub-5515034734309671"
           data-ad-slot="0000000000"
           data-ad-format="auto"
           data-full-width-responsive="true"></ins>
