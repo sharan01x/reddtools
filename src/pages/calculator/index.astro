@@ -1,0 +1,10 @@
+---
+/**
+ * ReddTools — Calculator index
+ * Redirects to the default calculator mode.
+ */
+import { tools } from '../../lib/tools';
+
+const tool = tools.find(t => t.slug === 'calculator')!;
+return Astro.redirect(`/calculator/${tool.modes![0].slug}`, 302);
+---

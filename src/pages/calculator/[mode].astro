@@ -1,0 +1,600 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { tools } from '../../lib/tools';
+
+export function getStaticPaths() {
+  const tool = tools.find(t => t.slug === 'calculator')!;
+  return tool.modes!.map((mode) => ({
+    params: { mode: mode.slug },
+  }));
+}
+
+const tool = tools.find(t => t.slug === 'calculator')!;
+const modes = tool.modes!;
+const currentMode = Astro.params.mode!;
+const mode = modes.find(m => m.slug === currentMode)!;
+
+const title = mode.name;
+const description = mode.description;
+---
+
+<Layout title={title} description={description} activeTool="calculator">
+  <div class="calc-tabs-outer">
+    <!-- Desktop: pill tabs -->
+    <div class="calc-tabs-inner">
+      {modes.map((m) => (
+        <a
+          href={`/calculator/${m.slug}`}
+          class:list={['calc-tab-pill', m.slug === mode.slug ? 'active' : '']}
+        >
+          {m.name.replace(/\s*Calculator$/i, '')}
+        </a>
+      ))}
+    </div>
+
+    <!-- Mobile: dropdown -->
+    <div class="calc-mode-select">
+      <label for="mode-select">Mode</label>
+      <select id="mode-select">
+        {modes.map((m) => (
+          <option value={m.slug} selected={m.slug === mode.slug}>
+            {m.name.replace(/\s*Calculator$/i, '')}
+          </option>
+        ))}
+      </select>
+    </div>
+  </div>
+
+  <div class="max-w-2xl mx-auto">
+    <div class="calc-card">
+      <h1>{mode.name}</h1>
+      <p class="calc-desc">{mode.description}</p>
+
+      <div id="calculator-root" data-mode={mode.slug}>
+        <!-- Mortgage -->
+        {mode.slug === 'mortgage' && (
+          <div class="calc-form">
+            <div class="input-group">
+              <label>Loan amount</label>
+              <input type="number" id="loan-amount" placeholder="300000" />
+            </div>
+            <div class="input-row">
+              <div class="input-group">
+                <label>Interest rate (%)</label>
+                <input type="number" id="interest-rate" placeholder="3.5" step="0.01" />
+              </div>
+              <div class="input-group">
+                <label>Years</label>
+                <input type="number" id="loan-years" placeholder="30" />
+              </div>
+            </div>
+            <button id="calc-mortgage" class="btn-primary">Calculate</button>
+            <div id="result-mortgage" class="result-box hidden">
+              <div class="result-label">Monthly payment</div>
+              <div class="result-value" id="result-monthly"></div>
+              <div class="result-note" id="result-total"></div>
+            </div>
+          </div>
+        )}
+
+        <!-- Compound Interest -->
+        {mode.slug === 'compound-interest' && (
+          <div class="calc-form">
+            <div class="input-group">
+              <label>Principal amount</label>
+              <input type="number" id="ci-principal" placeholder="10000" />
+            </div>
+            <div class="input-row">
+              <div class="input-group">
+                <label>Annual rate (%)</label>
+                <input type="number" id="ci-rate" placeholder="5" step="0.01" />
+              </div>
+              <div class="input-group">
+                <label>Years</label>
+                <input type="number" id="ci-years" placeholder="10" />
+              </div>
+            </div>
+            <div class="input-group">
+              <label>Compounds per year</label>
+              <select id="ci-freq">
+                <option value="1">Annually</option>
+                <option value="2">Semi-annually</option>
+                <option value="4">Quarterly</option>
+                <option value="12" selected>Monthly</option>
+                <option value="365">Daily</option>
+              </select>
+            </div>
+            <button id="calc-ci" class="btn-primary">Calculate</button>
+            <div id="result-ci" class="result-box hidden">
+              <div class="result-label">Final balance</div>
+              <div class="result-value" id="ci-balance"></div>
+              <div class="result-note" id="ci-interest"></div>
+            </div>
+          </div>
+        )}
+
+        <!-- Simple Interest -->
+        {mode.slug === 'simple-interest' && (
+          <div class="calc-form">
+            <div class="input-group">
+              <label>Principal amount</label>
+              <input type="number" id="si-principal" placeholder="10000" />
+            </div>
+            <div class="input-row">
+              <div class="input-group">
+                <label>Annual rate (%)</label>
+                <input type="number" id="si-rate" placeholder="5" step="0.01" />
+              </div>
+              <div class="input-group">
+                <label>Years</label>
+                <input type="number" id="si-years" placeholder="3" />
+              </div>
+            </div>
+            <button id="calc-si" class="btn-primary">Calculate</button>
+            <div id="result-si" class="result-box hidden">
+              <div class="result-label">Total interest</div>
+              <div class="result-value" id="si-interest"></div>
+              <div class="result-note" id="si-total"></div>
+            </div>
+          </div>
+        )}
+
+        <!-- VAT -->
+        {mode.slug === 'vat' && (
+          <div class="calc-form">
+            <div class="input-group">
+              <label>Amount</label>
+              <input type="number" id="vat-amount" placeholder="100" step="0.01" />
+            </div>
+            <div class="input-row">
+              <div class="input-group">
+                <label>VAT rate (%)</label>
+                <select id="vat-rate">
+                  <option value="21" selected>21% (Spain)</option>
+                  <option value="20">20% (UK)</option>
+                  <option value="19">19% (Germany)</option>
+                  <option value="10">10% (reduced)</option>
+                  <option value="4">4% (super-reduced)</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label>Operation</label>
+                <select id="vat-mode">
+                  <option value="add">Add VAT</option>
+                  <option value="remove">Remove VAT</option>
+                </select>
+              </div>
+            </div>
+            <button id="calc-vat" class="btn-primary">Calculate</button>
+            <div id="result-vat" class="result-box hidden">
+              <div class="result-label" id="vat-label">Result</div>
+              <div class="result-value" id="vat-result"></div>
+              <div class="result-note" id="vat-breakdown"></div>
+            </div>
+          </div>
+        )}
+
+        <!-- Percentage -->
+        {mode.slug === 'percentage' && (
+          <div class="calc-form">
+            <div class="input-group">
+              <label>What percentage of</label>
+              <input type="number" id="pct-of" placeholder="200" step="0.01" />
+            </div>
+            <div class="input-group">
+              <label>is</label>
+              <input type="number" id="pct-is" placeholder="50" step="0.01" />
+            </div>
+            <button id="calc-pct" class="btn-primary">Calculate</button>
+            <div id="result-pct" class="result-box hidden">
+              <div class="result-label">Result</div>
+              <div class="result-value" id="pct-result"></div>
+              <div class="result-note" id="pct-detail"></div>
+            </div>
+          </div>
+        )}
+
+        <!-- Tip -->
+        {mode.slug === 'tip' && (
+          <div class="calc-form">
+            <div class="input-group">
+              <label>Bill amount</label>
+              <input type="number" id="tip-bill" placeholder="50" step="0.01" />
+            </div>
+            <div class="input-row">
+              <div class="input-group">
+                <label>Tip percentage (%)</label>
+                <input type="number" id="tip-pct" placeholder="15" step="0.5" value="15" />
+              </div>
+              <div class="input-group">
+                <label>Split between</label>
+                <input type="number" id="tip-split" placeholder="1" value="1" min="1" />
+              </div>
+            </div>
+            <button id="calc-tip" class="btn-primary">Calculate</button>
+            <div id="result-tip" class="result-box hidden">
+              <div class="result-label">Per person</div>
+              <div class="result-value" id="tip-per-person"></div>
+              <div class="result-note" id="tip-breakdown"></div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>About {mode.name}</h2>
+      <p>{mode.description} This tool runs entirely in your browser — no data is sent to any server. Results are instant and private.</p>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  function fmt(n: number): string {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 }).format(n);
+  }
+
+  function capture(mode: string, props: Record<string, any>) {
+    if (typeof window !== 'undefined' && (window as any).posthog) {
+      (window as any).posthog.capture('calculator_used', { mode, ...props });
+    }
+  }
+
+  // Mortgage
+  const calcMortgage = document.getElementById('calc-mortgage');
+  if (calcMortgage) calcMortgage.addEventListener('click', () => {
+    const p = parseFloat((document.getElementById('loan-amount') as HTMLInputElement).value) || 0;
+    const r = parseFloat((document.getElementById('interest-rate') as HTMLInputElement).value) || 0;
+    const y = parseFloat((document.getElementById('loan-years') as HTMLInputElement).value) || 0;
+    if (p <= 0 || r < 0 || y <= 0) return;
+    const mr = r / 100 / 12, np = y * 12;
+    const monthly = mr > 0 ? (p * mr * Math.pow(1 + mr, np)) / (Math.pow(1 + mr, np) - 1) : p / np;
+    const total = monthly * np;
+    document.getElementById('result-monthly')!.textContent = fmt(monthly);
+    document.getElementById('result-total')!.textContent = `Total: ${fmt(total)} · Interest: ${fmt(total - p)}`;
+    document.getElementById('result-mortgage')!.classList.remove('hidden');
+    capture('mortgage', { principal: p, rate: r, years: y, monthly });
+  });
+
+  // Compound Interest
+  const calcCi = document.getElementById('calc-ci');
+  if (calcCi) calcCi.addEventListener('click', () => {
+    const p = parseFloat((document.getElementById('ci-principal') as HTMLInputElement).value) || 0;
+    const r = parseFloat((document.getElementById('ci-rate') as HTMLInputElement).value) || 0;
+    const y = parseFloat((document.getElementById('ci-years') as HTMLInputElement).value) || 0;
+    const f = parseInt((document.getElementById('ci-freq') as HTMLSelectElement).value);
+    if (p <= 0 || r < 0 || y <= 0) return;
+    const bal = p * Math.pow(1 + r / 100 / f, f * y);
+    document.getElementById('ci-balance')!.textContent = fmt(bal);
+    document.getElementById('ci-interest')!.textContent = `Interest earned: ${fmt(bal - p)}`;
+    document.getElementById('result-ci')!.classList.remove('hidden');
+    capture('compound-interest', { principal: p, rate: r, years: y, freq: f, balance: bal });
+  });
+
+  // Simple Interest
+  const calcSi = document.getElementById('calc-si');
+  if (calcSi) calcSi.addEventListener('click', () => {
+    const p = parseFloat((document.getElementById('si-principal') as HTMLInputElement).value) || 0;
+    const r = parseFloat((document.getElementById('si-rate') as HTMLInputElement).value) || 0;
+    const y = parseFloat((document.getElementById('si-years') as HTMLInputElement).value) || 0;
+    if (p <= 0 || r < 0 || y <= 0) return;
+    const interest = p * (r / 100) * y;
+    document.getElementById('si-interest')!.textContent = fmt(interest);
+    document.getElementById('si-total')!.textContent = `Total to repay: ${fmt(p + interest)}`;
+    document.getElementById('result-si')!.classList.remove('hidden');
+    capture('simple-interest', { principal: p, rate: r, years: y, interest });
+  });
+
+  // VAT
+  const calcVat = document.getElementById('calc-vat');
+  if (calcVat) calcVat.addEventListener('click', () => {
+    const amt = parseFloat((document.getElementById('vat-amount') as HTMLInputElement).value) || 0;
+    const rate = parseFloat((document.getElementById('vat-rate') as HTMLSelectElement).value);
+    const op = (document.getElementById('vat-mode') as HTMLSelectElement).value;
+    if (amt <= 0) return;
+    let result: number, vatAmt: number, label: string;
+    if (op === 'add') {
+      vatAmt = amt * (rate / 100);
+      result = amt + vatAmt;
+      label = 'Amount with VAT';
+    } else {
+      vatAmt = amt * (rate / (100 + rate));
+      result = amt - vatAmt;
+      label = 'Amount without VAT';
+    }
+    document.getElementById('vat-label')!.textContent = label;
+    document.getElementById('vat-result')!.textContent = fmt(result);
+    document.getElementById('vat-breakdown')!.textContent = `VAT (${rate}%): ${fmt(vatAmt)}`;
+    document.getElementById('result-vat')!.classList.remove('hidden');
+    capture('vat', { amount: amt, rate, mode: op, result });
+  });
+
+  // Percentage
+  const calcPct = document.getElementById('calc-pct');
+  if (calcPct) calcPct.addEventListener('click', () => {
+    const of = parseFloat((document.getElementById('pct-of') as HTMLInputElement).value) || 0;
+    const is = parseFloat((document.getElementById('pct-is') as HTMLInputElement).value) || 0;
+    if (of === 0) return;
+    const pct = (is / of) * 100;
+    document.getElementById('pct-result')!.textContent = pct.toFixed(2) + '%';
+    document.getElementById('pct-detail')!.textContent = `${is} is ${pct.toFixed(2)}% of ${of}`;
+    document.getElementById('result-pct')!.classList.remove('hidden');
+    capture('percentage', { of, is, pct });
+  });
+
+  // Tip
+  const calcTip = document.getElementById('calc-tip');
+  if (calcTip) calcTip.addEventListener('click', () => {
+    const bill = parseFloat((document.getElementById('tip-bill') as HTMLInputElement).value) || 0;
+    const pct = parseFloat((document.getElementById('tip-pct') as HTMLInputElement).value) || 0;
+    const split = parseInt((document.getElementById('tip-split') as HTMLInputElement).value) || 1;
+    if (bill <= 0 || split < 1) return;
+    const tipAmt = bill * (pct / 100);
+    const total = bill + tipAmt;
+    const perPerson = total / split;
+    document.getElementById('tip-per-person')!.textContent = fmt(perPerson);
+    document.getElementById('tip-breakdown')!.textContent = `Tip: ${fmt(tipAmt)} · Total: ${fmt(total)} · ${split} ${split === 1 ? 'person' : 'people'}`;
+    document.getElementById('result-tip')!.classList.remove('hidden');
+    capture('tip', { bill, pct, split, perPerson });
+  });
+
+  // Mobile mode dropdown
+  const modeSelect = document.getElementById('mode-select') as HTMLSelectElement | null;
+  if (modeSelect) modeSelect.addEventListener('change', () => {
+    window.location.href = `/calculator/${modeSelect.value}`;
+  });
+</script>
+
+<style>
+  .calc-tabs-outer {
+    max-width: 1440px;
+    margin: 32px auto 0;
+    padding: 0 24px;
+  }
+
+  @media (min-width: 768px) {
+    .calc-tabs-outer { padding: 0 48px; }
+  }
+
+  .calc-tabs-inner {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin-bottom: 50px;
+    justify-content: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 4px;
+  }
+
+  .calc-tabs-inner::-webkit-scrollbar { display: none; }
+
+  .calc-tab-pill {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 9999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #5b5b5b;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 200ms ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .calc-tab-pill:hover {
+    color: #000;
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .calc-tab-pill.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  /* Mobile: hide pill tabs, show dropdown */
+  .calc-mode-select {
+    display: none;
+  }
+
+  .calc-mode-select label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .calc-mode-select select {
+    width: 100%;
+    padding: 10px 16px;
+    background: #fafafa;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #000;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%235b5b5b' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+
+  .calc-mode-select select:focus {
+    outline: none;
+    border-color: #00c2ff;
+    box-shadow: 0 0 0 3px rgba(0, 194, 255, 0.1);
+  }
+
+  @media (max-width: 767px) {
+    .calc-tabs-inner {
+      display: none;
+    }
+    .calc-mode-select {
+      display: block;
+      margin-bottom: 32px;
+    }
+  }
+
+  .calc-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+  }
+
+  .calc-card h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #000;
+    margin: 0 0 4px;
+  }
+
+  .calc-desc {
+    font-size: 14px;
+    color: #5b5b5b;
+    margin: 0 0 24px;
+  }
+
+  .calc-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .input-group label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .input-group input,
+  .input-group select {
+    padding: 10px 16px;
+    background: #fafafa;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #000;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  .input-group input:focus,
+  .input-group select:focus {
+    outline: none;
+    border-color: #00c2ff;
+    box-shadow: 0 0 0 3px rgba(0, 194, 255, 0.1);
+  }
+
+  .input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 480px) {
+    .input-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .btn-primary {
+    padding: 10px 24px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    height: 40px;
+    cursor: pointer;
+    transition: background-color 200ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-primary:hover {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  .result-box {
+    padding: 24px;
+    background: #fafafa;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+  }
+
+  .result-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .result-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 32px;
+    font-weight: 400;
+    color: #000;
+    margin-top: 4px;
+    word-break: break-all;
+  }
+
+  .result-note {
+    font-size: 14px;
+    color: #5b5b5b;
+    margin-top: 8px;
+  }
+
+  .hidden { display: none; }
+
+  .seo-content {
+    margin-top: 32px;
+    padding: 24px;
+    color: #5b5b5b;
+  }
+
+  .seo-content h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    margin: 0 0 8px;
+  }
+
+  .seo-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

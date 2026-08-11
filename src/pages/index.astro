@@ -1,0 +1,258 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { tools } from '../lib/tools';
+
+const title = 'ReddTools';
+const description = 'Free online tools — calculator, unit converter, word counter, and more. Designed to be fast, clean, and actually nice to use.';
+
+const toolIcons: Record<string, string> = {
+  calculator: `<svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="48" height="12" rx="3"/><rect x="8" y="26" width="14" height="12" rx="2"/><rect x="25" y="26" width="14" height="12" rx="2"/><rect x="42" y="26" width="14" height="12" rx="2"/><rect x="8" y="44" width="14" height="12" rx="2"/><rect x="25" y="44" width="14" height="12" rx="2"/><rect x="42" y="44" width="14" height="12" rx="2"/></svg>`,
+  'unit-converter': `<svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 48L48 16"/><polyline points="40 16 48 16 48 24"/><polyline points="24 48 16 48 16 40"/></svg>`,
+  'word-counter': `<svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16h48"/><path d="M8 28h36"/><path d="M8 40h24"/><path d="M8 52h40"/></svg>`,
+  'case-converter': `<svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 48L24 16l12 32"/><path d="M16 40h16"/><path d="M44 16v32"/><path d="M38 28h12"/></svg>`,
+  timer: `<svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="22"/><path d="M32 18v14l10 10"/></svg>`,
+  'colour-picker': `<svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M38 8L16 30l6 6 22-22"/><path d="M22 36L14 50l14-8"/></svg>`,
+  'social-cropper': `<svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="12" width="20" height="20" rx="2"/><rect x="32" y="12" width="20" height="20" rx="2"/><rect x="12" y="32" width="20" height="20" rx="2"/><rect x="32" y="32" width="20" height="20" rx="2" opacity="0.4"/></svg>`,
+};
+---
+
+<Layout title={title} description={description}>
+  <div class="hero">
+    <div class="hero-content">
+      <div class="beta-badge">
+        <span class="pulse-dot"></span>
+        <span>7 tools · more coming</span>
+      </div>
+      <h1>Free tools,<br>designed properly.</h1>
+      <p class="hero-subtitle">No clutter. No popups. No 2010-era design. Just clean, fast utilities that do one thing well.</p>
+    </div>
+  </div>
+
+  <div class="section-label">Tools</div>
+  <div class="tools-grid">
+    {tools.map((tool) => (
+      <a href={`/${tool.slug}`} class="tool-card">
+        <div class="card-icon-wrap" set:html={toolIcons[tool.slug] || ''} />
+        <div class="card-body">
+          <div class="card-title-row">
+            <h2 class="card-title">{tool.name}</h2>
+            {tool.status === 'planned' && (
+              <span class="card-badge planned">Coming soon</span>
+            )}
+          </div>
+          <p class="card-desc">{tool.description}</p>
+          {tool.modes && tool.modes.length > 0 && (
+            <div class="card-modes">
+              {tool.modes.slice(0, 4).map((mode) => (
+                <span class="mode-tag">{mode.name.replace(/\s*Calculator$/i, '')}</span>
+              ))}
+              {tool.modes.length > 4 && (
+                <span class="mode-tag-more">+{tool.modes.length - 4}</span>
+              )}
+            </div>
+          )}
+        </div>
+      </a>
+    ))}
+  </div>
+</Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 140px 0 80px;
+  }
+
+  .hero-content {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .beta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #00c2ff;
+    background: rgba(0, 194, 255, 0.08);
+    border: 1px solid rgba(0, 194, 255, 0.15);
+    margin-bottom: 24px;
+  }
+
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #0afa14;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #000;
+    margin: 0 0 16px;
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #5b5b5b;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 16px;
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-bottom: 64px;
+  }
+
+  @media (min-width: 768px) {
+    .tools-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .tools-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .tool-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    text-decoration: none;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  .tool-card:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .tool-card:hover .card-title {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .card-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    background: #f5f5f5;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  .card-icon-wrap :global(svg) {
+    width: 48px;
+    height: 48px;
+  }
+
+  .card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .card-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: space-between;
+  }
+
+  .card-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #000;
+    margin: 0;
+    transition: color 200ms ease;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #5b5b5b;
+    margin: 0;
+  }
+
+  .card-badge.planned {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #ff6400;
+    background: rgba(255, 100, 0, 0.08);
+    border: 1px solid rgba(255, 100, 0, 0.15);
+    flex-shrink: 0;
+  }
+
+  .card-modes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .mode-tag {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+    background: #f5f5f5;
+  }
+
+  .mode-tag-more {
+    padding: 2px 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #999;
+  }
+</style>

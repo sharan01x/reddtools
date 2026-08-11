@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+/*
+  ReddTools Global Styles — Kodosumi Design System
+  Technical Minimalism: Inter, neutral surfaces, cyan/green/orange accents
+  Pill buttons (9999px), 4px card radius, 1440px max-width
+*/
+
+:root {
+  /* === Colours === */
+  --color-bg: #f5f5f5;
+  --color-surface: #ffffff;
+  --color-surface-dim: #ebebeb;
+  --color-surface-container: #f5f5f5;
+  --color-surface-container-high: #f0f0f0;
+  --color-text: #000000;
+  --color-text-muted: #5b5b5b;
+  --color-text-faint: #999999;
+  --color-border: #d0d0d0;
+  --color-border-light: rgba(0, 0, 0, 0.04);
+  --color-border-hover: rgba(0, 0, 0, 0.1);
+
+  /* Accents */
+  --color-cyan: #00c2ff;
+  --color-green: #0afa14;
+  --color-orange: #ff6400;
+
+  /* === Typography === */
+  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', monospace;
+
+  /* === Spacing === */
+  --space-xs: 4px;
+  --space-sm: 12px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 64px;
+
+  /* === Radius === */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.5rem;  /* 8px */
+  --radius-lg: 1rem;    /* 16px */
+  --radius-full: 9999px;
+
+  /* === Transitions === */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+}
+
+/* === Base === */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+  margin: 0;
+  padding: 0;
+}
+
+/* === Links === */
+a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+a:hover {
+  opacity: 0.6;
+}
+
+/* === Selection === */
+::selection {
+  background: rgba(0, 194, 255, 0.15);
+}
+
+/* === Inputs === */
+input, select, textarea {
+  font-family: var(--font-body);
+  font-size: 16px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 194, 255, 0.1);
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
