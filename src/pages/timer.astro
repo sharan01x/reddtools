@@ -16,6 +16,16 @@ const description = 'Countdown timer, stopwatch, and pomodoro timer with tab-tit
         <button class="mode-tab" data-mode="pomodoro">Pomodoro</button>
       </div>
 
+      <!-- Mobile: dropdown -->
+      <div class="mode-select-wrap">
+        <label for="mode-select">Mode</label>
+        <select id="mode-select">
+          <option value="countdown" selected>Countdown</option>
+          <option value="stopwatch">Stopwatch</option>
+          <option value="pomodoro">Pomodoro</option>
+        </select>
+      </div>
+
       <!-- Countdown -->
       <div id="countdown-panel" class="panel">
         <div class="time-display" id="cd-display">25:00</div>
@@ -69,7 +79,43 @@ const description = 'Countdown timer, stopwatch, and pomodoro timer with tab-tit
 <script>
   const origTitle = document.title;
 
-  // Mode switching
+  // --- Audio notification (Web Audio API, no files needed) ---
+  let audioCtx: AudioContext | null = null;
+  function getAudioCtx(): AudioContext {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+
+  function playBeeps(times: number = 3, freq: number = 880) {
+    const ctx = getAudioCtx();
+    for (let i = 0; i < times; i++) {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = freq;
+      osc.type = 'sine';
+      const t = ctx.currentTime + i * 0.4;
+      gain.gain.setValueAtTime(0, t);
+      gain.gain.linearRampToValueAtTime(0.3, t + 0.05);
+      gain.gain.linearRampToValueAtTime(0, t + 0.3);
+      osc.start(t);
+      osc.stop(t + 0.35);
+    }
+  }
+
+  // --- Visual flash on the time display ---
+  function flashDisplay(el: HTMLElement) {
+    el.classList.remove('timer-done-flash');
+    void el.offsetWidth; // restart animation
+    el.classList.add('timer-done-flash');
+    setTimeout(() => el.classList.remove('timer-done-flash'), 3000);
+  }
+
+  // Mode switching (desktop pills)
   document.querySelectorAll('.mode-tab').forEach((tab) => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('.mode-tab').forEach((t) => t.classList.remove('active'));
@@ -77,8 +123,24 @@ const description = 'Countdown timer, stopwatch, and pomodoro timer with tab-tit
       const m = (tab as HTMLButtonElement).dataset.mode;
       document.querySelectorAll('.panel').forEach((p) => p.style.display = 'none');
       document.getElementById(m + '-panel')!.style.display = 'block';
+      // sync mobile dropdown
+      const sel = document.getElementById('mode-select') as HTMLSelectElement | null;
+      if (sel) sel.value = m;
     });
   });
+
+  // Mobile dropdown
+  const modeSelect = document.getElementById('mode-select') as HTMLSelectElement | null;
+  if (modeSelect) {
+    modeSelect.addEventListener('change', () => {
+      const m = modeSelect.value;
+      document.querySelectorAll('.mode-tab').forEach((t) => {
+        (t as HTMLButtonElement).classList.toggle('active', (t as HTMLButtonElement).dataset.mode === m);
+      });
+      document.querySelectorAll('.panel').forEach((p) => p.style.display = 'none');
+      document.getElementById(m + '-panel')!.style.display = 'block';
+    });
+  }
 
   function fmtTime(ms: number): string {
     const totalSec = Math.floor(ms / 1000);
@@ -104,6 +166,8 @@ const description = 'Countdown timer, stopwatch, and pomodoro timer with tab-tit
       clearInterval(cdInterval!);
       cdInterval = null;
       cdStartBtn.textContent = 'Start';
+      playBeeps(3, 880);
+      flashDisplay(cdDisplay);
       return;
     }
     cdDisplay.textContent = fmtTime(remaining);
@@ -239,6 +303,13 @@ const description = 'Countdown timer, stopwatch, and pomodoro timer with tab-tit
       clearInterval(pomoInterval!);
       pomoInterval = null;
       pomoStartBtn.textContent = 'Start';
+      // Audio + visual notification
+      if (pomoPhase === 'focus') {
+        playBeeps(3, 660);  // lower pitch = break starting
+      } else {
+        playBeeps(3, 880);  // higher pitch = focus starting
+      }
+      flashDisplay(pomoDisplay);
       // Switch phases
       if (pomoPhase === 'focus') {
         pomoCompleted++;
@@ -336,6 +407,69 @@ const description = 'Countdown timer, stopwatch, and pomodoro timer with tab-tit
     background: #000;
     color: #fff;
     border-color: #000;
+  }
+
+  /* Mobile dropdown */
+  .mode-select-wrap {
+    display: none;
+  }
+
+  .mode-select-wrap label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .mode-select-wrap select {
+    width: 100%;
+    padding: 10px 16px;
+    background: #fafafa;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #000;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%235b5b5b' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin-bottom: 24px;
+  }
+
+  .mode-select-wrap select:focus {
+    outline: none;
+    border-color: #00c2ff;
+    box-shadow: 0 0 0 3px rgba(0, 194, 255, 0.1);
+  }
+
+  @media (max-width: 767px) {
+    .mode-tabs {
+      display: none;
+    }
+    .mode-select-wrap {
+      display: block;
+    }
+  }
+
+  /* Timer done flash animation */
+  @keyframes timer-flash {
+    0%, 100% { background: transparent; color: #000; }
+    50% { background: #fff3cd; color: #856404; }
+  }
+
+  .timer-done-flash {
+    animation: timer-flash 0.5s ease-in-out 6;
+    border-radius: 4px;
+    padding: 0 12px !important;
   }
 
   .time-display {
