@@ -27,6 +27,7 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
+  <!-- PostHog -->
   <script is:inline>
     if (!window.__posthog_initialized) {
       window.__posthog_initialized = true;
@@ -36,6 +37,17 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
         defaults: '2026-05-30',
         person_profiles: 'identified_only'
       });
+    }
+  </script>
+
+  <!-- Google AdSense (loads only when publisher ID is set) -->
+  <script is:inline define:vars={{ adsenseClient: import.meta.env.PUBLIC_ADSENSE_CLIENT }}>
+    if (adsenseClient) {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + adsenseClient;
+      s.crossOrigin = 'anonymous';
+      document.head.appendChild(s);
     }
   </script>
 </head>
@@ -103,6 +115,17 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
     <div class="ad-section" style="margin-top: 48px;">
       <div class="ad-zone" aria-label="Advertisement">
         <span class="ad-label">Advertisement</span>
+        <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client={import.meta.env.PUBLIC_ADSENSE_CLIENT}
+          data-ad-slot="0000000000"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+        <script is:inline>
+          if (window.adsbygoogle) {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          }
+        </script>
       </div>
     </div>
   )}
