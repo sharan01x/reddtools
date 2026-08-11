@@ -30,9 +30,10 @@ const toolIcons: Record<string, string> = {
 
   <div class="section-label">Tools</div>
   <div class="tools-grid">
-    {tools.map((tool) => (
-      
-      <a href={`${tool.slug.includes('calculator') ? '/' + tool.slug.replace('calculator', 'mortgage') : '/' + tool.slug}`} class="tool-card">
+    {tools.map((tool) => {
+      const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}` : `/${tool.slug}`;
+      return (
+      <a href={href} class="tool-card">
         <div class="card-icon-wrap" set:html={toolIcons[tool.slug] || ''} />
         <div class="card-body">
           <div class="card-title-row">
@@ -54,7 +55,8 @@ const toolIcons: Record<string, string> = {
           )}
         </div>
       </a>
-    ))}
+      );
+    })}
   </div>
 </Layout>
 

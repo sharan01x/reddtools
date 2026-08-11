@@ -68,14 +68,17 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
       </a>
 
       <div class="nav-links">
-        {tools.map((tool) => (
+        {tools.map((tool) => {
+          const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}` : `/${tool.slug}`;
+          return (
           <a
-            href={`/${tool.slug}`}
+            href={href}
             class:list={['nav-link', activeTool === tool.slug ? 'active' : '']}
           >
             {tool.shortName}
           </a>
-        ))}
+          );
+        })}
       </div>
 
       <button class="nav-toggle" aria-label="Menu" id="nav-toggle">
@@ -83,14 +86,17 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
       </button>
     </nav>
     <div class="mobile-menu" id="mobile-menu">
-      {tools.map((tool) => (
+      {tools.map((tool) => {
+        const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}` : `/${tool.slug}`;
+        return (
         <a
-          href={`/${tool.slug}`}
+          href={href}
           class:list={['mobile-nav-link', activeTool === tool.slug ? 'active' : '']}
         >
           {tool.shortName}
         </a>
-      ))}
+        );
+      })}
     </div>
   </header>
 
@@ -136,15 +142,18 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
         {tools
           .filter(t => t.slug !== activeTool)
           .slice(0, 6)
-          .map((tool) => (
-            <a href={`/${tool.slug}`} class="promo-card">
+          .map((tool) => {
+            const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}` : `/${tool.slug}`;
+            return (
+            <a href={href} class="promo-card">
               <div class="promo-icon" set:html={toolIconSvg[tool.slug] || ''} />
               <div class="promo-text">
                 <div class="promo-name">{tool.shortName}</div>
                 <div class="promo-desc">{tool.description}</div>
               </div>
             </a>
-          ))}
+            );
+          })}
       </div>
     </section>
   )}
