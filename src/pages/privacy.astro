@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Privacy Policy';
+const description = 'How ReddTools handles your data — all tools run in your browser, no data is sent to servers.';
+---
+
+<Layout title={title} description={description}>
+  <div class="legal-page">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: 11 August 2026</p>
+
+    <h2>Summary</h2>
+    <p>ReddTools is a collection of free online tools. All tool calculations run entirely in your browser — we do not send your input data or results to any server. We use third-party analytics and advertising services that may collect data as described below.</p>
+
+    <h2>Data we collect</h2>
+    <p>We do not collect, store, or transmit any data you enter into our tools (text, numbers, images, or otherwise). All calculations and conversions happen client-side in your browser.</p>
+    <p>We do collect anonymous usage data through PostHog, our analytics provider, including:</p>
+    <ul>
+      <li>Pages visited and time spent</li>
+      <li>Which tools and modes are used</li>
+      <li>Anonymous events (e.g. "calculator used", "word count performed")</li>
+      <li>Approximate location (country/city level, derived from IP)</li>
+      <li>Device type, browser, and operating system</li>
+    </ul>
+    <p>We do not link this data to your name, email, or any personally identifiable information.</p>
+
+    <h2>Analytics</h2>
+    <p>We use <strong>PostHog</strong> (PostHog Inc., hosted in the EU) to understand how the site is used. PostHog sets cookies to track anonymous sessions. You can opt out of analytics tracking by enabling "Do Not Track" in your browser settings.</p>
+
+    <h2>Advertising</h2>
+    <p>We use <strong>Google AdSense</strong> to display ads on tool pages. Google may use cookies and similar technologies to serve ads based on your prior visits to this and other websites. You can opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ad Settings</a>.</p>
+    <p>Third-party vendors, including Google, use cookies to serve ads based on your prior visits to reddtools.com or other websites. Google's use of advertising cookies enables it and its partners to serve ads based on your visit to our site and/or other sites on the internet.</p>
+
+    <h2>Cookies</h2>
+    <p>This site uses cookies for:</p>
+    <ul>
+      <li>Analytics (PostHog session tracking)</li>
+      <li>Advertising (Google AdSense)</li>
+    </ul>
+    <p>We do not use cookies for essential functionality — the tools work without cookies.</p>
+
+    <h2>Your rights</h2>
+    <p>Under the GDPR (EU) and similar regulations, you have the right to:</p>
+    <ul>
+      <li>Access any personal data we hold about you</li>
+      <li>Request deletion of your data</li>
+      <li>Object to processing of your data</li>
+      <li>Opt out of analytics and personalised advertising</li>
+    </ul>
+    <p>Since we do not collect personal data linked to your identity, most of these rights are exercised through your browser settings (Do Not Track, cookie preferences, ad opt-outs). For any specific requests, contact us at <a href="mailto:hello@secondread.me">hello@secondread.me</a>.</p>
+
+    <h2>Children's privacy</h2>
+    <p>Our tools are not directed at children under 13, and we do not knowingly collect data from children. AdSense is configured to not serve personalised ads to users in the European Economic Area (EEA) without consent.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated date.</p>
+
+    <h2>Contact</h2>
+    <p>If you have questions about this privacy policy, contact <a href="mailto:hello@secondread.me">hello@secondread.me</a>.</p>
+  </div>
+</Layout>
+
+<style>
+  .legal-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+  }
+  .legal-page h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #000;
+    margin: 0 0 4px;
+  }
+  .updated {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 32px;
+  }
+  .legal-page h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    margin: 32px 0 8px;
+  }
+  .legal-page p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #5b5b5b;
+    margin: 0 0 12px;
+  }
+  .legal-page ul {
+    margin: 0 0 12px;
+    padding-left: 20px;
+  }
+  .legal-page li {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #5b5b5b;
+    margin-bottom: 4px;
+  }
+  .legal-page a {
+    color: #00c2ff;
+    text-decoration: none;
+  }
+  .legal-page a:hover {
+    text-decoration: underline;
+  }
+</style>

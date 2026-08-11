@@ -1,0 +1,255 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Case Converter';
+const description = 'Convert text between uppercase, lowercase, title case, camelCase, snake_case, and more.';
+---
+
+<Layout title={title} description={description} activeTool="case-converter">
+  <div class="max-w-2xl mx-auto">
+    <div class="calc-card">
+      <h1>Case Converter</h1>
+
+      <textarea id="cc-input" placeholder="Paste your text here..." rows="6"></textarea>
+
+      <div class="case-buttons">
+        <button class="btn-case" data-case="upper">UPPERCASE</button>
+        <button class="btn-case" data-case="lower">lowercase</button>
+        <button class="btn-case" data-case="title">Title Case</button>
+        <button class="btn-case" data-case="sentence">Sentence case</button>
+        <button class="btn-case" data-case="camel">camelCase</button>
+        <button class="btn-case" data-case="pascal">PascalCase</button>
+        <button class="btn-case" data-case="snake">snake_case</button>
+        <button class="btn-case" data-case="kebab">kebab-case</button>
+        <button class="btn-case" data-case="constant">CONSTANT_CASE</button>
+      </div>
+
+      <div class="result-area" id="cc-output-wrap" style="display:none;">
+        <label>Result</label>
+        <div class="result-row">
+          <textarea id="cc-output" readonly rows="6"></textarea>
+          <button class="btn-copy" id="cc-copy">Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>About Case Converter</h2>
+      <p>Convert text between uppercase, lowercase, title case, sentence case, camelCase, PascalCase, snake_case, kebab-case, and CONSTANT_CASE. Free, instant, and private — all conversion runs entirely in your browser with no data sent to any server.</p>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const input = document.getElementById('cc-input') as HTMLTextAreaElement;
+  const output = document.getElementById('cc-output') as HTMLTextAreaElement;
+  const outputWrap = document.getElementById('cc-output-wrap') as HTMLElement;
+  const copyBtn = document.getElementById('cc-copy') as HTMLButtonElement;
+
+  function toTitle(s: string): string {
+    return s.replace(/\w\S*/g, (t) => t.charAt(0).toUpperCase() + t.slice(1).toLowerCase());
+  }
+
+  function toSentence(s: string): string {
+    return s.toLowerCase().replace(/(^\s*\w|[.!?]\s+\w)/g, (c) => c.toUpperCase());
+  }
+
+  function toCamel(s: string): string {
+    return s.replace(/[^a-zA-Z0-9]+(.)/g, (_, c) => c.toUpperCase()).replace(/^./, (c) => c.toLowerCase());
+  }
+
+  function toPascal(s: string): string {
+    const camel = toCamel(s);
+    return camel.charAt(0).toUpperCase() + camel.slice(1);
+  }
+
+  function toSnake(s: string): string {
+    return s.replace(/([a-z])([A-Z])/g, '$1_$2').replace(/[^a-zA-Z0-9]+/g, '_').toLowerCase().replace(/^_|_$/g, '');
+  }
+
+  function toKebab(s: string): string {
+    return toSnake(s).replace(/_/g, '-');
+  }
+
+  function toConstant(s: string): string {
+    return toSnake(s).toUpperCase();
+  }
+
+  const converters: Record<string, (s: string) => string> = {
+    upper: (s) => s.toUpperCase(),
+    lower: (s) => s.toLowerCase(),
+    title: toTitle,
+    sentence: toSentence,
+    camel: toCamel,
+    pascal: toPascal,
+    snake: toSnake,
+    kebab: toKebab,
+    constant: toConstant,
+  };
+
+  document.querySelectorAll('.btn-case').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const text = input.value;
+      if (!text.trim()) return;
+      const caseType = (btn as HTMLButtonElement).dataset.case!;
+      const result = converters[caseType](text);
+      output.value = result;
+      outputWrap.style.display = 'block';
+      if (typeof (window as any).posthog !== 'undefined') {
+        (window as any).posthog.capture('case_converter_used', { case: caseType, length: text.length });
+      }
+    });
+  });
+
+  copyBtn.addEventListener('click', async () => {
+    await navigator.clipboard.writeText(output.value);
+    copyBtn.textContent = 'Copied';
+    setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1500);
+  });
+</script>
+
+<style>
+  .calc-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+  }
+
+  .calc-card h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #000;
+    margin: 0 0 24px;
+  }
+
+  .calc-desc {
+    font-size: 14px;
+    color: #5b5b5b;
+    margin: 0 0 24px;
+  }
+
+  #cc-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #fafafa;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+    resize: vertical;
+    min-height: 120px;
+    box-sizing: border-box;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  #cc-input:focus {
+    outline: none;
+    border-color: #00c2ff;
+    box-shadow: 0 0 0 3px rgba(0, 194, 255, 0.1);
+  }
+
+  .case-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .btn-case {
+    padding: 8px 16px;
+    background: #fff;
+    color: #5b5b5b;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 9999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 200ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-case:hover {
+    color: #000;
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .result-area {
+    margin-top: 20px;
+  }
+
+  .result-area label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .result-row {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  #cc-output {
+    flex: 1;
+    padding: 12px 16px;
+    background: #fafafa;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+    resize: vertical;
+    min-height: 120px;
+    box-sizing: border-box;
+  }
+
+  .btn-copy {
+    padding: 0 20px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 200ms ease;
+  }
+
+  .btn-copy:hover {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  .seo-content {
+    margin-top: 32px;
+    padding: 24px;
+    color: #5b5b5b;
+  }
+
+  .seo-content h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    margin: 0 0 8px;
+  }
+
+  .seo-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,468 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Timer & Pomodoro';
+const description = 'Countdown timer, stopwatch, and pomodoro timer with tab-title countdown.';
+---
+
+<Layout title={title} description={description} activeTool="timer">
+  <div class="max-w-2xl mx-auto">
+    <div class="calc-card">
+      <h1>Timer & Pomodoro</h1>
+
+      <div class="mode-tabs">
+        <button class="mode-tab active" data-mode="countdown">Countdown</button>
+        <button class="mode-tab" data-mode="stopwatch">Stopwatch</button>
+        <button class="mode-tab" data-mode="pomodoro">Pomodoro</button>
+      </div>
+
+      <!-- Countdown -->
+      <div id="countdown-panel" class="panel">
+        <div class="time-display" id="cd-display">25:00</div>
+        <div class="cd-presets">
+          <button class="btn-preset" data-mins="1">1m</button>
+          <button class="btn-preset" data-mins="5">5m</button>
+          <button class="btn-preset" data-mins="10">10m</button>
+          <button class="btn-preset" data-mins="15">15m</button>
+          <button class="btn-preset" data-mins="25">25m</button>
+          <button class="btn-preset" data-mins="30">30m</button>
+        </div>
+        <div class="controls">
+          <button class="btn-primary" id="cd-start">Start</button>
+          <button class="btn-secondary" id="cd-reset">Reset</button>
+        </div>
+      </div>
+
+      <!-- Stopwatch -->
+      <div id="stopwatch-panel" class="panel" style="display:none;">
+        <div class="time-display" id="sw-display">00:00.00</div>
+        <div class="controls">
+          <button class="btn-primary" id="sw-start">Start</button>
+          <button class="btn-secondary" id="sw-lap">Lap</button>
+          <button class="btn-secondary" id="sw-reset">Reset</button>
+        </div>
+        <div class="laps" id="sw-laps"></div>
+      </div>
+
+      <!-- Pomodoro -->
+      <div id="pomodoro-panel" class="panel" style="display:none;">
+        <div class="pomo-status" id="pomo-status">Focus</div>
+        <div class="time-display" id="pomo-display">25:00</div>
+        <div class="pomo-info">
+          <span id="pomo-count">Cycle 1</span>
+          <span id="pomo-progress">Focus · 0/4 completed</span>
+        </div>
+        <div class="controls">
+          <button class="btn-primary" id="pomo-start">Start</button>
+          <button class="btn-secondary" id="pomo-reset">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>About Timer & Pomodoro</h2>
+      <p>Countdown timer with presets, stopwatch with laps, and pomodoro timer with automatic focus/break cycles. Free, instant, and private — all timing runs entirely in your browser with no data sent to any server.</p>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const origTitle = document.title;
+
+  // Mode switching
+  document.querySelectorAll('.mode-tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.mode-tab').forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+      const m = (tab as HTMLButtonElement).dataset.mode;
+      document.querySelectorAll('.panel').forEach((p) => p.style.display = 'none');
+      document.getElementById(m + '-panel')!.style.display = 'block';
+    });
+  });
+
+  function fmtTime(ms: number): string {
+    const totalSec = Math.floor(ms / 1000);
+    const m = Math.floor(totalSec / 60);
+    const s = totalSec % 60;
+    return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }
+
+  // Countdown
+  let cdInterval: ReturnType<typeof setInterval> | null = null;
+  let cdEnd = 0;
+  let cdTotal = 25 * 60 * 1000;
+
+  const cdDisplay = document.getElementById('cd-display')!;
+  const cdStartBtn = document.getElementById('cd-start') as HTMLButtonElement;
+  const cdResetBtn = document.getElementById('cd-reset') as HTMLButtonElement;
+
+  function cdTick() {
+    const remaining = cdEnd - Date.now();
+    if (remaining <= 0) {
+      cdDisplay.textContent = '00:00';
+      document.title = '⏰ Done! — ' + origTitle;
+      clearInterval(cdInterval!);
+      cdInterval = null;
+      cdStartBtn.textContent = 'Start';
+      return;
+    }
+    cdDisplay.textContent = fmtTime(remaining);
+    document.title = cdDisplay.textContent + ' — ' + origTitle;
+  }
+
+  cdStartBtn.addEventListener('click', () => {
+    if (cdInterval) {
+      clearInterval(cdInterval);
+      cdInterval = null;
+      cdStartBtn.textContent = 'Start';
+      cdTotal = cdEnd - Date.now();
+      document.title = origTitle;
+    } else {
+      cdEnd = Date.now() + cdTotal;
+      cdInterval = setInterval(cdTick, 100);
+      cdStartBtn.textContent = 'Pause';
+      cdTick();
+      if (typeof (window as any).posthog !== 'undefined') {
+        (window as any).posthog.capture('timer_used', { mode: 'countdown', minutes: cdTotal / 60000 });
+      }
+    }
+  });
+
+  cdResetBtn.addEventListener('click', () => {
+    if (cdInterval) { clearInterval(cdInterval); cdInterval = null; }
+    cdStartBtn.textContent = 'Start';
+    cdTotal = 25 * 60 * 1000;
+    cdDisplay.textContent = '25:00';
+    document.title = origTitle;
+  });
+
+  document.querySelectorAll('.btn-preset').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (cdInterval) { clearInterval(cdInterval); cdInterval = null; cdStartBtn.textContent = 'Start'; }
+      const mins = parseInt((btn as HTMLButtonElement).dataset.mins!);
+      cdTotal = mins * 60 * 1000;
+      cdDisplay.textContent = fmtTime(cdTotal);
+    });
+  });
+
+  // Stopwatch
+  let swInterval: ReturnType<typeof setInterval> | null = null;
+  let swStart = 0;
+  let swElapsed = 0;
+  let lapCount = 0;
+  let lapTimes: number[] = [];
+
+  const swDisplay = document.getElementById('sw-display')!;
+  const swStartBtn = document.getElementById('sw-start') as HTMLButtonElement;
+  const swLapBtn = document.getElementById('sw-lap') as HTMLButtonElement;
+  const swResetBtn = document.getElementById('sw-reset') as HTMLButtonElement;
+  const swLaps = document.getElementById('sw-laps')!;
+
+  function swFmt(ms: number): string {
+    const totalSec = ms / 1000;
+    const m = Math.floor(totalSec / 60);
+    const s = Math.floor(totalSec % 60);
+    const cs = Math.floor((ms % 1000) / 10);
+    return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0') + '.' + String(cs).padStart(2, '0');
+  }
+
+  function swTick() {
+    const elapsed = swElapsed + (Date.now() - swStart);
+    swDisplay.textContent = swFmt(elapsed);
+    document.title = swDisplay.textContent + ' — ' + origTitle;
+  }
+
+  swStartBtn.addEventListener('click', () => {
+    if (swInterval) {
+      swElapsed += Date.now() - swStart;
+      clearInterval(swInterval);
+      swInterval = null;
+      swStartBtn.textContent = 'Start';
+      document.title = origTitle;
+    } else {
+      swStart = Date.now();
+      swInterval = setInterval(swTick, 10);
+      swStartBtn.textContent = 'Pause';
+      if (typeof (window as any).posthog !== 'undefined' && swElapsed === 0) {
+        (window as any).posthog.capture('timer_used', { mode: 'stopwatch' });
+      }
+    }
+  });
+
+  swLapBtn.addEventListener('click', () => {
+    const elapsed = swElapsed + (swInterval ? Date.now() - swStart : 0);
+    lapCount++;
+    const lastLap = lapTimes.length > 0 ? lapTimes[lapTimes.length - 1] : 0;
+    lapTimes.push(elapsed);
+    const el = document.createElement('div');
+    el.className = 'lap-row';
+    el.innerHTML = `<span class="lap-num">Lap ${lapCount}</span><span class="lap-time">${swFmt(elapsed - lastLap)}</span><span class="lap-total">${swFmt(elapsed)}</span>`;
+    swLaps.prepend(el);
+  });
+
+  swResetBtn.addEventListener('click', () => {
+    if (swInterval) { clearInterval(swInterval); swInterval = null; }
+    swStartBtn.textContent = 'Start';
+    swElapsed = 0;
+    lapCount = 0;
+    lapTimes = [];
+    swDisplay.textContent = '00:00.00';
+    swLaps.innerHTML = '';
+    document.title = origTitle;
+  });
+
+  // Pomodoro
+  let pomoInterval: ReturnType<typeof setInterval> | null = null;
+  let pomoEnd = 0;
+  let pomoPhase: 'focus' | 'break' | 'longbreak' = 'focus';
+  let pomoCompleted = 0;
+  const FOCUS = 25 * 60 * 1000;
+  const BREAK = 5 * 60 * 1000;
+  const LONG_BREAK = 15 * 60 * 1000;
+
+  const pomoDisplay = document.getElementById('pomo-display')!;
+  const pomoStatus = document.getElementById('pomo-status')!;
+  const pomoCount = document.getElementById('pomo-count')!;
+  const pomoProgress = document.getElementById('pomo-progress')!;
+  const pomoStartBtn = document.getElementById('pomo-start') as HTMLButtonElement;
+  const pomoResetBtn = document.getElementById('pomo-reset') as HTMLButtonElement;
+
+  function pomoDuration(): number {
+    if (pomoPhase === 'focus') return FOCUS;
+    if (pomoPhase === 'break') return BREAK;
+    return LONG_BREAK;
+  }
+
+  function pomoTick() {
+    const remaining = pomoEnd - Date.now();
+    if (remaining <= 0) {
+      clearInterval(pomoInterval!);
+      pomoInterval = null;
+      pomoStartBtn.textContent = 'Start';
+      // Switch phases
+      if (pomoPhase === 'focus') {
+        pomoCompleted++;
+        pomoPhase = (pomoCompleted % 4 === 0) ? 'longbreak' : 'break';
+        document.title = '☕ Break! — ' + origTitle;
+      } else {
+        pomoPhase = 'focus';
+        document.title = '🍅 Focus! — ' + origTitle;
+      }
+      pomoEnd = Date.now() + pomoDuration();
+      pomoStatus.textContent = pomoPhase === 'focus' ? 'Focus' : pomoPhase === 'break' ? 'Short break' : 'Long break';
+      pomoCount.textContent = 'Cycle ' + (Math.floor(pomoCompleted / 4) + 1);
+      pomoProgress.textContent = `Focus · ${pomoCompleted % 4}/4 completed`;
+      pomoDisplay.textContent = fmtTime(pomoDuration());
+      pomoStartBtn.click();
+      return;
+    }
+    pomoDisplay.textContent = fmtTime(remaining);
+    document.title = pomoDisplay.textContent + ' — ' + origTitle;
+  }
+
+  pomoStartBtn.addEventListener('click', () => {
+    if (pomoInterval) {
+      clearInterval(pomoInterval);
+      pomoInterval = null;
+      pomoStartBtn.textContent = 'Start';
+      document.title = origTitle;
+    } else {
+      pomoEnd = Date.now() + pomoDuration();
+      pomoInterval = setInterval(pomoTick, 100);
+      pomoStartBtn.textContent = 'Pause';
+      pomoTick();
+      if (typeof (window as any).posthog !== 'undefined') {
+        (window as any).posthog.capture('timer_used', { mode: 'pomodoro', phase: pomoPhase });
+      }
+    }
+  });
+
+  pomoResetBtn.addEventListener('click', () => {
+    if (pomoInterval) { clearInterval(pomoInterval); pomoInterval = null; }
+    pomoStartBtn.textContent = 'Start';
+    pomoPhase = 'focus';
+    pomoCompleted = 0;
+    pomoStatus.textContent = 'Focus';
+    pomoCount.textContent = 'Cycle 1';
+    pomoProgress.textContent = 'Focus · 0/4 completed';
+    pomoDisplay.textContent = '25:00';
+    document.title = origTitle;
+  });
+</script>
+
+<style>
+  .calc-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+  }
+
+  .calc-card h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #000;
+    margin: 0 0 24px;
+  }
+
+  .calc-desc {
+    font-size: 14px;
+    color: #5b5b5b;
+    margin: 0 0 24px;
+  }
+
+  .mode-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .mode-tab {
+    padding: 8px 20px;
+    border-radius: 9999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #5b5b5b;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 200ms ease;
+  }
+
+  .mode-tab.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  .time-display {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 64px;
+    font-weight: 400;
+    color: #000;
+    text-align: center;
+    margin: 24px 0;
+    letter-spacing: -0.02em;
+  }
+
+  .cd-presets {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .btn-preset {
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: #5b5b5b;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 200ms ease;
+  }
+
+  .btn-preset:hover {
+    color: #000;
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .btn-primary {
+    padding: 10px 24px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    height: 40px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-primary:hover { background: rgba(0, 0, 0, 0.85); }
+
+  .btn-secondary {
+    padding: 10px 24px;
+    background: #fff;
+    color: #5b5b5b;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 9999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    height: 40px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-secondary:hover { color: #000; border-color: rgba(0, 0, 0, 0.2); }
+
+  .pomo-status {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .pomo-info {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    font-size: 13px;
+    color: #5b5b5b;
+    margin-bottom: 24px;
+  }
+
+  .laps {
+    margin-top: 20px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .lap-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+  }
+
+  .lap-num { color: #999; }
+  .lap-time { color: #000; }
+  .lap-total { color: #5b5b5b; }
+
+  .seo-content {
+    margin-top: 32px;
+    padding: 24px;
+    color: #5b5b5b;
+  }
+
+  .seo-content h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    margin: 0 0 8px;
+  }
+
+  .seo-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

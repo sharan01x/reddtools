@@ -1,0 +1,704 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Image Colour Picker';
+const description = 'Drop an image and pick exact pixel colours. Get HEX, RGB, and HSL values instantly.';
+---
+
+<Layout title={title} description={description} activeTool="colour-picker">
+  <div class="max-w-2xl mx-auto">
+    <div class="calc-card">
+      <h1>Image Colour Picker</h1>
+
+      <div class="image-area" id="image-area">
+        <div class="drop-zone" id="drop-zone">
+          <div class="drop-prompt" id="drop-prompt">
+            <p>Drop an image here, click upload, or use your camera</p>
+            <span>PNG, JPG, WebP — up to 10MB</span>
+          </div>
+          <canvas id="picker-canvas" style="display:none;"></canvas>
+          <input type="file" id="file-input" accept="image/*" style="display:none;" />
+        </div>
+
+        <!-- Camera view (hidden by default) -->
+        <div class="camera-view" id="camera-view" style="display:none;">
+          <video id="camera-video" autoplay playsinline muted></video>
+          <div class="camera-crosshair"></div>
+          <div class="camera-controls">
+            <button class="btn-secondary" id="camera-stop">Stop camera</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls bar — always visible -->
+      <div class="controls-bar">
+        <div class="zoom-controls">
+          <button class="btn-icon disabled" id="zoom-out" aria-label="Zoom out" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><circle cx="11" cy="11" r="7"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="16" y1="16" x2="21" y2="21"/></svg>
+          </button>
+          <span class="zoom-level" id="zoom-level">100%</span>
+          <button class="btn-icon disabled" id="zoom-in" aria-label="Zoom in" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><circle cx="11" cy="11" r="7"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="16" y1="16" x2="21" y2="21"/></svg>
+          </button>
+          <button class="btn-icon disabled" id="zoom-reset" aria-label="Reset zoom" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg>
+          </button>
+        </div>
+        <div class="action-controls">
+          <button class="btn-icon" id="btn-upload" aria-label="Upload image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </button>
+          <button class="btn-icon" id="btn-camera" aria-label="Use camera">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="colour-result" id="colour-result" style="display:none;">
+        <div class="colour-preview" id="colour-preview"></div>
+        <div class="colour-values">
+          <div class="value-row">
+            <span class="value-label">HEX</span>
+            <input type="text" id="val-hex" readonly />
+            <button class="btn-mini" data-copy="val-hex">Copy</button>
+          </div>
+          <div class="value-row">
+            <span class="value-label">RGB</span>
+            <input type="text" id="val-rgb" readonly />
+            <button class="btn-mini" data-copy="val-rgb">Copy</button>
+          </div>
+          <div class="value-row">
+            <span class="value-label">HSL</span>
+            <input type="text" id="val-hsl" readonly />
+            <button class="btn-mini" data-copy="val-hsl">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="picked-history" id="picked-history" style="display:none;">
+        <div class="history-label">Recent picks</div>
+        <div class="history-swatches" id="history-swatches"></div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>About Image Colour Picker</h2>
+      <p>Drop an image or use your camera to pick exact pixel colours. Get HEX, RGB, and HSL values instantly. This tool runs entirely in your browser — no data is sent to any server. Images are never uploaded.</p>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const dropZone = document.getElementById('drop-zone')!;
+  const dropPrompt = document.getElementById('drop-prompt')!;
+  const canvas = document.getElementById('picker-canvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d', { willReadFrequently: true })!;
+  const fileInput = document.getElementById('file-input') as HTMLInputElement;
+  const colourResult = document.getElementById('colour-result')!;
+  const colourPreview = document.getElementById('colour-preview') as HTMLElement;
+  const historyWrap = document.getElementById('picked-history')!;
+  const historySwatches = document.getElementById('history-swatches')!;
+  const cameraView = document.getElementById('camera-view')!;
+  const cameraVideo = document.getElementById('camera-video') as HTMLVideoElement;
+  const picked: string[] = [];
+
+  // Zoom/pan state
+  let zoom = 1;
+  let panX = 0, panY = 0;
+  let baseImage: HTMLImageElement | null = null;
+  let isDragging = false;
+  let dragStartX = 0, dragStartY = 0;
+
+  function setZoomEnabled(enabled: boolean) {
+    ['zoom-in', 'zoom-out', 'zoom-reset'].forEach((id) => {
+      const btn = document.getElementById(id) as HTMLButtonElement;
+      btn.disabled = !enabled;
+      if (enabled) btn.classList.remove('disabled');
+      else btn.classList.add('disabled');
+    });
+  }
+
+  function loadImage(file: File) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        baseImage = img;
+        zoom = 1;
+        panX = 0;
+        panY = 0;
+        renderCanvas();
+        dropPrompt.style.display = 'none';
+        canvas.style.display = 'block';
+        setZoomEnabled(true);
+        if (typeof (window as any).posthog !== 'undefined') {
+          (window as any).posthog.capture('colour_picker_used', { action: 'image_loaded' });
+        }
+      };
+      img.src = e.target!.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function renderCanvas() {
+    if (!baseImage) return;
+    const maxW = 600;
+    const baseScale = Math.min(1, maxW / baseImage.width);
+    const w = baseImage.width * baseScale;
+    const h = baseImage.height * baseScale;
+    canvas.width = w;
+    canvas.height = h;
+    ctx.save();
+    ctx.clearRect(0, 0, w, h);
+    ctx.translate(w / 2, h / 2);
+    ctx.scale(zoom, zoom);
+    ctx.translate(-w / 2 + panX, -h / 2 + panY);
+    ctx.drawImage(baseImage, 0, 0, w, h);
+    ctx.restore();
+    document.getElementById('zoom-level')!.textContent = Math.round(zoom * 100) + '%';
+  }
+
+  // Drop / click to upload
+  dropZone.addEventListener('click', (e) => {
+    if (e.target === canvas) return; // let canvas clicks through
+    fileInput.click();
+  });
+
+  dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('dragover');
+  });
+
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    const file = e.dataTransfer!.files[0];
+    if (file && file.type.startsWith('image/')) loadImage(file);
+  });
+
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files?.[0];
+    if (file) loadImage(file);
+  });
+
+  // Upload button
+  document.getElementById('btn-upload')!.addEventListener('click', (e) => {
+    e.stopPropagation();
+    fileInput.click();
+  });
+
+  // Canvas click to pick colour
+  canvas.addEventListener('click', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = Math.floor((e.clientX - rect.left) * (canvas.width / rect.width));
+    const y = Math.floor((e.clientY - rect.top) * (canvas.height / rect.height));
+    const pixel = ctx.getImageData(x, y, 1, 1).data;
+    showColour(pixel[0], pixel[1], pixel[2]);
+  });
+
+  // Zoom controls
+  document.getElementById('zoom-in')!.addEventListener('click', (e) => {
+    e.stopPropagation();
+    zoom = Math.min(zoom + 0.25, 5);
+    renderCanvas();
+  });
+
+  document.getElementById('zoom-out')!.addEventListener('click', (e) => {
+    e.stopPropagation();
+    zoom = Math.max(zoom - 0.25, 0.5);
+    if (zoom === 1) { panX = 0; panY = 0; }
+    renderCanvas();
+  });
+
+  document.getElementById('zoom-reset')!.addEventListener('click', (e) => {
+    e.stopPropagation();
+    zoom = 1;
+    panX = 0;
+    panY = 0;
+    renderCanvas();
+  });
+
+  // Pan: drag on canvas
+  canvas.addEventListener('mousedown', (e) => {
+    if (zoom === 1) return;
+    isDragging = true;
+    dragStartX = e.clientX - panX;
+    dragStartY = e.clientY - panY;
+  });
+
+  canvas.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    panX = e.clientX - dragStartX;
+    panY = e.clientY - dragStartY;
+    renderCanvas();
+  });
+
+  canvas.addEventListener('mouseup', () => isDragging = false);
+  canvas.addEventListener('mouseleave', () => isDragging = false);
+
+  // Touch pan
+  canvas.addEventListener('touchstart', (e) => {
+    if (zoom === 1 || e.touches.length !== 1) return;
+    isDragging = true;
+    dragStartX = e.touches[0].clientX - panX;
+    dragStartY = e.touches[0].clientY - panY;
+  });
+
+  canvas.addEventListener('touchmove', (e) => {
+    if (!isDragging || e.touches.length !== 1) return;
+    e.preventDefault();
+    panX = e.touches[0].clientX - dragStartX;
+    panY = e.touches[0].clientY - dragStartY;
+    renderCanvas();
+  }, { passive: false });
+
+  canvas.addEventListener('touchend', () => isDragging = false);
+
+  function showColour(r: number, g: number, b: number) {
+    const hex = '#' + [r, g, b].map((c) => c.toString(16).padStart(2, '0')).join('');
+    const rgb = `rgb(${r}, ${g}, ${b})`;
+    const hsl = rgbToHsl(r, g, b);
+    colourPreview.style.background = hex;
+    (document.getElementById('val-hex') as HTMLInputElement).value = hex;
+    (document.getElementById('val-rgb') as HTMLInputElement).value = rgb;
+    (document.getElementById('val-hsl') as HTMLInputElement).value = hsl;
+    colourResult.style.display = 'flex';
+    if (!picked.includes(hex)) {
+      picked.unshift(hex);
+      if (picked.length > 12) picked.pop();
+      renderHistory();
+    }
+    if (typeof (window as any).posthog !== 'undefined') {
+      (window as any).posthog.capture('colour_picker_used', { action: 'pick', hex });
+    }
+  }
+
+  function rgbToHsl(r: number, g: number, b: number): string {
+    r /= 255; g /= 255; b /= 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h = 0, s = 0;
+    const l = (max + min) / 2;
+    if (max !== min) {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r: h = ((g - b) / d + (g < b ? 6 : 0)); break;
+        case g: h = ((b - r) / d + 2); break;
+        case b: h = ((r - g) / d + 4); break;
+      }
+      h /= 6;
+    }
+    return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
+  }
+
+  function renderHistory() {
+    historyWrap.style.display = 'block';
+    historySwatches.innerHTML = '';
+    picked.forEach((hex) => {
+      const sw = document.createElement('div');
+      sw.className = 'swatch';
+      sw.style.background = hex;
+      sw.title = hex;
+      sw.addEventListener('click', () => {
+        const [r, g, b] = hexToRgb(hex);
+        showColour(r, g, b);
+      });
+      historySwatches.appendChild(sw);
+    });
+  }
+
+  function hexToRgb(hex: string): [number, number, number] {
+    const m = hex.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
+    return m ? [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)] : [0, 0, 0];
+  }
+
+  // Copy buttons
+  document.querySelectorAll('.btn-mini').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const targetId = (btn as HTMLButtonElement).dataset.copy!;
+      const val = (document.getElementById(targetId) as HTMLInputElement).value;
+      await navigator.clipboard.writeText(val);
+      (btn as HTMLButtonElement).textContent = '✓';
+      setTimeout(() => { (btn as HTMLButtonElement).textContent = 'Copy'; }, 1500);
+    });
+  });
+
+  // Camera
+  let cameraStream: MediaStream | null = null;
+  let cameraInterval: ReturnType<typeof setInterval> | null = null;
+  const cameraCanvas = document.createElement('canvas');
+  const cameraCtx = cameraCanvas.getContext('2d', { willReadFrequently: true })!;
+
+  document.getElementById('btn-camera')!.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    if (cameraStream) {
+      stopCamera();
+    } else {
+      try {
+        cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+        cameraVideo.srcObject = cameraStream;
+        cameraView.style.display = 'block';
+        document.getElementById('image-area')!.style.display = 'none';
+        setZoomEnabled(false);
+        // Continuously sample centre pixel
+        cameraInterval = setInterval(() => {
+          if (cameraVideo.readyState === 4) {
+            const vw = cameraVideo.videoWidth, vh = cameraVideo.videoHeight;
+            cameraCanvas.width = 1;
+            cameraCanvas.height = 1;
+            cameraCtx.drawImage(cameraVideo, vw / 2, vh / 2, 1, 1, 0, 0, 1, 1);
+            const pixel = cameraCtx.getImageData(0, 0, 1, 1).data;
+            showColour(pixel[0], pixel[1], pixel[2]);
+          }
+        }, 100);
+        if (typeof (window as any).posthog !== 'undefined') {
+          (window as any).posthog.capture('colour_picker_used', { action: 'camera_started' });
+        }
+      } catch (err) {
+        alert('Could not access camera. Please grant camera permission in your browser settings.');
+      }
+    }
+  });
+
+  function stopCamera() {
+    if (cameraStream) {
+      cameraStream.getTracks().forEach((t) => t.stop());
+      cameraStream = null;
+    }
+    if (cameraInterval) { clearInterval(cameraInterval); cameraInterval = null; }
+    cameraView.style.display = 'none';
+    document.getElementById('image-area')!.style.display = '';
+    if (baseImage) {
+      setZoomEnabled(true);
+    }
+  }
+
+  document.getElementById('camera-stop')!.addEventListener('click', stopCamera);
+</script>
+
+<style>
+  .calc-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+  }
+
+  .calc-card h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #000;
+    margin: 0 0 24px;
+  }
+
+  .calc-desc {
+    font-size: 14px;
+    color: #5b5b5b;
+    margin: 0 0 24px;
+  }
+
+  .drop-zone {
+    border: 2px dashed rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 200ms ease, background 200ms ease;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .drop-zone.dragover {
+    border-color: #00c2ff;
+    background: rgba(0, 194, 255, 0.04);
+  }
+
+  .drop-zone:has(canvas) {
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .drop-prompt {
+    text-align: center;
+    color: #5b5b5b;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .drop-prompt p {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    margin: 4px 0 0;
+  }
+
+  .drop-prompt span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #999;
+  }
+
+  #picker-canvas {
+    max-width: 100%;
+    height: auto;
+    cursor: crosshair;
+  }
+
+  /* Controls bar */
+  .controls-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 12px;
+    padding: 8px 0;
+  }
+
+  .zoom-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .zoom-level {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: #5b5b5b;
+    min-width: 44px;
+    text-align: center;
+  }
+
+  .btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    color: #5b5b5b;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: all 200ms ease;
+  }
+
+  .btn-icon:hover {
+    color: #000;
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-icon.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+  }
+
+  .btn-icon.disabled:hover {
+    color: #ccc;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .action-controls {
+    display: flex;
+    gap: 4px;
+  }
+
+  /* Camera view */
+  .camera-view {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #000;
+  }
+
+  #camera-video {
+    width: 100%;
+    display: block;
+  }
+
+  .camera-crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+  }
+
+  .camera-crosshair::before,
+  .camera-crosshair::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .camera-crosshair::before {
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+
+  .camera-crosshair::after {
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    transform: translateX(-50%);
+  }
+
+  .camera-controls {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .btn-secondary {
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Colour result */
+  .colour-result {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-top: 20px;
+    padding: 16px;
+    background: #fafafa;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+  }
+
+  .colour-preview {
+    width: 64px;
+    height: 64px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+  }
+
+  .colour-values {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .value-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .value-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+    width: 36px;
+    flex-shrink: 0;
+  }
+
+  .value-row input {
+    flex: 1;
+    padding: 8px 12px;
+    background: #fff;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: #000;
+    box-sizing: border-box;
+  }
+
+  .btn-mini {
+    padding: 6px 12px;
+    background: #fff;
+    color: #5b5b5b;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 9999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* History */
+  .picked-history {
+    margin-top: 20px;
+  }
+
+  .history-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 8px;
+  }
+
+  .history-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .swatch {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 150ms ease;
+  }
+
+  .swatch:hover {
+    transform: scale(1.1);
+  }
+
+  .seo-content {
+    margin-top: 32px;
+    padding: 24px;
+    color: #5b5b5b;
+  }
+
+  .seo-content h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    margin: 0 0 8px;
+  }
+
+  .seo-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

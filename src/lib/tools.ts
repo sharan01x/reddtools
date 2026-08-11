@@ -30,7 +30,7 @@ export const tools: Tool[] = [
     description: 'Multi-mode calculator for mortgage, interest, VAT, percentages, and more.',
     icon: 'calculator',
     keywords: ['calculator', 'mortgage calculator', 'interest calculator', 'vat calculator', 'percentage calculator'],
-    status: 'in-progress',
+    status: 'live',
     modes: [
       { slug: 'mortgage', name: 'Mortgage Calculator', description: 'Calculate monthly mortgage payments.', keywords: ['mortgage calculator', 'home loan calculator'] },
       { slug: 'compound-interest', name: 'Compound Interest Calculator', description: 'Calculate compound interest on savings.', keywords: ['compound interest calculator'] },
@@ -47,9 +47,9 @@ export const tools: Tool[] = [
     description: 'Convert between units of length, weight, temperature, volume, speed, and more.',
     icon: 'ruler',
     keywords: ['unit converter', 'kg to lbs', 'miles to km', 'celsius to fahrenheit', 'cups to ml'],
-    status: 'planned',
+    status: 'live',
     modes: [
-      { slug: 'length', name: 'Length Converter', description: 'Convert length units.', keywords: ['length converter', 'meters to feet'] },
+      { slug: 'length', name: 'Length Converter', description: 'Convert between units of length — meters, feet, miles, and more.', keywords: ['length converter', 'meters to feet'] },
       { slug: 'weight', name: 'Weight Converter', description: 'Convert weight units.', keywords: ['weight converter', 'kg to lbs'] },
       { slug: 'temperature', name: 'Temperature Converter', description: 'Convert temperature units.', keywords: ['celsius to fahrenheit', 'temperature converter'] },
       { slug: 'volume', name: 'Volume Converter', description: 'Convert volume units.', keywords: ['volume converter', 'cups to ml'] },
@@ -64,7 +64,7 @@ export const tools: Tool[] = [
     description: 'Count words, characters, sentences, and reading time in real time.',
     icon: 'type',
     keywords: ['word counter', 'character counter', 'word count', 'reading time calculator'],
-    status: 'planned',
+    status: 'live',
   },
   {
     slug: 'case-converter',
@@ -73,7 +73,7 @@ export const tools: Tool[] = [
     description: 'Convert text between uppercase, lowercase, title case, camelCase, snake_case, and more.',
     icon: 'case-sensitive',
     keywords: ['case converter', 'uppercase to lowercase', 'camelcase converter', 'snake case converter'],
-    status: 'planned',
+    status: 'live',
   },
   {
     slug: 'timer',
@@ -82,7 +82,7 @@ export const tools: Tool[] = [
     description: 'Countdown timer, stopwatch, and pomodoro timer with tab-title countdown.',
     icon: 'timer',
     keywords: ['timer', 'pomodoro timer', 'stopwatch', 'countdown timer'],
-    status: 'planned',
+    status: 'live',
   },
   {
     slug: 'colour-picker',
@@ -91,7 +91,7 @@ export const tools: Tool[] = [
     description: 'Drop an image and pick exact pixel colours. Get HEX, RGB, and HSL values instantly.',
     icon: 'pipette',
     keywords: ['image color picker', 'hex from image', 'color picker from image', 'eyedropper tool'],
-    status: 'planned',
+    status: 'live',
   },
 ];
 

@@ -1,0 +1,455 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { tools } from '../../lib/tools';
+
+export function getStaticPaths() {
+  const tool = tools.find(t => t.slug === 'unit-converter')!;
+  return tool.modes!.map((mode) => ({
+    params: { mode: mode.slug },
+  }));
+}
+
+const tool = tools.find(t => t.slug === 'unit-converter')!;
+const modes = tool.modes!;
+const currentMode = Astro.params.mode!;
+const mode = modes.find(m => m.slug === currentMode)!;
+
+const title = mode.name;
+const description = mode.description;
+
+// Unit definitions (same as the JS below, but available in frontmatter for rendering)
+const unitData: Record<string, string[]> = {
+  length: ['Metre', 'Kilometre', 'Centimetre', 'Millimetre', 'Mile', 'Yard', 'Foot', 'Inch'],
+  weight: ['Gram', 'Kilogram', 'Milligram', 'Tonne', 'Pound', 'Ounce', 'Stone'],
+  temperature: ['Celsius', 'Fahrenheit', 'Kelvin'],
+  volume: ['Millilitre', 'Litre', 'Cup (US)', 'Cup (metric)', 'Tablespoon', 'Teaspoon', 'Fluid ounce', 'Pint (US)', 'Gallon (US)'],
+  speed: ['m/s', 'km/h', 'mph', 'knot', 'ft/s'],
+  data: ['Byte', 'Kilobyte', 'Megabyte', 'Gigabyte', 'Terabyte', 'Petabyte'],
+};
+
+const units = unitData[currentMode] || [];
+const defaultUnit = units[0];
+---
+
+<Layout title={title} description={description} activeTool="unit-converter">
+  <div class="calc-tabs-outer">
+    <div class="calc-tabs-inner">
+      {modes.map((m) => (
+        <a
+          href={`/unit-converter/${m.slug}`}
+          class:list={['calc-tab-pill', m.slug === mode.slug ? 'active' : '']}
+        >
+          {m.name.replace(/\s*Converter$/i, '')}
+        </a>
+      ))}
+    </div>
+
+    <div class="calc-mode-select">
+      <label for="uc-mode-select">Type</label>
+      <select id="uc-mode-select">
+        {modes.map((m) => (
+          <option value={m.slug} selected={m.slug === mode.slug}>
+            {m.name.replace(/\s*Converter$/i, '')}
+          </option>
+        ))}
+      </select>
+    </div>
+  </div>
+
+  <div class="max-w-2xl mx-auto">
+    <div class="calc-card">
+      <h1>{mode.name}</h1>
+
+      <div id="converter-root" data-mode={currentMode}>
+        <!-- Input row: amount + unit on same line -->
+        <div class="input-row">
+          <div class="input-group">
+            <label>Amount</label>
+            <input type="number" id="uc-input" placeholder="1" step="any" />
+          </div>
+          <div class="input-group">
+            <label>Unit</label>
+            <div class="select-wrap">
+              <select id="uc-from">
+                {units.map((u) => (
+                  <option value={u} selected={u === defaultUnit}>{u}</option>
+                ))}
+              </select>
+              <svg class="select-chevron" viewBox="0 0 12 8" fill="none" width="10" height="6"><path d="M1 1.5L6 6.5L11 1.5" stroke="#5b5b5b" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pre-rendered stat boxes — JS only fills values -->
+        <div class="stats-grid">
+          {units.map((u) => (
+            <div class="stat-box" data-unit={u}>
+              <div class="stat-label">{u}</div>
+              <div class="stat-value">—</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>About {mode.name}</h2>
+      <p>{mode.description} Free, instant, and private — all conversions run entirely in your browser with no data sent to any server.</p>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const units: Record<string, Record<string, number>> = {
+    length: { Metre: 1, Kilometre: 1000, Centimetre: 0.01, Millimetre: 0.001, Mile: 1609.344, Yard: 0.9144, Foot: 0.3048, Inch: 0.0254 },
+    weight: { Gram: 1, Kilogram: 1000, Milligram: 0.001, Tonne: 1000000, Pound: 453.592, Ounce: 28.3495, Stone: 6350.29 },
+    volume: { Millilitre: 1, Litre: 1000, 'Cup (US)': 236.588, 'Cup (metric)': 250, Tablespoon: 14.7868, Teaspoon: 4.92892, 'Fluid ounce': 29.5735, 'Pint (US)': 473.176, 'Gallon (US)': 3785.41 },
+    speed: { 'm/s': 1, 'km/h': 0.277778, mph: 0.44704, knot: 0.514444, 'ft/s': 0.3048 },
+    data: { Byte: 1, Kilobyte: 1024, Megabyte: 1048576, Gigabyte: 1073741824, Terabyte: 1099511627776, Petabyte: 1125899906842624 },
+  };
+
+  const tempUnits: Record<string, { toC: (v: number) => number; fromC: (v: number) => number }> = {
+    Celsius: { toC: (v) => v, fromC: (v) => v },
+    Fahrenheit: { toC: (v) => (v - 32) * 5 / 9, fromC: (v) => v * 9 / 5 + 32 },
+    Kelvin: { toC: (v) => v - 273.15, fromC: (v) => v + 273.15 },
+  };
+
+  const mode = (document.getElementById('converter-root') as HTMLElement).dataset.mode!;
+  const fromSelect = document.getElementById('uc-from') as HTMLSelectElement;
+  const input = document.getElementById('uc-input') as HTMLInputElement;
+
+  function convert(value: number, from: string, to: string): number {
+    if (mode === 'temperature') {
+      const c = tempUnits[from].toC(value);
+      return tempUnits[to].fromC(c);
+    }
+    const table = units[mode];
+    if (!table) return 0;
+    return value * table[from] / table[to];
+  }
+
+  function formatResult(n: number): string {
+    if (Math.abs(n) >= 1e15 || (Math.abs(n) > 0 && Math.abs(n) < 1e-6)) {
+      return n.toExponential(4);
+    }
+    return parseFloat(n.toPrecision(8)).toString();
+  }
+
+  function update() {
+    const val = parseFloat(input.value);
+    const fromUnit = fromSelect.value;
+
+    document.querySelectorAll('.stat-box').forEach((box) => {
+      const targetUnit = (box as HTMLElement).dataset.unit!;
+      const valueEl = box.querySelector('.stat-value')!;
+
+      // Hide the source unit's box
+      if (targetUnit === fromUnit) {
+        (box as HTMLElement).style.display = 'none';
+        return;
+      }
+      (box as HTMLElement).style.display = '';
+
+      if (isNaN(val)) {
+        valueEl.textContent = '—';
+        return;
+      }
+      const result = convert(val, fromUnit, targetUnit);
+      valueEl.textContent = formatResult(result);
+      (box as HTMLElement).dataset.copyValue = formatResult(result);
+    });
+
+    if (typeof (window as any).posthog !== 'undefined' && !isNaN(val)) {
+      (window as any).posthog.capture('converter_used', { mode, from: fromUnit, value: val });
+    }
+  }
+
+  // Click to copy
+  document.querySelectorAll('.stat-box').forEach((box) => {
+    box.addEventListener('click', async () => {
+      const val = (box as HTMLElement).dataset.copyValue;
+      if (!val || val === '—') return;
+      await navigator.clipboard.writeText(val);
+      const valueEl = box.querySelector('.stat-value')!;
+      const original = valueEl.textContent;
+      valueEl.textContent = 'Copied!';
+      box.classList.add('copied');
+      setTimeout(() => {
+        valueEl.textContent = original;
+        box.classList.remove('copied');
+      }, 1200);
+    });
+  });
+
+  input.addEventListener('input', update);
+  fromSelect.addEventListener('change', update);
+
+  const modeSelect = document.getElementById('uc-mode-select') as HTMLSelectElement | null;
+  if (modeSelect) modeSelect.addEventListener('change', () => {
+    window.location.href = `/unit-converter/${modeSelect.value}`;
+  });
+
+  input.value = '1';
+  update();
+</script>
+
+<style>
+  .calc-tabs-outer {
+    max-width: 1440px;
+    margin: 32px auto 0;
+    padding: 0 24px;
+  }
+
+  @media (min-width: 768px) {
+    .calc-tabs-outer { padding: 0 48px; }
+  }
+
+  .calc-tabs-inner {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin-bottom: 50px;
+    justify-content: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 4px;
+  }
+
+  .calc-tabs-inner::-webkit-scrollbar { display: none; }
+
+  .calc-tab-pill {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 9999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #5b5b5b;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: all 200ms ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .calc-tab-pill:hover {
+    color: #000;
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .calc-tab-pill.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  .calc-mode-select { display: none; }
+  .calc-mode-select label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .calc-mode-select select {
+    width: 100%;
+    padding: 10px 16px;
+    background: #fafafa;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #000;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 767px) {
+    .calc-tabs-inner { display: none; }
+    .calc-mode-select { display: block; margin-bottom: 32px; }
+  }
+
+  .calc-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+  }
+
+  .calc-card h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #000;
+    margin: 0 0 24px;
+  }
+
+  .calc-desc {
+    font-size: 14px;
+    color: #5b5b5b;
+    margin: 0 0 24px;
+  }
+
+  /* Input row: amount + unit side by side */
+  .input-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 480px) {
+    .input-row { grid-template-columns: 1fr; }
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .input-group label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .input-group input {
+    padding: 10px 16px;
+    background: #fafafa;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #000;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  .input-group input:focus {
+    outline: none;
+    border-color: #00c2ff;
+    box-shadow: 0 0 0 3px rgba(0, 194, 255, 0.1);
+  }
+
+  /* Custom select wrapper for cross-browser consistency */
+  .select-wrap {
+    position: relative;
+    width: 100%;
+  }
+
+  .select-wrap select {
+    width: 100%;
+    padding: 10px 36px 10px 16px;
+    background: #fafafa;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #000;
+    cursor: pointer;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  .select-wrap select:focus {
+    outline: none;
+    border-color: #00c2ff;
+    box-shadow: 0 0 0 3px rgba(0, 194, 255, 0.1);
+  }
+
+  .select-chevron {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  /* Stats grid — identical to word counter */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .stat-box {
+    padding: 16px;
+    background: #fafafa;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 200ms ease, background 200ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .stat-box:hover {
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+
+  .stat-box.copied {
+    border-color: #0afa14;
+    background: rgba(10, 250, 20, 0.04);
+  }
+
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .stat-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 24px;
+    font-weight: 400;
+    color: #000;
+    margin-top: 4px;
+    word-break: break-all;
+  }
+
+  .seo-content {
+    margin-top: 32px;
+    padding: 24px;
+    color: #5b5b5b;
+  }
+
+  .seo-content h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    margin: 0 0 8px;
+  }
+
+  .seo-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

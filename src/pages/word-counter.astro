@@ -1,0 +1,182 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Word Counter';
+const description = 'Count words, characters, sentences, and reading time in real time.';
+---
+
+<Layout title={title} description={description} activeTool="word-counter">
+  <div class="max-w-2xl mx-auto">
+    <div class="calc-card">
+      <h1>Word Counter</h1>
+
+      <textarea id="wc-input" placeholder="Start typing or paste your text here..." rows="10"></textarea>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-label">Words</div>
+          <div class="stat-value" id="stat-words">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Characters</div>
+          <div class="stat-value" id="stat-chars">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Sentences</div>
+          <div class="stat-value" id="stat-sentences">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Paragraphs</div>
+          <div class="stat-value" id="stat-paragraphs">0</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Reading time</div>
+          <div class="stat-value" id="stat-reading">0s</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Avg word length</div>
+          <div class="stat-value" id="stat-avglen">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-content">
+      <h2>About Word Counter</h2>
+      <p>Count words, characters, sentences, paragraphs, and reading time in real time. Free, instant, and private — all analysis runs entirely in your browser with no data sent to any server.</p>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const input = document.getElementById('wc-input') as HTMLTextAreaElement;
+
+  function update() {
+    const text = input.value;
+    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+    const chars = text.length;
+    const sentences = text.trim() ? (text.match(/[.!?]+(?:\s|$)/g) || []).length || (words > 0 ? 1 : 0) : 0;
+    const paragraphs = text.trim() ? text.split(/\n\s*\n/).filter((p) => p.trim().length > 0).length : 0;
+    const readingSeconds = Math.round(words / 200 * 60);
+    const avgLen = words > 0 ? (text.replace(/\s/g, '').length / words).toFixed(1) : '0';
+
+    document.getElementById('stat-words')!.textContent = words.toLocaleString();
+    document.getElementById('stat-chars')!.textContent = chars.toLocaleString();
+    document.getElementById('stat-sentences')!.textContent = sentences.toLocaleString();
+    document.getElementById('stat-paragraphs')!.textContent = paragraphs.toLocaleString();
+
+    let rt: string;
+    if (readingSeconds < 60) rt = readingSeconds + 's';
+    else rt = Math.floor(readingSeconds / 60) + 'm ' + (readingSeconds % 60) + 's';
+    document.getElementById('stat-reading')!.textContent = rt;
+
+    document.getElementById('stat-avglen')!.textContent = avgLen;
+
+    if (typeof (window as any).posthog !== 'undefined' && words > 0) {
+      (window as any).posthog.capture('word_counter_used', { words, chars, sentences });
+    }
+  }
+
+  input.addEventListener('input', update);
+</script>
+
+<style>
+  .calc-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+  }
+
+  .calc-card h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #000;
+    margin: 0 0 24px;
+  }
+
+  .calc-desc {
+    font-size: 14px;
+    color: #5b5b5b;
+    margin: 0 0 24px;
+  }
+
+  #wc-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #fafafa;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+    resize: vertical;
+    min-height: 200px;
+    box-sizing: border-box;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  #wc-input:focus {
+    outline: none;
+    border-color: #00c2ff;
+    box-shadow: 0 0 0 3px rgba(0, 194, 255, 0.1);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .stat-box {
+    padding: 16px;
+    background: #fafafa;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+  }
+
+  .stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .stat-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 24px;
+    font-weight: 400;
+    color: #000;
+    margin-top: 4px;
+  }
+
+  .seo-content {
+    margin-top: 32px;
+    padding: 24px;
+    color: #5b5b5b;
+  }
+
+  .seo-content h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    margin: 0 0 8px;
+  }
+
+  .seo-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+</style>

@@ -21,7 +21,7 @@ const toolIcons: Record<string, string> = {
     <div class="hero-content">
       <div class="beta-badge">
         <span class="pulse-dot"></span>
-        <span>7 tools · more coming</span>
+        <span>6 tools · all live</span>
       </div>
       <h1>Free tools,<br>designed properly.</h1>
       <p class="hero-subtitle">No clutter. No popups. No 2010-era design. Just clean, fast utilities that do one thing well.</p>
@@ -44,7 +44,7 @@ const toolIcons: Record<string, string> = {
           {tool.modes && tool.modes.length > 0 && (
             <div class="card-modes">
               {tool.modes.slice(0, 4).map((mode) => (
-                <span class="mode-tag">{mode.name.replace(/\s*Calculator$/i, '')}</span>
+                <span class="mode-tag">{mode.name.replace(/\s*(Calculator|Converter)$/i, '')}</span>
               ))}
               {tool.modes.length > 4 && (
                 <span class="mode-tag-more">+{tool.modes.length - 4}</span>

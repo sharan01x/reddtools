@@ -153,6 +153,10 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
     <div class="footer-content">
       <div class="footer-brand">ReddTools</div>
       <div class="footer-rule"></div>
+      <div class="footer-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
       <div class="footer-caption">Built by Redd Group</div>
     </div>
   </footer>
@@ -473,6 +477,23 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: #999;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #5b5b5b;
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+
+    .footer-links a:hover {
+      color: #000;
     }
   </style>
 </body>
