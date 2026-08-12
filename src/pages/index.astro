@@ -4,6 +4,20 @@ import { tools } from '../lib/tools';
 
 const title = 'ReddTools';
 const description = 'Free online tools — calculator, unit converter, word counter, and more. Designed to be fast, clean, and actually nice to use.';
+const canonicalPath = '/';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'ReddTools',
+  url: 'https://reddtools.com',
+  description: 'Free online tools — calculator, unit converter, word counter, and more.',
+  potentialAction: tools.map(t => ({
+    '@type': 'SearchAction',
+    target: `https://reddtools.com/${t.slug}`,
+    name: t.name,
+  })),
+};
 
 const toolIcons: Record<string, string> = {
   calculator: `<svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="48" height="12" rx="3"/><rect x="8" y="26" width="14" height="12" rx="2"/><rect x="25" y="26" width="14" height="12" rx="2"/><rect x="42" y="26" width="14" height="12" rx="2"/><rect x="8" y="44" width="14" height="12" rx="2"/><rect x="25" y="44" width="14" height="12" rx="2"/><rect x="42" y="44" width="14" height="12" rx="2"/></svg>`,
@@ -16,7 +30,7 @@ const toolIcons: Record<string, string> = {
 };
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd}>
   <div class="hero">
     <div class="hero-content">
       <div class="beta-badge">

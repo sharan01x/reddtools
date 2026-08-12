@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { tools } from '../../lib/tools';
+import SeoContent from '../../components/SeoContent.astro';
 
 export function getStaticPaths() {
   const tool = tools.find(t => t.slug === 'calculator')!;
@@ -16,9 +17,26 @@ const mode = modes.find(m => m.slug === currentMode)!;
 
 const title = mode.name;
 const description = mode.description;
+const canonicalPath = `/calculator/${mode.slug}`;
+const keywords = mode.keywords;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: mode.name,
+  description: mode.description,
+  url: `https://reddtools.com/calculator/${mode.slug}`,
+  applicationCategory: 'CalculatorApplication',
+  operatingSystem: 'Any',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'EUR',
+  },
+};
 ---
 
-<Layout title={title} description={description} activeTool="calculator">
+<Layout title={title} description={description} activeTool="calculator" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd}>
   <div class="calc-tabs-outer">
     <!-- Desktop: pill tabs -->
     <div class="calc-tabs-inner">
@@ -221,10 +239,7 @@ const description = mode.description;
       </div>
     </div>
 
-    <div class="seo-content">
-      <h2>About {mode.name}</h2>
-      <p>{mode.description} Free, instant, and private — all calculations run entirely in your browser with no data sent to any server.</p>
-    </div>
+    <SeoContent toolSlug="calculator" modeSlug={mode.slug} />
   </div>
 </Layout>
 

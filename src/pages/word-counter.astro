@@ -1,11 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getTool } from '../lib/tools';
+import SeoContent from '../components/SeoContent.astro';
 
-const title = 'Word Counter';
-const description = 'Count words, characters, sentences, and reading time in real time.';
+const tool = getTool('word-counter')!;
+const title = tool.name;
+const description = tool.description;
+const canonicalPath = `/${tool.slug}`;
+const keywords = tool.keywords;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: tool.name,
+  description: tool.description,
+  url: `https://reddtools.com/${tool.slug}`,
+  applicationCategory: 'TextProcessingApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+};
 ---
 
-<Layout title={title} description={description} activeTool="word-counter">
+<Layout title={title} description={description} activeTool="word-counter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd}>
   <div class="max-w-2xl mx-auto">
     <div class="calc-card">
       <h1>Word Counter</h1>
@@ -40,10 +56,7 @@ const description = 'Count words, characters, sentences, and reading time in rea
       </div>
     </div>
 
-    <div class="seo-content">
-      <h2>About Word Counter</h2>
-      <p>Count words, characters, sentences, paragraphs, and reading time in real time. Free, instant, and private — all analysis runs entirely in your browser with no data sent to any server.</p>
-    </div>
+    <SeoContent toolSlug="word-counter" />
   </div>
 </Layout>
 

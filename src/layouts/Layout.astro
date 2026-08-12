@@ -6,11 +6,19 @@ interface Props {
   title: string;
   description: string;
   activeTool?: string;
+  keywords?: string[];
+  canonicalPath?: string;  // e.g. '/calculator/mortgage' — used for canonical URL
+  jsonLd?: object | object[];  // structured data
 }
 
-const { title, description, activeTool } = Astro.props;
+const { title, description, activeTool, keywords, canonicalPath, jsonLd } = Astro.props;
 const siteName = 'ReddTools';
+const siteUrl = 'https://reddtools.com';
 const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
+const canonical = canonicalPath ? `${siteUrl}${canonicalPath}` : siteUrl;
+const ogImage = `${siteUrl}/og-image.png`;
+const keywordsStr = keywords?.length ? keywords.join(', ') : undefined;
+const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 ---
 
 <!doctype html>
@@ -20,13 +28,34 @@ const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
+  {keywordsStr && <meta name="keywords" content={keywordsStr} />}
   <meta name="google-adsense-account" content="ca-pub-5515034734309671" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="canonical" href={canonical} />
   <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- JSON-LD Structured Data -->
+  {jsonLdArray.map((data) => (
+    <script type="application/ld+json" set:html={JSON.stringify(data)} />
+  ))}
 
   <!-- PostHog -->
   <script is:inline>

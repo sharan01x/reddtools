@@ -1,0 +1,296 @@
+---
+/**
+ * SEO Content Section
+ * Renders keyword-rich, structured content below tool widgets.
+ * This is what Google actually indexes and ranks.
+ *
+ * Props:
+ * - toolSlug: which tool this is for
+ * - modeSlug: optional mode (for multi-mode tools)
+ */
+interface Props {
+  toolSlug: string;
+  modeSlug?: string;
+}
+
+const { toolSlug, modeSlug } = Astro.props;
+
+// Content registry — each entry is SEO text for a specific page
+const contentMap: Record<string, { intro: string; faqs: { q: string; a: string }[]; howTo?: string[] }> = {
+  // Calculator modes
+  'calculator/mortgage': {
+    intro: `Use this free mortgage calculator to estimate your monthly mortgage payments. Enter the loan amount, interest rate, and loan term to see your monthly payment, total interest paid, and full amortization breakdown. Works for home loans, property purchases, and refinancing.`,
+    faqs: [
+      { q: 'How is mortgage interest calculated?', a: 'Mortgage interest is calculated using an amortisation formula. Each monthly payment covers the interest accrued that month plus a portion of the principal. Early payments are mostly interest; later payments are mostly principal.' },
+      { q: 'What is the difference between APR and interest rate?', a: 'The interest rate is the cost of borrowing the principal. APR (Annual Percentage Rate) includes the interest rate plus other fees (origination, discount points, closing costs), giving you the true cost of the loan.' },
+      { q: 'How much deposit do I need for a mortgage?', a: 'Most lenders require a minimum 5-20% deposit. A larger deposit (20%+) typically gets you better interest rates and avoids private mortgage insurance (PMI) in some markets.' },
+    ],
+  },
+  'calculator/compound-interest': {
+    intro: `Calculate compound interest on your savings or investments. Enter your principal amount, annual interest rate, compounding frequency, and time period to see how your money grows over time. Compound interest is the most powerful force in long-term investing — Einstein reportedly called it the eighth wonder of the world.`,
+    faqs: [
+      { q: 'What is compound interest?', a: 'Compound interest is interest earned on both the initial principal and the accumulated interest from previous periods. Unlike simple interest, it grows exponentially over time.' },
+      { q: 'How often should interest compound?', a: 'More frequent compounding yields slightly more returns. Daily compounding earns marginally more than monthly, which earns more than annual. The difference is small at low rates but significant at higher rates over long periods.' },
+      { q: 'What is the compound interest formula?', a: 'A = P(1 + r/n)^(nt), where A is the final amount, P is the principal, r is the annual rate, n is compounding frequency, and t is time in years.' },
+    ],
+  },
+  'calculator/simple-interest': {
+    intro: `Calculate simple interest on a loan or investment. Simple interest is calculated only on the principal amount, making it straightforward for short-term loans, car loans, and basic investment calculations.`,
+    faqs: [
+      { q: 'What is the simple interest formula?', a: 'Simple Interest = P × r × t, where P is the principal, r is the annual interest rate, and t is the time in years.' },
+      { q: 'Simple vs compound interest — what is the difference?', a: 'Simple interest is calculated only on the principal. Compound interest is calculated on the principal plus accumulated interest, meaning it grows faster over time. For short-term loans the difference is minimal; for long-term investments compound is significantly better.' },
+    ],
+  },
+  'calculator/vat': {
+    intro: `Add or remove VAT from any price instantly. Enter the amount and VAT rate to calculate the net price (excluding VAT), the VAT amount, and the gross price (including VAT). Works for any VAT rate — 20% UK, 21% Spain, 19% Germany, 23% Ireland, and more.`,
+    faqs: [
+      { q: 'How do I calculate VAT backwards?', a: 'To remove VAT from a gross price, divide by (1 + VAT rate). For example, for 20% VAT: net price = gross ÷ 1.20. The VAT amount is gross minus net.' },
+      { q: 'What is the standard VAT rate in Spain?', a: 'The standard VAT (IVA) rate in Spain is 21%. A reduced rate of 10% applies to food, transport, and hospitality. A super-reduced rate of 4% applies to basic necessities like bread, milk, and books.' },
+      { q: 'What is the VAT rate in the UK?', a: 'The standard VAT rate in the UK is 20%. A reduced rate of 5% applies to some goods and services like home energy and children\'s car seats. Zero-rated items include most food, books, and children\'s clothing.' },
+    ],
+  },
+  'calculator/percentage': {
+    intro: `Calculate percentages quickly and easily. Find percentage of a number, percentage change between two values, percentage increase or decrease, and more. Essential for discounts, taxes, tips, and data analysis.`,
+    faqs: [
+      { q: 'How do I calculate percentage change?', a: 'Percentage change = ((new value - old value) / old value) × 100. A positive result is an increase; a negative result is a decrease.' },
+      { q: 'How do I calculate a percentage of a number?', a: 'Multiply the number by the percentage divided by 100. For example, 15% of 200 = 200 × 0.15 = 30.' },
+    ],
+  },
+  'calculator/tip': {
+    intro: `Calculate tips and split bills between any number of people. Enter the bill amount, tip percentage, and number of diners to see how much each person owes. Common tip rates are pre-set for quick calculation.`,
+    faqs: [
+      { q: 'How much should I tip?', a: 'In the US, 15-20% is standard for sit-down restaurants. In many European countries, a service charge is already included — rounding up or 5-10% is appreciated. In Japan, tipping is not customary.' },
+      { q: 'How do I split a bill with tip?', a: 'Calculate the total (bill + tip), then divide by the number of people. This calculator does that for you automatically.' },
+    ],
+  },
+  // Unit converter modes
+  'unit-converter/length': {
+    intro: `Convert between length units instantly — metres, kilometres, miles, feet, inches, centimetres, millimetres, and yards. Common conversions: miles to km (1 mile = 1.609 km), metres to feet (1 m = 3.281 ft), inches to cm (1 inch = 2.54 cm).`,
+    faqs: [
+      { q: 'How many kilometres in a mile?', a: '1 mile = 1.609344 kilometres. To convert miles to km, multiply by 1.609. To convert km to miles, divide by 1.609 (or multiply by 0.6214).' },
+      { q: 'How many feet in a metre?', a: '1 metre = 3.28084 feet. To convert metres to feet, multiply by 3.281. To convert feet to metres, divide by 3.281 (or multiply by 0.3048).' },
+      { q: 'How many inches in a centimetre?', a: '1 centimetre = 0.393701 inches. To convert cm to inches, multiply by 0.394. To convert inches to cm, multiply by 2.54.' },
+    ],
+  },
+  'unit-converter/weight': {
+    intro: `Convert between weight and mass units — kilograms, grams, pounds, ounces, tonnes, stones, and milligrams. Common conversions: kg to lbs (1 kg = 2.205 lbs), pounds to kg (1 lb = 0.454 kg), grams to ounces (1 g = 0.0353 oz).`,
+    faqs: [
+      { q: 'How many pounds in a kilogram?', a: '1 kilogram = 2.20462 pounds. To convert kg to lbs, multiply by 2.205. To convert lbs to kg, divide by 2.205 (or multiply by 0.454).' },
+      { q: 'How many grams in an ounce?', a: '1 ounce = 28.3495 grams. To convert ounces to grams, multiply by 28.35. To convert grams to ounces, divide by 28.35.' },
+      { q: 'How many kg in a stone?', a: '1 stone = 6.35029 kilograms. To convert stones to kg, multiply by 6.35. To convert kg to stones, divide by 6.35.' },
+    ],
+  },
+  'unit-converter/temperature': {
+    intro: `Convert between Celsius, Fahrenheit, and Kelvin. Common conversions: Celsius to Fahrenheit (°C × 9/5 + 32), Fahrenheit to Celsius ((°F - 32) × 5/9), Celsius to Kelvin (°C + 273.15).`,
+    faqs: [
+      { q: 'How to convert Celsius to Fahrenheit?', a: '°F = (°C × 9/5) + 32. For example, 20°C = (20 × 1.8) + 32 = 68°F.' },
+      { q: 'How to convert Fahrenheit to Celsius?', a: '°C = (°F - 32) × 5/9. For example, 68°F = (68 - 32) × 0.556 = 20°C.' },
+      { q: 'What is Kelvin?', a: 'Kelvin is the SI base unit of temperature, starting at absolute zero (0 K = -273.15°C). To convert Celsius to Kelvin, add 273.15. To convert Kelvin to Celsius, subtract 273.15.' },
+    ],
+  },
+  'unit-converter/volume': {
+    intro: `Convert between volume units — millilitres, litres, cups, tablespoons, teaspoons, fluid ounces, pints, and gallons. Essential for cooking, baking, and recipe conversions between metric and imperial measurements.`,
+    faqs: [
+      { q: 'How many ml in a cup?', a: '1 US cup = 236.6 ml. 1 metric cup = 250 ml. This calculator uses US cups by default. For metric cups, use the metric cup option.' },
+      { q: 'How many tablespoons in a cup?', a: '1 US cup = 16 tablespoons. 1 US tablespoon = 3 teaspoons = 14.7868 ml.' },
+      { q: 'How many ml in a fluid ounce?', a: '1 US fluid ounce = 29.5735 ml. 1 UK (imperial) fluid ounce = 28.4131 ml.' },
+    ],
+  },
+  'unit-converter/speed': {
+    intro: `Convert between speed units — metres per second, kilometres per hour, miles per hour, knots, and feet per second. Common conversions: mph to km/h (1 mph = 1.609 km/h), km/h to mph (1 km/h = 0.621 mph), knots to km/h (1 knot = 1.852 km/h).`,
+    faqs: [
+      { q: 'How to convert mph to km/h?', a: '1 mph = 1.60934 km/h. To convert mph to km/h, multiply by 1.609. To convert km/h to mph, divide by 1.609 (or multiply by 0.6214).' },
+      { q: 'What is a knot?', a: 'A knot is one nautical mile per hour, equal to 1.852 km/h or 1.151 mph. It is used in aviation and maritime contexts.' },
+    ],
+  },
+  'unit-converter/data': {
+    intro: `Convert between digital storage units — bytes, kilobytes, megabytes, gigabytes, terabytes, and petabytes. Uses the binary definition (1 KB = 1024 bytes) by convention. Essential for understanding file sizes, storage capacity, and data transfer rates.`,
+    faqs: [
+      { q: 'How many MB in a GB?', a: '1 GB = 1024 MB (binary definition). In decimal/SI units (used by storage manufacturers), 1 GB = 1000 MB. This can cause confusion — a "500 GB" hard drive shows as ~465 GB in your operating system because the OS uses binary units.' },
+      { q: 'What is the difference between MB and MiB?', a: 'MB (megabyte) in SI units = 1,000,000 bytes. MiB (mebibyte) = 1,048,576 bytes (1024²). Operating systems often display MiB as MB, causing the apparent "missing" space on storage devices.' },
+    ],
+  },
+  // Single-page tools
+  'word-counter': {
+    intro: `Free online word counter that counts words, characters, sentences, paragraphs, and estimated reading time in real time. Paste or type your text to get instant statistics. Perfect for essays, articles, social media posts, and SEO content where word count matters.`,
+    faqs: [
+      { q: 'How does the word counter work?', a: 'It counts words by splitting text on whitespace and punctuation. Characters include all letters, numbers, and symbols. Reading time is estimated at 200 words per minute (average adult reading speed).' },
+      { q: 'What is the ideal word count for SEO?', a: 'Long-form content (1,500-2,500 words) tends to rank better in search results, but quality matters more than length. For blog posts, 1,000+ words is a good target. For product pages, 300-500 words of unique content is sufficient.' },
+      { q: 'How many words in a page?', a: 'A typical A4 page with 12pt font and single spacing contains about 500 words. A double-spaced page has about 250 words.' },
+    ],
+  },
+  'case-converter': {
+    intro: `Convert text between different cases instantly — UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and sentence case. Useful for programmers, writers, and anyone working with formatted text.`,
+    faqs: [
+      { q: 'What is camelCase?', a: 'camelCase capitalises the first letter of each word except the first: "helloWorld". Used in JavaScript, Java, and many programming languages for variable names.' },
+      { q: 'What is snake_case?', a: 'snake_case uses underscores between lowercase words: "hello_world". Used in Python, Rust, and database column names.' },
+      { q: 'What is PascalCase?', a: 'PascalCase capitalises the first letter of every word: "HelloWorld". Also known as UpperCamelCase. Used for class names in many programming languages.' },
+    ],
+  },
+  'timer': {
+    intro: `Free online timer with countdown, stopwatch, and pomodoro modes. The countdown timer alerts you when time is up. The stopwatch tracks elapsed time with millisecond precision. The pomodoro timer cycles through 25-minute focus sessions and 5-minute breaks — perfect for productivity and time management.`,
+    faqs: [
+      { q: 'What is the Pomodoro Technique?', a: 'The Pomodoro Technique is a time management method: work for 25 minutes, take a 5-minute break, repeat. After 4 cycles, take a longer 15-30 minute break. Created by Francesco Cirillo in the late 1980s.' },
+      { q: 'Does the timer work offline?', a: 'Yes. This is a client-side timer — all functionality runs in your browser. Once the page loads, it works without an internet connection.' },
+    ],
+  },
+  'colour-picker': {
+    intro: `Pick exact pixel colours from any image. Upload or drag an image, click anywhere on it, and get the HEX, RGB, and HSL colour values. Perfect for designers extracting brand colours, developers matching UI colours, and artists building colour palettes.`,
+    faqs: [
+      { q: 'What is HEX colour code?', a: 'HEX is a 6-digit hexadecimal colour code (e.g., #FF5733) representing red, green, and blue values. Each pair of digits is one colour channel, from 00 (no colour) to FF (full colour).' },
+      { q: 'What is the difference between RGB and HSL?', a: 'RGB (Red, Green, Blue) defines colour as amounts of each channel. HSL (Hue, Saturation, Lightness) defines colour as hue (0-360° on colour wheel), saturation (intensity), and lightness — more intuitive for humans.' },
+      { q: 'How do I pick a colour from an image?', a: 'Drop or upload your image, then click any pixel. The tool reads the exact colour values at that pixel and displays HEX, RGB, and HSL values you can copy.' },
+    ],
+  },
+};
+
+const key = modeSlug ? `${toolSlug}/${modeSlug}` : toolSlug;
+const content = contentMap[key];
+
+// Build a clean heading from the tool/mode name
+const toolName = toolSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+const modeName = modeSlug ? modeSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : '';
+const headingName = modeName || toolName;
+
+const faqJsonLd = content ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: content.faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+} : null;
+---
+
+{content && (
+  <section class="seo-content">
+    <div class="seo-content-inner">
+      <h2 class="seo-heading">About the {headingName}</h2>
+      <p class="seo-intro">{content.intro}</p>
+
+      {content.howTo && (
+        <div class="howto-section">
+          <h3 class="seo-subheading">How to use this tool</h3>
+          <ol class="howto-list">
+            {content.howTo.map((step, i) => <li>{step}</li>)}
+          </ol>
+        </div>
+      )}
+
+      <div class="faq-section">
+        <h3 class="seo-subheading">Frequently asked questions</h3>
+        {content.faqs.map((faq) => (
+          <details class="faq-item">
+            <summary class="faq-question">{faq.q}</summary>
+            <p class="faq-answer">{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+{faqJsonLd && (
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+)}
+
+<style>
+  .seo-content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  .seo-content-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .seo-heading {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #000;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .seo-subheading {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #000;
+    margin: 0 0 12px;
+  }
+
+  .seo-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #5b5b5b;
+    margin: 0;
+  }
+
+  .howto-list {
+    padding-left: 20px;
+    margin: 0;
+  }
+
+  .howto-list li {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #5b5b5b;
+    margin-bottom: 8px;
+  }
+
+  .faq-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .faq-item:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .faq-question {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+    padding: 16px 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::-webkit-details-marker { display: none; }
+  .faq-question::after {
+    content: '+';
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    color: #999;
+    transition: transform 200ms ease;
+  }
+
+  .faq-item[open] .faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #5b5b5b;
+    margin: 0 0 16px;
+  }
+</style>

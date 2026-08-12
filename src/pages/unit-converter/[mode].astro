@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { tools } from '../../lib/tools';
+import SeoContent from '../../components/SeoContent.astro';
 
 export function getStaticPaths() {
   const tool = tools.find(t => t.slug === 'unit-converter')!;
@@ -29,9 +30,27 @@ const unitData: Record<string, string[]> = {
 
 const units = unitData[currentMode] || [];
 const defaultUnit = units[0];
+
+const canonicalPath = `/unit-converter/${mode.slug}`;
+const keywords = mode.keywords;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: mode.name,
+  description: mode.description,
+  url: `https://reddtools.com/unit-converter/${mode.slug}`,
+  applicationCategory: 'ConverterApplication',
+  operatingSystem: 'Any',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'EUR',
+  },
+};
 ---
 
-<Layout title={title} description={description} activeTool="unit-converter">
+<Layout title={title} description={description} activeTool="unit-converter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd}>
   <div class="calc-tabs-outer">
     <div class="calc-tabs-inner">
       {modes.map((m) => (
@@ -92,10 +111,7 @@ const defaultUnit = units[0];
       </div>
     </div>
 
-    <div class="seo-content">
-      <h2>About {mode.name}</h2>
-      <p>{mode.description} Free, instant, and private — all conversions run entirely in your browser with no data sent to any server.</p>
-    </div>
+    <SeoContent toolSlug="unit-converter" modeSlug={mode.slug} />
   </div>
 </Layout>
 
