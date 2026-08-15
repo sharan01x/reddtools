@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { toolIconSvg } from '../lib/tools';
+import LongTailConverter from '../components/LongTailConverter.astro';
+
+const title = 'Celsius to Fahrenheit Converter — °C to °F';
+const description = 'Convert Celsius to Fahrenheit instantly. Free °C to °F calculator — the formula is °F = (°C × 9/5) + 32. Enter any temperature to see the exact Fahrenheit value.';
+const canonicalPath = '/celsius-to-fahrenheit';
+const keywords = ['celsius to fahrenheit', 'c to f', 'celsius to f', '°c to °f', 'temperature converter'];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Celsius to Fahrenheit Converter',
+  description,
+  url: 'https://reddtools.com/celsius-to-fahrenheit',
+  applicationCategory: 'ConverterApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Unit Converter', href: '/unit-converter/temperature' },
+  { name: 'Celsius to Fahrenheit' },
+];
+
+const relatedTools = [
+  { name: 'Temperature Converter', href: '/unit-converter/temperature', description: 'Convert between Celsius, Fahrenheit and Kelvin.', icon: toolIconSvg['unit-converter'] },
+  { name: 'kg to lbs Converter', href: '/kg-to-lbs', description: 'Convert kilograms to pounds instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'miles to km Converter', href: '/miles-to-km', description: 'Convert miles to kilometres instantly.', icon: toolIconSvg['unit-converter'] },
+];
+---
+
+<Layout title={title} description={description} activeTool="unit-converter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
+  <LongTailConverter
+    mode="temperature"
+    fromUnit="Celsius"
+    toUnit="Fahrenheit"
+    defaultValue={20}
+    seoIntro={`Convert Celsius to Fahrenheit with this free online tool. The °C to °F conversion is essential for weather forecasts, cooking, science, and international travel — most of the world uses Celsius while the US uses Fahrenheit. The formula is: °F = (°C × 9/5) + 32. For example, 20°C = 68°F, 0°C = 32°F (water freezes), and 100°C = 212°F (water boils). A handy rule of thumb: double the Celsius value and add 30 for a close mental estimate — 20°C ≈ 70°F (actual: 68°F). This calculator does the exact conversion instantly for any temperature.`}
+    faqs={[
+      { q: 'How do I convert Celsius to Fahrenheit?', a: '°F = (°C × 9/5) + 32. For example, 20°C = (20 × 1.8) + 32 = 68°F. Multiply the Celsius value by 1.8, then add 32.' },
+      { q: 'What is 0 degrees Celsius in Fahrenheit?', a: '0°C = 32°F. This is the freezing point of water — the two scales cross at -40° (-40°C = -40°F).' },
+      { q: 'What is 100 degrees Celsius in Fahrenheit?', a: '100°C = 212°F. This is the boiling point of water at sea level.' },
+      { q: 'How do I estimate °F from °C quickly?', a: 'Double the Celsius temperature and add 30. So 20°C → (20 × 2) + 30 = 70°F. The exact answer is 68°F — close enough for everyday use.' },
+    ]}
+  />
+</Layout>

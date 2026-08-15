@@ -1,0 +1,357 @@
+---
+/**
+ * LongTailConverter — pre-configured converter for dedicated landing pages.
+ * Targets one specific conversion query (e.g. kg to lbs) with the tool
+ * pre-filled and ready to use, plus keyword-rich SEO content.
+ *
+ * Props:
+ * - mode: 'weight' | 'temperature' | 'length'
+ * - fromUnit / toUnit: the pre-configured pair
+ * - defaultValue: pre-filled amount
+ * - seoIntro: intro paragraph for the SEO section
+ * - faqs: { q, a }[] for the FAQ accordion + FAQPage JSON-LD
+ */
+interface Props {
+  mode: 'weight' | 'temperature' | 'length';
+  fromUnit: string;
+  toUnit: string;
+  defaultValue: number;
+  seoIntro: string;
+  faqs: { q: string; a: string }[];
+}
+
+const { mode, fromUnit, toUnit, defaultValue, seoIntro, faqs } = Astro.props;
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<div class="max-w-2xl mx-auto">
+  <div class="calc-card">
+    <h1>{fromUnit} to {toUnit} Converter</h1>
+    <p class="calc-desc">Convert {fromUnit.toLowerCase()} to {toUnit.toLowerCase()} instantly. Enter any value and the result updates in real time — no button needed.</p>
+
+    <div class="convert-box" id="convert-root" data-mode={mode}>
+      <div class="input-row">
+        <div class="input-group">
+          <label>Amount</label>
+          <input type="number" id="lt-input" value={defaultValue} step="any" />
+        </div>
+        <div class="input-group">
+          <label>From</label>
+          <div class="unit-fixed">{fromUnit}</div>
+        </div>
+        <div class="input-group">
+          <label>To</label>
+          <div class="unit-fixed">{toUnit}</div>
+        </div>
+      </div>
+
+      <div class="result-box" id="lt-result">
+        <div class="result-label">{defaultValue} {fromUnit} equals</div>
+        <div class="result-value" id="lt-result-value">—</div>
+        <div class="result-note" id="lt-result-detail"></div>
+      </div>
+
+      <a class="full-converter-link" href="/unit-converter/{mode === 'weight' ? 'weight' : mode === 'temperature' ? 'temperature' : 'length'}">
+        Open full {mode} converter →
+      </a>
+    </div>
+  </div>
+
+  <section class="seo-content">
+    <div class="seo-content-inner">
+      <h2 class="seo-heading">About the {fromUnit} to {toUnit} Converter</h2>
+      <p class="seo-intro">{seoIntro}</p>
+
+      <div class="faq-section">
+        <h3 class="seo-subheading">Frequently asked questions</h3>
+        {faqs.map((faq) => (
+          <details class="faq-item">
+            <summary class="faq-question">{faq.q}</summary>
+            <p class="faq-answer">{faq.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</div>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+<script>
+  const CONVERSION: Record<string, Record<string, number>> = {
+    weight: { Gram: 1, Kilogram: 1000, Milligram: 0.001, Tonne: 1000000, Pound: 453.592, Ounce: 28.3495, Stone: 6350.29 },
+    length: { Metre: 1, Kilometre: 1000, Centimetre: 0.01, Millimetre: 0.001, Mile: 1609.344, Yard: 0.9144, Foot: 0.3048, Inch: 0.0254 },
+  };
+
+  const TEMP: Record<string, { toC: (v: number) => number; fromC: (v: number) => number }> = {
+    Celsius: { toC: (v) => v, fromC: (v) => v },
+    Fahrenheit: { toC: (v) => (v - 32) * 5 / 9, fromC: (v) => v * 9 / 5 + 32 },
+    Kelvin: { toC: (v) => v - 273.15, fromC: (v) => v + 273.15 },
+  };
+
+  const root = document.getElementById('convert-root') as HTMLElement;
+  const mode = root.dataset.mode!;
+  const fromUnit = root.querySelector('.unit-fixed')!.textContent!.trim();
+  const toUnit = root.querySelectorAll('.unit-fixed')[1].textContent!.trim();
+  const input = document.getElementById('lt-input') as HTMLInputElement;
+  const valueEl = document.getElementById('lt-result-value')!;
+  const detailEl = document.getElementById('lt-result-detail')!;
+  const labelEl = document.querySelector('.result-label')!;
+
+  function convert(value: number, from: string, to: string): number {
+    if (mode === 'temperature') {
+      return TEMP[to].fromC(TEMP[from].toC(value));
+    }
+    const table = CONVERSION[mode];
+    return value * table[from] / table[to];
+  }
+
+  function formatResult(n: number): string {
+    if (Math.abs(n) >= 1e15 || (Math.abs(n) > 0 && Math.abs(n) < 1e-6)) {
+      return n.toExponential(4);
+    }
+    return parseFloat(n.toPrecision(10)).toString();
+  }
+
+  function update() {
+    const val = parseFloat(input.value);
+    if (isNaN(val)) {
+      valueEl.textContent = '—';
+      detailEl.textContent = '';
+      return;
+    }
+    const result = convert(val, fromUnit, toUnit);
+    valueEl.textContent = formatResult(result);
+    labelEl.textContent = `${input.value} ${fromUnit} equals`;
+    detailEl.textContent = `${formatResult(result)} ${toUnit}`;
+    if (typeof (window as any).posthog !== 'undefined') {
+      (window as any).posthog.capture('longtail_conversion', { mode, from: fromUnit, to: toUnit, value: val });
+    }
+  }
+
+  input.addEventListener('input', update);
+  update();
+</script>
+
+<style>
+  .calc-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+    margin-top: 32px;
+  }
+
+  .calc-card h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #000;
+    margin: 0 0 12px;
+  }
+
+  .calc-desc {
+    font-size: 14px;
+    color: #5b5b5b;
+    margin: 0 0 24px;
+  }
+
+  .convert-box {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .input-row .input-group {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .input-group label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #fafafa;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #000;
+    box-sizing: border-box;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  .input-group input:focus {
+    outline: none;
+    border-color: #00c2ff;
+    box-shadow: 0 0 0 3px rgba(0, 194, 255, 0.1);
+  }
+
+  .unit-fixed {
+    padding: 12px 16px;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #000;
+    height: 46px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+  }
+
+  .result-box {
+    background: #fafafa;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    padding: 20px 24px;
+  }
+
+  .result-label {
+    font-size: 14px;
+    color: #5b5b5b;
+    margin-bottom: 4px;
+  }
+
+  .result-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 32px;
+    font-weight: 500;
+    color: #000;
+  }
+
+  .result-note {
+    font-size: 13px;
+    color: #999;
+    margin-top: 4px;
+  }
+
+  .full-converter-link {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #5b5b5b;
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+
+  .full-converter-link:hover {
+    color: #000;
+  }
+
+  .seo-content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  .seo-content-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .seo-heading {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #000;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .seo-subheading {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #000;
+    margin: 0 0 12px;
+  }
+
+  .seo-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #5b5b5b;
+    margin: 0;
+  }
+
+  .faq-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .faq-item:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .faq-question {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+    padding: 16px 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-question::-webkit-details-marker { display: none; }
+  .faq-question::after {
+    content: '+';
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    color: #999;
+    transition: transform 200ms ease;
+  }
+
+  .faq-item[open] .faq-question::after {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #5b5b5b;
+    margin: 0 0 16px;
+  }
+</style>
