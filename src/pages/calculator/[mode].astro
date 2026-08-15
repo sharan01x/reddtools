@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { tools } from '../../lib/tools';
+import { tools, toolIconSvg } from '../../lib/tools';
 import SeoContent from '../../components/SeoContent.astro';
 
 export function getStaticPaths() {
@@ -34,9 +34,31 @@ const jsonLd = {
     priceCurrency: 'EUR',
   },
 };
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Calculator', href: '/calculator/mortgage' },
+  { name: mode.name },
+];
+
+// Contextual related tools: other calculator modes first, then other tools
+const relatedTools = [
+  ...modes.filter(m => m.slug !== mode.slug).slice(0, 3).map(m => ({
+    name: m.name,
+    href: `/calculator/${m.slug}`,
+    description: m.description,
+    icon: toolIconSvg.calculator,
+  })),
+  ...tools.filter(t => t.slug !== 'calculator').slice(0, 2).map(t => ({
+    name: t.name,
+    href: t.modes?.length ? `/${t.slug}/${t.modes[0].slug}` : `/${t.slug}`,
+    description: t.description,
+    icon: toolIconSvg[t.slug],
+  })),
+];
 ---
 
-<Layout title={title} description={description} activeTool="calculator" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd}>
+<Layout title={title} description={description} activeTool="calculator" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
   <div class="calc-tabs-outer">
     <!-- Desktop: pill tabs -->
     <div class="calc-tabs-inner">

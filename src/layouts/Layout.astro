@@ -9,9 +9,11 @@ interface Props {
   keywords?: string[];
   canonicalPath?: string;  // e.g. '/calculator/mortgage' — used for canonical URL
   jsonLd?: object | object[];  // structured data
+  breadcrumbs?: { name: string; href?: string }[];  // e.g. Home → Calculator → Mortgage Calculator
+  relatedTools?: { name: string; href: string; description?: string; icon?: string }[];  // contextual links (replaces generic "Other tools" block)
 }
 
-const { title, description, activeTool, keywords, canonicalPath, jsonLd } = Astro.props;
+const { title, description, activeTool, keywords, canonicalPath, jsonLd, breadcrumbs, relatedTools } = Astro.props;
 const siteName = 'ReddTools';
 const siteUrl = 'https://reddtools.com';
 const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
@@ -141,29 +143,55 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     })();
   </script>
 
+  {breadcrumbs && breadcrumbs.length > 0 && (
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        {breadcrumbs.map((crumb, i) => (
+          <li>
+            {crumb.href && i < breadcrumbs.length - 1 ? (
+              <a href={crumb.href}>{crumb.name}</a>
+            ) : (
+              <span aria-current="page">{crumb.name}</span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )}
+
   <main class="main-content">
     <slot />
   </main>
 
   {activeTool && (
     <section class="cross-promo">
-      <div class="section-label">Other tools</div>
+      <div class="section-label">{relatedTools ? 'Related tools' : 'Other tools'}</div>
       <div class="promo-grid">
-        {tools
-          .filter(t => t.slug !== activeTool)
-          .slice(0, 6)
-          .map((tool) => {
-            const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}` : `/${tool.slug}`;
-            return (
-            <a href={href} class="promo-card">
-              <div class="promo-icon" set:html={toolIconSvg[tool.slug] || ''} />
-              <div class="promo-text">
-                <div class="promo-name">{tool.shortName}</div>
-                <div class="promo-desc">{tool.description}</div>
-              </div>
-            </a>
-            );
-          })}
+        {relatedTools
+          ? relatedTools.map((tool) => (
+              <a href={tool.href} class="promo-card">
+                <div class="promo-icon" set:html={tool.icon || toolIconSvg[activeTool] || ''} />
+                <div class="promo-text">
+                  <div class="promo-name">{tool.name}</div>
+                  {tool.description && <div class="promo-desc">{tool.description}</div>}
+                </div>
+              </a>
+            ))
+          : tools
+              .filter(t => t.slug !== activeTool)
+              .slice(0, 6)
+              .map((tool) => {
+                const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}` : `/${tool.slug}`;
+                return (
+                <a href={href} class="promo-card">
+                  <div class="promo-icon" set:html={toolIconSvg[tool.slug] || ''} />
+                  <div class="promo-text">
+                    <div class="promo-name">{tool.shortName}</div>
+                    <div class="promo-desc">{tool.description}</div>
+                  </div>
+                </a>
+                );
+              })}
       </div>
     </section>
   )}
@@ -328,6 +356,56 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       .main-content {
         padding: 0 48px;
       }
+    }
+
+    .breadcrumbs {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 20px 24px 0;
+    }
+
+    @media (min-width: 768px) {
+      .breadcrumbs {
+        padding: 20px 48px 0;
+      }
+    }
+
+    .breadcrumbs ol {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .breadcrumbs li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #999;
+    }
+
+    .breadcrumbs li:not(:last-child)::after {
+      content: '/';
+      color: #ccc;
+    }
+
+    .breadcrumbs a {
+      color: #5b5b5b;
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+
+    .breadcrumbs a:hover {
+      color: #000;
+    }
+
+    .breadcrumbs span[aria-current='page'] {
+      color: #000;
     }
 
     .cross-promo {

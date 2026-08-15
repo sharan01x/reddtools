@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getTool } from '../lib/tools';
+import { getTool, toolIconSvg } from '../lib/tools';
 import SeoContent from '../components/SeoContent.astro';
 
 const tool = getTool('word-counter')!;
@@ -19,9 +19,21 @@ const jsonLd = {
   operatingSystem: 'Any',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
 };
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: tool.name },
+];
+
+// Contextual related tools
+const relatedTools = [
+  { name: 'Case Converter', href: '/case-converter', description: 'Convert text between uppercase, lowercase, title case, camelCase and more.', icon: toolIconSvg['case-converter'] },
+  { name: 'Timer & Pomodoro', href: '/timer', description: 'Countdown timer, stopwatch, and pomodoro timer with tab-title countdown.', icon: toolIconSvg['timer'] },
+  { name: 'Image Colour Picker', href: '/colour-picker', description: 'Drop an image and pick exact pixel colours. Get HEX, RGB, and HSL values instantly.', icon: toolIconSvg['colour-picker'] },
+];
 ---
 
-<Layout title={title} description={description} activeTool="word-counter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd}>
+<Layout title={title} description={description} activeTool="word-counter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
   <div class="max-w-2xl mx-auto">
     <div class="calc-card">
       <h1>Word Counter</h1>
