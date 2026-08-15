@@ -66,7 +66,21 @@ const relatedTools = [
           <div class="stat-value" id="stat-avglen">0</div>
         </div>
       </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" id="copy-stats" onclick="copyStats()">
+          📋 Copy Stats
+        </button>
+        <button class="btn btn-secondary" id="copy-text" onclick="copyText()">
+          📄 Copy Text
+        </button>
+        <button class="btn btn-secondary" id="clear-text" onclick="clearText()">
+          🗑️ Clear
+        </button>
+      </div>
     </div>
+
+    <div id="toast" class="toast"></div>
 
     <SeoContent toolSlug="word-counter" />
   </div>
@@ -74,6 +88,7 @@ const relatedTools = [
 
 <script>
   const input = document.getElementById('wc-input') as HTMLTextAreaElement;
+  const toast = document.getElementById('toast') as HTMLDivElement;
 
   function update() {
     const text = input.value;
@@ -99,6 +114,51 @@ const relatedTools = [
     if (typeof (window as any).posthog !== 'undefined' && words > 0) {
       (window as any).posthog.capture('word_counter_used', { words, chars, sentences });
     }
+  }
+
+  function showToast(message: string) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2000);
+  }
+
+  function copyStats() {
+    const words = document.getElementById('stat-words')!.textContent;
+    const chars = document.getElementById('stat-chars')!.textContent;
+    const sentences = document.getElementById('stat-sentences')!.textContent;
+    const paragraphs = document.getElementById('stat-paragraphs')!.textContent;
+    const reading = document.getElementById('stat-reading')!.textContent;
+    const avgLen = document.getElementById('stat-avglen')!.textContent;
+
+    const stats = `Word Count: ${words}\nCharacter Count: ${chars}\nSentence Count: ${sentences}\nParagraph Count: ${paragraphs}\nReading Time: ${reading}\nAvg Word Length: ${avgLen}`;
+
+    navigator.clipboard.writeText(stats).then(() => {
+      showToast('Stats copied to clipboard!');
+    }).catch(() => {
+      showToast('Failed to copy stats');
+    });
+  }
+
+  function copyText() {
+    const text = input.value;
+    if (!text) {
+      showToast('No text to copy');
+      return;
+    }
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('Text copied to clipboard!');
+    }).catch(() => {
+      showToast('Failed to copy text');
+    });
+  }
+
+  function clearText() {
+    input.value = '';
+    update();
+    input.focus();
+    showToast('Text cleared');
   }
 
   input.addEventListener('input', update);
@@ -203,5 +263,79 @@ const relatedTools = [
     font-size: 14px;
     line-height: 1.5;
     margin: 0;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 200ms ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-primary {
+    background: #00c2ff;
+    color: #fff;
+  }
+
+  .btn-primary:hover {
+    background: #00a8e0;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: #fafafa;
+    color: #000;
+    border: 1px solid #d0d0d0;
+  }
+
+  .btn-secondary:hover {
+    background: #f0f0f0;
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #333;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    opacity: 0;
+    transition: all 300ms ease;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  @media (max-width: 480px) {
+    .actions {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+      justify-content: center;
+    }
   }
 </style>
