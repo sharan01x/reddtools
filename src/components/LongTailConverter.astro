@@ -135,6 +135,7 @@ const faqJsonLd = {
     detailEl.textContent = `${formatResult(result)} ${toUnit}`;
     if (typeof (window as any).posthog !== 'undefined') {
       (window as any).posthog.capture('longtail_conversion', { mode, from: fromUnit, to: toUnit, value: val });
+      (window as any).posthog.capture('tool_used', { tool: mode, from: fromUnit, to: toUnit, value: val });
     }
   }
 

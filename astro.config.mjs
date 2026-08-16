@@ -14,6 +14,8 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/admin'),
+      changefreq: 'weekly',
+      lastmod: new Date(),
     })
   ],
 

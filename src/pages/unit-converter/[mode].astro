@@ -15,8 +15,8 @@ const modes = tool.modes!;
 const currentMode = Astro.params.mode!;
 const mode = modes.find(m => m.slug === currentMode)!;
 
-const title = mode.name;
-const description = mode.description;
+const title = mode.seoTitle || mode.name;
+const description = mode.seoDescription || mode.description;
 
 // Unit definitions (same as the JS below, but available in frontmatter for rendering)
 const unitData: Record<string, string[]> = {
@@ -36,16 +36,16 @@ const keywords = mode.keywords;
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: mode.name,
+  '@type': 'SoftwareApplication',
+  name: `Redd Tools ${mode.name}`,
   description: mode.description,
   url: `https://reddtools.com/unit-converter/${mode.slug}`,
-  applicationCategory: 'ConverterApplication',
+  applicationCategory: 'UtilitiesApplication',
   operatingSystem: 'Any',
   offers: {
     '@type': 'Offer',
     price: '0',
-    priceCurrency: 'EUR',
+    priceCurrency: 'USD',
   },
 };
 
@@ -99,7 +99,7 @@ const relatedTools = [
 
   <div class="max-w-2xl mx-auto">
     <div class="calc-card">
-      <h1>{mode.name}</h1>
+      <h1>{mode.seoH1 || mode.name}</h1>
 
       <div id="converter-root" data-mode={currentMode}>
         <!-- Input row: amount + unit on same line -->
@@ -199,6 +199,7 @@ const relatedTools = [
 
     if (typeof (window as any).posthog !== 'undefined' && !isNaN(val)) {
       (window as any).posthog.capture('converter_used', { mode, from: fromUnit, value: val });
+      (window as any).posthog.capture('tool_used', { tool: 'unit-converter', mode, from: fromUnit, value: val });
     }
   }
 

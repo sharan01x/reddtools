@@ -4,20 +4,20 @@ import { getTool, toolIconSvg } from '../lib/tools';
 import SeoContent from '../components/SeoContent.astro';
 
 const tool = getTool('word-counter')!;
-const title = tool.name;
-const description = tool.description;
+const title = tool.seoTitle || tool.name;
+const description = tool.seoDescription || tool.description;
 const canonicalPath = `/${tool.slug}`;
 const keywords = tool.keywords;
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  name: tool.name,
+  '@type': 'SoftwareApplication',
+  name: 'Redd Tools Word Counter',
   description: tool.description,
   url: `https://reddtools.com/${tool.slug}`,
   applicationCategory: 'TextProcessingApplication',
   operatingSystem: 'Any',
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
 };
 
 const breadcrumbs = [
@@ -113,6 +113,7 @@ const relatedTools = [
 
     if (typeof (window as any).posthog !== 'undefined' && words > 0) {
       (window as any).posthog.capture('word_counter_used', { words, chars, sentences });
+      (window as any).posthog.capture('tool_used', { tool: 'word-counter', words, chars, sentences });
     }
   }
 
