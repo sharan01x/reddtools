@@ -29,7 +29,6 @@ src/
 │   └── global.css            # Design system tokens + base styles
 public/
 └── favicon.svg
-DESIGN_SYSTEM.md              # Design system doc (Sharan fills this out)
 ```
 
 ## Commands
@@ -40,16 +39,32 @@ npm run build    # Production build → dist/
 npm run preview  # Preview production build
 ```
 
+## Deploy (CRITICAL — do not skip)
+
+The site is deployed via **Cloudflare Pages** connected to the `main` branch on GitHub.
+Pushing to `main` triggers an automatic build and deploy to reddtools.com.
+
+**After any code change (new tool, bug fix, SEO update, content change), you MUST:**
+
+1. Verify the build passes: `npm run build`
+2. Stage all changes: `git add -A`
+3. Commit with a descriptive message: `git commit -m "feat: description of change"`
+4. Pull rebase (in case the remote has newer commits): `git pull --rebase origin main`
+5. Push to deploy: `git push origin main`
+
+**A tool is NOT "built" until it is pushed to GitHub.** Uncommitted code is invisible to users.
+The kanban task should only be marked complete AFTER the push succeeds.
+
+If `git push` is rejected (remote has newer commits), run `git pull --rebase origin main` first,
+resolve any conflicts, then push again.
+
 ## Adding a New Tool
 
 1. Add tool definition to `src/lib/tools.ts`
 2. Create page at `src/pages/[tool-slug].astro` (or `[tool-slug]/[mode].astro` for multi-mode)
 3. Use `<Layout>` wrapper with `title`, `description`, `activeTool` props
 4. Tool logic is client-side `<script>` — no server, no API
-
-## Design System
-
-See `DESIGN_SYSTEM.md` — fill it out and the values will be applied to `src/styles/global.css`.
+5. **Build, commit, and push** — see the Deploy section above
 
 ## Keys Needed
 
