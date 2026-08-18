@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { toolIconSvg } from '../lib/tools';
+import LongTailConverter from '../components/LongTailConverter.astro';
+
+const title = 'Feet to CM Converter — Feet to Centimetres';
+const description = 'Convert feet to centimetres instantly. Free feet to cm calculator — 1 foot = 30.48 cm. Enter any height or length to see the exact centimetre value.';
+const canonicalPath = '/feet-to-cm';
+const keywords = ['feet to cm', 'ft to cm', 'feet to centimetres', 'height converter feet to cm', 'length converter'];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Redd Tools Feet to CM Converter',
+  description,
+  url: 'https://reddtools.com/feet-to-cm',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Unit Converter', href: '/unit-converter/length' },
+  { name: 'Feet to CM' },
+];
+
+const relatedTools = [
+  { name: 'Length Converter', href: '/unit-converter/length', description: 'Convert between feet, cm, metres, inches, miles, km and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Inches to CM Converter', href: '/inches-to-cm', description: 'Convert inches to centimetres instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Miles to KM Converter', href: '/miles-to-km', description: 'Convert miles to kilometres instantly.', icon: toolIconSvg['unit-converter'] },
+];
+---
+
+<Layout title={title} description={description} activeTool="unit-converter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
+  <LongTailConverter
+    mode="length"
+    fromUnit="Foot"
+    toUnit="Centimetre"
+    defaultValue={1}
+    seoIntro={`Convert feet to centimetres with this free online tool. The feet to cm conversion is essential for height measurements, especially when converting between imperial (feet/inches) and metric (centimetres) systems. The formula is simple: 1 foot equals exactly 30.48 centimetres. To convert feet to cm, multiply the number of feet by 30.48. For example, 5 feet = 152.4 cm, 6 feet = 182.88 cm, and 5 feet 9 inches = 175.26 cm. This calculator works both ways — enter any length in feet and it instantly shows the exact equivalent in centimetres.`}
+    faqs={[
+      { q: 'How many centimetres in a foot?', a: '1 foot = 30.48 centimetres exactly. To convert feet to cm, multiply by 30.48. To convert cm to feet, divide by 30.48 (or multiply by 0.0328).' },
+      { q: 'How tall is 5 feet 9 inches in cm?', a: '5 feet 9 inches = 175.26 cm. (5 ft × 30.48) + (9 in × 2.54) = 152.4 + 22.86 = 175.26 cm.' },
+      { q: 'How tall is 6 feet in cm?', a: '6 feet = 182.88 cm. This is a common height reference in countries using the metric system.' },
+      { q: 'How do I convert feet and inches to cm?', a: 'Multiply feet by 30.48, multiply inches by 2.54, then add the two results together. For example, 5 ft 7 in = (5 × 30.48) + (7 × 2.54) = 152.4 + 17.78 = 170.18 cm.' },
+    ]}
+  />
+</Layout>

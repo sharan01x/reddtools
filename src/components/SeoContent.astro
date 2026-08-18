@@ -63,6 +63,24 @@ const contentMap: Record<string, { intro: string; faqs: { q: string; a: string }
       { q: 'How do I split a bill with tip?', a: 'Calculate the total (bill + tip), then divide by the number of people. This calculator does that for you automatically.' },
     ],
   },
+  'calculator/bmi': {
+    intro: `Calculate your Body Mass Index (BMI) instantly using metric (kg/cm) or imperial (lb/ft-in) units. BMI is a widely used screening tool that estimates body fat based on your weight and height. It categorises results as underweight (below 18.5), normal weight (18.5-24.9), overweight (25-29.9), or obese (30+).`,
+    faqs: [
+      { q: 'What is BMI?', a: 'Body Mass Index (BMI) is a number calculated from your weight and height. It is a screening tool used by health professionals to categorise weight status and identify potential health risks.' },
+      { q: 'How is BMI calculated?', a: 'Metric: BMI = weight (kg) ÷ height² (m). Imperial: BMI = 703 × weight (lb) ÷ height² (in). This calculator handles both formulas automatically.' },
+      { q: 'What is a healthy BMI?', a: 'A healthy (normal) BMI is between 18.5 and 24.9. Below 18.5 is underweight, 25-29.9 is overweight, and 30+ is obese. These ranges apply to most adults.' },
+      { q: 'Is BMI accurate for everyone?', a: 'BMI is a useful population-level screening tool but has limitations. It does not distinguish between muscle and fat, so athletes may have a high BMI without excess fat. It may also underestimate body fat in older adults.' },
+    ],
+  },
+  'calculator/loan': {
+    intro: `Calculate your loan monthly payments, total interest paid, and view an amortization schedule preview. Enter the loan amount, interest rate, and term in months or years to see exactly what you will pay. Works for personal loans, car loans, student loans, and any fixed-rate installment loan.`,
+    faqs: [
+      { q: 'How are loan payments calculated?', a: 'Loan payments are calculated using the amortisation formula: M = P × [r(1+r)^n] / [(1+r)^n - 1], where M is the monthly payment, P is the principal, r is the monthly interest rate, and n is the total number of payments. Each payment covers interest accrued plus a portion of the principal.' },
+      { q: 'What is an amortization schedule?', a: 'An amortization schedule is a table showing each loan payment broken down into principal and interest. Early payments are mostly interest; later payments are mostly principal. The schedule also shows the remaining balance after each payment.' },
+      { q: 'How can I pay off my loan faster?', a: 'You can pay off a loan faster by making extra principal payments, refinancing to a lower interest rate, or switching to biweekly payments (26 half-payments per year = 13 full payments instead of 12). Even small extra payments can significantly reduce total interest.' },
+      { q: 'What is the difference between APR and interest rate?', a: 'The interest rate is the cost of borrowing the principal. APR (Annual Percentage Rate) includes the interest rate plus other fees (origination, closing costs), giving you the true cost of the loan. Always compare APRs, not just interest rates.' },
+    ],
+  },
   // Unit converter modes
   'unit-converter/length': {
     intro: `Convert between length units instantly — metres, kilometres, miles, feet, inches, centimetres, millimetres, and yards. Common conversions: miles to km (1 mile = 1.609 km), metres to feet (1 m = 3.281 ft), inches to cm (1 inch = 2.54 cm).`,

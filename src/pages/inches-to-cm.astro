@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { toolIconSvg } from '../lib/tools';
+import LongTailConverter from '../components/LongTailConverter.astro';
+
+const title = 'Inches to CM Converter — Inches to Centimetres';
+const description = 'Convert inches to centimetres instantly. Free inches to cm calculator — 1 inch = 2.54 cm. Enter any length to see the exact centimetre value.';
+const canonicalPath = '/inches-to-cm';
+const keywords = ['inches to cm', 'inch to cm', 'inches to centimetres', 'screen size converter', 'length converter'];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Redd Tools Inches to CM Converter',
+  description,
+  url: 'https://reddtools.com/inches-to-cm',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Unit Converter', href: '/unit-converter/length' },
+  { name: 'Inches to CM' },
+];
+
+const relatedTools = [
+  { name: 'Length Converter', href: '/unit-converter/length', description: 'Convert between inches, cm, feet, metres, miles, km and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Feet to CM Converter', href: '/feet-to-cm', description: 'Convert feet to centimetres instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Miles to KM Converter', href: '/miles-to-km', description: 'Convert miles to kilometres instantly.', icon: toolIconSvg['unit-converter'] },
+];
+---
+
+<Layout title={title} description={description} activeTool="unit-converter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
+  <LongTailConverter
+    mode="length"
+    fromUnit="Inch"
+    toUnit="Centimetre"
+    defaultValue={1}
+    seoIntro={`Convert inches to centimetres with this free online tool. The inches to cm conversion is essential for screen sizes, clothing measurements, DIY projects, and international trade — the US uses inches while most of the world uses centimetres. The formula is exact: 1 inch equals 2.54 centimetres. To convert inches to cm, multiply the number of inches by 2.54. For example, 1 inch = 2.54 cm, 10 inches = 25.4 cm, and a 24-inch monitor = 60.96 cm diagonal. This calculator works both ways — enter any length in inches and it instantly shows the exact equivalent in centimetres.`}
+    faqs={[
+      { q: 'How many centimetres in an inch?', a: '1 inch = 2.54 centimetres exactly. This is an internationally agreed conversion. To convert inches to cm, multiply by 2.54. To convert cm to inches, divide by 2.54 (or multiply by 0.3937).' },
+      { q: 'What is 5 inches in cm?', a: '5 inches = 12.7 cm.' },
+      { q: 'What is 12 inches in cm?', a: '12 inches = 30.48 cm. This is also exactly 1 foot.' },
+      { q: 'How big is a 55-inch TV in cm?', a: 'A 55-inch TV has a diagonal screen size of 139.7 cm. TVs are measured diagonally from corner to corner.' },
+    ]}
+  />
+</Layout>

@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { toolIconSvg } from '../lib/tools';
+import LongTailConverter from '../components/LongTailConverter.astro';
+
+const title = 'Pounds to KG Converter — Pounds to Kilograms';
+const description = 'Convert pounds to kilograms instantly. Free lbs to kg calculator — 1 pound = 0.453592 kg. Enter any weight to see the exact kilogram value.';
+const canonicalPath = '/pounds-to-kg';
+const keywords = ['pounds to kg', 'lbs to kg', 'pounds to kilograms', 'lb to kg', 'weight converter'];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Redd Tools Pounds to KG Converter',
+  description,
+  url: 'https://reddtools.com/pounds-to-kg',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Unit Converter', href: '/unit-converter/weight' },
+  { name: 'Pounds to KG' },
+];
+
+const relatedTools = [
+  { name: 'Weight Converter', href: '/unit-converter/weight', description: 'Convert between pounds, kg, grams, ounces, tonnes, stones and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'KG to lbs Converter', href: '/kg-to-lbs', description: 'Convert kilograms to pounds instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Celsius to Fahrenheit', href: '/celsius-to-fahrenheit', description: 'Convert °C to °F instantly.', icon: toolIconSvg['unit-converter'] },
+];
+---
+
+<Layout title={title} description={description} activeTool="unit-converter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
+  <LongTailConverter
+    mode="weight"
+    fromUnit="Pound"
+    toUnit="Kilogram"
+    defaultValue={1}
+    seoIntro={`Convert pounds to kilograms with this free online tool. The pounds to kg conversion is one of the most searched weight conversions — used for body weight, gym plates, shipping, recipes, and everyday measurements across countries using different systems. The formula is simple: 1 pound equals 0.453592 kilograms. To convert pounds to kg, multiply the number of pounds by 0.453592. For example, 1 lb = 0.454 kg, 10 lb = 4.536 kg, and 100 lb = 45.36 kg. This calculator works both ways — enter any amount in pounds and it instantly shows the exact equivalent in kilograms.`}
+    faqs={[
+      { q: 'How many kilograms in a pound?', a: '1 pound = 0.453592 kilograms. To convert pounds to kg, multiply by 0.454. To convert kg to pounds, multiply by 2.205.' },
+      { q: 'What is 150 pounds in kg?', a: '150 pounds = 68.04 kg. This is a common body weight conversion reference.' },
+      { q: 'What is 200 pounds in kg?', a: '200 pounds = 90.72 kg. This is often used as a milestone weight in fitness contexts.' },
+      { q: 'How do I convert lbs to kg in my head?', a: 'For a quick mental estimate, divide the pound value by 2.2. So 110 lb ≈ 50 kg (exact: 49.9 kg). For better precision, divide by 2.205.' },
+    ]}
+  />
+</Layout>

@@ -258,6 +258,41 @@ const relatedTools = [
             </div>
           </div>
         )}
+
+        <!-- Loan -->
+        {mode.slug === 'loan' && (
+          <div class="calc-form">
+            <div class="input-group">
+              <label>Loan amount</label>
+              <input type="number" id="loan-principal" placeholder="20000" />
+            </div>
+            <div class="input-row">
+              <div class="input-group">
+                <label>Interest rate (% per year)</label>
+                <input type="number" id="loan-rate" placeholder="5.5" step="0.01" />
+              </div>
+              <div class="input-group">
+                <label>Term</label>
+                <input type="number" id="loan-term" placeholder="5" />
+              </div>
+            </div>
+            <div class="input-group">
+              <label>Term unit</label>
+              <select id="loan-term-unit">
+                <option value="years" selected>Years</option>
+                <option value="months">Months</option>
+              </select>
+            </div>
+            <button id="calc-loan" class="btn-primary">Calculate</button>
+            <div id="result-loan" class="result-box hidden">
+              <div class="result-label">Monthly payment</div>
+              <div class="result-value" id="loan-monthly"></div>
+              <div class="result-note" id="loan-summary"></div>
+              <div class="result-note" style="margin-top:12px; font-weight:500; color:#000;">Amortization preview (first 12 payments)</div>
+              <div class="loan-schedule" id="loan-schedule"></div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
 
@@ -373,6 +408,91 @@ const relatedTools = [
     document.getElementById('tip-breakdown')!.textContent = `Tip: ${fmt(tipAmt)} · Total: ${fmt(total)} · ${split} ${split === 1 ? 'person' : 'people'}`;
     document.getElementById('result-tip')!.classList.remove('hidden');
     capture('tip', { bill, pct, split, perPerson });
+  });
+
+  // BMI
+  const bmiUnit = document.getElementById('bmi-unit') as HTMLSelectElement | null;
+  if (bmiUnit) {
+    bmiUnit.addEventListener('change', () => {
+      const metric = document.getElementById('bmi-metric')!;
+      const imperial = document.getElementById('bmi-imperial')!;
+      if (bmiUnit.value === 'metric') {
+        metric.classList.remove('hidden');
+        imperial.classList.add('hidden');
+      } else {
+        metric.classList.add('hidden');
+        imperial.classList.remove('hidden');
+      }
+    });
+  }
+  const calcBmi = document.getElementById('calc-bmi');
+  if (calcBmi) calcBmi.addEventListener('click', () => {
+    const unit = (document.getElementById('bmi-unit') as HTMLSelectElement).value;
+    let bmi = 0;
+    if (unit === 'metric') {
+      const kg = parseFloat((document.getElementById('bmi-kg') as HTMLInputElement).value) || 0;
+      const cm = parseFloat((document.getElementById('bmi-cm') as HTMLInputElement).value) || 0;
+      if (kg <= 0 || cm <= 0) return;
+      const m = cm / 100;
+      bmi = kg / (m * m);
+    } else {
+      const lb = parseFloat((document.getElementById('bmi-lb') as HTMLInputElement).value) || 0;
+      const ft = parseFloat((document.getElementById('bmi-ft') as HTMLInputElement).value) || 0;
+      const ins = parseFloat((document.getElementById('bmi-in') as HTMLInputElement).value) || 0;
+      if (lb <= 0 || ft < 0) return;
+      const totalIn = ft * 12 + ins;
+      if (totalIn <= 0) return;
+      bmi = 703 * lb / (totalIn * totalIn);
+    }
+    let category = '';
+    let color = '';
+    if (bmi < 18.5) { category = 'Underweight'; color = '#ca8a04'; }
+    else if (bmi < 25) { category = 'Normal weight'; color = '#27a644'; }
+    else if (bmi < 30) { category = 'Overweight'; color = '#ea580c'; }
+    else { category = 'Obese'; color = '#dc2626'; }
+    document.getElementById('bmi-value')!.textContent = bmi.toFixed(1);
+    const catEl = document.getElementById('bmi-category')!;
+    catEl.textContent = category;
+    catEl.style.color = color;
+    document.getElementById('result-bmi')!.classList.remove('hidden');
+    capture('bmi', { unit, bmi, category });
+  });
+
+  // Loan calculator
+  const calcLoan = document.getElementById('calc-loan');
+  if (calcLoan) calcLoan.addEventListener('click', () => {
+    const p = parseFloat((document.getElementById('loan-principal') as HTMLInputElement).value) || 0;
+    const r = parseFloat((document.getElementById('loan-rate') as HTMLInputElement).value) || 0;
+    const term = parseFloat((document.getElementById('loan-term') as HTMLInputElement).value) || 0;
+    const unit = (document.getElementById('loan-term-unit') as HTMLSelectElement).value;
+    if (p <= 0 || r < 0 || term <= 0) return;
+    const months = unit === 'years' ? term * 12 : term;
+    const mr = r / 100 / 12;
+    const monthly = mr > 0
+      ? (p * mr * Math.pow(1 + mr, months)) / (Math.pow(1 + mr, months) - 1)
+      : p / months;
+    const total = monthly * months;
+    const totalInterest = total - p;
+    document.getElementById('loan-monthly')!.textContent = fmt(monthly);
+    document.getElementById('loan-summary')!.textContent = `Total repayment: ${fmt(total)} · Total interest: ${fmt(totalInterest)} · ${months} months`;
+
+    // Amortization schedule preview (first 12 payments)
+    const scheduleEl = document.getElementById('loan-schedule')!;
+    let balance = p;
+    let rows = '';
+    const previewMonths = Math.min(12, months);
+    for (let i = 1; i <= previewMonths; i++) {
+      const interest = balance * mr;
+      const principal = monthly - interest;
+      balance -= principal;
+      rows += `<div class="loan-row"><span>#${i}</span><span>${fmt(principal)} prin</span><span>${fmt(interest)} int</span><span>${fmt(balance)}</span></div>`;
+    }
+    scheduleEl.innerHTML = rows;
+    if (months > previewMonths) {
+      scheduleEl.innerHTML += `<div class="loan-row loan-more">... and ${months - previewMonths} more payments</div>`;
+    }
+    document.getElementById('result-loan')!.classList.remove('hidden');
+    capture('loan', { principal: p, rate: r, months, monthly, totalInterest });
   });
 
   // Mobile mode dropdown
@@ -611,6 +731,36 @@ const relatedTools = [
     font-size: 14px;
     color: #5b5b5b;
     margin-top: 8px;
+  }
+
+  .loan-schedule {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+  }
+
+  .loan-row {
+    display: grid;
+    grid-template-columns: 40px 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    color: #5b5b5b;
+  }
+
+  .loan-row span:first-child {
+    color: #999;
+  }
+
+  .loan-more {
+    color: #999;
+    font-style: italic;
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 8px;
   }
 
   .hidden { display: none; }

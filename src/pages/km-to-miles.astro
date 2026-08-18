@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { toolIconSvg } from '../lib/tools';
+import LongTailConverter from '../components/LongTailConverter.astro';
+
+const title = 'KM to Miles Converter — Kilometres to Miles';
+const description = 'Convert kilometres to miles instantly. Free km to miles calculator — 1 km = 0.621371 miles. Enter any distance to see the exact mile value.';
+const canonicalPath = '/km-to-miles';
+const keywords = ['km to miles', 'kilometers to miles', 'km to mi', 'kilometres to miles', 'distance converter'];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Redd Tools KM to Miles Converter',
+  description,
+  url: 'https://reddtools.com/km-to-miles',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Unit Converter', href: '/unit-converter/length' },
+  { name: 'KM to Miles' },
+];
+
+const relatedTools = [
+  { name: 'Length Converter', href: '/unit-converter/length', description: 'Convert between km, miles, metres, feet, inches and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Miles to KM Converter', href: '/miles-to-km', description: 'Convert miles to kilometres instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Feet to CM Converter', href: '/feet-to-cm', description: 'Convert feet to centimetres instantly.', icon: toolIconSvg['unit-converter'] },
+];
+---
+
+<Layout title={title} description={description} activeTool="unit-converter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
+  <LongTailConverter
+    mode="length"
+    fromUnit="Kilometre"
+    toUnit="Mile"
+    defaultValue={1}
+    seoIntro={`Convert kilometres to miles with this free online tool. The km to miles conversion is essential for runners, drivers, and travellers — most of the world uses kilometres while the US and UK use miles. The formula is simple: 1 kilometre equals 0.621371 miles. To convert km to miles, multiply the number of kilometres by 0.621371. For example, 1 km = 0.621 miles, 5 km = 3.107 miles (a common race distance), 10 km = 6.214 miles, and a half marathon (21.1 km) = 13.1 miles. This calculator works both ways — enter any distance in kilometres and it instantly shows the exact equivalent in miles.`}
+    faqs={[
+      { q: 'How many miles in a kilometre?', a: '1 kilometre = 0.621371 miles. To convert km to miles, multiply by 0.621. To convert miles to km, multiply by 1.609.' },
+      { q: 'How far is 5K in miles?', a: '5K = 5 kilometres = 3.107 miles. A 10K is 6.214 miles. These are standard race distances worldwide.' },
+      { q: 'What is 100 km in miles?', a: '100 km = 62.14 miles. This is a common distance for road trips and endurance cycling events.' },
+      { q: 'How do I convert km/h to mph?', a: 'Multiply km/h by 0.621. So 100 km/h = 62.1 mph. This is useful for understanding speed limits when driving abroad.' },
+    ]}
+  />
+</Layout>
