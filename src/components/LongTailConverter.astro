@@ -5,14 +5,14 @@
  * pre-filled and ready to use, plus keyword-rich SEO content.
  *
  * Props:
- * - mode: 'weight' | 'temperature' | 'length'
+ * - mode: 'weight' | 'temperature' | 'length' | 'volume'
  * - fromUnit / toUnit: the pre-configured pair
  * - defaultValue: pre-filled amount
  * - seoIntro: intro paragraph for the SEO section
  * - faqs: { q, a }[] for the FAQ accordion + FAQPage JSON-LD
  */
 interface Props {
-  mode: 'weight' | 'temperature' | 'length';
+  mode: 'weight' | 'temperature' | 'length' | 'volume';
   fromUnit: string;
   toUnit: string;
   defaultValue: number;
@@ -90,6 +90,7 @@ const faqJsonLd = {
   const CONVERSION: Record<string, Record<string, number>> = {
     weight: { Gram: 1, Kilogram: 1000, Milligram: 0.001, Tonne: 1000000, Pound: 453.592, Ounce: 28.3495, Stone: 6350.29 },
     length: { Metre: 1, Kilometre: 1000, Centimetre: 0.01, Millimetre: 0.001, Mile: 1609.344, Yard: 0.9144, Foot: 0.3048, Inch: 0.0254 },
+    volume: { Millilitre: 1, Litre: 1000, 'Cup (US)': 236.588, 'Cup (metric)': 250, Tablespoon: 14.7868, Teaspoon: 4.92892, 'Fluid ounce': 29.5735, 'Pint (US)': 473.176, 'Gallon (US)': 3785.41 },
   };
 
   const TEMP: Record<string, { toC: (v: number) => number; fromC: (v: number) => number }> = {

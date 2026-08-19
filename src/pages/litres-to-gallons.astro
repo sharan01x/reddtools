@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { toolIconSvg } from '../lib/tools';
+import LongTailConverter from '../components/LongTailConverter.astro';
+
+const title = 'Litres to Gallons Converter — L to Gal';
+const description = 'Convert litres to gallons instantly. Free litres to gallons calculator — 1 litre = 0.264172 US gallons. Enter any volume to see the exact gallons conversion.';
+const canonicalPath = '/litres-to-gallons';
+const keywords = ['litres to gallons', 'liters to gallons', 'l to gal', 'litre to gallon', 'volume converter'];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Redd Tools Litres to Gallons Converter',
+  description,
+  url: 'https://reddtools.com/litres-to-gallons',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Unit Converter', href: '/unit-converter/volume' },
+  { name: 'litres to gallons' },
+];
+
+const relatedTools = [
+  { name: 'Volume Converter', href: '/unit-converter/volume', description: 'Convert between litres, gallons, cups, tablespoons, teaspoons and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Weight Converter', href: '/unit-converter/weight', description: 'Convert between kg, lbs, grams, ounces and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Length Converter', href: '/unit-converter/length', description: 'Convert between metres, feet, inches, miles and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Temperature Converter', href: '/unit-converter/temperature', description: 'Convert between Celsius, Fahrenheit and Kelvin.', icon: toolIconSvg['unit-converter'] },
+];
+---
+
+<Layout title={title} description={description} activeTool="unit-converter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
+  <LongTailConverter
+    mode="volume"
+    fromUnit="Litre"
+    toUnit="Gallon (US)"
+    defaultValue={1}
+    seoIntro={`Convert litres to gallons with this free online tool. The litres to gallons conversion is essential for fuel economy, cooking, brewing, and liquid measurements — the UK and Europe use litres while the US uses gallons. The formula is simple: 1 litre equals 0.264172 US gallons (or 0.219969 UK gallons). To convert litres to US gallons, multiply the number of litres by 0.264172. For example, 1 litre = 0.264 gal, 5 litres = 1.321 gal, and 50 litres = 13.21 gal. This calculator works both ways — enter any volume in litres and it instantly shows the exact equivalent in US gallons.`}
+    faqs={[
+      { q: 'How many US gallons in a litre?', a: '1 litre = 0.264172 US gallons. To convert litres to US gallons, multiply by 0.264172. To convert US gallons to litres, multiply by 3.78541.' },
+      { q: 'How many UK gallons in a litre?', a: '1 litre = 0.219969 UK (imperial) gallons. The UK gallon is larger than the US gallon — 1 UK gallon = 4.54609 litres, while 1 US gallon = 3.78541 litres.' },
+      { q: 'How many litres in a gallon?', a: '1 US gallon = 3.78541 litres. 1 UK (imperial) gallon = 4.54609 litres. Always check which gallon type is being used.' },
+      { q: 'What is 50 litres in gallons?', a: '50 litres = 13.21 US gallons (or 11.0 UK gallons). This is a common fuel tank capacity reference.' },
+    ]}
+  />
+</Layout>

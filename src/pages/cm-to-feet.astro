@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { toolIconSvg } from '../lib/tools';
+import LongTailConverter from '../components/LongTailConverter.astro';
+
+const title = 'CM to Feet Converter — Centimetres to Feet';
+const description = 'Convert centimetres to feet instantly. Free cm to feet calculator — 1 cm = 0.0328 ft. Enter any length to see the exact feet conversion.';
+const canonicalPath = '/cm-to-feet';
+const keywords = ['cm to feet', 'centimetres to feet', 'cm to ft', 'height converter cm to feet', 'length converter'];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Redd Tools CM to Feet Converter',
+  description,
+  url: 'https://reddtools.com/cm-to-feet',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Unit Converter', href: '/unit-converter/length' },
+  { name: 'cm to feet' },
+];
+
+const relatedTools = [
+  { name: 'Length Converter', href: '/unit-converter/length', description: 'Convert between feet, cm, metres, inches, miles, km and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Feet to CM Converter', href: '/feet-to-cm', description: 'Convert feet to centimetres instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Inches to CM Converter', href: '/inches-to-cm', description: 'Convert inches to centimetres instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Metres to Feet Converter', href: '/metres-to-feet', description: 'Convert metres to feet instantly.', icon: toolIconSvg['unit-converter'] },
+];
+---
+
+<Layout title={title} description={description} activeTool="unit-converter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
+  <LongTailConverter
+    mode="length"
+    fromUnit="Centimetre"
+    toUnit="Foot"
+    defaultValue={100}
+    seoIntro={`Convert centimetres to feet with this free online tool. The cm to feet conversion is essential for height measurements, especially when converting between metric (centimetres) and imperial (feet/inches) systems. The formula is simple: 1 centimetre equals 0.0328084 feet, or approximately 0.3937 inches. To convert cm to feet, divide the number of centimetres by 30.48. For example, 150 cm = 4.92 ft, 170 cm = 5.58 ft, and 180 cm = 5.91 ft. This calculator works both ways — enter any length in centimetres and it instantly shows the exact equivalent in feet.`}
+    faqs={[
+      { q: 'How many feet in a centimetre?', a: '1 centimetre = 0.0328084 feet (approximately). To convert cm to feet, divide by 30.48. To convert feet to cm, multiply by 30.48.' },
+      { q: 'How tall is 170 cm in feet?', a: '170 cm = 5.58 feet (exactly 5 feet 6.9 inches). This is calculated by dividing 170 by 30.48.' },
+      { q: 'How tall is 180 cm in feet?', a: '180 cm = 5.91 feet (exactly 5 feet 10.9 inches). This is a common height reference in many countries.' },
+      { q: 'How do I convert cm to feet and inches?', a: 'Divide the cm value by 2.54 to get inches, then divide by 12 to get feet. The remainder is the inches. For example, 175 cm ÷ 2.54 = 68.9 inches = 5 feet 8.9 inches.' },
+    ]}
+  />
+</Layout>

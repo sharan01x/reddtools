@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { toolIconSvg } from '../lib/tools';
+import LongTailConverter from '../components/LongTailConverter.astro';
+
+const title = 'KG to Pounds Converter — Kilograms to Pounds';
+const description = 'Convert kilograms to pounds instantly. Free kg to pounds calculator — 1 kg = 2.20462 lbs. Enter any weight to see the exact pounds conversion.';
+const canonicalPath = '/kg-to-pounds';
+const keywords = ['kg to pounds', 'kilograms to pounds', 'kg to lbs', 'kilo to pounds', 'weight converter'];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Redd Tools KG to Pounds Converter',
+  description,
+  url: 'https://reddtools.com/kg-to-pounds',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Unit Converter', href: '/unit-converter/weight' },
+  { name: 'kg to pounds' },
+];
+
+const relatedTools = [
+  { name: 'Weight Converter', href: '/unit-converter/weight', description: 'Convert between kg, lbs, grams, ounces, tonnes, stones and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Pounds to KG Converter', href: '/pounds-to-kg', description: 'Convert pounds to kilograms instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'KG to LBS Converter', href: '/kg-to-lbs', description: 'Convert kilograms to pounds instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Miles to KM Converter', href: '/miles-to-km', description: 'Convert miles to kilometres instantly.', icon: toolIconSvg['unit-converter'] },
+];
+---
+
+<Layout title={title} description={description} activeTool="unit-converter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
+  <LongTailConverter
+    mode="weight"
+    fromUnit="Kilogram"
+    toUnit="Pound"
+    defaultValue={1}
+    seoIntro={`Convert kilograms to pounds with this free online tool. The kg to pounds conversion is one of the most common weight conversions in the world — used for body weight, gym plates, shipping, recipes, and everyday measurements. The formula is simple: 1 kilogram equals 2.20462 pounds. To convert kg to pounds, multiply the number of kilograms by 2.20462. For example, 1 kg = 2.205 lbs, 10 kg = 22.05 lbs, and 100 kg = 220.46 lbs. This calculator works both ways — enter any amount of kilograms and it instantly shows the exact equivalent in pounds.`}
+    faqs={[
+      { q: 'How many pounds in a kilogram?', a: '1 kilogram = 2.20462 pounds. To convert kilograms to pounds, multiply by 2.205. To convert pounds to kilograms, divide by 2.205 (or multiply by 0.454).' },
+      { q: 'How do I convert kg to pounds in my head?', a: 'For a quick mental estimate, multiply the kg value by 2.2. So 70 kg ≈ 154 lbs (exact: 154.32 lbs). For precision, multiply by 2.20462.' },
+      { q: 'What is 100 kg in pounds?', a: '100 kg = 220.462 pounds. This is a common reference point for gym and fitness conversions.' },
+      { q: 'Is 1 kg equal to 2 pounds?', a: 'Almost — 1 kg is exactly 2.20462 lbs, so it is slightly more than 2 lbs. The 1 kg ≈ 2.2 lbs approximation is accurate enough for most everyday uses.' },
+    ]}
+  />
+</Layout>

@@ -1,0 +1,11 @@
+{
+  "task_id": "t_b864f5c11b6ce2a0",
+  "source": "https://app.notion.com/p/330-Places-to-Submit-Your-Startup-34a01813046b80238f27ef1063991f51",
+  "total_priority_sites": 135,
+  "batch_size": 5,
+  "next_index": 0,
+  "submitted": [],
+  "skipped": [],
+  "failed": [],
+  "notes": "Submit 5 sites per heartbeat. Read submission_sites.json for the full prioritised list. Update this tracker after each batch."
+}

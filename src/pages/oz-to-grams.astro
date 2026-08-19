@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { toolIconSvg } from '../lib/tools';
+import LongTailConverter from '../components/LongTailConverter.astro';
+
+const title = 'Ounces to Grams Converter — oz to g';
+const description = 'Convert ounces to grams instantly. Free oz to grams calculator — 1 oz = 28.3495 g. Enter any weight to see the exact grams conversion.';
+const canonicalPath = '/oz-to-grams';
+const keywords = ['oz to grams', 'ounces to grams', 'oz to g', 'ounce to gram', 'weight converter'];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Redd Tools Ounces to Grams Converter',
+  description,
+  url: 'https://reddtools.com/oz-to-grams',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Unit Converter', href: '/unit-converter/weight' },
+  { name: 'oz to grams' },
+];
+
+const relatedTools = [
+  { name: 'Weight Converter', href: '/unit-converter/weight', description: 'Convert between ounces, grams, kg, lbs, stones and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'KG to LBS Converter', href: '/kg-to-lbs', description: 'Convert kilograms to pounds instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Pounds to KG Converter', href: '/pounds-to-kg', description: 'Convert pounds to kilograms instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Miles to KM Converter', href: '/miles-to-km', description: 'Convert miles to kilometres instantly.', icon: toolIconSvg['unit-converter'] },
+];
+---
+
+<Layout title={title} description={description} activeTool="unit-converter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
+  <LongTailConverter
+    mode="weight"
+    fromUnit="Ounce"
+    toUnit="Gram"
+    defaultValue={1}
+    seoIntro={`Convert ounces to grams with this free online tool. The oz to grams conversion is essential for cooking, baking, jewellery, and small weight measurements — recipes in the US often use ounces while most of the world uses grams. The formula is simple: 1 ounce equals 28.3495 grams. To convert ounces to grams, multiply the number of ounces by 28.3495. For example, 1 oz = 28.35 g, 4 oz = 113.4 g, and 16 oz = 453.59 g (which is exactly 1 pound). This calculator works both ways — enter any weight in ounces and it instantly shows the exact equivalent in grams.`}
+    faqs={[
+      { q: 'How many grams in an ounce?', a: '1 ounce = 28.3495 grams. To convert ounces to grams, multiply by 28.35. To convert grams to ounces, divide by 28.35 (or multiply by 0.03527).' },
+      { q: 'How many ounces in 100 grams?', a: '100 grams = 3.53 ounces. This is a common cooking conversion — 100 g of butter, flour, or sugar is roughly 3.5 oz.' },
+      { q: 'What is 16 ounces in grams?', a: '16 ounces = 453.59 grams, which is exactly 1 pound. This is why a pound is often called "16 oz" in the US.' },
+      { q: 'How do I convert ounces to grams in my head?', a: 'For a quick estimate, multiply ounces by 30 and subtract 5%. So 4 oz ≈ 4 × 30 - 6 = 114 g (exact: 113.4 g). Or simply multiply by 28.35 for precision.' },
+    ]}
+  />
+</Layout>

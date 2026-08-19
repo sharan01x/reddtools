@@ -1,0 +1,3780 @@
+{
+  "source": "https://app.notion.com/p/330-Places-to-Submit-Your-Startup-34a01813046b80238f27ef1063991f51",
+  "total": 330,
+  "priority_directories": [
+    {
+      "name": "Behance",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 96,
+      "url": "http://behance.net/"
+    },
+    {
+      "name": "Source Forge",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 96,
+      "url": "https://sourceforge.net/"
+    },
+    {
+      "name": "Unsplash",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 96,
+      "url": "https://unsplash.com/"
+    },
+    {
+      "name": "G2",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 93,
+      "url": "https://g2.com/"
+    },
+    {
+      "name": "Crunchbase",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 92,
+      "url": "https://crunchbase.com/"
+    },
+    {
+      "name": "Product Hunt",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 92,
+      "url": "https://producthunt.com/"
+    },
+    {
+      "name": "Capterra",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 91,
+      "url": "https://capterra.com/"
+    },
+    {
+      "name": "Gartner",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 91,
+      "url": "https://gartner.com/reviews/home"
+    },
+    {
+      "name": "Proven Expert",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 91,
+      "url": "https://www.provenexpert.com/"
+    },
+    {
+      "name": "AI Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "https://aitools.neilpatel.com/"
+    },
+    {
+      "name": "Clutch",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "https://clutch.co/"
+    },
+    {
+      "name": "Finances Online",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "https://financesonline.com/"
+    },
+    {
+      "name": "Softpedia",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "https://www.softpedia.com/user/submit.shtml"
+    },
+    {
+      "name": "TrustRadius",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "https://trustradius.com/"
+    },
+    {
+      "name": "Appsumo",
+      "category": "Misc",
+      "fee": "Free",
+      "domain_rank": 89,
+      "url": "https://appsumo.com/"
+    },
+    {
+      "name": "Get App",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 89,
+      "url": "https://getapp.com/"
+    },
+    {
+      "name": "Good Firms",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 89,
+      "url": "https://goodfirms.co/"
+    },
+    {
+      "name": "Stack Share",
+      "category": "Misc",
+      "fee": "Free",
+      "domain_rank": 89,
+      "url": "https://stackshare.io/"
+    },
+    {
+      "name": "F6S",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 88,
+      "url": "https://www.f6s.com/directory/companies"
+    },
+    {
+      "name": "Alternative To",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 87,
+      "url": "https://alternativeto.net/"
+    },
+    {
+      "name": "e27",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 87,
+      "url": "https://e27.co/"
+    },
+    {
+      "name": "EU-Startups",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 84,
+      "url": "https://www.eu-startups.com/directory"
+    },
+    {
+      "name": "Addictive Tips",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 83,
+      "url": "https://www.addictivetips.com/tip-us"
+    },
+    {
+      "name": "Software Suggest",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 83,
+      "url": "https://softwaresuggest.com/"
+    },
+    {
+      "name": "Crozdesk",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 82,
+      "url": "https://crozdesk.com/"
+    },
+    {
+      "name": "Peerlist",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 80,
+      "url": "https://peerlist.io/"
+    },
+    {
+      "name": "SaaS Worthy",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 80,
+      "url": "https://saasworthy.com/"
+    },
+    {
+      "name": "Software World",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 80,
+      "url": "https://softwareworld.co/"
+    },
+    {
+      "name": "Featured Customers",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 78,
+      "url": "https://featuredcustomers.com/"
+    },
+    {
+      "name": "OECD AI",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 76,
+      "url": "https://oecd.ai/en/catalogue/tools/submit"
+    },
+    {
+      "name": "Startup Stash",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 76,
+      "url": "https://startupstash.com/"
+    },
+    {
+      "name": "Submission Web Directory",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 76,
+      "url": "https://submissionwebdirectory.com/"
+    },
+    {
+      "name": "Alternative.me",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 75,
+      "url": "http://alternative.me/"
+    },
+    {
+      "name": "Next Big What",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 75,
+      "url": "https://submit.nextbigwhat.com/submit-your-startup"
+    },
+    {
+      "name": "SaaS Hub",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 75,
+      "url": "https://www.saashub.com/services/submit"
+    },
+    {
+      "name": "Launching Next",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 73,
+      "url": "https://www.launchingnext.com/submit"
+    },
+    {
+      "name": "Side Projectors",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 73,
+      "url": "https://sideprojectors.com/"
+    },
+    {
+      "name": "StartupRanking",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 73,
+      "url": "https://startupranking.com/"
+    },
+    {
+      "name": "Thing Testing",
+      "category": "Misc",
+      "fee": "Free",
+      "domain_rank": 73,
+      "url": "https://thingtesting.com/submit-brand"
+    },
+    {
+      "name": "Crowd Reviews",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 72,
+      "url": "https://crowdreviews.com/"
+    },
+    {
+      "name": "Future Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 70,
+      "url": "https://www.futuretools.io/submit-a-tool"
+    },
+    {
+      "name": "How Brands Are Built",
+      "category": "Publication",
+      "fee": "Free",
+      "domain_rank": 70,
+      "url": "https://howbrandsarebuilt.com/submit/"
+    },
+    {
+      "name": "TechDirectory",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 70,
+      "url": "https://techdirectory.io/"
+    },
+    {
+      "name": "Made With Vuejs",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 69,
+      "url": "https://madewithvuejs.com/submit"
+    },
+    {
+      "name": "Business Software",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 68,
+      "url": "https://business-software.com/"
+    },
+    {
+      "name": "Dang",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 68,
+      "url": "https://dang.ai/"
+    },
+    {
+      "name": "Ebool",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 67,
+      "url": "https://ebool.com/"
+    },
+    {
+      "name": "Spot SaaS",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 67,
+      "url": "https://spotsaas.com/"
+    },
+    {
+      "name": "AI Tool Directory",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 66,
+      "url": "https://tooldirectory.ai/submit-tool"
+    },
+    {
+      "name": "Tidy Repo",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 66,
+      "url": "https://tidyrepo.com/suggest-plugin"
+    },
+    {
+      "name": "Betabound",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 65,
+      "url": "https://betabound.com/"
+    },
+    {
+      "name": "PitchWall",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 65,
+      "url": "https://pitchwall.co/"
+    },
+    {
+      "name": "Tech Pluto",
+      "category": "Publication",
+      "fee": "Free",
+      "domain_rank": 64,
+      "url": "https://www.techpluto.com/submit-startup/"
+    },
+    {
+      "name": "Foundr",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 63,
+      "url": "https://foundr.ai/"
+    },
+    {
+      "name": "AI Library",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 62,
+      "url": "https://library.phygital.plus/tool-submission"
+    },
+    {
+      "name": "SaaS AI Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 62,
+      "url": "https://saasaitools.com/submit"
+    },
+    {
+      "name": "MaRS DD",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 61,
+      "url": "https://app.marsdd.com/companies"
+    },
+    {
+      "name": "Tiny Launch",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 61,
+      "url": "https://www.tinylaun.ch/"
+    },
+    {
+      "name": "AIAI.Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 59,
+      "url": "http://aiai.tools/"
+    },
+    {
+      "name": "Cloud Findr",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 59,
+      "url": "https://cloudfindr.co/"
+    },
+    {
+      "name": "Ben's Bites",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 58,
+      "url": "https://news.bensbites.co/"
+    },
+    {
+      "name": "No Code Founders",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 58,
+      "url": "https://nocodefounders.com/"
+    },
+    {
+      "name": "MaxieBestOf",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 55,
+      "url": "https://maxibestof.one/submit"
+    },
+    {
+      "name": "promoteproject",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 55,
+      "url": "https://promoteproject.com/submit-startup"
+    },
+    {
+      "name": "Appagg",
+      "category": "Misc",
+      "fee": "Free",
+      "domain_rank": 54,
+      "url": "http://appagg.com/"
+    },
+    {
+      "name": "Similar Site Search",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 54,
+      "url": "http://similarsitesearch.com/webmaster"
+    },
+    {
+      "name": "findstack",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 53,
+      "url": "https://findstack.com/"
+    },
+    {
+      "name": "Five Taco",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 53,
+      "url": "https://fivetaco.com/"
+    },
+    {
+      "name": "Letter List",
+      "category": "Misc",
+      "fee": "Free",
+      "domain_rank": 53,
+      "url": "https://letterlist.com/submit"
+    },
+    {
+      "name": "AI ToolBoard",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 51,
+      "url": "https://aitoolboard.com/submit-ai-tool"
+    },
+    {
+      "name": "AI Tools Directory",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "https://aitoolsdirectory.com/submit-tool"
+    },
+    {
+      "name": "Lib Hunt",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "https://libhunt.com/"
+    },
+    {
+      "name": "Open Startup List",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "https://openstartuplist.com/"
+    },
+    {
+      "name": "Spectacle",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "https://spectacle.is/submit"
+    },
+    {
+      "name": "Stork",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "https://www.stork.ai/"
+    },
+    {
+      "name": "U Need",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "https://www.uneed.best/submit-a-tool"
+    },
+    {
+      "name": "SelectHub",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 49,
+      "url": "https://selecthub.com/"
+    },
+    {
+      "name": "Startup Dope",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 49,
+      "url": "https://startupdope.com/submit-news/"
+    },
+    {
+      "name": "Startup Tracker",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 49,
+      "url": "https://startuptracker.io/crowdsourcing/"
+    },
+    {
+      "name": "Techendo",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 49,
+      "url": "http://techendo.com/beta"
+    },
+    {
+      "name": "Cipinet",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 48,
+      "url": "https://www.cipinet.com/submit.php"
+    },
+    {
+      "name": "Insidr.ai",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 48,
+      "url": "http://insidr.ai/"
+    },
+    {
+      "name": "Openfuture",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 48,
+      "url": "https://openfuture.ai/submit-tool"
+    },
+    {
+      "name": "Startup Buffer",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 48,
+      "url": "https://startupbuffer.com/site/submit"
+    },
+    {
+      "name": "Iuu",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 46,
+      "url": "https://iuu.ai/submit"
+    },
+    {
+      "name": "Tiny Startups",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 46,
+      "url": "https://tinystartups.com/"
+    },
+    {
+      "name": "Gadget Nutz",
+      "category": "Misc",
+      "fee": "Free",
+      "domain_rank": 45,
+      "url": "https://gadgetnutz.com/contact-us"
+    },
+    {
+      "name": "Romanian Startups",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 45,
+      "url": "https://www.romanianstartups.com/"
+    },
+    {
+      "name": "Sidebar",
+      "category": "Publication",
+      "fee": "Free",
+      "domain_rank": 45,
+      "url": "https://sidebar.io/"
+    },
+    {
+      "name": "MarsX",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 44,
+      "url": "https://www.marsx.dev/ai-startups"
+    },
+    {
+      "name": "The AI Navigator",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 44,
+      "url": "https://www.theainavigator.com/submit-an-ai-tool"
+    },
+    {
+      "name": "Launched",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 43,
+      "url": "https://launched.io/SubmitStartup"
+    },
+    {
+      "name": "No Code List",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 43,
+      "url": "https://nocodelist.co/submit"
+    },
+    {
+      "name": "StartupBase",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 43,
+      "url": "https://startupbase.io/"
+    },
+    {
+      "name": "Tools RobinGood",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 42,
+      "url": "https://tools.robingood.com/"
+    },
+    {
+      "name": "Startup Inspire",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 41,
+      "url": "https://startupinspire.com/"
+    },
+    {
+      "name": "AI Directories",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 39,
+      "url": "https://www.aidirectori.es/"
+    },
+    {
+      "name": "BAI",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 38,
+      "url": "https://bai.tools/submit-ai-tools"
+    },
+    {
+      "name": "Insane",
+      "category": "Publication",
+      "fee": "Free",
+      "domain_rank": 38,
+      "url": "https://theinsaneapp.com/"
+    },
+    {
+      "name": "Startups.fm",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 38,
+      "url": "http://startups.fm/"
+    },
+    {
+      "name": "Apps and Websites",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 37,
+      "url": "https://appsandwebsites.com/"
+    },
+    {
+      "name": "Liaise Platform",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 37,
+      "url": "https://liaiseplatform.com/"
+    },
+    {
+      "name": "All GPTs",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 36,
+      "url": "https://allgpts.co/"
+    },
+    {
+      "name": "FMHY",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 36,
+      "url": "https://fmhy.pages.dev/other/contributing#submitting-a-link"
+    },
+    {
+      "name": "Resource FYI",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 36,
+      "url": "https://resource.fyi/"
+    },
+    {
+      "name": "AI Hub",
+      "category": "Publication",
+      "fee": "Free",
+      "domain_rank": 35,
+      "url": "https://aihub.org/contribute/"
+    },
+    {
+      "name": "Public APIs",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 35,
+      "url": "https://publicapis.dev/"
+    },
+    {
+      "name": "10 Words",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 34,
+      "url": "https://10words.io/"
+    },
+    {
+      "name": "Apprater",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 34,
+      "url": "https://apprater.net/add"
+    },
+    {
+      "name": "Startup Fame",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 34,
+      "url": "https://startupfa.me/"
+    },
+    {
+      "name": "TechBehemoths",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 34,
+      "url": "https://techbehemoths.com/companies/get-listed"
+    },
+    {
+      "name": "Ai Valley",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 31,
+      "url": "https://aivalley.ai/submit-tool"
+    },
+    {
+      "name": "Startup Collections",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 31,
+      "url": "https://startupcollections.com/"
+    },
+    {
+      "name": "PoweredbyAI",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 28,
+      "url": "https://poweredbyai.app/submit-tool"
+    },
+    {
+      "name": "Tip Season",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 27,
+      "url": "https://tipseason.com/"
+    },
+    {
+      "name": "All Mac Apps",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 26,
+      "url": "https://allmacapps.com/"
+    },
+    {
+      "name": "Boilerplate Hub",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 26,
+      "url": "https://boilerplatehub.com/"
+    },
+    {
+      "name": "First 100 Users",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 26,
+      "url": "https://www.first100users.com/submit"
+    },
+    {
+      "name": "AI Depot",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 25,
+      "url": "https://aidepot.co/"
+    },
+    {
+      "name": "Alternatives.co",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 25,
+      "url": "http://alternatives.co/"
+    },
+    {
+      "name": "Productivity Directory",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 24,
+      "url": "https://productivity.directory/"
+    },
+    {
+      "name": "Tool List",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 24,
+      "url": "https://toollist.ai/product/create"
+    },
+    {
+      "name": "AI of The Day",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 22,
+      "url": "https://aioftheday.com/submit-a-tool"
+    },
+    {
+      "name": "Canopy Directory",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 22,
+      "url": "https://www.canopydirectory.com/suggest-tool"
+    },
+    {
+      "name": "Lachief.io",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 22,
+      "url": "http://lachief.io/"
+    },
+    {
+      "name": "Mr. Free Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 22,
+      "url": "https://mrfreetools.com/"
+    },
+    {
+      "name": "AI Tool Guru",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 21,
+      "url": "https://aitoolguru.com/submit-ai-tool"
+    },
+    {
+      "name": "AI Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 21,
+      "url": "https://aitools.lol/"
+    },
+    {
+      "name": "AI Best Top",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 20,
+      "url": "https://www.aibesttop.com/"
+    },
+    {
+      "name": "NextGen Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 18,
+      "url": "https://nextgentools.me/submit-your-tool"
+    },
+    {
+      "name": "Tool Scout",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 18,
+      "url": "https://toolscout.ai/submit"
+    },
+    {
+      "name": "Awesome Indie",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 17,
+      "url": "https://awesomeindie.com/"
+    },
+    {
+      "name": "Gpts Hunter",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 17,
+      "url": "https://gptshunter.com/"
+    },
+    {
+      "name": "ToolsForHumans.ai",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 17,
+      "url": "http://toolsforhumans.ai/"
+    },
+    {
+      "name": "ToolsFine",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 16,
+      "url": "https://toolsfine.com/"
+    }
+  ],
+  "social_organic": [
+    {
+      "name": "Quora",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 94,
+      "url": "https://www.quora.com/"
+    },
+    {
+      "name": "Hacker News",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 92,
+      "url": "https://news.ycombinator.com/"
+    },
+    {
+      "name": "Dev Community",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "http://dev.to/"
+    },
+    {
+      "name": "Indie Hackers",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 87,
+      "url": "https://indiehackers.com/"
+    },
+    {
+      "name": "Growth Hackers",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 86,
+      "url": "https://growthhackers.com/"
+    },
+    {
+      "name": "Fark",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 81,
+      "url": "https://www.fark.com/"
+    },
+    {
+      "name": "Lobsters",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 80,
+      "url": "https://lobste.rs/"
+    },
+    {
+      "name": "Unita",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 65,
+      "url": "https://unita.co/"
+    },
+    {
+      "name": "Hive Index",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 57,
+      "url": "https://thehiveindex.com/submit"
+    },
+    {
+      "name": "Front-end Developers",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "http://frontenddevelopers.org/"
+    },
+    {
+      "name": "Pinkary",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 47,
+      "url": "https://pinkary.com/"
+    },
+    {
+      "name": "Entrepreneur's Network",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.linkedin.com/groups/91749"
+    },
+    {
+      "name": "r/Affiliatemarketing",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/Affiliatemarketing"
+    },
+    {
+      "name": "r/alphaandbetausers",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/alphaandbetausers"
+    },
+    {
+      "name": "r/ArtificialInteligence",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/ArtificialInteligence"
+    },
+    {
+      "name": "r/design_critiques",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/design_critiques"
+    },
+    {
+      "name": "r/EntrepreneurRideAlong",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong"
+    },
+    {
+      "name": "r/Entrepreneurs",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/Entrepreneurs"
+    },
+    {
+      "name": "r/Frontend",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/Frontend"
+    },
+    {
+      "name": "r/growmybusiness",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/growmybusiness"
+    },
+    {
+      "name": "r/IMadeThis",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/IMadeThis"
+    },
+    {
+      "name": "r/indiebiz",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/indiebiz"
+    },
+    {
+      "name": "r/indiehackers",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/indiehackers"
+    },
+    {
+      "name": "r/microsaas",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/microsaas"
+    },
+    {
+      "name": "r/ProductHunters",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/ProductHunters"
+    },
+    {
+      "name": "r/roastmystartup",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/roastmystartup"
+    },
+    {
+      "name": "r/SaaS",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/SaaS"
+    },
+    {
+      "name": "r/SideProject",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/SideProject"
+    },
+    {
+      "name": "r/smallbusiness",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/smallbusiness"
+    },
+    {
+      "name": "r/startup",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/startup"
+    },
+    {
+      "name": "r/Startup_Ideas",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/Startup_Ideas"
+    },
+    {
+      "name": "r/startups",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/startups"
+    },
+    {
+      "name": "r/thesidehustle",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/thesidehustle"
+    },
+    {
+      "name": "r/webdev",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/webdev"
+    }
+  ],
+  "skip": [
+    {
+      "name": "Google Business Profile",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 100,
+      "url": "https://google.com/business"
+    },
+    {
+      "name": "Trustpilot",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 97,
+      "url": "https://trustpilot.com/"
+    },
+    {
+      "name": "Better Business BureaU",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 93,
+      "url": "https://www.bbb.org/get-listed"
+    },
+    {
+      "name": "TripAdvisor",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 93,
+      "url": "https://tripadvisor.com/"
+    },
+    {
+      "name": "Yelp",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 93,
+      "url": "https://yelp.com/"
+    },
+    {
+      "name": "Bing Places",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 91,
+      "url": "https://bingplaces.com/"
+    },
+    {
+      "name": "YellowPages",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "https://yellowpages.com/"
+    },
+    {
+      "name": "Nextdoor",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 83,
+      "url": "https://nextdoor.com/"
+    },
+    {
+      "name": "Angie's List",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 81,
+      "url": "https://angieslist.com/"
+    },
+    {
+      "name": "Site Inspire",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 79,
+      "url": "https://www.siteinspire.com/submissions/new"
+    },
+    {
+      "name": "Unmatched Style",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 76,
+      "url": "http://unmatchedstyle.com/submit"
+    },
+    {
+      "name": "Web Designer News",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 70,
+      "url": "https://webdesignernews.com/"
+    },
+    {
+      "name": "Ecomm Design",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 69,
+      "url": "https://ecomm.design/submit"
+    },
+    {
+      "name": "Webguru Awards",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 67,
+      "url": "https://www.webguruawards.com/site-submit"
+    },
+    {
+      "name": "Craftwork.design",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 63,
+      "url": "http://craftwork.design/"
+    },
+    {
+      "name": "Freebie Supply",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 59,
+      "url": "https://freebiesupply.com/"
+    },
+    {
+      "name": "Hotfrog",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 58,
+      "url": "https://hotfrog.com/"
+    },
+    {
+      "name": "Layers.to",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 58,
+      "url": "http://layers.to/"
+    },
+    {
+      "name": "EZLocal",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 56,
+      "url": "https://ezlocal.com/"
+    },
+    {
+      "name": "Godly",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 55,
+      "url": "https://godly.website/info"
+    },
+    {
+      "name": "Show Me Local",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 53,
+      "url": "https://showmelocal.com/"
+    },
+    {
+      "name": "Built At Lightspeed",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 52,
+      "url": "https://www.builtatlightspeed.com/"
+    },
+    {
+      "name": "Commerce Cream",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 49,
+      "url": "https://commercecream.com/"
+    },
+    {
+      "name": "SaaS Landing Page",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 48,
+      "url": "https://saaslandingpage.com/"
+    },
+    {
+      "name": "PFolios",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 44,
+      "url": "https://pfolios.net/"
+    },
+    {
+      "name": "Cartcraze",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 42,
+      "url": "https://cartcraze.com/submit"
+    },
+    {
+      "name": "Frameplate",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 39,
+      "url": "https://frameplate.co/"
+    },
+    {
+      "name": "Dead Simple Sites",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 38,
+      "url": "https://deadsimplesites.com/"
+    },
+    {
+      "name": "Dark",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 34,
+      "url": "https://www.dark.design/"
+    },
+    {
+      "name": "Dark Mode Design",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 33,
+      "url": "https://www.darkmodedesign.com/"
+    },
+    {
+      "name": "Flat Ui",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 33,
+      "url": "https://flatui.com/submit-flat-ui-designs"
+    },
+    {
+      "name": "Design spells",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 29,
+      "url": "https://www.designspells.com/"
+    },
+    {
+      "name": "Neede",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 29,
+      "url": "https://neede.co/"
+    },
+    {
+      "name": "Saas Css",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 28,
+      "url": "https://saascss.com/submit"
+    },
+    {
+      "name": "Deck Gallery",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 26,
+      "url": "https://www.deck.gallery/"
+    },
+    {
+      "name": "Landing Pages",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 26,
+      "url": "https://www.landingpage.fyi/"
+    },
+    {
+      "name": "Tailkits.com",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 25,
+      "url": "http://tailkits.com/"
+    },
+    {
+      "name": "Saaspo",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 20,
+      "url": "https://saaspo.com/"
+    },
+    {
+      "name": "Storefront Design",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 17,
+      "url": "https://www.storefront.design/"
+    }
+  ],
+  "all_free": [
+    {
+      "name": "Google Business Profile",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 100,
+      "url": "https://google.com/business"
+    },
+    {
+      "name": "Trustpilot",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 97,
+      "url": "https://trustpilot.com/"
+    },
+    {
+      "name": "Behance",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 96,
+      "url": "http://behance.net/"
+    },
+    {
+      "name": "Source Forge",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 96,
+      "url": "https://sourceforge.net/"
+    },
+    {
+      "name": "Unsplash",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 96,
+      "url": "https://unsplash.com/"
+    },
+    {
+      "name": "Quora",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 94,
+      "url": "https://www.quora.com/"
+    },
+    {
+      "name": "Better Business BureaU",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 93,
+      "url": "https://www.bbb.org/get-listed"
+    },
+    {
+      "name": "G2",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 93,
+      "url": "https://g2.com/"
+    },
+    {
+      "name": "TripAdvisor",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 93,
+      "url": "https://tripadvisor.com/"
+    },
+    {
+      "name": "Yelp",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 93,
+      "url": "https://yelp.com/"
+    },
+    {
+      "name": "Crunchbase",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 92,
+      "url": "https://crunchbase.com/"
+    },
+    {
+      "name": "Hacker News",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 92,
+      "url": "https://news.ycombinator.com/"
+    },
+    {
+      "name": "Product Hunt",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 92,
+      "url": "https://producthunt.com/"
+    },
+    {
+      "name": "Bing Places",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 91,
+      "url": "https://bingplaces.com/"
+    },
+    {
+      "name": "Capterra",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 91,
+      "url": "https://capterra.com/"
+    },
+    {
+      "name": "Gartner",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 91,
+      "url": "https://gartner.com/reviews/home"
+    },
+    {
+      "name": "Proven Expert",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 91,
+      "url": "https://www.provenexpert.com/"
+    },
+    {
+      "name": "AI Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "https://aitools.neilpatel.com/"
+    },
+    {
+      "name": "Clutch",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "https://clutch.co/"
+    },
+    {
+      "name": "Dev Community",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "http://dev.to/"
+    },
+    {
+      "name": "Finances Online",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "https://financesonline.com/"
+    },
+    {
+      "name": "Softpedia",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "https://www.softpedia.com/user/submit.shtml"
+    },
+    {
+      "name": "TrustRadius",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "https://trustradius.com/"
+    },
+    {
+      "name": "YellowPages",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 90,
+      "url": "https://yellowpages.com/"
+    },
+    {
+      "name": "Appsumo",
+      "category": "Misc",
+      "fee": "Free",
+      "domain_rank": 89,
+      "url": "https://appsumo.com/"
+    },
+    {
+      "name": "Get App",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 89,
+      "url": "https://getapp.com/"
+    },
+    {
+      "name": "Good Firms",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 89,
+      "url": "https://goodfirms.co/"
+    },
+    {
+      "name": "Stack Share",
+      "category": "Misc",
+      "fee": "Free",
+      "domain_rank": 89,
+      "url": "https://stackshare.io/"
+    },
+    {
+      "name": "F6S",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 88,
+      "url": "https://www.f6s.com/directory/companies"
+    },
+    {
+      "name": "Alternative To",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 87,
+      "url": "https://alternativeto.net/"
+    },
+    {
+      "name": "e27",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 87,
+      "url": "https://e27.co/"
+    },
+    {
+      "name": "Indie Hackers",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 87,
+      "url": "https://indiehackers.com/"
+    },
+    {
+      "name": "Growth Hackers",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 86,
+      "url": "https://growthhackers.com/"
+    },
+    {
+      "name": "EU-Startups",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 84,
+      "url": "https://www.eu-startups.com/directory"
+    },
+    {
+      "name": "Addictive Tips",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 83,
+      "url": "https://www.addictivetips.com/tip-us"
+    },
+    {
+      "name": "Nextdoor",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 83,
+      "url": "https://nextdoor.com/"
+    },
+    {
+      "name": "Software Suggest",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 83,
+      "url": "https://softwaresuggest.com/"
+    },
+    {
+      "name": "Crozdesk",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 82,
+      "url": "https://crozdesk.com/"
+    },
+    {
+      "name": "Angie's List",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 81,
+      "url": "https://angieslist.com/"
+    },
+    {
+      "name": "Fark",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 81,
+      "url": "https://www.fark.com/"
+    },
+    {
+      "name": "Lobsters",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 80,
+      "url": "https://lobste.rs/"
+    },
+    {
+      "name": "Peerlist",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 80,
+      "url": "https://peerlist.io/"
+    },
+    {
+      "name": "SaaS Worthy",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 80,
+      "url": "https://saasworthy.com/"
+    },
+    {
+      "name": "Software World",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 80,
+      "url": "https://softwareworld.co/"
+    },
+    {
+      "name": "Site Inspire",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 79,
+      "url": "https://www.siteinspire.com/submissions/new"
+    },
+    {
+      "name": "Featured Customers",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 78,
+      "url": "https://featuredcustomers.com/"
+    },
+    {
+      "name": "OECD AI",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 76,
+      "url": "https://oecd.ai/en/catalogue/tools/submit"
+    },
+    {
+      "name": "Startup Stash",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 76,
+      "url": "https://startupstash.com/"
+    },
+    {
+      "name": "Submission Web Directory",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 76,
+      "url": "https://submissionwebdirectory.com/"
+    },
+    {
+      "name": "Unmatched Style",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 76,
+      "url": "http://unmatchedstyle.com/submit"
+    },
+    {
+      "name": "Alternative.me",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 75,
+      "url": "http://alternative.me/"
+    },
+    {
+      "name": "Next Big What",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 75,
+      "url": "https://submit.nextbigwhat.com/submit-your-startup"
+    },
+    {
+      "name": "SaaS Hub",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 75,
+      "url": "https://www.saashub.com/services/submit"
+    },
+    {
+      "name": "Launching Next",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 73,
+      "url": "https://www.launchingnext.com/submit"
+    },
+    {
+      "name": "Side Projectors",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 73,
+      "url": "https://sideprojectors.com/"
+    },
+    {
+      "name": "StartupRanking",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 73,
+      "url": "https://startupranking.com/"
+    },
+    {
+      "name": "Thing Testing",
+      "category": "Misc",
+      "fee": "Free",
+      "domain_rank": 73,
+      "url": "https://thingtesting.com/submit-brand"
+    },
+    {
+      "name": "Crowd Reviews",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 72,
+      "url": "https://crowdreviews.com/"
+    },
+    {
+      "name": "Future Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 70,
+      "url": "https://www.futuretools.io/submit-a-tool"
+    },
+    {
+      "name": "How Brands Are Built",
+      "category": "Publication",
+      "fee": "Free",
+      "domain_rank": 70,
+      "url": "https://howbrandsarebuilt.com/submit/"
+    },
+    {
+      "name": "TechDirectory",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 70,
+      "url": "https://techdirectory.io/"
+    },
+    {
+      "name": "Web Designer News",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 70,
+      "url": "https://webdesignernews.com/"
+    },
+    {
+      "name": "Ecomm Design",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 69,
+      "url": "https://ecomm.design/submit"
+    },
+    {
+      "name": "Made With Vuejs",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 69,
+      "url": "https://madewithvuejs.com/submit"
+    },
+    {
+      "name": "Business Software",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 68,
+      "url": "https://business-software.com/"
+    },
+    {
+      "name": "Dang",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 68,
+      "url": "https://dang.ai/"
+    },
+    {
+      "name": "Ebool",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 67,
+      "url": "https://ebool.com/"
+    },
+    {
+      "name": "Spot SaaS",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 67,
+      "url": "https://spotsaas.com/"
+    },
+    {
+      "name": "Webguru Awards",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 67,
+      "url": "https://www.webguruawards.com/site-submit"
+    },
+    {
+      "name": "AI Tool Directory",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 66,
+      "url": "https://tooldirectory.ai/submit-tool"
+    },
+    {
+      "name": "Tidy Repo",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 66,
+      "url": "https://tidyrepo.com/suggest-plugin"
+    },
+    {
+      "name": "Betabound",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 65,
+      "url": "https://betabound.com/"
+    },
+    {
+      "name": "PitchWall",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 65,
+      "url": "https://pitchwall.co/"
+    },
+    {
+      "name": "Unita",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 65,
+      "url": "https://unita.co/"
+    },
+    {
+      "name": "Tech Pluto",
+      "category": "Publication",
+      "fee": "Free",
+      "domain_rank": 64,
+      "url": "https://www.techpluto.com/submit-startup/"
+    },
+    {
+      "name": "Craftwork.design",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 63,
+      "url": "http://craftwork.design/"
+    },
+    {
+      "name": "Foundr",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 63,
+      "url": "https://foundr.ai/"
+    },
+    {
+      "name": "AI Library",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 62,
+      "url": "https://library.phygital.plus/tool-submission"
+    },
+    {
+      "name": "SaaS AI Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 62,
+      "url": "https://saasaitools.com/submit"
+    },
+    {
+      "name": "MaRS DD",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 61,
+      "url": "https://app.marsdd.com/companies"
+    },
+    {
+      "name": "Tiny Launch",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 61,
+      "url": "https://www.tinylaun.ch/"
+    },
+    {
+      "name": "AIAI.Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 59,
+      "url": "http://aiai.tools/"
+    },
+    {
+      "name": "Cloud Findr",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 59,
+      "url": "https://cloudfindr.co/"
+    },
+    {
+      "name": "Freebie Supply",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 59,
+      "url": "https://freebiesupply.com/"
+    },
+    {
+      "name": "Ben's Bites",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 58,
+      "url": "https://news.bensbites.co/"
+    },
+    {
+      "name": "Hotfrog",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 58,
+      "url": "https://hotfrog.com/"
+    },
+    {
+      "name": "Layers.to",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 58,
+      "url": "http://layers.to/"
+    },
+    {
+      "name": "No Code Founders",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 58,
+      "url": "https://nocodefounders.com/"
+    },
+    {
+      "name": "Hive Index",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 57,
+      "url": "https://thehiveindex.com/submit"
+    },
+    {
+      "name": "EZLocal",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 56,
+      "url": "https://ezlocal.com/"
+    },
+    {
+      "name": "Godly",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 55,
+      "url": "https://godly.website/info"
+    },
+    {
+      "name": "MaxieBestOf",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 55,
+      "url": "https://maxibestof.one/submit"
+    },
+    {
+      "name": "promoteproject",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 55,
+      "url": "https://promoteproject.com/submit-startup"
+    },
+    {
+      "name": "Appagg",
+      "category": "Misc",
+      "fee": "Free",
+      "domain_rank": 54,
+      "url": "http://appagg.com/"
+    },
+    {
+      "name": "Similar Site Search",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 54,
+      "url": "http://similarsitesearch.com/webmaster"
+    },
+    {
+      "name": "findstack",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 53,
+      "url": "https://findstack.com/"
+    },
+    {
+      "name": "Five Taco",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 53,
+      "url": "https://fivetaco.com/"
+    },
+    {
+      "name": "Letter List",
+      "category": "Misc",
+      "fee": "Free",
+      "domain_rank": 53,
+      "url": "https://letterlist.com/submit"
+    },
+    {
+      "name": "Show Me Local",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 53,
+      "url": "https://showmelocal.com/"
+    },
+    {
+      "name": "Built At Lightspeed",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 52,
+      "url": "https://www.builtatlightspeed.com/"
+    },
+    {
+      "name": "AI ToolBoard",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 51,
+      "url": "https://aitoolboard.com/submit-ai-tool"
+    },
+    {
+      "name": "AI Tools Directory",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "https://aitoolsdirectory.com/submit-tool"
+    },
+    {
+      "name": "Front-end Developers",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "http://frontenddevelopers.org/"
+    },
+    {
+      "name": "Lib Hunt",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "https://libhunt.com/"
+    },
+    {
+      "name": "Open Startup List",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "https://openstartuplist.com/"
+    },
+    {
+      "name": "Spectacle",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "https://spectacle.is/submit"
+    },
+    {
+      "name": "Stork",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "https://www.stork.ai/"
+    },
+    {
+      "name": "U Need",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 50,
+      "url": "https://www.uneed.best/submit-a-tool"
+    },
+    {
+      "name": "Commerce Cream",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 49,
+      "url": "https://commercecream.com/"
+    },
+    {
+      "name": "SelectHub",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 49,
+      "url": "https://selecthub.com/"
+    },
+    {
+      "name": "Startup Dope",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 49,
+      "url": "https://startupdope.com/submit-news/"
+    },
+    {
+      "name": "Startup Tracker",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 49,
+      "url": "https://startuptracker.io/crowdsourcing/"
+    },
+    {
+      "name": "Techendo",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 49,
+      "url": "http://techendo.com/beta"
+    },
+    {
+      "name": "Cipinet",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 48,
+      "url": "https://www.cipinet.com/submit.php"
+    },
+    {
+      "name": "Insidr.ai",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 48,
+      "url": "http://insidr.ai/"
+    },
+    {
+      "name": "Openfuture",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 48,
+      "url": "https://openfuture.ai/submit-tool"
+    },
+    {
+      "name": "SaaS Landing Page",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 48,
+      "url": "https://saaslandingpage.com/"
+    },
+    {
+      "name": "Startup Buffer",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 48,
+      "url": "https://startupbuffer.com/site/submit"
+    },
+    {
+      "name": "Pinkary",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 47,
+      "url": "https://pinkary.com/"
+    },
+    {
+      "name": "Iuu",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 46,
+      "url": "https://iuu.ai/submit"
+    },
+    {
+      "name": "Tiny Startups",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 46,
+      "url": "https://tinystartups.com/"
+    },
+    {
+      "name": "Gadget Nutz",
+      "category": "Misc",
+      "fee": "Free",
+      "domain_rank": 45,
+      "url": "https://gadgetnutz.com/contact-us"
+    },
+    {
+      "name": "Romanian Startups",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 45,
+      "url": "https://www.romanianstartups.com/"
+    },
+    {
+      "name": "Sidebar",
+      "category": "Publication",
+      "fee": "Free",
+      "domain_rank": 45,
+      "url": "https://sidebar.io/"
+    },
+    {
+      "name": "MarsX",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 44,
+      "url": "https://www.marsx.dev/ai-startups"
+    },
+    {
+      "name": "PFolios",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 44,
+      "url": "https://pfolios.net/"
+    },
+    {
+      "name": "The AI Navigator",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 44,
+      "url": "https://www.theainavigator.com/submit-an-ai-tool"
+    },
+    {
+      "name": "Launched",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 43,
+      "url": "https://launched.io/SubmitStartup"
+    },
+    {
+      "name": "No Code List",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 43,
+      "url": "https://nocodelist.co/submit"
+    },
+    {
+      "name": "StartupBase",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 43,
+      "url": "https://startupbase.io/"
+    },
+    {
+      "name": "Cartcraze",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 42,
+      "url": "https://cartcraze.com/submit"
+    },
+    {
+      "name": "Tools RobinGood",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 42,
+      "url": "https://tools.robingood.com/"
+    },
+    {
+      "name": "Startup Inspire",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 41,
+      "url": "https://startupinspire.com/"
+    },
+    {
+      "name": "AI Directories",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 39,
+      "url": "https://www.aidirectori.es/"
+    },
+    {
+      "name": "Frameplate",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 39,
+      "url": "https://frameplate.co/"
+    },
+    {
+      "name": "BAI",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 38,
+      "url": "https://bai.tools/submit-ai-tools"
+    },
+    {
+      "name": "Dead Simple Sites",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 38,
+      "url": "https://deadsimplesites.com/"
+    },
+    {
+      "name": "Insane",
+      "category": "Publication",
+      "fee": "Free",
+      "domain_rank": 38,
+      "url": "https://theinsaneapp.com/"
+    },
+    {
+      "name": "Startups.fm",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 38,
+      "url": "http://startups.fm/"
+    },
+    {
+      "name": "Apps and Websites",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 37,
+      "url": "https://appsandwebsites.com/"
+    },
+    {
+      "name": "Liaise Platform",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 37,
+      "url": "https://liaiseplatform.com/"
+    },
+    {
+      "name": "All GPTs",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 36,
+      "url": "https://allgpts.co/"
+    },
+    {
+      "name": "FMHY",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 36,
+      "url": "https://fmhy.pages.dev/other/contributing#submitting-a-link"
+    },
+    {
+      "name": "Resource FYI",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 36,
+      "url": "https://resource.fyi/"
+    },
+    {
+      "name": "AI Hub",
+      "category": "Publication",
+      "fee": "Free",
+      "domain_rank": 35,
+      "url": "https://aihub.org/contribute/"
+    },
+    {
+      "name": "Public APIs",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 35,
+      "url": "https://publicapis.dev/"
+    },
+    {
+      "name": "10 Words",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 34,
+      "url": "https://10words.io/"
+    },
+    {
+      "name": "Apprater",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 34,
+      "url": "https://apprater.net/add"
+    },
+    {
+      "name": "Dark",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 34,
+      "url": "https://www.dark.design/"
+    },
+    {
+      "name": "Startup Fame",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 34,
+      "url": "https://startupfa.me/"
+    },
+    {
+      "name": "TechBehemoths",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 34,
+      "url": "https://techbehemoths.com/companies/get-listed"
+    },
+    {
+      "name": "Dark Mode Design",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 33,
+      "url": "https://www.darkmodedesign.com/"
+    },
+    {
+      "name": "Flat Ui",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 33,
+      "url": "https://flatui.com/submit-flat-ui-designs"
+    },
+    {
+      "name": "Ai Valley",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 31,
+      "url": "https://aivalley.ai/submit-tool"
+    },
+    {
+      "name": "Startup Collections",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 31,
+      "url": "https://startupcollections.com/"
+    },
+    {
+      "name": "Design spells",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 29,
+      "url": "https://www.designspells.com/"
+    },
+    {
+      "name": "Neede",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 29,
+      "url": "https://neede.co/"
+    },
+    {
+      "name": "PoweredbyAI",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 28,
+      "url": "https://poweredbyai.app/submit-tool"
+    },
+    {
+      "name": "Saas Css",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 28,
+      "url": "https://saascss.com/submit"
+    },
+    {
+      "name": "Tip Season",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 27,
+      "url": "https://tipseason.com/"
+    },
+    {
+      "name": "All Mac Apps",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 26,
+      "url": "https://allmacapps.com/"
+    },
+    {
+      "name": "Boilerplate Hub",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 26,
+      "url": "https://boilerplatehub.com/"
+    },
+    {
+      "name": "Deck Gallery",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 26,
+      "url": "https://www.deck.gallery/"
+    },
+    {
+      "name": "First 100 Users",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 26,
+      "url": "https://www.first100users.com/submit"
+    },
+    {
+      "name": "Landing Pages",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 26,
+      "url": "https://www.landingpage.fyi/"
+    },
+    {
+      "name": "AI Depot",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 25,
+      "url": "https://aidepot.co/"
+    },
+    {
+      "name": "Alternatives.co",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 25,
+      "url": "http://alternatives.co/"
+    },
+    {
+      "name": "Tailkits.com",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 25,
+      "url": "http://tailkits.com/"
+    },
+    {
+      "name": "Productivity Directory",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 24,
+      "url": "https://productivity.directory/"
+    },
+    {
+      "name": "Tool List",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 24,
+      "url": "https://toollist.ai/product/create"
+    },
+    {
+      "name": "AI of The Day",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 22,
+      "url": "https://aioftheday.com/submit-a-tool"
+    },
+    {
+      "name": "Canopy Directory",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 22,
+      "url": "https://www.canopydirectory.com/suggest-tool"
+    },
+    {
+      "name": "Lachief.io",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 22,
+      "url": "http://lachief.io/"
+    },
+    {
+      "name": "Mr. Free Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 22,
+      "url": "https://mrfreetools.com/"
+    },
+    {
+      "name": "AI Tool Guru",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 21,
+      "url": "https://aitoolguru.com/submit-ai-tool"
+    },
+    {
+      "name": "AI Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 21,
+      "url": "https://aitools.lol/"
+    },
+    {
+      "name": "AI Best Top",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 20,
+      "url": "https://www.aibesttop.com/"
+    },
+    {
+      "name": "Saaspo",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 20,
+      "url": "https://saaspo.com/"
+    },
+    {
+      "name": "NextGen Tools",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 18,
+      "url": "https://nextgentools.me/submit-your-tool"
+    },
+    {
+      "name": "Tool Scout",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 18,
+      "url": "https://toolscout.ai/submit"
+    },
+    {
+      "name": "Awesome Indie",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 17,
+      "url": "https://awesomeindie.com/"
+    },
+    {
+      "name": "Gpts Hunter",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 17,
+      "url": "https://gptshunter.com/"
+    },
+    {
+      "name": "Storefront Design",
+      "category": "Design",
+      "fee": "Free",
+      "domain_rank": 17,
+      "url": "https://www.storefront.design/"
+    },
+    {
+      "name": "ToolsForHumans.ai",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 17,
+      "url": "http://toolsforhumans.ai/"
+    },
+    {
+      "name": "ToolsFine",
+      "category": "Profile / Directory",
+      "fee": "Free",
+      "domain_rank": 16,
+      "url": "https://toolsfine.com/"
+    },
+    {
+      "name": "Entrepreneur's Network",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.linkedin.com/groups/91749"
+    },
+    {
+      "name": "r/Affiliatemarketing",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/Affiliatemarketing"
+    },
+    {
+      "name": "r/alphaandbetausers",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/alphaandbetausers"
+    },
+    {
+      "name": "r/ArtificialInteligence",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/ArtificialInteligence"
+    },
+    {
+      "name": "r/design_critiques",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/design_critiques"
+    },
+    {
+      "name": "r/EntrepreneurRideAlong",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/EntrepreneurRideAlong"
+    },
+    {
+      "name": "r/Entrepreneurs",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/Entrepreneurs"
+    },
+    {
+      "name": "r/Frontend",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/Frontend"
+    },
+    {
+      "name": "r/growmybusiness",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/growmybusiness"
+    },
+    {
+      "name": "r/IMadeThis",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/IMadeThis"
+    },
+    {
+      "name": "r/indiebiz",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/indiebiz"
+    },
+    {
+      "name": "r/indiehackers",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/indiehackers"
+    },
+    {
+      "name": "r/microsaas",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/microsaas"
+    },
+    {
+      "name": "r/ProductHunters",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/ProductHunters"
+    },
+    {
+      "name": "r/roastmystartup",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/roastmystartup"
+    },
+    {
+      "name": "r/SaaS",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/SaaS"
+    },
+    {
+      "name": "r/SideProject",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/SideProject"
+    },
+    {
+      "name": "r/smallbusiness",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/smallbusiness"
+    },
+    {
+      "name": "r/startup",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/startup"
+    },
+    {
+      "name": "r/Startup_Ideas",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/Startup_Ideas"
+    },
+    {
+      "name": "r/startups",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/startups"
+    },
+    {
+      "name": "r/thesidehustle",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/thesidehustle"
+    },
+    {
+      "name": "r/webdev",
+      "category": "Social",
+      "fee": "Free",
+      "domain_rank": 0,
+      "url": "https://www.reddit.com/r/webdev"
+    }
+  ],
+  "all_paid": [
+    {
+      "name": "TechCrunch",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 96,
+      "url": "https://techcrunch.com/"
+    },
+    {
+      "name": "AI Toolhouse",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 92,
+      "url": "https://aitoolhouse.gumroad.com/l/submit-tool"
+    },
+    {
+      "name": "Awwwards",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 90,
+      "url": "https://www.awwwards.com/"
+    },
+    {
+      "name": "BroUseAI",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 90,
+      "url": "https://www.brouseai.com/submission/ai"
+    },
+    {
+      "name": "Geek Wire",
+      "category": "Publication",
+      "fee": "Paid",
+      "domain_rank": 90,
+      "url": "https://geekwire.com/"
+    },
+    {
+      "name": "Softonic",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 90,
+      "url": "https://en.softonic.com/android"
+    },
+    {
+      "name": "Smart Customer",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 89,
+      "url": "https://www.smartcustomer.com/"
+    },
+    {
+      "name": "Tech.co",
+      "category": "Publication",
+      "fee": "Paid",
+      "domain_rank": 89,
+      "url": "http://tech.co/"
+    },
+    {
+      "name": "Betakit",
+      "category": "Publication",
+      "fee": "Paid",
+      "domain_rank": 86,
+      "url": "https://betakit.com/"
+    },
+    {
+      "name": "BetaList",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 85,
+      "url": "https://betalist.com/"
+    },
+    {
+      "name": "Css Design Awards",
+      "category": "Design",
+      "fee": "Paid",
+      "domain_rank": 85,
+      "url": "https://www.cssdesignawards.com/submit"
+    },
+    {
+      "name": "KillerStartups",
+      "category": "Publication",
+      "fee": "Paid",
+      "domain_rank": 85,
+      "url": "https://killerstartups.com/"
+    },
+    {
+      "name": "Land Book",
+      "category": "Design",
+      "fee": "Paid",
+      "domain_rank": 84,
+      "url": "https://land-book.com/"
+    },
+    {
+      "name": "One Page Love",
+      "category": "Design",
+      "fee": "Paid",
+      "domain_rank": 84,
+      "url": "https://onepagelove.com/"
+    },
+    {
+      "name": "Theresanaiforthat",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 79,
+      "url": "https://theresanaiforthat.com/get-featured/#opt_submit"
+    },
+    {
+      "name": "CSS Winner",
+      "category": "Design",
+      "fee": "Paid",
+      "domain_rank": 78,
+      "url": "https://www.csswinner.com/submitsite"
+    },
+    {
+      "name": "Futurepedia",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 76,
+      "url": "https://www.futurepedia.io/submit-tool"
+    },
+    {
+      "name": "ToolPilot",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 75,
+      "url": "https://www.toolpilot.ai/pages/submit-your-ai-tool"
+    },
+    {
+      "name": "All Top Startups",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 73,
+      "url": "https://alltopstartups.com/directory/submit-startup/"
+    },
+    {
+      "name": "What's The Big Data",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 73,
+      "url": "https://whatsthebigdata.com/"
+    },
+    {
+      "name": "Landingfolio",
+      "category": "Design",
+      "fee": "Paid",
+      "domain_rank": 70,
+      "url": "https://www.landingfolio.com/submit"
+    },
+    {
+      "name": "Somuch",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 70,
+      "url": "https://somuch.com/"
+    },
+    {
+      "name": "Toolify.ai",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 70,
+      "url": "http://toolify.ai/"
+    },
+    {
+      "name": "Admire The Web",
+      "category": "Design",
+      "fee": "Paid",
+      "domain_rank": 67,
+      "url": "https://admiretheweb.com/submit"
+    },
+    {
+      "name": "SaaS Genius",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 67,
+      "url": "https://saasgenius.com/"
+    },
+    {
+      "name": "Dev Hunt",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 66,
+      "url": "https://devhunt.org/"
+    },
+    {
+      "name": "Tap4 AI",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 65,
+      "url": "https://tap4.ai/submit"
+    },
+    {
+      "name": "Tapscape",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 65,
+      "url": "http://www.tapscape.com/submit-app-re"
+    },
+    {
+      "name": "TopAI.tools",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 65,
+      "url": "http://topai.tools/"
+    },
+    {
+      "name": "Woy.ai",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 64,
+      "url": "http://woy.ai/"
+    },
+    {
+      "name": "CSS Nectar",
+      "category": "Design",
+      "fee": "Paid",
+      "domain_rank": 63,
+      "url": "https://cssnectar.com/suggest-site"
+    },
+    {
+      "name": "Popular AI Tools",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 63,
+      "url": "https://www.popularaitools.ai/submit-a-tool"
+    },
+    {
+      "name": "AI Trendz",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 62,
+      "url": "https://aitrendz.xyz/submit-ai-link"
+    },
+    {
+      "name": "eLocal",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 62,
+      "url": "https://elocal.com/"
+    },
+    {
+      "name": "Future Startup",
+      "category": "Publication",
+      "fee": "Paid",
+      "domain_rank": 61,
+      "url": "https://futurestartup.com/"
+    },
+    {
+      "name": "Indie Page",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 61,
+      "url": "https://indiepa.ge/"
+    },
+    {
+      "name": "Apps Mirror",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 60,
+      "url": "http://www.appsmirror.com/submit-your-app-for-review"
+    },
+    {
+      "name": "Find My AI tool",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 60,
+      "url": "https://findmyaitool.com/submit-tool"
+    },
+    {
+      "name": "Technology Advice",
+      "category": "Publication",
+      "fee": "Paid",
+      "domain_rank": 60,
+      "url": "https://technologyadvice.com/"
+    },
+    {
+      "name": "AI Tool Mall",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 58,
+      "url": "https://aitoolmall.com/submit"
+    },
+    {
+      "name": "Easy With AI",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 58,
+      "url": "https://easywithai.com/submit-tool"
+    },
+    {
+      "name": "Micro Launch",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 58,
+      "url": "https://microlaunch.net/"
+    },
+    {
+      "name": "Powerusers AI",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 58,
+      "url": "https://powerusers.ai/submit-ai-tool"
+    },
+    {
+      "name": "Abi Logic",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 56,
+      "url": "https://abilogic.com/"
+    },
+    {
+      "name": "AI With Me",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 55,
+      "url": "https://aiwith.me/submit"
+    },
+    {
+      "name": "Toolio.ai",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 55,
+      "url": "http://toolio.ai/"
+    },
+    {
+      "name": "WIP",
+      "category": "Social",
+      "fee": "Paid",
+      "domain_rank": 55,
+      "url": "https://wip.co/"
+    },
+    {
+      "name": "Fazier",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 54,
+      "url": "https://fazier.com/"
+    },
+    {
+      "name": "DokeyAI",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 53,
+      "url": "https://dokeyai.com/submit"
+    },
+    {
+      "name": "AlterOpen",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 52,
+      "url": "https://alteropen.com/"
+    },
+    {
+      "name": "AI Top Tools",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 51,
+      "url": "https://aitoptools.com/account/submit-tool"
+    },
+    {
+      "name": "Apps 400",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 50,
+      "url": "https://apps400.com/"
+    },
+    {
+      "name": "Appscribed",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 50,
+      "url": "https://appscribed.com/product-list"
+    },
+    {
+      "name": "We <3 Wordpress",
+      "category": "Design",
+      "fee": "Paid",
+      "domain_rank": 50,
+      "url": "https://welovewp.com/submit"
+    },
+    {
+      "name": "Aitoolnet",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 49,
+      "url": "https://www.aitoolnet.com/submit"
+    },
+    {
+      "name": "AI Dude",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 48,
+      "url": "https://aidude.info/submit-your-tool"
+    },
+    {
+      "name": "AI Tech Suite",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 48,
+      "url": "https://www.aitechsuite.com/submit"
+    },
+    {
+      "name": "Web App Rater",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 48,
+      "url": "https://webapprater.com/submit-your-web-application-for-review-html"
+    },
+    {
+      "name": "AI Tools FYI",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 47,
+      "url": "https://aitools.fyi/"
+    },
+    {
+      "name": "Alpha Digits",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 47,
+      "url": "https://alphadigits.com/submit-app-for-review"
+    },
+    {
+      "name": "Tech Faster",
+      "category": "Publication",
+      "fee": "Paid",
+      "domain_rank": 47,
+      "url": "http://techfaster.com/submit-your-company/"
+    },
+    {
+      "name": "The Startup Inc",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 47,
+      "url": "https://thestartupinc.com/"
+    },
+    {
+      "name": "BasedTools",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 46,
+      "url": "https://www.basedtools.ai/submit"
+    },
+    {
+      "name": "DoMore.ai",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 45,
+      "url": "http://domore.ai/"
+    },
+    {
+      "name": "startups.fyi",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 45,
+      "url": "http://startups.fyi/"
+    },
+    {
+      "name": "Techlo Media",
+      "category": "Publication",
+      "fee": "Paid",
+      "domain_rank": 44,
+      "url": "https://techlomedia.in/"
+    },
+    {
+      "name": "AI Center",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 43,
+      "url": "https://aicenter.ai/submit-tools"
+    },
+    {
+      "name": "Victrays",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 43,
+      "url": "https://victrays.com/submit-ai-tool"
+    },
+    {
+      "name": "Apps Thunder",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 42,
+      "url": "https://appsthunder.com/submit-your-app/"
+    },
+    {
+      "name": "Aixploria",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 41,
+      "url": "https://www.aixploria.com/en/add-ai"
+    },
+    {
+      "name": "Bunity",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 41,
+      "url": "https://bunity.com/"
+    },
+    {
+      "name": "AI Stage",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 40,
+      "url": "https://aistage.net/"
+    },
+    {
+      "name": "AI Parabellum",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 39,
+      "url": "https://aiparabellum.com/submit-your-ai-tool"
+    },
+    {
+      "name": "AI Tools One",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 39,
+      "url": "https://aitoolsone.com/"
+    },
+    {
+      "name": "ITQlick",
+      "category": "Publication",
+      "fee": "Paid",
+      "domain_rank": 39,
+      "url": "https://itqlick.com/"
+    },
+    {
+      "name": "Tool Finder",
+      "category": "Misc",
+      "fee": "Paid",
+      "domain_rank": 39,
+      "url": "https://toolfinder.co/"
+    },
+    {
+      "name": "The Popular Apps",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 38,
+      "url": "http://thepopularapps.com/submit-app"
+    },
+    {
+      "name": "AI Tool Mate",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 37,
+      "url": "https://aitoolmate.com/"
+    },
+    {
+      "name": "Free AI Apps",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 37,
+      "url": "https://freeappsai.com/add"
+    },
+    {
+      "name": "Flat Trendz",
+      "category": "Design",
+      "fee": "Paid",
+      "domain_rank": 36,
+      "url": "https://flattrendz.com/submit-a-site"
+    },
+    {
+      "name": "Appoid",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 35,
+      "url": "http://appiod.com/submit-app-for-review"
+    },
+    {
+      "name": "Apps Mamma",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 35,
+      "url": "http://appsmamma.com/submit-your-app"
+    },
+    {
+      "name": "HD Robots",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 35,
+      "url": "https://hdrobots.com/submit-ai-tool"
+    },
+    {
+      "name": "UI Goodies",
+      "category": "Design",
+      "fee": "Paid",
+      "domain_rank": 35,
+      "url": "https://uigoodies.com/"
+    },
+    {
+      "name": "1000.tools",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 33,
+      "url": "http://1000.tools/"
+    },
+    {
+      "name": "TYY",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 33,
+      "url": "https://tyy.ai/submit"
+    },
+    {
+      "name": "AI Tools Explorer",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 32,
+      "url": "https://aitoolsexplorer.com/submit-ai-tool"
+    },
+    {
+      "name": "Directory World",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 32,
+      "url": "https://directoryworld.net/"
+    },
+    {
+      "name": "Tekpon",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 32,
+      "url": "https://tekpon.com/"
+    },
+    {
+      "name": "AI Accounting Apps",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 31,
+      "url": "https://www.aiaccountingapps.com/"
+    },
+    {
+      "name": "The Tool Bus",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 31,
+      "url": "https://www.thetoolbus.ai/ai-tools"
+    },
+    {
+      "name": "AIToolly",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 30,
+      "url": "https://aitoolly.com/submit"
+    },
+    {
+      "name": "Alive Directory",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 30,
+      "url": "https://alivedirectory.com/"
+    },
+    {
+      "name": "Taalk",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 29,
+      "url": "https://taalk.com/submit-startup"
+    },
+    {
+      "name": "AIGO.tools",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 28,
+      "url": "http://aigo.tools/"
+    },
+    {
+      "name": "Awesome AI Tools",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 28,
+      "url": "https://awesomeaitools.com/submit-your-tool"
+    },
+    {
+      "name": "Indie Directory",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 28,
+      "url": "https://directory.indie-starter.dev/"
+    },
+    {
+      "name": "Roozna",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 28,
+      "url": "https://roozna.com/"
+    },
+    {
+      "name": "Search Engine OF AI",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 28,
+      "url": "https://seofai.com/submit-ai-tool"
+    },
+    {
+      "name": "Best Web Design Tools",
+      "category": "Design",
+      "fee": "Paid",
+      "domain_rank": 27,
+      "url": "https://bestwebdesigntools.com/"
+    },
+    {
+      "name": "DropYourAI",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 27,
+      "url": "https://www.dropyourai.com/submit-tool"
+    },
+    {
+      "name": "OpenTools.AI",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 27,
+      "url": "http://opentools.ai/"
+    },
+    {
+      "name": "AI Best Tools",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 26,
+      "url": "https://aibest.tools/"
+    },
+    {
+      "name": "Altern",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 26,
+      "url": "https://altern.ai/submit#submit-tools"
+    },
+    {
+      "name": "Educator Tools",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 26,
+      "url": "https://aieducator.tools/"
+    },
+    {
+      "name": "GPTAcademy",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 26,
+      "url": "https://www.gptacademy.co/submit"
+    },
+    {
+      "name": "Post Make",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 26,
+      "url": "https://postmake.io/"
+    },
+    {
+      "name": "Startup Spotlight",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 26,
+      "url": "https://www.startupspotlight.co/"
+    },
+    {
+      "name": "Tool Hub",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 26,
+      "url": "https://toolhub.me/"
+    },
+    {
+      "name": "Toools.design",
+      "category": "Design",
+      "fee": "Paid",
+      "domain_rank": 26,
+      "url": "http://toools.design/"
+    },
+    {
+      "name": "ToolPasta (by Robopost)",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 25,
+      "url": "https://robopost.app/en/toolpasta/submit"
+    },
+    {
+      "name": "OSSsoftware.org",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 24,
+      "url": "http://osssoftware.org/"
+    },
+    {
+      "name": "StartupTile",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 24,
+      "url": "https://startuptile.com/"
+    },
+    {
+      "name": "ToolsPedia",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 24,
+      "url": "https://www.toolspedia.io/submit-tool"
+    },
+    {
+      "name": "AImojo",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 22,
+      "url": "https://aimojo.io/submit/"
+    },
+    {
+      "name": "BufferApps",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 22,
+      "url": "https://bufferapps.com/"
+    },
+    {
+      "name": "Best Of AI",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 20,
+      "url": "https://bestofai.com/"
+    },
+    {
+      "name": "MakerMove",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 20,
+      "url": "https://www.makermove.com/tools"
+    },
+    {
+      "name": "AI Search",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 19,
+      "url": "https://ai-search.io/submit"
+    },
+    {
+      "name": "MavTools",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 19,
+      "url": "https://mavtools.com/list-my-tool"
+    },
+    {
+      "name": "Monkey Ai Tools",
+      "category": "Profile / Directory",
+      "fee": "Paid",
+      "domain_rank": 18,
+      "url": "https://www.monkeyaitools.com/submit-tool"
+    },
+    {
+      "name": "Yourstory",
+      "category": "Publication",
+      "fee": "Paid",
+      "domain_rank": 0,
+      "url": "https://yourstory.com/"
+    }
+  ]
+}
