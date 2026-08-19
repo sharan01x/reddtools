@@ -51,8 +51,10 @@ const relatedTools = [
         <!-- Camera view (hidden by default) -->
         <div class="camera-view" id="camera-view" style="display:none;">
           <video id="camera-video" autoplay playsinline muted></video>
+          <canvas id="camera-frozen" style="display:none;"></canvas>
           <div class="camera-crosshair"></div>
           <div class="camera-controls">
+            <button class="btn-secondary" id="camera-snap">Snap</button>
             <button class="btn-secondary" id="camera-stop">Stop camera</button>
           </div>
         </div>
@@ -355,8 +357,11 @@ const relatedTools = [
   // Camera
   let cameraStream: MediaStream | null = null;
   let cameraInterval: ReturnType<typeof setInterval> | null = null;
+  let snapped = false;
   const cameraCanvas = document.createElement('canvas');
   const cameraCtx = cameraCanvas.getContext('2d', { willReadFrequently: true })!;
+  const cameraFrozen = document.getElementById('camera-frozen') as HTMLCanvasElement;
+  const cameraFrozenCtx = cameraFrozen.getContext('2d')!;
 
   document.getElementById('btn-camera')!.addEventListener('click', async (e) => {
     e.stopPropagation();
@@ -396,6 +401,12 @@ const relatedTools = [
       cameraStream = null;
     }
     if (cameraInterval) { clearInterval(cameraInterval); cameraInterval = null; }
+    snapped = false;
+    snapBtn.textContent = 'Snap';
+    cameraFrozen.style.display = 'none';
+    cameraVideo.style.display = 'block';
+    const crosshair = document.querySelector('.camera-crosshair') as HTMLElement;
+    if (crosshair) crosshair.style.display = '';
     cameraView.style.display = 'none';
     document.getElementById('image-area')!.style.display = '';
     if (baseImage) {
@@ -404,6 +415,52 @@ const relatedTools = [
   }
 
   document.getElementById('camera-stop')!.addEventListener('click', stopCamera);
+
+  // Snap / Resume button
+  const snapBtn = document.getElementById('camera-snap') as HTMLButtonElement;
+  snapBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!snapped) {
+      // Snap: freeze frame and stop scanning
+      snapped = true;
+      if (cameraInterval) { clearInterval(cameraInterval); cameraInterval = null; }
+      // Capture current video frame to frozen canvas
+      const vw = cameraVideo.videoWidth, vh = cameraVideo.videoHeight;
+      if (vw > 0 && vh > 0) {
+        cameraFrozen.width = vw;
+        cameraFrozen.height = vh;
+        cameraFrozenCtx.drawImage(cameraVideo, 0, 0, vw, vh);
+        cameraFrozen.style.display = 'block';
+        cameraVideo.style.display = 'none';
+      }
+      // Hide crosshair so user sees a clean frozen frame
+      const crosshair = document.querySelector('.camera-crosshair') as HTMLElement;
+      if (crosshair) crosshair.style.display = 'none';
+      snapBtn.textContent = 'Resume';
+      if (typeof (window as any).posthog !== 'undefined') {
+        (window as any).posthog.capture('colour_picker_used', { action: 'camera_snap' });
+        (window as any).posthog.capture('tool_used', { tool: 'colour-picker', action: 'camera_snap' });
+      }
+    } else {
+      // Resume: unfreeze and restart scanning
+      snapped = false;
+      cameraFrozen.style.display = 'none';
+      cameraVideo.style.display = 'block';
+      const crosshair = document.querySelector('.camera-crosshair') as HTMLElement;
+      if (crosshair) crosshair.style.display = '';
+      snapBtn.textContent = 'Snap';
+      cameraInterval = setInterval(() => {
+        if (cameraVideo.readyState === 4) {
+          const vw2 = cameraVideo.videoWidth, vh2 = cameraVideo.videoHeight;
+          cameraCanvas.width = 1;
+          cameraCanvas.height = 1;
+          cameraCtx.drawImage(cameraVideo, vw2 / 2, vh2 / 2, 1, 1, 0, 0, 1, 1);
+          const pixel = cameraCtx.getImageData(0, 0, 1, 1).data;
+          showColour(pixel[0], pixel[1], pixel[2]);
+        }
+      }, 100);
+    }
+  });
 </script>
 
 <style>
@@ -554,6 +611,11 @@ const relatedTools = [
     display: block;
   }
 
+  #camera-frozen {
+    width: 100%;
+    display: block;
+  }
+
   .camera-crosshair {
     position: absolute;
     top: 50%;
@@ -592,6 +654,8 @@ const relatedTools = [
     bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
   }
 
   .btn-secondary {
@@ -605,6 +669,12 @@ const relatedTools = [
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     backdrop-filter: blur(4px);
+  }
+
+  #camera-snap {
+    background: rgba(0, 194, 255, 0.85);
+    border-color: rgba(255, 255, 255, 0.3);
+    font-weight: 500;
   }
 
   /* Colour result */

@@ -69,13 +69,13 @@ def fetch_emails(server, days: int = 7) -> list[dict]:
 
         from_name, from_email = parseaddr(msg.get("From", "Unknown"))
 
-        # Check if this email was sent TO the redd.in domain
+        # Check if this email was sent TO tools@redd.in specifically
         to_header = msg.get("To", "")
         cc_header = msg.get("Cc", "")
         delivered_to = msg.get("Delivered-To", "")
         all_recipients = f"{to_header} {cc_header} {delivered_to}".lower()
 
-        if TARGET_DOMAIN not in all_recipients:
+        if TARGET_EMAIL not in all_recipients:
             continue
 
         # Skip emails sent FROM our own redd.in address (outgoing)
