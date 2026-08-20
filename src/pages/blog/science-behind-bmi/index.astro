@@ -1,0 +1,97 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+
+const title = 'The Science Behind BMI: What It Measures and What It Misses';
+const description = 'Body Mass Index is the most widely used health metric in the world. Understand how it is calculated, why it works for populations but not always for individuals, and what alternatives exist.';
+const canonicalPath = '/blog/science-behind-bmi';
+const date = '2026-08-20';
+const readTime = '8 min read';
+const keywords = ['BMI', 'body mass index', 'health metrics', 'obesity', 'body composition'];
+---
+
+<ArticleLayout title={title} description={description} canonicalPath={canonicalPath} date={date} readTime={readTime} keywords={keywords}>
+  <p>Body Mass Index, or BMI, is the most widely used health metric in the world. Doctors use it. Insurance companies use it. Governments track national obesity rates with it. Yet BMI is also one of the most criticised measures in medicine — oversimplified, occasionally misleading, and blind to body composition.</p>
+
+  <p>So what is BMI, really? How is it calculated, why did it become so dominant, and when should you trust it versus ignore it? This article unpacks the science behind the number.</p>
+
+  <h2>What Is BMI and How Is It Calculated?</h2>
+
+  <p>BMI is a simple ratio of weight to height squared. The formula is:</p>
+
+  <p><strong>Metric:</strong> BMI = weight (kg) / [height (m)]²</p>
+  <p><strong>Imperial:</strong> BMI = 703 × weight (lb) / [height (in)]²</p>
+
+  <p>The resulting number falls into one of four categories:</p>
+
+  <ul>
+    <li><strong>Under 18.5:</strong> Underweight</li>
+    <li><strong>18.5 – 24.9:</strong> Normal weight</li>
+    <li><strong>25.0 – 29.9:</strong> Overweight</li>
+    <li><strong>30.0 and above:</strong> Obese</li>
+  </ul>
+
+  <p>These thresholds were established by the World Health Organization in the 1990s based on epidemiological data linking BMI to mortality risk.</p>
+
+  <h2>The History of BMI</h2>
+
+  <p>BMI was invented in the 1830s by Belgian mathematician Adolphe Quetelet, who was studying "the average man" — not health. Quetelet's Index, as it was originally called, was a statistical tool for describing populations, not diagnosing individuals. It was not until the 1970s that researchers renamed it "Body Mass Index" and began using it as a clinical measure.</p>
+
+  <h2>Why BMI Works for Populations</h2>
+
+  <p>At the population level, BMI is remarkably useful. Across millions of people, higher BMI correlates strongly with increased risk of:</p>
+
+  <ul>
+    <li>Type 2 diabetes</li>
+    <li>Cardiovascular disease</li>
+    <li>Hypertension</li>
+    <li>Certain cancers</li>
+    <li>Premature mortality</li>
+  </ul>
+
+  <p>For public health officials tracking obesity trends or insurers pricing risk across large pools, BMI is cheap to collect and statistically powerful.</p>
+
+  <h2>Why BMI Fails for Individuals</h2>
+
+  <p>The problem arises when BMI is applied to individuals. Because BMI only considers weight and height, it cannot distinguish between:</p>
+
+  <ul>
+    <li><strong>Muscle and fat:</strong> A muscular athlete may have the same BMI as a sedentary person with high body fat.</li>
+    <li><strong>Distribution of fat:</strong> Visceral fat (around organs) is far more dangerous than subcutaneous fat (under skin). BMI does not capture this.</li>
+    <li><strong>Age and sex:</strong> Older adults lose muscle mass, which can lower BMI even as body fat percentage rises. Men and women also have different body composition norms.</li>
+    <li><strong>Ethnicity:</strong> Studies show that Asian populations experience metabolic risk at lower BMIs than European populations. The WHO now recommends lower thresholds for some Asian groups.</li>
+  </ul>
+
+  <h2>Alternatives to BMI</h2>
+
+  <p>Several measures address BMI's limitations, though each has trade-offs:</p>
+
+  <ul>
+    <li><strong>Waist-to-hip ratio:</strong> Captures fat distribution. A ratio above 0.90 for men or 0.85 for women indicates elevated risk.</li>
+    <li><strong>Waist circumference:</strong> Measures visceral fat directly. Above 102 cm (40 in) for men or 88 cm (35 in) for women signals elevated risk.</li>
+    <li><strong>Body fat percentage:</strong> Measured via DEXA scans, bioelectrical impedance, or calipers. More accurate but expensive or inconvenient.</li>
+    <li><strong>Relative Fat Mass (RFM):</strong> Uses height and waist circumference only. Early research suggests it correlates better with body fat percentage than BMI.</li>
+  </ul>
+
+  <h2>When to Use BMI (and When Not To)</h2>
+
+  <p><strong>Use BMI when:</strong></p>
+  <ul>
+    <li>Tracking population-level obesity trends</li>
+    <li>Conducting large-scale epidemiological research</li>
+    <li>As a rough screening tool in clinical settings where better measures are unavailable</li>
+  </ul>
+
+  <p><strong>Do not rely on BMI when:</strong></p>
+  <ul>
+    <li>Assessing athletic or very muscular individuals</li>
+    <li>Evaluating elderly patients with sarcopenia (muscle loss)</li>
+    <li>Comparing individuals across different ethnic groups without adjustment</li>
+    <li>Making clinical decisions for a single patient</li>
+  </ul>
+
+  <h2>Conclusion</h2>
+
+  <p>BMI is a blunt instrument — useful for populations, inadequate for individuals. It persists because it is free, fast, and statistically valid at scale. But if you are assessing your own health or a patient's, supplement BMI with waist measurements, body fat analysis, or clinical judgement. No single number can capture a human body.</p>
+
+  <p>Calculate your BMI instantly with the <a href="/calculator/bmi">ReddTools BMI Calculator</a> — it supports both metric and imperial units and shows your category with context on what the number means.</p>
+</ArticleLayout>

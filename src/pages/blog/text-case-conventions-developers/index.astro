@@ -1,0 +1,124 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+
+const title = 'Text Case Conventions Every Developer Should Know';
+const description = 'camelCase, snake_case, kebab-case, PascalCase — when should you use each? A comprehensive guide to naming conventions in programming, APIs, filenames, and databases.';
+const canonicalPath = '/blog/text-case-conventions-developers';
+const date = '2026-08-20';
+const readTime = '6 min read';
+const keywords = ['camelCase', 'snake_case', 'kebab-case', 'PascalCase', 'naming conventions', 'coding standards'];
+---
+
+<ArticleLayout title={title} description={description} canonicalPath={canonicalPath} date={date} readTime={readTime} keywords={keywords}>
+  <p>Naming things is one of the hardest problems in computer science — and case conventions are where it gets messy. Should your API endpoint be /user-profile or /userProfile? Should your database column be created_at or createdAt? Should your React component be UserProfile or userProfile?</p>
+
+  <p>Getting case conventions right makes your codebase readable, consistent, and professional. Getting them wrong creates friction for every developer who touches your project. This article is a definitive reference for when to use each convention.</p>
+
+  <h2>The Five Main Case Conventions</h2>
+
+  <h3>1. camelCase</h3>
+  <p><strong>Pattern:</strong> first word lowercase, subsequent words capitalised, no separators.</p>
+  <p><strong>Examples:</strong> userProfile, isActive, getUserById</p>
+  <p><strong>Used for:</strong> JavaScript variables and functions, Java variables and methods, JSON keys (de facto standard).</p>
+  <p><strong>Why:</strong> Compact, readable, and the dominant convention in JavaScript and Java ecosystems.</p>
+
+  <h3>2. PascalCase (UpperCamelCase)</h3>
+  <p><strong>Pattern:</strong> Every word capitalised, no separators.</p>
+  <p><strong>Examples:</strong> UserProfile, HttpRequest, DatabaseConnection</p>
+  <p><strong>Used for:</strong> Classes, types, interfaces, React components, C# identifiers, .NET.</p>
+  <p><strong>Why:</strong> Distinguishes types from instances/values at a glance. A UserProfile is a class; a userProfile is an instance.</p>
+
+  <h3>3. snake_case</h3>
+  <p><strong>Pattern:</strong> All lowercase, words separated by underscores.</p>
+  <p><strong>Examples:</strong> user_profile, is_active, get_user_by_id</p>
+  <p><strong>Used for:</strong> Python variables and functions, Ruby, PHP, database columns, environment variables, file names in Unix systems.</p>
+  <p><strong>Why:</strong> Highly readable, unambiguous, and the PEP 8 standard for Python. Underscores are also URL-safe and shell-friendly.</p>
+
+  <h3>4. kebab-case (dash-case, lisp-case)</h3>
+  <p><strong>Pattern:</strong> All lowercase, words separated by hyphens.</p>
+  <p><strong>Examples:</strong> user-profile, is-active, get-user-by-id</p>
+  <p><strong>Used for:</strong> URL slugs, CSS class names, HTML attributes, command-line flags, file names.</p>
+  <p><strong>Why:</strong> Hyphens are the standard word separator in URLs and CSS. They improve readability in prose-like contexts and are unambiguous in URLs (unlike underscores, which can be hidden by underlines in links).</p>
+
+  <h3>5. UPPER_SNAKE_CASE (SCREAMING_SNAKE_CASE)</h3>
+  <p><strong>Pattern:</strong> All uppercase, words separated by underscores.</p>
+  <p><strong>Examples:</strong> MAX_RETRIES, API_KEY, DATABASE_URL</p>
+  <p><strong>Used for:</strong> Constants, environment variables, configuration keys, enum values in some languages.</p>
+  <p><strong>Why:</strong> Visually distinct from variables. Signals "this value is fixed and should not change."</p>
+
+  <h2>Convention Cheat Sheet by Context</h2>
+
+  <table style="width:100%; border-collapse: collapse; margin: 24px 0;">
+    <thead>
+      <tr style="border-bottom: 1px solid #000;">
+        <th style="text-align:left; padding: 8px;">Context</th>
+        <th style="text-align:left; padding: 8px;">Convention</th>
+        <th style="text-align:left; padding: 8px;">Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">JavaScript variables</td>
+        <td style="padding: 8px;">camelCase</td>
+        <td style="padding: 8px;">userProfile</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">JavaScript classes</td>
+        <td style="padding: 8px;">PascalCase</td>
+        <td style="padding: 8px;">UserProfile</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">Python variables</td>
+        <td style="padding: 8px;">snake_case</td>
+        <td style="padding: 8px;">user_profile</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">Database columns</td>
+        <td style="padding: 8px;">snake_case</td>
+        <td style="padding: 8px;">created_at</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">URL paths</td>
+        <td style="padding: 8px;">kebab-case</td>
+        <td style="padding: 8px;">/user-profile</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">CSS classes</td>
+        <td style="padding: 8px;">kebab-case</td>
+        <td style="padding: 8px;">.user-profile</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">Environment variables</td>
+        <td style="padding: 8px;">UPPER_SNAKE_CASE</td>
+        <td style="padding: 8px;">DATABASE_URL</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">JSON keys</td>
+        <td style="padding: 8px;">camelCase</td>
+        <td style="padding: 8px;">{`{"userProfile": ...}`}</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">File names (general)</td>
+        <td style="padding: 8px;">kebab-case or snake_case</td>
+        <td style="padding: 8px;">user-profile.js</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Special Cases and Edge Cases</h2>
+
+  <h3>Acronyms in Names</h3>
+  <p>Debate rages over whether "HTTP" should be "Http" in camelCase or "HTTP" in PascalCase. Google's style guides recommend treating acronyms like words: XmlHttpRequest, not XMLHTTPRequest. This avoids ALLCAPS visual noise.</p>
+
+  <h3>Numbers in Names</h3>
+  <p>Always separate numbers with an underscore or hyphen: user_1 or user-1, not user1. The latter is harder to read and can be ambiguous (is "user1" one word or user + 1?).</p>
+
+  <h3>Non-English Words</h3>
+  <p>If your codebase includes non-English terms, romanise them consistently. Do not mix scripts — it breaks searchability and tooling.</p>
+
+  <h2>Conclusion</h2>
+
+  <p>Consistency matters more than any single convention. Pick a standard for your project, document it, enforce it in code review, and move on. The cognitive load of switching between conventions within one codebase far exceeds any marginal benefit of "the perfect choice."</p>
+
+  <p>Need to convert between cases quickly? Use the <a href="/case-converter">ReddTools Case Converter</a> — it handles camelCase, snake_case, kebab-case, PascalCase, and more with a single click.</p>
+</ArticleLayout>

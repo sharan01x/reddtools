@@ -1,0 +1,106 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+
+const title = 'Understanding Colour Theory for Web Designers and Developers';
+const description = 'A practical guide to the colour wheel, complementary colours, analogous palettes, and how to apply colour theory principles to build accessible, beautiful web interfaces.';
+const canonicalPath = '/blog/colour-theory-web-design';
+const date = '2026-08-20';
+const readTime = '8 min read';
+const keywords = ['colour theory', 'web design', 'colour wheel', 'complementary colours', 'accessible design'];
+---
+
+<ArticleLayout title={title} description={description} canonicalPath={canonicalPath} date={date} readTime={readTime} keywords={keywords}>
+  <p>Colour is one of the most powerful tools in a designer's arsenal. It can evoke emotion, guide attention, communicate brand identity, and even influence behaviour. Yet many web designers and developers approach colour haphazardly — picking shades that "look nice" without understanding the underlying principles that make colour work effectively.</p>
+
+  <p>In this guide, we will explore the fundamentals of colour theory, from the colour wheel to advanced concepts like colour psychology and accessibility. By the end, you will have a systematic approach to selecting and combining colours that not only look good but also serve your users and your brand.</p>
+
+  <h2>The Colour Wheel: Your Foundation</h2>
+
+  <p>The colour wheel is the starting point for understanding how colours relate to one another. Developed by Sir Isaac Newton in 1666, it organises colours into a circle based on their hue relationships. The traditional RYB (red-yellow-blue) colour wheel is what most artists learn first, but for digital work, the RGB (red-green-blue) additive model is more relevant since screens emit light.</p>
+
+  <p>The wheel is divided into:</p>
+  <ul>
+    <li><strong>Primary colours:</strong> Red, green, and blue in the RGB model. These cannot be created by mixing other colours.</li>
+    <li><strong>Secondary colours:</strong> Cyan, magenta, and yellow — created by mixing two primaries.</li>
+    <li><strong>Tertiary colours:</strong> The six colours between primary and secondary colours, such as orange-red or blue-green.</li>
+  </ul>
+
+  <h2>Harmonious Colour Relationships</h2>
+
+  <p>Understanding how colours interact is essential for creating palettes that feel cohesive rather than chaotic. Here are the most common harmonious relationships:</p>
+
+  <ul>
+    <li><strong>Complementary:</strong> Colours opposite each other on the wheel (e.g., blue and orange). These create high contrast and visual vibrancy. Use them for call-to-action buttons or highlights.</li>
+    <li><strong>Analogous:</strong> Colours adjacent to each other (e.g., blue, blue-green, green). These create a serene, cohesive feel. Ideal for backgrounds and secondary elements.</li>
+    <li><strong>Triadic:</strong> Three colours evenly spaced around the wheel (e.g., red, yellow, blue). These are bold and balanced but require careful proportion — let one colour dominate and the others accent.</li>
+    <li><strong>Split-complementary:</strong> A base colour plus the two colours adjacent to its complement. Less contrast than pure complementary but more variety.</li>
+    <li><strong>Monochromatic:</strong> Variations in lightness and saturation of a single hue. Elegant and easy to execute, great for minimalist designs.</li>
+  </ul>
+
+  <h2>Colour Psychology in Web Design</h2>
+
+  <p>Colours carry emotional associations that vary by culture, context, and individual experience. However, some broad patterns hold across Western audiences:</p>
+
+  <ul>
+    <li><strong>Blue:</strong> Trust, stability, calm. Used by banks, social networks, and healthcare.</li>
+    <li><strong>Red:</strong> Urgency, passion, excitement. Effective for warnings, sales, and calls to action.</li>
+    <li><strong>Green:</strong> Growth, health, sustainability. Popular for eco-friendly brands and financial growth.</li>
+    <li><strong>Yellow:</strong> Optimism, energy, caution. Use sparingly — it can be overwhelming in large areas.</li>
+    <li><strong>Purple:</strong> Luxury, creativity, spirituality. Associated with premium and imaginative brands.</li>
+    <li><strong>Black:</strong> Sophistication, power, elegance. The default for luxury and fashion.</li>
+    <li><strong>White:</strong> Purity, simplicity, cleanliness. The foundation of modern minimalism.</li>
+  </ul>
+
+  <p>Remember: context matters. A red "Buy Now" button works because red signals action. A red error message also works because red signals danger. The same colour can serve opposite purposes depending on surrounding cues.</p>
+
+  <h2>Accessibility: Colour and Contrast</h2>
+
+  <p>An estimated 1 in 12 men and 1 in 200 women have some form of colour vision deficiency. Designing with only colour to convey information excludes a significant portion of your audience. The Web Content Accessibility Guidelines (WCAG) provide concrete standards:</p>
+
+  <ul>
+    <li><strong>Minimum contrast ratio:</strong> 4.5:1 for normal text, 3:1 for large text (18pt+ or 14pt+ bold).</li>
+    <li><strong>Enhanced contrast:</strong> 7:1 for normal text at the AAA level.</li>
+    <li><strong>Never rely on colour alone:</strong> Use icons, labels, patterns, or text in addition to colour for meaning.</li>
+  </ul>
+
+  <p>Tools like the ReddTools <a href="/colour-picker">Colour Picker</a> include a built-in contrast checker to verify your combinations meet WCAG standards. Always test your palette before shipping.</p>
+
+  <h2>Building Your Palette: A Practical Workflow</h2>
+
+  <p>Here is a repeatable process for creating effective colour palettes:</p>
+
+  <ol>
+    <li><strong>Define the mood:</strong> What emotion should your site evoke? Write down 3-5 adjectives.</li>
+    <li><strong>Choose a dominant colour:</strong> This is your brand colour. It should appear in your logo and appear most frequently.</li>
+    <li><strong>Select supporting colours:</strong> Use analogous or split-complementary relationships for harmony.</li>
+    <li><strong>Add neutrals:</strong> Greys, blacks, and whites for text, backgrounds, and borders. A good rule: 60% neutral, 30% secondary, 10% accent.</li>
+    <li><strong>Test for accessibility:</strong> Verify contrast ratios for all text/background combinations.</li>
+    <li><strong>Test in context:</strong> Apply the palette to real UI elements and view them together.</li>
+  </ol>
+
+  <h2>Tools for Colour Selection</h2>
+
+  <p>Several free tools can accelerate your palette creation:</p>
+
+  <ul>
+    <li><a href="/colour-picker">ReddTools Colour Picker</a> — Extract colours from images and check contrast ratios.</li>
+    <li>Adobe Color — Generate palettes from the colour wheel with preset harmony rules.</li>
+    <li>Coolors — Rapid palette generation with locking and refinement.</li>
+    <li>WebAIM Contrast Checker — Verify WCAG compliance for text colour pairs.</li>
+  </ul>
+
+  <h2>Common Mistakes to Avoid</h2>
+
+  <ul>
+    <li><strong>Too many colours:</strong> Limit your active palette to 3-5 hues. More creates visual chaos.</li>
+    <li><strong>Ignoring context:</strong> A bright palette works for a children's site but feels unprofessional for legal services.</li>
+    <li><strong>Poor contrast:</strong> Light grey text on white is fashionable but unreadable.</li>
+    <li><strong>Colour without meaning:</strong> Every colour choice should serve a purpose — decoration alone is not enough.</li>
+  </ul>
+
+  <h2>Conclusion</h2>
+
+  <p>Colour theory is not about rigid rules — it is about understanding relationships so you can break them intentionally. Start with the wheel, learn the harmonies, respect accessibility, and always test in real contexts. The best palettes feel inevitable: every colour belongs exactly where it is.</p>
+
+  <p>Ready to put theory into practice? Try the <a href="/colour-picker">ReddTools Colour Picker</a> to extract colours from inspiration images and verify your combinations meet accessibility standards.</p>
+</ArticleLayout>

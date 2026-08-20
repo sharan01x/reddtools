@@ -1,0 +1,103 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+
+const title = 'Mortgage Calculators Explained: How Lenders Actually Compute Your Payments';
+const description = 'Ever wondered how banks calculate your monthly mortgage payment? We break down amortisation schedules, interest compounding, and the formulas lenders use behind the scenes.';
+const canonicalPath = '/blog/mortgage-calculators-explained';
+const date = '2026-08-20';
+const readTime = '10 min read';
+const keywords = ['mortgage calculator', 'amortisation', 'mortgage formula', 'home loan', 'interest calculation'];
+---
+
+<ArticleLayout title={title} description={description} canonicalPath={canonicalPath} date={date} readTime={readTime} keywords={keywords}>
+  <p>If you have ever applied for a mortgage, you have seen the numbers: principal, interest rate, loan term, monthly payment. But how does a bank actually turn those inputs into the amount you owe each month? The answer is a formula that has not changed in centuries — and understanding it can save you thousands.</p>
+
+  <p>In this article, we explain the mathematics behind mortgage calculators, how amortisation schedules work, and why small changes in interest rate or term have outsized effects on your total cost.</p>
+
+  <h2>The Mortgage Payment Formula</h2>
+
+  <p>The standard formula for a fixed-rate mortgage monthly payment is:</p>
+
+  <p><strong>M = P × [r(1+r)ⁿ] / [(1+r)ⁿ – 1]</strong></p>
+
+  <p>Where:</p>
+  <ul>
+    <li><strong>M</strong> = monthly payment</li>
+    <li><strong>P</strong> = principal (loan amount)</li>
+    <li><strong>r</strong> = monthly interest rate (annual rate divided by 12)</li>
+    <li><strong>n</strong> = total number of payments (loan term in years × 12)</li>
+  </ul>
+
+  <p>This formula ensures that every payment is identical, while the proportion going to principal versus interest shifts over time.</p>
+
+  <h2>How Amortisation Works</h2>
+
+  <p>Amortisation is the process of paying off debt through scheduled payments. In a fully amortising mortgage, each payment covers:</p>
+
+  <ul>
+    <li><strong>Interest:</strong> The cost of borrowing, calculated on the remaining balance.</li>
+    <li><strong>Principal:</strong> The amount that actually reduces your loan balance.</li>
+  </ul>
+
+  <p>Early in the loan, most of your payment goes to interest. Over time, as the balance decreases, more of each payment goes to principal. This is why paying extra principal early in a loan has a dramatic impact on total interest paid.</p>
+
+  <h2>Example: £300,000 at 4% for 30 Years</h2>
+
+  <p>Plugging into the formula:</p>
+  <ul>
+    <li>P = £300,000</li>
+    <li>r = 0.04 / 12 = 0.003333...</li>
+    <li>n = 30 × 12 = 360</li>
+  </ul>
+
+  <p>Monthly payment = £1,432.25</p>
+  <p>Total paid over 30 years = £515,610</p>
+  <p>Total interest = £215,610</p>
+
+  <p>Now change the term to 15 years:</p>
+  <ul>
+    <li>n = 15 × 12 = 180</li>
+    <li>Monthly payment = £2,219.06</li>
+    <li>Total paid = £399,431</li>
+    <li>Total interest = £99,431</li>
+  </ul>
+
+  <p>By paying £787 more per month, you save £116,179 in interest and own your home 15 years sooner.</p>
+
+  <h2>Why Interest Rate Matters So Much</h2>
+
+  <p>A 1% increase in interest rate has a compounding effect. On the same £300,000 loan:</p>
+
+  <ul>
+    <li>At 3%: £1,264/month, total interest £155,332</li>
+    <li>At 4%: £1,432/month, total interest £215,610</li>
+    <li>At 5%: £1,610/month, total interest £279,767</li>
+  </ul>
+
+  <p>That 1% jump from 4% to 5% costs an extra £64,157 over the life of the loan.</p>
+
+  <h2>Fixed vs. Variable Rate Mortgages</h2>
+
+  <ul>
+    <li><strong>Fixed-rate:</strong> The interest rate and payment stay constant for the term. Predictable but potentially more expensive if rates fall.</li>
+    <li><strong>Variable/tracker:</strong> The rate moves with a benchmark (e.g., Bank of England base rate). Cheaper initially but risky if rates rise.</li>
+  </ul>
+
+  <p>Most borrowers prefer fixed-rate for stability, but variable rates can save money in declining-rate environments.</p>
+
+  <h2>Extra Payments: The Hidden Wealth Builder</h2>
+
+  <p>Adding just £100 per month to principal on our 30-year example:</p>
+  <ul>
+    <li>Loan paid off 4 years early</li>
+    <li>Total interest saved: ~£28,000</li>
+  </ul>
+
+  <p>This is why financial advisors consistently recommend paying down mortgage principal when you have spare cash — it is a guaranteed return equal to your interest rate.</p>
+
+  <h2>Conclusion</h2>
+
+  <p>Mortgage calculators are not magic — they are precise applications of time-value-of-money mathematics. Understanding the formula behind your payment empowers you to compare offers, evaluate term trade-offs, and strategise extra payments.</p>
+
+  <p>Calculate your own mortgage payments with the <a href="/calculator/mortgage">ReddTools Mortgage Calculator</a> — it shows amortisation schedules, total interest, and the effect of extra payments instantly.</p>
+</ArticleLayout>

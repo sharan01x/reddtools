@@ -1,0 +1,79 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+
+const title = 'Unit Conversion Mistakes to Avoid in Engineering and Science';
+const description = 'Unit conversion errors have crashed spacecraft, collapsed buildings, and killed patients. Learn the most common mistakes and how to prevent them using reliable tools and verification techniques.';
+const canonicalPath = '/blog/unit-conversion-mistakes';
+const date = '2026-08-20';
+const readTime = '9 min read';
+const keywords = ['unit conversion', 'engineering mistakes', 'measurement errors', 'metric imperial', 'conversion accuracy'];
+---
+
+<ArticleLayout title={title} description={description} canonicalPath={canonicalPath} date={date} readTime={readTime} keywords={keywords}>
+  <p>Unit conversion errors are among the most expensive and embarrassing mistakes in engineering and science. They have crashed spacecraft into planets, caused aircraft to run out of fuel, and led to medication overdoses. The root cause is almost always the same: a simple conversion factor applied incorrectly, or not applied at all.</p>
+
+  <p>In this article, we examine famous unit conversion failures, identify the most common mistakes professionals make, and provide practical techniques for preventing them in your own work.</p>
+
+  <h2>Famous Unit Conversion Disasters</h2>
+
+  <h3>The Mars Climate Orbiter (1999)</h3>
+
+  <p>NASA's Mars Climate Orbiter was lost because one engineering team used imperial pounds-force, while another used metric Newtons, in the spacecraft's trajectory software. The discrepancy was never caught during ground testing. The $327.6 million spacecraft entered Mars' atmosphere at the wrong angle and was destroyed.</p>
+
+  <p><strong>Lesson:</strong> Even world-class organisations fail when units are not explicitly documented and verified.</p>
+
+  <h3>Gimli Glider (1983)</h3>
+
+  <p>An Air Canada Boeing 767 ran out of fuel mid-flight because ground crew calculated fuel load in pounds instead of kilograms — a factor-of-2.2 error. The pilots had to glide the aircraft to an abandoned airfield. All 69 passengers survived, but the incident remains a textbook example of unit confusion.</p>
+
+  <p><strong>Lesson:</strong> Manual calculations with unit conversions are high-risk. Always double-check with independent verification.</p>
+
+  <h3>The Korean Air Lane Mix-up (2004)</h3>
+
+  <p>A construction crew in Korea mixed up feet and metres when building apartments, resulting in ceilings that were 10 feet (3 metres) lower than designed. The entire complex had to be redesigned.</p>
+
+  <p><strong>Lesson:</strong> Ambiguous specifications cause cascading errors. Label every measurement with its unit explicitly.</p>
+
+  <h2>Common Conversion Mistakes</h2>
+
+  <h3>1. Confusing Weight and Mass</h3>
+
+  <p>Pounds (lb) measure force (weight), while kilograms (kg) measure mass. On Earth's surface they are numerically similar, but in aerospace, deep-sea, or planetary contexts, the difference matters enormously. Use Newtons for force and kilograms for mass in scientific work.</p>
+
+  <h3>2. Temperature vs. Temperature Difference</h3>
+
+  <p>A change of 1°C equals a change of 1.8°F, but a temperature of 1°C equals 33.8°F. When calculating heat transfer or thermal expansion, use temperature differences, not absolute temperatures. The ReddTools <a href="/celsius-to-fahrenheit">Celsius to Fahrenheit converter</a> handles both conversions.</p>
+
+  <h3>3. Using Approximate Factors</h3>
+
+  <p>"A mile is about 1.6 kilometres" is fine for mental maths but not for engineering. Use precise factors:</p>
+  <ul>
+    <li>1 mile = 1.609344 kilometres (exact, by international agreement)</li>
+    <li>1 pound = 0.45359237 kilograms (exact)</li>
+    <li>1 inch = 2.54 centimetres (exact)</li>
+  </ul>
+
+  <h3>4. Compound Unit Errors</h3>
+
+  <p>Converting speed (mph to km/h) requires converting both distance and time. Converting fuel efficiency (mpg to L/100km) is an inverse relationship. These compound conversions are where most errors occur.</p>
+
+  <h3>5. Significant Figure Inflation</h3>
+
+  <p>Converting 2.5 miles to kilometres gives 4.02336 km, but the original measurement only had two significant figures. Reporting 4.02336 km implies false precision. Match your output precision to your input precision.</p>
+
+  <h2>Prevention Techniques</h2>
+
+  <ul>
+    <li><strong>Always write units:</strong> Never write "5" when you mean "5 metres." Units are part of the number.</li>
+    <li><strong>Dimension analysis:</strong> Arrange conversions as fractions so units cancel algebraically. If the remaining units are not what you want, you have made a mistake.</li>
+    <li><strong>Independent verification:</strong> Have a second person recalculate using a different method or tool.</li>
+    <li><strong>Use verified tools:</strong> The <a href="/unit-converter">ReddTools Unit Converter</a> uses exact conversion factors and shows intermediate steps for transparency.</li>
+    <li><strong>Sanity checks:</strong> Does the answer make physical sense? If a person weighs 500 kg, re-check.</li>
+  </ul>
+
+  <h2>Conclusion</h2>
+
+  <p>Unit conversion errors are preventable. They require discipline — writing units explicitly, using exact factors, verifying independently, and sanity-checking results. The tools exist; the failure is usually in the process, not the mathematics.</p>
+
+  <p>For reliable conversions across length, weight, temperature, volume, speed, and data storage, use the <a href="/unit-converter">ReddTools Unit Converter</a> — built with exact factors and zero ambiguity.</p>
+</ArticleLayout>

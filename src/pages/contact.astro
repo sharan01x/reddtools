@@ -1,0 +1,148 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Contact ReddTools — Suggestions, Bugs & Partnerships';
+const description = 'Get in touch with the ReddTools team. Submit tool suggestions, report bugs, or discuss partnership opportunities. We read every message.';
+const canonicalPath = '/contact';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact ReddTools',
+  url: 'https://reddtools.com/contact',
+  description: 'Contact the ReddTools team for suggestions, bug reports, and partnerships.',
+};
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd}>
+  <div class="contact-page">
+    <div class="contact-hero">
+      <h1>Contact Us</h1>
+      <p class="lead">Have a suggestion, found a bug, or want to work together? We read every message.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h2>General Inquiries</h2>
+        <p>For questions, feedback, or general chatter about ReddTools:</p>
+        <a href="mailto:hello@reddtools.com" class="contact-link">hello@reddtools.com</a>
+      </div>
+
+      <div class="contact-card">
+        <h2>Bug Reports</h2>
+        <p>Found something broken? Include the tool name, your browser, and what you expected to happen:</p>
+        <a href="mailto:hello@reddtools.com?subject=Bug%20Report" class="contact-link">hello@reddtools.com</a>
+      </div>
+
+      <div class="contact-card">
+        <h2>Tool Suggestions</h2>
+        <p>Want a new tool? Tell us what it should do and who would use it:</p>
+        <a href="mailto:hello@reddtools.com?subject=Tool%20Suggestion" class="contact-link">hello@reddtools.com</a>
+      </div>
+
+      <div class="contact-card">
+        <h2>Partnerships & Press</h2>
+        <p>Advertising, sponsorships, press inquiries, or business development:</p>
+        <a href="mailto:hello@reddtools.com?subject=Partnership%20Inquiry" class="contact-link">hello@reddtools.com</a>
+      </div>
+    </div>
+
+    <div class="response-time">
+      <p>We typically respond within 2 business days. If you do not hear back, check your spam folder — sometimes our replies end up there.</p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .contact-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 24px 120px;
+  }
+
+  .contact-hero {
+    margin-bottom: 48px;
+  }
+
+  .contact-hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #000;
+    margin: 0 0 16px;
+  }
+
+  .lead {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #5b5b5b;
+    margin: 0;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  @media (min-width: 640px) {
+    .contact-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .contact-card {
+    padding: 32px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+
+  .contact-card h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    margin: 0 0 12px;
+  }
+
+  .contact-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #5b5b5b;
+    margin: 0 0 16px;
+  }
+
+  .contact-link {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    padding-bottom: 2px;
+    transition: border-color 200ms ease;
+  }
+
+  .contact-link:hover {
+    border-color: #000;
+  }
+
+  .response-time {
+    padding: 24px;
+    background: #f5f5f5;
+    border-radius: 4px;
+  }
+
+  .response-time p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #5b5b5b;
+    margin: 0;
+  }
+</style>

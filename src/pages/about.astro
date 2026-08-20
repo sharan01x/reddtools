@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'About ReddTools — Free Online Tools Built Right';
+const description = 'ReddTools is a suite of free online utility tools — calculators, converters, timers, and more. Built with clean design, no signups, and no ad clutter. Learn about our mission and the team behind it.';
+const canonicalPath = '/about';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About ReddTools',
+  url: 'https://reddtools.com/about',
+  description: 'ReddTools is a suite of free online utility tools built with clean design and no friction.',
+};
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd}>
+  <div class="about-page">
+    <div class="about-hero">
+      <h1>About ReddTools</h1>
+      <p class="lead">Free online tools that actually work — built with care, not clutter.</p>
+    </div>
+
+    <article class="about-content">
+      <section>
+        <h2>What We Do</h2>
+        <p>ReddTools is a curated suite of free online utility tools for everyday tasks. Whether you need to calculate a mortgage payment, convert kilograms to pounds, pick colours from an image, or simply count words in a document, we have a tool that does it — fast, accurately, and without asking you to sign up.</p>
+        <p>We started ReddTools because most free utility sites on the internet are an exercise in frustration: pop-up ads, slow loading, confusing interfaces, and dark patterns that push you toward premium subscriptions you do not need. We believe simple tools should stay simple.</p>
+      </section>
+
+      <section>
+        <h2>Our Philosophy</h2>
+        <p><strong>Designed properly.</strong> Every tool on ReddTools follows the same design principles: clean typography, clear hierarchy, responsive layouts, and zero cognitive friction. We do not use garish colours, auto-playing videos, or interstitial pop-ups. The interface gets out of your way so you can get your work done.</p>
+        <p><strong>No signups, ever.</strong> We do not collect email addresses, require accounts, or gate functionality behind registration walls. Your data stays in your browser. We use analytics (PostHog, EU-hosted) only to understand which tools are popular and where we can improve — never to track you personally.</p>
+        <p><strong>Fast and reliable.</strong> All tools run client-side in your browser. There is no server to slow down, no API to rate-limit, and no downtime to worry about. Our site is built as a static site (Astro + Cloudflare Pages) and loads in under a second from most locations worldwide.</p>
+      </section>
+
+      <section>
+        <h2>The Tools</h2>
+        <p>Our current suite includes:</p>
+        <ul>
+          <li><strong>Calculator</strong> — Basic arithmetic, mortgage payments, compound interest, VAT, percentages, tips, BMI, and loan amortisation.</li>
+          <li><strong>Unit Converter</strong> — Length, weight, temperature, volume, speed, and data storage conversions with precise formulas.</li>
+          <li><strong>Word Counter</strong> — Real-time word, character, sentence, and paragraph counts with reading-time estimation.</li>
+          <li><strong>Case Converter</strong> — Convert text between uppercase, lowercase, Title Case, snake_case, and kebab-case instantly.</li>
+          <li><strong>Timer & Pomodoro</strong> — Countdown timer, stopwatch, and Pomodoro modes with tab-title countdown for focus sessions.</li>
+          <li><strong>Colour Picker</strong> — Drop an image and extract exact pixel colours in HEX, RGB, and HSL with built-in contrast checking.</li>
+        </ul>
+        <p>We continuously add new tools based on user feedback and search demand. Every new tool follows the same quality bar: useful, well-designed, and free.</p>
+      </section>
+
+      <section>
+        <h2>Who We Are</h2>
+        <p>ReddTools is built and operated by <strong>Redd Group</strong>, a digital business group focused on building useful products that people actually want to use. We are a small team — just a few people with backgrounds in software engineering, product design, and digital marketing — and we take pride in shipping quickly and iterating based on real usage data.</p>
+        <p>The project was conceived in 2026 as an experiment: can a utility-tools site compete with established incumbents on design quality alone? The answer so far is encouraging. Users consistently praise the clean interface and fast performance, and our traffic is growing month over month through organic search and community sharing.</p>
+      </section>
+
+      <section>
+        <h2>Monetisation & Privacy</h2>
+        <p>ReddTools is free to use and supported by advertising. We use Google AdSense to display non-intrusive ads on tool pages. We do not use tracking cookies beyond what is necessary for ad serving, and we do not sell user data to third parties. Our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service</a> explain exactly what data we collect and how we use it.</p>
+        <p>If you prefer an ad-free experience, we recommend using an ad blocker — we will not penalise you for it. The tools work identically with or without ads enabled.</p>
+      </section>
+
+      <section>
+        <h2>Get in Touch</h2>
+        <p>Have a tool suggestion, found a bug, or want to partner with us? We read every message. Reach out via our <a href="/contact">Contact page</a> or email us directly at <a href="mailto:hello@reddtools.com">hello@reddtools.com</a>.</p>
+        <p>For press inquiries, partnership proposals, or sponsorship opportunities, please include "Partnership" in the subject line so we can route your message to the right person.</p>
+      </section>
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .about-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 24px 120px;
+  }
+
+  .about-hero {
+    margin-bottom: 64px;
+  }
+
+  .about-hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: #000;
+    margin: 0 0 16px;
+  }
+
+  .lead {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #5b5b5b;
+    margin: 0;
+  }
+
+  .about-content section {
+    margin-bottom: 48px;
+  }
+
+  .about-content h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #000;
+    margin: 0 0 16px;
+  }
+
+  .about-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+    margin: 0 0 16px;
+  }
+
+  .about-content ul {
+    margin: 0 0 16px;
+    padding-left: 24px;
+  }
+
+  .about-content li {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  .about-content a {
+    color: #000;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .about-content a:hover {
+    opacity: 0.6;
+  }
+</style>
