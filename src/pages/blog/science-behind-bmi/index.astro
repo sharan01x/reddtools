@@ -1,5 +1,6 @@
 ---
 import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import RelatedTools from '../../../components/RelatedTools.astro';
 
 const title = 'The Science Behind BMI: What It Measures and What It Misses';
 const description = 'Body Mass Index is the most widely used health metric in the world. Understand how it is calculated, why it works for populations but not always for individuals, and what alternatives exist.';
@@ -94,4 +95,6 @@ const keywords = ['BMI', 'body mass index', 'health metrics', 'obesity', 'body c
   <p>BMI is a blunt instrument — useful for populations, inadequate for individuals. It persists because it is free, fast, and statistically valid at scale. But if you are assessing your own health or a patient's, supplement BMI with waist measurements, body fat analysis, or clinical judgement. No single number can capture a human body.</p>
 
   <p>Calculate your BMI instantly with the <a href="/calculator/bmi">ReddTools BMI Calculator</a> — it supports both metric and imperial units and shows your category with context on what the number means.</p>
+
+  <RelatedTools tools={['calculator/bmi', 'calculator/loan']} />
 </ArticleLayout>

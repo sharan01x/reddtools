@@ -1,5 +1,6 @@
 ---
 import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import RelatedTools from '../../../components/RelatedTools.astro';
 
 const title = 'Compound Interest: The Eighth Wonder of the World Explained Simply';
 const description = 'Albert Einstein allegedly called compound interest the eighth wonder of the world. Learn how it works, why it matters for savings and investments, and how to calculate it accurately.';
@@ -86,4 +87,6 @@ const keywords = ['compound interest', 'savings growth', 'investment returns', '
   <p>Compound interest is not a trick or a hack — it is fundamental mathematics. The key variables are time, rate, and consistency. Start as early as you can, contribute regularly, and let the math work for you.</p>
 
   <p>Use the <a href="/calculator/compound-interest">ReddTools Compound Interest Calculator</a> to experiment with different rates, time horizons, and contribution schedules to see how compounding could work for your own savings goals.</p>
+
+  <RelatedTools tools={['calculator/compound-interest', 'calculator/mortgage']} />
 </ArticleLayout>

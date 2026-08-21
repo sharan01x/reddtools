@@ -1,0 +1,58 @@
+---
+import { getTool, toolIconSvg } from '../lib/tools';
+
+interface RelatedTool {
+  slug: string;
+  name: string;
+  description: string;
+  icon: string;
+}
+
+function getRelatedTools(slugs: string[]): RelatedTool[] {
+  const tools: RelatedTool[] = [];
+  for (const slug of slugs) {
+    const tool = getTool(slug);
+    if (tool) {
+      tools.push({
+        slug: tool.slug,
+        name: tool.name,
+        description: tool.description,
+        icon: toolIconSvg[tool.icon] || '',
+      });
+    } else {
+      // Check for mode slugs like calculator/bmi
+      const [toolSlug, modeSlug] = slug.split('/');
+      const parentTool = getTool(toolSlug);
+      if (parentTool && parentTool.modes) {
+        const mode = parentTool.modes.find(m => m.slug === modeSlug);
+        if (mode) {
+          tools.push({
+            slug: `${toolSlug}/${modeSlug}`,
+            name: mode.name,
+            description: mode.description,
+            icon: toolIconSvg[parentTool.icon] || '',
+          });
+        }
+      }
+    }
+  }
+  return tools;
+}
+
+interface Props {
+  tools: string[];
+}
+
+const { tools: toolSlugs } = Astro.props;
+const related = getRelatedTools(toolSlugs);
+---
+
+<div class="tool-cards" slot="related-tools">
+  {related.map(tool => (
+    <a href={`/${tool.slug}`} class="tool-card">
+      <div set:html={tool.icon} />
+      <h4>{tool.name}</h4>
+      <p>{tool.description}</p>
+    </a>
+  ))}
+</div>

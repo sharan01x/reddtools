@@ -1,5 +1,6 @@
 ---
 import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import RelatedTools from '../../../components/RelatedTools.astro';
 
 const title = 'The Pomodoro Technique: A Practical Guide to Focused Work';
 const description = 'Struggling with distractions and procrastination? The Pomodoro Technique is a time-management method used by millions of professionals. Learn how to implement it and adapt it to your workflow.';
@@ -96,4 +97,6 @@ const keywords = ['Pomodoro Technique', 'time management', 'productivity', 'focu
   <p>The Pomodoro Technique is not magic — it is structured common sense. By dividing work into manageable intervals and honouring breaks, you train your brain to focus on demand. It works because it respects how human attention actually functions, not how we wish it functioned.</p>
 
   <p>Try it for one day. Set a timer for 25 minutes, pick one task, and work until it rings. Then take your break. Repeat. You may be surprised how much you accomplish.</p>
+
+  <RelatedTools tools={['timer', 'word-counter']} />
 </ArticleLayout>

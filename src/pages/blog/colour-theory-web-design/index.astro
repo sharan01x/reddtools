@@ -1,5 +1,6 @@
 ---
 import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import RelatedTools from '../../../components/RelatedTools.astro';
 
 const title = 'Understanding Colour Theory for Web Designers and Developers';
 const description = 'A practical guide to the colour wheel, complementary colours, analogous palettes, and how to apply colour theory principles to build accessible, beautiful web interfaces.';
@@ -103,4 +104,6 @@ const keywords = ['colour theory', 'web design', 'colour wheel', 'complementary 
   <p>Colour theory is not about rigid rules — it is about understanding relationships so you can break them intentionally. Start with the wheel, learn the harmonies, respect accessibility, and always test in real contexts. The best palettes feel inevitable: every colour belongs exactly where it is.</p>
 
   <p>Ready to put theory into practice? Try the <a href="/colour-picker">ReddTools Colour Picker</a> to extract colours from inspiration images and verify your combinations meet accessibility standards.</p>
+
+  <RelatedTools tools={['colour-picker', 'case-converter']} />
 </ArticleLayout>

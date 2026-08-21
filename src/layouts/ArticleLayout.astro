@@ -59,6 +59,11 @@ const jsonLd = {
     <footer class="article-footer">
       <p>Written by the <strong>{author}</strong>. Have questions or feedback? <a href="/contact">Get in touch</a>.</p>
     </footer>
+
+    <div class="related-tools">
+      <h3>Related Tools</h3>
+      <slot name="related-tools" />
+    </div>
   </article>
 </Layout>
 
@@ -178,5 +183,64 @@ const jsonLd = {
   .article-footer a {
     color: #000;
     text-decoration: underline;
+  }
+
+  .related-tools {
+    margin-top: 48px;
+    padding: 32px;
+    background: #f8f8f8;
+    border-radius: 8px;
+  }
+
+  .related-tools h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    margin: 0 0 20px;
+  }
+
+  .related-tools :global(.tool-cards) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .related-tools :global(.tool-card) {
+    display: block;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .related-tools :global(.tool-card:hover) {
+    border-color: #000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    opacity: 1;
+  }
+
+  .related-tools :global(.tool-card svg) {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 12px;
+    color: #000;
+  }
+
+  .related-tools :global(.tool-card h4) {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+    margin: 0 0 6px;
+  }
+
+  .related-tools :global(.tool-card p) {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #666;
+    margin: 0;
   }
 </style>

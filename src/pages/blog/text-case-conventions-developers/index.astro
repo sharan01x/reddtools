@@ -1,5 +1,6 @@
 ---
 import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import RelatedTools from '../../../components/RelatedTools.astro';
 
 const title = 'Text Case Conventions Every Developer Should Know';
 const description = 'camelCase, snake_case, kebab-case, PascalCase — when should you use each? A comprehensive guide to naming conventions in programming, APIs, filenames, and databases.';
@@ -121,4 +122,6 @@ const keywords = ['camelCase', 'snake_case', 'kebab-case', 'PascalCase', 'naming
   <p>Consistency matters more than any single convention. Pick a standard for your project, document it, enforce it in code review, and move on. The cognitive load of switching between conventions within one codebase far exceeds any marginal benefit of "the perfect choice."</p>
 
   <p>Need to convert between cases quickly? Use the <a href="/case-converter">ReddTools Case Converter</a> — it handles camelCase, snake_case, kebab-case, PascalCase, and more with a single click.</p>
+
+  <RelatedTools tools={['case-converter', 'word-counter']} />
 </ArticleLayout>
