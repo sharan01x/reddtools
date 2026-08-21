@@ -6,14 +6,14 @@ const title = 'Understanding Colour Theory for Web Designers and Developers';
 const description = 'A practical guide to the colour wheel, complementary colours, analogous palettes, and how to apply colour theory principles to build accessible, beautiful web interfaces.';
 const canonicalPath = '/blog/colour-theory-web-design/';
 const date = '2026-08-20';
-const readTime = '8 min read';
+const readTime = '15 min read';
 const keywords = ['colour theory', 'web design', 'colour wheel', 'complementary colours', 'accessible design'];
 ---
 
 <ArticleLayout title={title} description={description} canonicalPath={canonicalPath} date={date} readTime={readTime} keywords={keywords}>
   <p>Colour is one of the most powerful tools in a designer's arsenal. It can evoke emotion, guide attention, communicate brand identity, and even influence behaviour. Yet many web designers and developers approach colour haphazardly — picking shades that "look nice" without understanding the underlying principles that make colour work effectively.</p>
 
-  <p>In this guide, we will explore the fundamentals of colour theory, from the colour wheel to advanced concepts like colour psychology and accessibility. By the end, you will have a systematic approach to selecting and combining colours that not only look good but also serve your users and your brand.</p>
+  <p>In this guide, we will explore the fundamentals of colour theory, from the colour wheel to advanced concepts like colour psychology, accessibility, CSS implementation techniques, dark mode design, design system architecture, A/B testing, animation, and cultural differences. By the end, you will have a systematic approach to selecting and combining colours that not only look good but also serve your users and your brand.</p>
 
   <h2>The Colour Wheel: Your Foundation</h2>
 
@@ -66,6 +66,107 @@ const keywords = ['colour theory', 'web design', 'colour wheel', 'complementary 
 
   <p>Tools like the ReddTools <a href="/colour-picker/">Colour Picker</a> include a built-in contrast checker to verify your combinations meet WCAG standards. Always test your palette before shipping.</p>
 
+  <h2>Colour in CSS: Modern Techniques</h2>
+
+  <p>CSS has evolved dramatically in its handling of colour. Modern techniques give designers unprecedented control:</p>
+
+  <h3>CSS Custom Properties (Variables)</h3>
+  <p>Define your palette once and reference it throughout your stylesheet. This enables theming: change a single variable value and the entire site updates. For dark mode support, override the variables inside a @media (prefers-color-scheme: dark) block.</p>
+
+  <h3>OKLCH and Modern Colour Spaces</h3>
+  <p>The oklch() colour space, supported in all modern browsers, separates lightness from chroma and hue. Unlike HSL, where a hue shift can unexpectedly change perceived brightness, OKLCH maintains perceptual uniformity. This makes it ideal for generating accessible tints and shades programmatically.</p>
+
+  <h3>color-mix() and Relative Colours</h3>
+  <p>The color-mix() function lets you blend two colours by percentage — perfect for generating hover states or focus rings that relate to your base palette. Relative colour syntax (lighter/darker variants) further simplifies the creation of semantic colour tokens.</p>
+
+  <h2>Dark Mode Palette Design</h2>
+
+  <p>Designing for dark mode is not simply inverting your light palette. Pure white text on pure black creates excessive contrast that causes eye strain. Instead:</p>
+
+  <ul>
+    <li>Use off-black backgrounds (#121212 or #1a1a1a) rather than #000000.</li>
+    <li>Reduce saturation in dark mode — highly saturated colours vibrate against dark backgrounds.</li>
+    <li>Increase contrast for text slightly (target 5:1 rather than 4.5:1) because dark mode reduces perceived sharpness.</li>
+    <li>Test your dark palette at night with screen brightness at minimum — many dark mode failures only appear in low-light conditions.</li>
+  </ul>
+
+  <h2>Design System Colour Architecture</h2>
+
+  <p>Large organisations structure colour into layers that separate design intent from implementation:</p>
+
+  <ul>
+    <li><strong>Primitive tokens:</strong> The raw palette values (blue-500: #0066CC, red-500: #CC0000). These rarely change.</li>
+    <li><strong>Semantic tokens:</strong> Meaningful names tied to usage (primary-default, error-background, success-text). These reference primitive tokens.</li>
+    <li><strong>Component tokens:</strong> Specific to UI elements (button-primary-background, input-border-focus). These reference semantic tokens.</li>
+  </ul>
+
+  <p>This three-layer approach means that a rebrand requires changing only the primitive token mappings. The semantic and component layers remain stable, reducing the risk of broken UI when colours shift.</p>
+
+  <h2>A/B Testing Colour</h2>
+
+  <p>Colour is one of the highest-leverage variables to test because it is cheap to change and directly affects conversion:</p>
+
+  <ul>
+    <li><strong>Button colour:</strong> HubSpot found that red call-to-action buttons outperformed green by 21% in one test — but this varies by context. Red signals urgency; green signals safety. The winning colour depends on what action you want the user to take.</li>
+    <li><strong>Background colour:</strong> A/B tests on checkout pages consistently show that clean white backgrounds reduce cart abandonment compared to textured or coloured backgrounds. The mechanism is reduced cognitive load.</li>
+    <li><strong>Link colour:</strong> Blue underlined links remain the most recognised clickable element. Deviating from this convention (e.g., black links with no underline) consistently reduces click-through rates in usability studies.</li>
+  </ul>
+
+  <p>When testing colour, always test against a clear hypothesis ("We believe red will increase urgency for limited-time offers") rather than randomly swapping colours. This ensures you learn something actionable regardless of the outcome.</p>
+
+  <h2>Colour in Motion and Animation</h2>
+
+  <p>Animated colour transitions require additional consideration:</p>
+
+  <ul>
+    <li><strong>Avoid flashing:</strong> Rapid colour changes between high-contrast pairs can trigger seizures in photosensitive individuals. WCAG recommends no more than three flashes per second.</li>
+    <li><strong>Animate in perceptually uniform spaces:</strong> Interpolating through HSL often produces muddy greys mid-transition. Interpolating through OKLCH or LAB produces smoother, more natural transitions.</li>
+    <li><strong>Loading states:</strong> Subtle colour shifts (e.g., a desaturated primary colour gradually saturating) communicate progress without requiring text labels.</li>
+  </ul>
+
+  <h2>Cultural Colour Differences</h2>
+
+  <p>Colour meaning is not universal. Designing for global audiences requires awareness of cultural associations:</p>
+
+  <table style="width:100%; border-collapse: collapse; margin: 24px 0;">
+    <thead>
+      <tr style="border-bottom: 2px solid #000;">
+        <th style="text-align:left; padding: 8px;">Colour</th>
+        <th style="text-align:left; padding: 8px;">Western Association</th>
+        <th style="text-align:left; padding: 8px;">Eastern Association</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">Red</td>
+        <td style="padding: 8px;">Danger, love, urgency</td>
+        <td style="padding: 8px;">Luck, prosperity, celebration (China); mourning (South Africa)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">White</td>
+        <td style="padding: 8px;">Purity, cleanliness</td>
+        <td style="padding: 8px;">Mourning, death (India, China)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">Green</td>
+        <td style="padding: 8px;">Growth, environmentalism</td>
+        <td style="padding: 8px;">Infidelity (China); sacred (Islam)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">Yellow</td>
+        <td style="padding: 8px;">Caution, optimism</td>
+        <td style="padding: 8px;">Royalty, bravery (China); mourning (Egypt)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">Black</td>
+        <td style="padding: 8px;">Elegance, death</td>
+        <td style="padding: 8px;">Mourning (universal); also power and authority</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>When localising products for international markets, audit your palette against the target culture's associations. A financial app using green as a positive indicator works in the West but may confuse users in China, where red is the colour of prosperity.</p>
+
   <h2>Building Your Palette: A Practical Workflow</h2>
 
   <p>Here is a repeatable process for creating effective colour palettes:</p>
@@ -101,7 +202,7 @@ const keywords = ['colour theory', 'web design', 'colour wheel', 'complementary 
 
   <h2>Conclusion</h2>
 
-  <p>Colour theory is not about rigid rules — it is about understanding relationships so you can break them intentionally. Start with the wheel, learn the harmonies, respect accessibility, and always test in real contexts. The best palettes feel inevitable: every colour belongs exactly where it is.</p>
+  <p>Colour theory is not about rigid rules — it is about understanding relationships so you can break them intentionally. Start with the wheel, learn the harmonies, respect accessibility, master modern CSS techniques, consider cultural context, and always test in real contexts. The best palettes feel inevitable: every colour belongs exactly where it is.</p>
 
   <p>Ready to put theory into practice? Try the <a href="/colour-picker/">ReddTools Colour Picker</a> to extract colours from inspiration images and verify your combinations meet accessibility standards.</p>
 

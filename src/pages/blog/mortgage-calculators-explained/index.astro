@@ -6,14 +6,14 @@ const title = 'Mortgage Calculators Explained: How Lenders Actually Compute Your
 const description = 'Ever wondered how banks calculate your monthly mortgage payment? We break down amortisation schedules, interest compounding, and the formulas lenders use behind the scenes.';
 const canonicalPath = '/blog/mortgage-calculators-explained/';
 const date = '2026-08-20';
-const readTime = '10 min read';
+const readTime = '14 min read';
 const keywords = ['mortgage calculator', 'amortisation', 'mortgage formula', 'home loan', 'interest calculation'];
 ---
 
 <ArticleLayout title={title} description={description} canonicalPath={canonicalPath} date={date} readTime={readTime} keywords={keywords}>
   <p>If you have ever applied for a mortgage, you have seen the numbers: principal, interest rate, loan term, monthly payment. But how does a bank actually turn those inputs into the amount you owe each month? The answer is a formula that has not changed in centuries — and understanding it can save you thousands.</p>
 
-  <p>In this article, we explain the mathematics behind mortgage calculators, how amortisation schedules work, and why small changes in interest rate or term have outsized effects on your total cost.</p>
+  <p>In this article, we explain the mathematics behind mortgage calculators, how amortisation schedules work, the different types of mortgages available, regional differences in lending practices, hidden costs to watch for, and when remortgaging makes financial sense.</p>
 
   <h2>The Mortgage Payment Formula</h2>
 
@@ -42,6 +42,75 @@ const keywords = ['mortgage calculator', 'amortisation', 'mortgage formula', 'ho
 
   <p>Early in the loan, most of your payment goes to interest. Over time, as the balance decreases, more of each payment goes to principal. This is why paying extra principal early in a loan has a dramatic impact on total interest paid.</p>
 
+  <h2>Amortisation Schedule Deep Dive: Year by Year</h2>
+
+  <p>Let us examine how the interest-to-principal ratio shifts over the life of a £300,000 mortgage at 4% for 30 years:</p>
+
+  <table style="width:100%; border-collapse: collapse; margin: 24px 0;">
+    <thead>
+      <tr style="border-bottom: 2px solid #000;">
+        <th style="text-align:left; padding: 8px;">Year</th>
+        <th style="text-align:left; padding: 8px;">Principal Paid</th>
+        <th style="text-align:left; padding: 8px;">Interest Paid</th>
+        <th style="text-align:left; padding: 8px;">Remaining Balance</th>
+        <th style="text-align:left; padding: 8px;">% Principal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">1</td>
+        <td style="padding: 8px;">£5,340</td>
+        <td style="padding: 8px;">£11,847</td>
+        <td style="padding: 8px;">£294,660</td>
+        <td style="padding: 8px;">31%</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">5</td>
+        <td style="padding: 8px;">£6,320</td>
+        <td style="padding: 8px;">£10,867</td>
+        <td style="padding: 8px;">£268,100</td>
+        <td style="padding: 8px;">37%</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">10</td>
+        <td style="padding: 8px;">£7,720</td>
+        <td style="padding: 8px;">£9,467</td>
+        <td style="padding: 8px;">£224,080</td>
+        <td style="padding: 8px;">45%</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">15</td>
+        <td style="padding: 8px;">£9,430</td>
+        <td style="padding: 8px;">£7,757</td>
+        <td style="padding: 8px;">£170,040</td>
+        <td style="padding: 8px;">55%</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">20</td>
+        <td style="padding: 8px;">£11,520</td>
+        <td style="padding: 8px;">£5,667</td>
+        <td style="padding: 8px;">£104,000</td>
+        <td style="padding: 8px;">67%</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">25</td>
+        <td style="padding: 8px;">£14,090</td>
+        <td style="padding: 8px;">£3,097</td>
+        <td style="padding: 8px;">£35,440</td>
+        <td style="padding: 8px;">82%</td>
+      </tr>
+      <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <td style="padding: 8px;">30</td>
+        <td style="padding: 8px;">£16,760</td>
+        <td style="padding: 8px;">£427</td>
+        <td style="padding: 8px;">£0</td>
+        <td style="padding: 8px;">98%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>Notice the dramatic shift: in year 1, only 31% of your payment reduces principal. By year 25, 82% does. This is why early principal payments are so powerful — they compound by reducing the balance that future interest is calculated on.</p>
+
   <h2>Example: £300,000 at 4% for 30 Years</h2>
 
   <p>Plugging into the formula:</p>
@@ -65,6 +134,35 @@ const keywords = ['mortgage calculator', 'amortisation', 'mortgage formula', 'ho
 
   <p>By paying £787 more per month, you save £116,179 in interest and own your home 15 years sooner.</p>
 
+  <h2>Types of Mortgage Calculators</h2>
+
+  <p>Not all mortgage calculators serve the same purpose. Depending on your situation, you may need one of several types:</p>
+
+  <h3>Repayment Mortgage Calculator</h3>
+  <p>The standard calculator described above. Each payment covers interest plus principal, and the loan is fully paid off at the end of the term. This is the most common type in the UK and US for residential mortgages. It provides predictability: your monthly payment never changes (with a fixed rate), and you know exactly when you will be debt-free.</p>
+
+  <h3>Interest-Only Mortgage Calculator</h3>
+  <p>With an interest-only mortgage, your monthly payment covers only the interest — the principal remains unchanged. At the end of the term, you must repay the entire principal in a lump sum. These are common for buy-to-let investors who plan to sell the property or remortgage. The monthly payments are lower, but the risk is higher: if property values fall, you may owe more than the property is worth.</p>
+
+  <h3>Offset Mortgage Calculator</h3>
+  <p>An offset mortgage links your savings account to your mortgage. The balance in your savings "offsets" your mortgage principal for interest calculation purposes. If you have a £300,000 mortgage and £50,000 in savings, you pay interest on only £250,000. Your savings remain accessible, and the effective interest rate on your mortgage is reduced. This is particularly attractive for self-employed people with irregular income who keep large cash reserves.</p>
+
+  <h2>Types of Mortgage Calculators</h2>
+
+  <p>Not all mortgage calculators serve the same purpose. Depending on your situation, you may need one of several types:</p>
+
+  <h3>Repayment Mortgage Calculator</h3>
+  <p>The standard calculator described above. Each payment covers interest plus principal, and the loan is fully paid off at the end of the term. This is the most common type in the UK and US for residential mortgages. It provides predictability: your monthly payment never changes (with a fixed rate), and you know exactly when you will be debt-free.</p>
+
+  <h3>Interest-Only Mortgage Calculator</h3>
+  <p>With an interest-only mortgage, your monthly payment covers only the interest — the principal remains unchanged. At the end of the term, you must repay the entire principal in a lump sum. These are common for buy-to-let investors who plan to sell the property or remortgage. The monthly payments are lower, but the risk is higher: if property values fall, you may owe more than the property is worth.</p>
+
+  <h3>Offset Mortgage Calculator</h3>
+  <p>An offset mortgage links your savings account to your mortgage. The balance in your savings "offsets" your mortgage principal for interest calculation purposes. If you have a £300,000 mortgage and £50,000 in savings, you pay interest on only £250,000. Your savings remain accessible, and the effective interest rate on your mortgage is reduced. This is particularly attractive for self-employed people with irregular income who keep large cash reserves.</p>
+
+  <h3>Buy-to-Let Mortgage Calculator</h3>
+  <p>Buy-to-let mortgages are assessed differently from residential ones. Lenders typically require rental income to cover 125–145% of the mortgage payment, depending on the borrower's tax bracket. The calculator must account for this coverage ratio, potential void periods, maintenance costs, and letting agent fees. Many lenders also impose minimum income requirements (£25,000+ annually) regardless of rental projections.</p>
+
   <h2>Why Interest Rate Matters So Much</h2>
 
   <p>A 1% increase in interest rate has a compounding effect. On the same £300,000 loan:</p>
@@ -86,6 +184,47 @@ const keywords = ['mortgage calculator', 'amortisation', 'mortgage formula', 'ho
 
   <p>Most borrowers prefer fixed-rate for stability, but variable rates can save money in declining-rate environments.</p>
 
+  <h2>Regional Differences: UK vs US Mortgages</h2>
+
+  <p>Mortgage markets vary significantly between countries, affecting how calculators should be used:</p>
+
+  <h3>United Kingdom</h3>
+  <p>UK mortgages typically have shorter fixed-rate periods (2–5 years) compared to the US. After the fixed period, borrowers move to the lender's Standard Variable Rate (SVR), which is usually significantly higher. The UK also has a distinction between repayment and interest-only mortgages that is less common in the US. Stamp duty (a property purchase tax) adds a substantial upfront cost that US buyers do not face. The UK average mortgage term is 25 years, though 30- and 35-year terms are becoming more common.</p>
+
+  <h3>United States</h3>
+  <p>The US famously offers 30-year fixed-rate mortgages — a product virtually unique in the world. This stability comes from government-sponsored enterprises (Fannie Mae, Freddie Mac) that buy and securitise mortgages, transferring risk from banks to investors. US mortgages also include property tax and homeowners insurance in the monthly payment (escrow), making the headline monthly payment higher than the pure mortgage calculation. Closing costs are typically 2–5% of the loan amount.</p>
+
+  <h3>Continental Europe</h3>
+  <p>In Germany and France, fixed-rate mortgages can run for the entire term (20–30 years), but the interest rates are typically higher than UK or US equivalents. German banks also require larger deposits — 20–30% is standard — compared to the UK's 5–10% minimum.</p>
+
+  <h2>Fees and Hidden Costs to Factor In</h2>
+
+  <p>Mortgage calculators show the principal and interest, but the total cost of borrowing includes numerous additional fees:</p>
+
+  <ul>
+    <li><strong>Arrangement fee:</strong> £0–£2,000 charged by the lender to set up the mortgage. Some lenders add this to the loan, which means you pay interest on it.</li>
+    <li><strong>Valuation fee:</strong> £150–£1,500 for a professional assessment of the property's value. More expensive surveys (structural surveys) cost extra but can reveal defects.</li>
+    <li><strong>Legal fees:</strong> £500–£1,500 for conveyancing — the legal transfer of property ownership.</li>
+    <li><strong>Early repayment charges (ERC):</strong> If you repay or remortgage during the fixed-rate period, you may pay 1–5% of the remaining balance. On a £200,000 balance, that is £2,000–£10,000.</li>
+    <li><strong>Exit fee:</strong> £50–£300 charged when you close the mortgage, even at natural term end.</li>
+    <li><strong>Insurance:</strong> Buildings insurance is usually mandatory, and some lenders require life insurance to cover the mortgage balance.</li>
+  </ul>
+
+  <p>When comparing mortgage offers, always look at the total cost over the fixed period, not just the interest rate. A 3.5% mortgage with a £1,500 arrangement fee may cost more than a 3.7% mortgage with no fee.</p>
+
+  <h2>When to Remortgage</h2>
+
+  <p>Remortgaging — switching your mortgage to a new lender or product — can save thousands, but timing matters:</p>
+
+  <ul>
+    <li><strong>End of fixed term:</strong> This is the most common trigger. When your 2-year or 5-year fix ends, your rate jumps to the SVR, which is usually 2–4% above the best available fixed rates. Start shopping 3–6 months before expiry.</li>
+    <li><strong>Interest rates have fallen:</strong> If the Bank of England base rate drops significantly, you may find cheaper deals even mid-term — though ERCs may negate the benefit.</li>
+    <li><strong>Your property value has increased:</strong> A higher loan-to-value (LTV) ratio unlocks better rates. If your £300,000 property is now worth £400,000 and your balance is £200,000, your LTV drops from 67% to 50%, opening up preferential rates.</li>
+    <li><strong>You want to release equity:</strong> Remortgaging for a higher amount lets you borrow against increased property value for renovations, investments, or debt consolidation.</li>
+  </ul>
+
+  <p>The break-even point for remortgaging is typically when you can save more in interest over the remaining term than the arrangement fee, valuation fee, and legal costs combined. A good rule of thumb: if you can reduce your rate by 0.5% or more and your remaining balance exceeds £100,000, remortgaging is usually worthwhile.</p>
+
   <h2>Extra Payments: The Hidden Wealth Builder</h2>
 
   <p>Adding just £100 per month to principal on our 30-year example:</p>
@@ -98,7 +237,7 @@ const keywords = ['mortgage calculator', 'amortisation', 'mortgage formula', 'ho
 
   <h2>Conclusion</h2>
 
-  <p>Mortgage calculators are not magic — they are precise applications of time-value-of-money mathematics. Understanding the formula behind your payment empowers you to compare offers, evaluate term trade-offs, and strategise extra payments.</p>
+  <p>Mortgage calculators are not magic — they are precise applications of time-value-of-money mathematics. Understanding the formula behind your payment empowers you to compare offers, evaluate term trade-offs, anticipate hidden costs, and strategise extra payments and remortgaging.</p>
 
   <p>Calculate your own mortgage payments with the <a href="/calculator/mortgage/">ReddTools Mortgage Calculator</a> — it shows amortisation schedules, total interest, and the effect of extra payments instantly.</p>
 
