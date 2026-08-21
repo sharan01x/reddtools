@@ -49,7 +49,7 @@ const related = getRelatedTools(toolSlugs);
 
 <div class="tool-cards" slot="related-tools">
   {related.map(tool => (
-    <a href={`/${tool.slug}`} class="tool-card">
+    <a href={`/${tool.slug}/`} class="tool-card">
       <div set:html={tool.icon} />
       <h4>{tool.name}</h4>
       <p>{tool.description}</p>

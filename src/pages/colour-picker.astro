@@ -6,7 +6,7 @@ import SeoContent from '../components/SeoContent.astro';
 const tool = getTool('colour-picker')!;
 const title = tool.seoTitle || tool.name;
 const description = tool.seoDescription || tool.description;
-const canonicalPath = `/${tool.slug}`;
+const canonicalPath = `/${tool.slug}/`;
 const keywords = tool.keywords;
 
 const jsonLd = {
@@ -27,9 +27,9 @@ const breadcrumbs = [
 
 // Contextual related tools
 const relatedTools = [
-  { name: 'Case Converter', href: '/case-converter', description: 'Convert text between uppercase, lowercase, title case, camelCase and more.', icon: toolIconSvg['case-converter'] },
-  { name: 'Timer & Pomodoro', href: '/timer', description: 'Countdown timer, stopwatch, and pomodoro timer with tab-title countdown.', icon: toolIconSvg['timer'] },
-  { name: 'Word Counter', href: '/word-counter', description: 'Count words, characters, sentences, and reading time in real time.', icon: toolIconSvg['word-counter'] },
+  { name: 'Case Converter', href: '/case-converter/', description: 'Convert text between uppercase, lowercase, title case, camelCase and more.', icon: toolIconSvg['case-converter'] },
+  { name: 'Timer & Pomodoro', href: '/timer/', description: 'Countdown timer, stopwatch, and pomodoro timer with tab-title countdown.', icon: toolIconSvg['timer'] },
+  { name: 'Word Counter', href: '/word-counter/', description: 'Count words, characters, sentences, and reading time in real time.', icon: toolIconSvg['word-counter'] },
 ];
 ---
 

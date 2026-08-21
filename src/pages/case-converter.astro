@@ -6,7 +6,7 @@ import SeoContent from '../components/SeoContent.astro';
 const tool = getTool('case-converter')!;
 const title = tool.seoTitle || tool.name;
 const description = tool.seoDescription || tool.description;
-const canonicalPath = `/${tool.slug}`;
+const canonicalPath = `/${tool.slug}/`;
 const keywords = tool.keywords;
 
 const jsonLd = {
@@ -27,9 +27,9 @@ const breadcrumbs = [
 
 // Contextual related tools
 const relatedTools = [
-  { name: 'Word Counter', href: '/word-counter', description: 'Count words, characters, sentences, and reading time in real time.', icon: toolIconSvg['word-counter'] },
-  { name: 'Timer & Pomodoro', href: '/timer', description: 'Countdown timer, stopwatch, and pomodoro timer with tab-title countdown.', icon: toolIconSvg['timer'] },
-  { name: 'Image Colour Picker', href: '/colour-picker', description: 'Drop an image and pick exact pixel colours. Get HEX, RGB, and HSL values instantly.', icon: toolIconSvg['colour-picker'] },
+  { name: 'Word Counter', href: '/word-counter/', description: 'Count words, characters, sentences, and reading time in real time.', icon: toolIconSvg['word-counter'] },
+  { name: 'Timer & Pomodoro', href: '/timer/', description: 'Countdown timer, stopwatch, and pomodoro timer with tab-title countdown.', icon: toolIconSvg['timer'] },
+  { name: 'Image Colour Picker', href: '/colour-picker/', description: 'Drop an image and pick exact pixel colours. Get HEX, RGB, and HSL values instantly.', icon: toolIconSvg['colour-picker'] },
 ];
 ---
 

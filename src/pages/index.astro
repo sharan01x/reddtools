@@ -45,7 +45,7 @@ const toolIcons: Record<string, string> = {
   <div class="section-label">Tools</div>
   <div class="tools-grid">
     {tools.map((tool) => {
-      const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}` : `/${tool.slug}`;
+      const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}/` : `/${tool.slug}/`;
       return (
       <a href={href} class="tool-card">
         <div class="card-icon-wrap" set:html={toolIcons[tool.slug] || ''} />
@@ -81,10 +81,10 @@ const toolIcons: Record<string, string> = {
         <ul class="quick-link-list">
           {tool.modes && tool.modes.length > 0 ? (
             tool.modes.map((mode) => (
-              <li><a href={`/${tool.slug}/${mode.slug}`}>{mode.name}</a></li>
+              <li><a href={`/${tool.slug}/${mode.slug}/`}>{mode.name}</a></li>
             ))
           ) : (
-            <li><a href={`/${tool.slug}`}>{tool.name}</a></li>
+            <li><a href={`/${tool.slug}/`}>{tool.name}</a></li>
           )}
         </ul>
       </div>
@@ -92,35 +92,35 @@ const toolIcons: Record<string, string> = {
     <div class="quick-link-group">
       <h3 class="quick-link-group-title">Unit Conversion</h3>
       <ul class="quick-link-list">
-        <li><a href="/kg-to-lbs">KG to LBS</a></li>
-        <li><a href="/lbs-to-kg">LBS to KG</a></li>
-        <li><a href="/pounds-to-kg">Pounds to KG</a></li>
-        <li><a href="/kg-to-pounds">KG to Pounds</a></li>
-        <li><a href="/miles-to-km">Miles to KM</a></li>
-        <li><a href="/km-to-miles">KM to Miles</a></li>
-        <li><a href="/feet-to-cm">Feet to CM</a></li>
-        <li><a href="/cm-to-feet">CM to Feet</a></li>
-        <li><a href="/inches-to-cm">Inches to CM</a></li>
-        <li><a href="/metres-to-feet">Metres to Feet</a></li>
-        <li><a href="/celsius-to-fahrenheit">Celsius to Fahrenheit</a></li>
-        <li><a href="/fahrenheit-to-celsius">Fahrenheit to Celsius</a></li>
-        <li><a href="/litres-to-gallons">Litres to Gallons</a></li>
-        <li><a href="/oz-to-grams">Ounces to Grams</a></li>
+        <li><a href="/kg-to-lbs/">KG to LBS</a></li>
+        <li><a href="/lbs-to-kg/">LBS to KG</a></li>
+        <li><a href="/pounds-to-kg/">Pounds to KG</a></li>
+        <li><a href="/kg-to-pounds/">KG to Pounds</a></li>
+        <li><a href="/miles-to-km/">Miles to KM</a></li>
+        <li><a href="/km-to-miles/">KM to Miles</a></li>
+        <li><a href="/feet-to-cm/">Feet to CM</a></li>
+        <li><a href="/cm-to-feet/">CM to Feet</a></li>
+        <li><a href="/inches-to-cm/">Inches to CM</a></li>
+        <li><a href="/metres-to-feet/">Metres to Feet</a></li>
+        <li><a href="/celsius-to-fahrenheit/">Celsius to Fahrenheit</a></li>
+        <li><a href="/fahrenheit-to-celsius/">Fahrenheit to Celsius</a></li>
+        <li><a href="/litres-to-gallons/">Litres to Gallons</a></li>
+        <li><a href="/oz-to-grams/">Ounces to Grams</a></li>
       </ul>
     </div>
   </div>
 
   <div class="section-label">Resources</div>
   <div class="resources-links">
-    <a href="/blog" class="resource-card">
+    <a href="/blog/" class="resource-card">
       <h3>Blog & Guides</h3>
       <p>In-depth articles on colour theory, unit conversion, mortgage calculations, and more.</p>
     </a>
-    <a href="/about" class="resource-card">
+    <a href="/about/" class="resource-card">
       <h3>About ReddTools</h3>
       <p>Learn about our mission, the team behind ReddTools, and how we keep tools free.</p>
     </a>
-    <a href="/contact" class="resource-card">
+    <a href="/contact/" class="resource-card">
       <h3>Contact Us</h3>
       <p>Submit tool suggestions, report bugs, or discuss partnerships.</p>
     </a>

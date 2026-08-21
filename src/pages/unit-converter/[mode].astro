@@ -31,7 +31,7 @@ const unitData: Record<string, string[]> = {
 const units = unitData[currentMode] || [];
 const defaultUnit = units[0];
 
-const canonicalPath = `/unit-converter/${mode.slug}`;
+const canonicalPath = `/unit-converter/${mode.slug}/`;
 const keywords = mode.keywords;
 
 const jsonLd = {
@@ -51,7 +51,7 @@ const jsonLd = {
 
 const breadcrumbs = [
   { name: 'Home', href: '/' },
-  { name: 'Unit Converter', href: '/unit-converter/length' },
+  { name: 'Unit Converter', href: '/unit-converter/length/' },
   { name: mode.name },
 ];
 
@@ -59,13 +59,13 @@ const breadcrumbs = [
 const relatedTools = [
   ...modes.filter(m => m.slug !== mode.slug).slice(0, 3).map(m => ({
     name: m.name,
-    href: `/unit-converter/${m.slug}`,
+    href: `/unit-converter/${m.slug}/`,
     description: m.description,
     icon: toolIconSvg['unit-converter'],
   })),
   ...tools.filter(t => t.slug !== 'unit-converter').slice(0, 2).map(t => ({
     name: t.name,
-    href: t.modes?.length ? `/${t.slug}/${t.modes[0].slug}` : `/${t.slug}`,
+    href: t.modes?.length ? `/${t.slug}/${t.modes[0].slug}/` : `/${t.slug}/`,
     description: t.description,
     icon: toolIconSvg[t.slug],
   })),
@@ -77,7 +77,7 @@ const relatedTools = [
     <div class="calc-tabs-inner">
       {modes.map((m) => (
         <a
-          href={`/unit-converter/${m.slug}`}
+          href={`/unit-converter/${m.slug}/`}
           class:list={['calc-tab-pill', m.slug === mode.slug ? 'active' : '']}
         >
           {m.name.replace(/\s*Converter$/i, '')}
@@ -225,7 +225,7 @@ const relatedTools = [
 
   const modeSelect = document.getElementById('uc-mode-select') as HTMLSelectElement | null;
   if (modeSelect) modeSelect.addEventListener('change', () => {
-    window.location.href = `/unit-converter/${modeSelect.value}`;
+    window.location.href = `/unit-converter/${modeSelect.value}/`;
   });
 
   input.value = '1';

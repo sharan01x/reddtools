@@ -17,7 +17,7 @@ const mode = modes.find(m => m.slug === currentMode)!;
 
 const title = mode.seoTitle || mode.name;
 const description = mode.seoDescription || mode.description;
-const canonicalPath = `/calculator/${mode.slug}`;
+const canonicalPath = `/calculator/${mode.slug}/`;
 const keywords = mode.keywords;
 
 const jsonLd = {
@@ -37,7 +37,7 @@ const jsonLd = {
 
 const breadcrumbs = [
   { name: 'Home', href: '/' },
-  { name: 'Calculator', href: '/calculator/mortgage' },
+  { name: 'Calculator', href: '/calculator/mortgage/' },
   { name: mode.name },
 ];
 
@@ -45,13 +45,13 @@ const breadcrumbs = [
 const relatedTools = [
   ...modes.filter(m => m.slug !== mode.slug).slice(0, 3).map(m => ({
     name: m.name,
-    href: `/calculator/${m.slug}`,
+    href: `/calculator/${m.slug}/`,
     description: m.description,
     icon: toolIconSvg.calculator,
   })),
   ...tools.filter(t => t.slug !== 'calculator').slice(0, 2).map(t => ({
     name: t.name,
-    href: t.modes?.length ? `/${t.slug}/${t.modes[0].slug}` : `/${t.slug}`,
+    href: t.modes?.length ? `/${t.slug}/${t.modes[0].slug}/` : `/${t.slug}/`,
     description: t.description,
     icon: toolIconSvg[t.slug],
   })),
@@ -64,7 +64,7 @@ const relatedTools = [
     <div class="calc-tabs-inner">
       {modes.map((m) => (
         <a
-          href={`/calculator/${m.slug}`}
+          href={`/calculator/${m.slug}/`}
           class:list={['calc-tab-pill', m.slug === mode.slug ? 'active' : '']}
         >
           {m.name.replace(/\s*Calculator$/i, '')}
@@ -498,7 +498,7 @@ const relatedTools = [
   // Mobile mode dropdown
   const modeSelect = document.getElementById('mode-select') as HTMLSelectElement | null;
   if (modeSelect) modeSelect.addEventListener('change', () => {
-    window.location.href = `/calculator/${modeSelect.value}`;
+    window.location.href = `/calculator/${modeSelect.value}/`;
   });
 </script>
 

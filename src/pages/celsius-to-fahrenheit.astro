@@ -5,7 +5,7 @@ import LongTailConverter from '../components/LongTailConverter.astro';
 
 const title = 'Celsius to Fahrenheit Converter — °C to °F';
 const description = 'Convert Celsius to Fahrenheit instantly. Free °C to °F calculator — the formula is °F = (°C × 9/5) + 32. Enter any temperature to see the exact Fahrenheit value.';
-const canonicalPath = '/celsius-to-fahrenheit';
+const canonicalPath = '/celsius-to-fahrenheit/';
 const keywords = ['celsius to fahrenheit', 'c to f', 'celsius to f', '°c to °f', 'temperature converter'];
 
 const jsonLd = {
@@ -13,7 +13,7 @@ const jsonLd = {
   '@type': 'SoftwareApplication',
   name: 'Redd Tools Celsius to Fahrenheit Converter',
   description,
-  url: 'https://reddtools.com/celsius-to-fahrenheit',
+  url: 'https://reddtools.com/celsius-to-fahrenheit/',
   applicationCategory: 'UtilitiesApplication',
   operatingSystem: 'Any',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -21,15 +21,15 @@ const jsonLd = {
 
 const breadcrumbs = [
   { name: 'Home', href: '/' },
-  { name: 'Unit Converter', href: '/unit-converter/temperature' },
+  { name: 'Unit Converter', href: '/unit-converter/temperature/' },
   { name: 'Celsius to Fahrenheit' },
 ];
 
 const relatedTools = [
-  { name: 'Temperature Converter', href: '/unit-converter/temperature', description: 'Convert between Celsius, Fahrenheit and Kelvin.', icon: toolIconSvg['unit-converter'] },
-  { name: 'Fahrenheit to Celsius', href: '/fahrenheit-to-celsius', description: 'Convert °F to °C instantly.', icon: toolIconSvg['unit-converter'] },
-  { name: 'kg to lbs Converter', href: '/kg-to-lbs', description: 'Convert kilograms to pounds instantly.', icon: toolIconSvg['unit-converter'] },
-  { name: 'miles to km Converter', href: '/miles-to-km', description: 'Convert miles to kilometres instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Temperature Converter', href: '/unit-converter/temperature/', description: 'Convert between Celsius, Fahrenheit and Kelvin.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Fahrenheit to Celsius', href: '/fahrenheit-to-celsius/', description: 'Convert °F to °C instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'kg to lbs Converter', href: '/kg-to-lbs/', description: 'Convert kilograms to pounds instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'miles to km Converter', href: '/miles-to-km/', description: 'Convert miles to kilometres instantly.', icon: toolIconSvg['unit-converter'] },
 ];
 ---
 

@@ -5,7 +5,7 @@ import LongTailConverter from '../components/LongTailConverter.astro';
 
 const title = 'Pounds to KG Converter — Pounds to Kilograms';
 const description = 'Convert pounds to kilograms instantly. Free lbs to kg calculator — 1 pound = 0.453592 kg. Enter any weight to see the exact kilogram value.';
-const canonicalPath = '/pounds-to-kg';
+const canonicalPath = '/pounds-to-kg/';
 const keywords = ['pounds to kg', 'lbs to kg', 'pounds to kilograms', 'lb to kg', 'weight converter'];
 
 const jsonLd = {
@@ -13,7 +13,7 @@ const jsonLd = {
   '@type': 'SoftwareApplication',
   name: 'Redd Tools Pounds to KG Converter',
   description,
-  url: 'https://reddtools.com/pounds-to-kg',
+  url: 'https://reddtools.com/pounds-to-kg/',
   applicationCategory: 'UtilitiesApplication',
   operatingSystem: 'Any',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -21,14 +21,14 @@ const jsonLd = {
 
 const breadcrumbs = [
   { name: 'Home', href: '/' },
-  { name: 'Unit Converter', href: '/unit-converter/weight' },
+  { name: 'Unit Converter', href: '/unit-converter/weight/' },
   { name: 'Pounds to KG' },
 ];
 
 const relatedTools = [
-  { name: 'Weight Converter', href: '/unit-converter/weight', description: 'Convert between pounds, kg, grams, ounces, tonnes, stones and more.', icon: toolIconSvg['unit-converter'] },
-  { name: 'KG to lbs Converter', href: '/kg-to-lbs', description: 'Convert kilograms to pounds instantly.', icon: toolIconSvg['unit-converter'] },
-  { name: 'Celsius to Fahrenheit', href: '/celsius-to-fahrenheit', description: 'Convert °C to °F instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Weight Converter', href: '/unit-converter/weight/', description: 'Convert between pounds, kg, grams, ounces, tonnes, stones and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'KG to lbs Converter', href: '/kg-to-lbs/', description: 'Convert kilograms to pounds instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Celsius to Fahrenheit', href: '/celsius-to-fahrenheit/', description: 'Convert °C to °F instantly.', icon: toolIconSvg['unit-converter'] },
 ];
 ---
 

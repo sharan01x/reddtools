@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 
 const title = 'ReddTools Blog — Guides, Tips & How-Tos';
 const description = 'In-depth guides and tutorials on colour theory, unit conversion, mortgage calculations, productivity techniques, and more. Free articles from the ReddTools team.';
-const canonicalPath = '/blog';
+const canonicalPath = '/blog/';
 
 const articles = [
   {
@@ -68,7 +68,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
   name: 'ReddTools Blog',
-  url: 'https://reddtools.com/blog',
+  url: 'https://reddtools.com/blog/',
   description: 'Guides and tutorials on colour theory, unit conversion, calculations, and productivity.',
 };
 ---
@@ -82,7 +82,7 @@ const jsonLd = {
 
     <div class="articles-grid">
       {articles.map((article) => (
-        <a href={`/blog/${article.slug}`} class="article-card">
+        <a href={`/blog/${article.slug}/`} class="article-card">
           <div class="article-meta">
             <span class="article-date">{article.date}</span>
             <span class="article-separator">·</span>

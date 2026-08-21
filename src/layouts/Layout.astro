@@ -100,7 +100,7 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
       <div class="nav-links">
         {tools.map((tool) => {
-          const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}` : `/${tool.slug}`;
+          const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}/` : `/${tool.slug}/`;
           return (
           <a
             href={href}
@@ -118,7 +118,7 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     </nav>
     <div class="mobile-menu" id="mobile-menu">
       {tools.map((tool) => {
-        const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}` : `/${tool.slug}`;
+        const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}/` : `/${tool.slug}/`;
         return (
         <a
           href={href}
@@ -181,7 +181,7 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
               .filter(t => t.slug !== activeTool)
               .slice(0, 6)
               .map((tool) => {
-                const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}` : `/${tool.slug}`;
+                const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}/` : `/${tool.slug}/`;
                 return (
                 <a href={href} class="promo-card">
                   <div class="promo-icon" set:html={toolIconSvg[tool.slug] || ''} />
@@ -201,10 +201,10 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       <div class="footer-brand">ReddTools</div>
       <div class="footer-rule"></div>
       <div class="footer-links">
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-        <a href="/privacy">Privacy</a>
-        <a href="/terms">Terms</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
       </div>
       <div class="footer-caption">Built by Redd Group</div>
     </div>

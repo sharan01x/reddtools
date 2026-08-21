@@ -5,7 +5,7 @@ import LongTailConverter from '../components/LongTailConverter.astro';
 
 const title = 'Ounces to Grams Converter — oz to g';
 const description = 'Convert ounces to grams instantly. Free oz to grams calculator — 1 oz = 28.3495 g. Enter any weight to see the exact grams conversion.';
-const canonicalPath = '/oz-to-grams';
+const canonicalPath = '/oz-to-grams/';
 const keywords = ['oz to grams', 'ounces to grams', 'oz to g', 'ounce to gram', 'weight converter'];
 
 const jsonLd = {
@@ -13,7 +13,7 @@ const jsonLd = {
   '@type': 'SoftwareApplication',
   name: 'Redd Tools Ounces to Grams Converter',
   description,
-  url: 'https://reddtools.com/oz-to-grams',
+  url: 'https://reddtools.com/oz-to-grams/',
   applicationCategory: 'UtilitiesApplication',
   operatingSystem: 'Any',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -21,15 +21,15 @@ const jsonLd = {
 
 const breadcrumbs = [
   { name: 'Home', href: '/' },
-  { name: 'Unit Converter', href: '/unit-converter/weight' },
+  { name: 'Unit Converter', href: '/unit-converter/weight/' },
   { name: 'oz to grams' },
 ];
 
 const relatedTools = [
-  { name: 'Weight Converter', href: '/unit-converter/weight', description: 'Convert between ounces, grams, kg, lbs, stones and more.', icon: toolIconSvg['unit-converter'] },
-  { name: 'KG to LBS Converter', href: '/kg-to-lbs', description: 'Convert kilograms to pounds instantly.', icon: toolIconSvg['unit-converter'] },
-  { name: 'Pounds to KG Converter', href: '/pounds-to-kg', description: 'Convert pounds to kilograms instantly.', icon: toolIconSvg['unit-converter'] },
-  { name: 'Miles to KM Converter', href: '/miles-to-km', description: 'Convert miles to kilometres instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Weight Converter', href: '/unit-converter/weight/', description: 'Convert between ounces, grams, kg, lbs, stones and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'KG to LBS Converter', href: '/kg-to-lbs/', description: 'Convert kilograms to pounds instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Pounds to KG Converter', href: '/pounds-to-kg/', description: 'Convert pounds to kilograms instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Miles to KM Converter', href: '/miles-to-km/', description: 'Convert miles to kilometres instantly.', icon: toolIconSvg['unit-converter'] },
 ];
 ---
 

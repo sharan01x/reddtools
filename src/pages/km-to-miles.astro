@@ -5,7 +5,7 @@ import LongTailConverter from '../components/LongTailConverter.astro';
 
 const title = 'KM to Miles Converter — Kilometres to Miles';
 const description = 'Convert kilometres to miles instantly. Free km to miles calculator — 1 km = 0.621371 miles. Enter any distance to see the exact mile value.';
-const canonicalPath = '/km-to-miles';
+const canonicalPath = '/km-to-miles/';
 const keywords = ['km to miles', 'kilometers to miles', 'km to mi', 'kilometres to miles', 'distance converter'];
 
 const jsonLd = {
@@ -13,7 +13,7 @@ const jsonLd = {
   '@type': 'SoftwareApplication',
   name: 'Redd Tools KM to Miles Converter',
   description,
-  url: 'https://reddtools.com/km-to-miles',
+  url: 'https://reddtools.com/km-to-miles/',
   applicationCategory: 'UtilitiesApplication',
   operatingSystem: 'Any',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -21,14 +21,14 @@ const jsonLd = {
 
 const breadcrumbs = [
   { name: 'Home', href: '/' },
-  { name: 'Unit Converter', href: '/unit-converter/length' },
+  { name: 'Unit Converter', href: '/unit-converter/length/' },
   { name: 'KM to Miles' },
 ];
 
 const relatedTools = [
-  { name: 'Length Converter', href: '/unit-converter/length', description: 'Convert between km, miles, metres, feet, inches and more.', icon: toolIconSvg['unit-converter'] },
-  { name: 'Miles to KM Converter', href: '/miles-to-km', description: 'Convert miles to kilometres instantly.', icon: toolIconSvg['unit-converter'] },
-  { name: 'Feet to CM Converter', href: '/feet-to-cm', description: 'Convert feet to centimetres instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Length Converter', href: '/unit-converter/length/', description: 'Convert between km, miles, metres, feet, inches and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Miles to KM Converter', href: '/miles-to-km/', description: 'Convert miles to kilometres instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Feet to CM Converter', href: '/feet-to-cm/', description: 'Convert feet to centimetres instantly.', icon: toolIconSvg['unit-converter'] },
 ];
 ---
 
