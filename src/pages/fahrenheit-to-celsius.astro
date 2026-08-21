@@ -38,12 +38,22 @@ const relatedTools = [
     fromUnit="Fahrenheit"
     toUnit="Celsius"
     defaultValue={68}
-    seoIntro={`Convert Fahrenheit to Celsius with this free online tool. The °F to °C conversion is essential for weather forecasts, cooking, science, and international travel — the US uses Fahrenheit while most of the world uses Celsius. The formula is: °C = (°F − 32) × 5/9. For example, 68°F = 20°C (room temperature), 32°F = 0°C (water freezes), and 212°F = 100°C (water boils). A handy rule of thumb: subtract 30 from the Fahrenheit value and halve it for a close mental estimate — 86°F ≈ 28°C (actual: 30°C). This calculator does the exact conversion instantly for any temperature.`}
+    seoIntro={`Converting Fahrenheit to Celsius is essential for anyone who lives in or travels to a country that uses Celsius, or who reads American recipes and forecasts elsewhere. The United States uses Fahrenheit while the rest of the world uses Celsius, so this conversion comes up constantly — in weather, cooking, and everyday temperature discussion. This free tool does it instantly with full precision.
+
+The formula is: °C = (°F − 32) × 5/9. You subtract 32 from the Fahrenheit value, then multiply by 5/9 (or divide by 1.8). So 68°F becomes (68 − 32) × 5/9 = 20°C, 32°F becomes 0°C (the freezing point of water), and 212°F becomes 100°C (the boiling point of water at sea level). As with the reverse conversion, freezing and boiling are the two fixed anchors you can always rely on to sanity-check a result.
+
+Useful everyday anchors: 32°F = 0°C (freezing), 50°F = 10°C (cool day), 68°F = 20°C (mild room temperature), 77°F = 25°C (warm and pleasant), 86°F = 30°C (hot), 98.6°F = 37°C (human body temperature), and 104°F = 40°C (very hot). Memorising a few of these lets you estimate most everyday temperatures without any calculation.
+
+For a rough mental estimate, subtract 30 from the Fahrenheit value and halve the result. So 86°F → (86 − 30) / 2 = 28°C, very close to the exact 30°C. This is accurate enough for deciding what to wear or whether the weather is pleasant, but for cooking, medicine, or science always use the exact formula or this converter.
+
+Cooking is where the °F to °C conversion really matters for accuracy. An American oven set to 350°F is 177°C for everyone else, and a 400°F oven is 204°C. Misconverting an oven temperature can ruin a bake — burning the outside while leaving the middle raw. A fever threshold is also worth knowing: 100.4°F equals 38°C. Enter any temperature below to see the exact Celsius equivalent instantly.`}
     faqs={[
       { q: 'How do I convert Fahrenheit to Celsius?', a: '°C = (°F − 32) × 5/9. For example, 68°F = (68 − 32) × 5/9 = 20°C. Subtract 32, then multiply by 5/9 (or divide by 1.8).' },
       { q: 'What is 0 degrees Fahrenheit in Celsius?', a: '0°F = -17.78°C. This is well below freezing. The two scales cross at -40° (-40°F = -40°C).' },
       { q: 'What is 100 degrees Fahrenheit in Celsius?', a: '100°F = 37.78°C. This is roughly normal human body temperature (98.6°F = 37°C).' },
       { q: 'How do I estimate °C from °F quickly?', a: 'Subtract 30 and halve the result. So 86°F → (86 − 30) / 2 = 28°C. The exact answer is 30°C — close enough for everyday use.' },
+      { q: 'What is a fever temperature in Celsius?', a: 'Normal body temperature is 98.6°F = 37°C. A fever is generally considered 100.4°F = 38°C or above. These are the thresholds used by medical professionals.' },
+      { q: 'How do I convert an oven temperature?', a: 'Common oven temperatures: 325°F = 163°C, 350°F = 177°C, 375°F = 191°C, 400°F = 204°C, 425°F = 218°C. Use the exact formula for precise baking.' },
     ]}
   />
 </Layout>

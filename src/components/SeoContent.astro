@@ -15,149 +15,510 @@ interface Props {
 
 const { toolSlug, modeSlug } = Astro.props;
 
-// Content registry — each entry is SEO text for a specific page
-const contentMap: Record<string, { intro: string; faqs: { q: string; a: string }[]; howTo?: string[] }> = {
+// Content registry — each entry is SEO text for a specific page.
+// Each entry provides 500+ words of genuinely useful, unique content so the
+// site satisfies Google's "substantial value" requirement for AdSense.
+interface SeoEntry {
+  intro: string;
+  howTo?: string[];
+  useCases?: string[];
+  examples?: { title: string; body: string }[];
+  faqs: { q: string; a: string }[];
+}
+const contentMap: Record<string, SeoEntry> = {
   // Calculator modes
   'calculator/mortgage': {
-    intro: `Use this free mortgage calculator to estimate your monthly mortgage payments. Enter the loan amount, interest rate, and loan term to see your monthly payment, total interest paid, and full amortization breakdown. Works for home loans, property purchases, and refinancing.`,
+    intro: `This free mortgage calculator helps you estimate your monthly mortgage payments, total interest paid, and understand how a home loan amortises over its full term. Whether you are buying a first home, refinancing an existing mortgage, or comparing property financing options, knowing your likely monthly commitment before you apply is essential.
+
+The calculation uses the standard amortisation formula. Your lender charges interest on the outstanding balance each month, and your fixed monthly payment is split between paying that interest and reducing the principal. In the early years of a 30-year mortgage the vast majority of each payment goes to interest — often 70-80% — while only a small slice reduces what you actually owe. As the balance shrinks, the split flips and progressively more of each payment goes toward the principal. This is why mortgages feel "front-loaded" and why overpaying early can save you a great deal of money in total interest over the life of the loan.
+
+To use the calculator, enter the total amount you plan to borrow (the loan amount, excluding your deposit), your expected annual interest rate, and the loan term in years. The calculator instantly returns your monthly payment, the total you will repay, and the total interest paid. Play with the numbers — for example, reducing a 30-year mortgage to a 15-year term usually raises the monthly payment but can slash total interest by well over half.
+
+Mortgage rates vary by country, lender, credit score, and deposit size. In the UK rates are often fixed for 2-5 years then move to a variable or tracker rate; in the US 30-year and 15-year fixed-rate mortgages are standard. Because interest compounds monthly, even a difference of 0.5 percentage points can mean tens of thousands of pounds or dollars in interest over a 30-year term. Use this calculator to stress-test different rates and terms before you talk to a lender, and always check whether the quoted rate is fixed, variable, or an introductory teaser rate.`,
+    howTo: [
+      'Enter the total loan amount you wish to borrow — the property price minus your deposit. For a £300,000 home with a 10% deposit, that would be £270,000.',
+      'Enter your annual interest rate as a percentage. If your lender quotes 3.5%, enter 3.5. If they quote an APR that includes fees, you can use that figure to see the true cost.',
+      'Enter the loan term in years — typically 25 or 30 years, though 15 and 20-year terms are common.',
+      'Click the Calculate button to see your estimated monthly payment, the total amount you will repay over the term, and the total interest paid.',
+      'Adjust the deposit or term to see how it changes your payment, then compare scenarios side by side before discussing options with a lender.',
+    ],
+    useCases: [
+      'First-time buyers working out whether they can afford a property',
+      'Existing homeowners comparing a 15-year vs 30-year refinance',
+      'Buy-to-let investors stress-testing rental income against mortgage costs',
+      'Anyone deciding whether to overpay or extend their mortgage term',
+    ],
     faqs: [
       { q: 'How is mortgage interest calculated?', a: 'Mortgage interest is calculated using an amortisation formula. Each monthly payment covers the interest accrued that month plus a portion of the principal. Early payments are mostly interest; later payments are mostly principal.' },
       { q: 'What is the difference between APR and interest rate?', a: 'The interest rate is the cost of borrowing the principal. APR (Annual Percentage Rate) includes the interest rate plus other fees (origination, discount points, closing costs), giving you the true cost of the loan.' },
       { q: 'How much deposit do I need for a mortgage?', a: 'Most lenders require a minimum 5-20% deposit. A larger deposit (20%+) typically gets you better interest rates and avoids private mortgage insurance (PMI) in some markets.' },
+      { q: 'Should I choose a 15 or 30-year mortgage?', a: 'A 15-year mortgage has higher monthly payments but dramatically lower total interest. A 30-year mortgage has lower monthly payments but you pay significantly more interest over time. Use this calculator to compare the totals before deciding.' },
+      { q: 'How does overpaying affect my mortgage?', a: 'Overpaying reduces the principal directly, which means less interest accrues each month. Even modest overpayments in the first years can shorten the term by years and save thousands in interest.' },
+      { q: 'Can I use this for a remortgage or refinance?', a: 'Yes. Enter your outstanding balance, the new rate, and the remaining term to see how refinancing at a lower rate changes your monthly payment and total interest.' },
     ],
   },
   'calculator/compound-interest': {
-    intro: `Calculate compound interest on your savings or investments. Enter your principal amount, annual interest rate, compounding frequency, and time period to see how your money grows over time. Compound interest is the most powerful force in long-term investing — Einstein reportedly called it the eighth wonder of the world.`,
+    intro: `This compound interest calculator shows how money grows over time when the interest you earn is reinvested and itself earns interest. Compound interest is often called the eighth wonder of the world because, given enough time, it turns modest regular savings into substantial wealth — and it works against you just as hard when you carry a high-interest balance on a loan or credit card.
+
+The underlying maths is straightforward. Start with a principal, earn interest on it, and then earn interest on that interest. The more often interest compounds — daily, monthly, quarterly, annually — the faster your balance grows, though the difference is modest for short periods and low rates. Over decades it is the single most important factor in long-term investment growth, which is why financial advisers emphasise starting early: the earlier you start, the longer your money compounds and the more dramatic the snowball effect.
+
+To use this calculator, enter the amount you are starting with (the principal), your expected annual rate of return, how long you will hold the investment in years, and how often the interest compounds each year. The result shows your final balance and how much of that is pure interest rather than your original principal. For example, £10,000 invested at 5% compounding monthly over 20 years grows to roughly £27,126, of which more than £17,000 is interest earned on interest.
+
+Compound interest applies just as powerfully to debt. A credit card balance of £5,000 at 20% interest compounding daily can double in under four years if you only make minimum payments. Use this calculator both ways — to see how your savings can grow, and to understand how much costly debt can grow against you. The earlier you start, the stronger the effect, so small regular contributions made early beat larger contributions made later every time.`,
+    howTo: [
+      'Enter the principal — the amount you are investing or borrowing today.',
+      'Enter the annual interest rate as a percentage. For a savings account paying 4%, enter 4.',
+      'Enter the number of years you will hold the investment or carry the debt.',
+      'Choose how often the interest compounds — daily, monthly, quarterly, semi-annually, or annually. Daily compounds the fastest.',
+      'Press Calculate to see your final balance and the total interest earned.',
+    ],
+    useCases: [
+      'Estimating how a retirement or ISA account will grow over decades',
+      'Comparing savings accounts and investment products with different compounding frequencies',
+      'Understanding how fast high-interest credit card debt compounds against you',
+      'Modelling the effect of starting to invest 5 years earlier versus later',
+    ],
     faqs: [
       { q: 'What is compound interest?', a: 'Compound interest is interest earned on both the initial principal and the accumulated interest from previous periods. Unlike simple interest, it grows exponentially over time.' },
       { q: 'How often should interest compound?', a: 'More frequent compounding yields slightly more returns. Daily compounding earns marginally more than monthly, which earns more than annual. The difference is small at low rates but significant at higher rates over long periods.' },
       { q: 'What is the compound interest formula?', a: 'A = P(1 + r/n)^(nt), where A is the final amount, P is the principal, r is the annual rate, n is compounding frequency, and t is time in years.' },
+      { q: 'What is the rule of 72?', a: 'The rule of 72 is a quick mental shortcut: divide 72 by your annual rate of return to estimate how many years it takes your money to double. At 8% per year, your money doubles in roughly 9 years.' },
+      { q: 'Does compound interest work against me on debt?', a: 'Yes. On credit cards and other debt, unpaid interest compounds into your balance, so your debt grows exponentially. This is why paying off high-interest debt early is so important.' },
+      { q: 'Why is starting early so important?', a: 'Because compounding has an exponential curve, the bulk of your growth happens in the later years. The earlier you start, the more compounding cycles your money goes through, and the smaller the monthly amount needed to hit your goal.' },
     ],
   },
   'calculator/simple-interest': {
-    intro: `Calculate simple interest on a loan or investment. Simple interest is calculated only on the principal amount, making it straightforward for short-term loans, car loans, and basic investment calculations.`,
+    intro: `This simple interest calculator works out the interest earned or owed when interest is calculated only on the original principal, never on accumulated interest. Simple interest is the transparent, predictable form of interest used for many short-term loans, some car finance deals, treasury bonds, and certificates of deposit. Unlike compound interest, it does not snowball, which makes the total interest over the term very easy to predict up front.
+
+The formula is delightfully simple: Interest = Principal × Rate × Time. If you borrow £10,000 at 5% per year for 3 years, the interest is £10,000 × 0.05 × 3 = £1,500, and the total to repay is £11,500. There is no interest on interest, so the figures stay straightforward and can be calculated by anyone on the back of an envelope — which is precisely why simple interest is still widely used for short-term lending.
+
+To use the calculator, enter the principal, the annual interest rate as a percentage, and the number of years, then press Calculate. It returns the total interest and the total amount you must repay or will receive. Swap in different rates and terms to see how the numbers move — for a short-term loan the difference between simple and compound interest is often negligible, but for longer terms or a revolving balance the gap becomes very large indeed.
+
+Simple interest is common in car finance, personal loans with a fixed payoff, student loans in many countries, and savings products like certificates of deposit (CDs) where interest is paid out rather than reinvested. If you want to compare it against a compounding product, use our compound interest calculator side by side — that is often the clearest way to see why compounding is powerful over long periods and why simple interest is best reserved for short, predictable borrowing.`,
+    howTo: [
+      'Enter the principal — the amount borrowed or invested.',
+      'Enter the annual interest rate as a percentage (e.g. 5 for 5%).',
+      'Enter the term in years.',
+      'Press Calculate to see the total interest and the total to repay or receive.',
+    ],
+    useCases: [
+      'Understanding the true cost of a short-term personal or car loan',
+      'Calculating interest on a fixed-term savings bond where interest is paid out',
+      'Comparing simple-interest finance against compound-interest products',
+      'Teachers, students, and finance learners checking their own working',
+    ],
     faqs: [
       { q: 'What is the simple interest formula?', a: 'Simple Interest = P × r × t, where P is the principal, r is the annual interest rate, and t is the time in years.' },
       { q: 'Simple vs compound interest — what is the difference?', a: 'Simple interest is calculated only on the principal. Compound interest is calculated on the principal plus accumulated interest, meaning it grows faster over time. For short-term loans the difference is minimal; for long-term investments compound is significantly better.' },
+      { q: 'When is simple interest used?', a: 'Simple interest is common for short-term loans, car finance, savings products where interest is paid out, and short-dated bonds. It is simpler and more transparent than compound interest.' },
+      { q: 'How do I calculate monthly simple interest?', a: 'Calculate the annual simple interest, then divide by 12 for monthly. For a £10,000 loan at 5% a year, the annual interest is £500 and the monthly interest is about £41.67.' },
     ],
   },
   'calculator/vat': {
-    intro: `Add or remove VAT from any price instantly. Enter the amount and VAT rate to calculate the net price (excluding VAT), the VAT amount, and the gross price (including VAT). Works for any VAT rate — 20% UK, 21% Spain, 19% Germany, 23% Ireland, and more.`,
+    intro: `This VAT calculator adds or removes value-added tax from any price instantly, for any rate in the world. Whether you are a business owner setting prices, an accountant preparing invoices, or a shopper trying to work out how much tax you are really paying, this tool handles both directions: adding VAT to a net price and removing VAT from a gross price.
+
+Adding VAT is the simple direction — just multiply the net price by the rate. To add 20% VAT to a £100 net price, you add £20 and the gross price is £120. Removing VAT, also called VAT reverse calculation or extracting VAT, is the one that trips people up. To work backwards from a £120 gross price at 20% VAT, you divide by 1.20 to get £100, not subtract 20%. The VAT included is the difference, £20. The calculator does both directions for you correctly, removing the most common error.
+
+Different countries and product categories apply different rates. The UK standard rate is 20%, with a reduced 5% for home energy and childrens car seats. Spain uses 21% standard, 10% reduced, and 4% super-reduced. Germany uses 19% standard and 7% reduced. Many goods and services such as most food, books, and childrens clothing are zero-rated or exempt. Choosing the correct rate matters because getting it wrong means incorrect invoices and potential penalties from the tax authority.
+
+If you run a business, VAT is usually a pass-through: you collect it on sales and reclaim it on business purchases, and you remit the difference to the tax authority. If you set prices inclusive of VAT, this calculator removes VAT to show what you actually earn before tax. For a freelancer billing, for example, at €1,000 including 21% VAT, your net revenue before VAT is €826.45 and the VAT you owe is €173.55. Use this calculator to keep your margins and invoices accurate.`,
+    howTo: [
+      'Enter the amount you are working with — either the net price or the gross (VAT-inclusive) price.',
+      'Select the VAT rate that applies: 20% UK, 21% Spain, 19% Germany, or a reduced rate as needed.',
+      'Choose whether to Add VAT (net to gross) or Remove VAT (gross to net).',
+      'Press Calculate to see the result, the VAT amount, and the breakdown.',
+    ],
+    useCases: [
+      'Setting prices as a sole trader or small business so your margins are correct',
+      'Preparing invoices and quotes that show VAT separately',
+      'Working out how much VAT is embedded in a retail price',
+      'Checking a supplier invoice for a correct amount of VAT',
+    ],
     faqs: [
       { q: 'How do I calculate VAT backwards?', a: 'To remove VAT from a gross price, divide by (1 + VAT rate). For example, for 20% VAT: net price = gross ÷ 1.20. The VAT amount is gross minus net.' },
       { q: 'What is the standard VAT rate in Spain?', a: 'The standard VAT (IVA) rate in Spain is 21%. A reduced rate of 10% applies to food, transport, and hospitality. A super-reduced rate of 4% applies to basic necessities like bread, milk, and books.' },
-      { q: 'What is the VAT rate in the UK?', a: 'The standard VAT rate in the UK is 20%. A reduced rate of 5% applies to some goods and services like home energy and children\'s car seats. Zero-rated items include most food, books, and children\'s clothing.' },
+      { q: 'What is the VAT rate in the UK?', a: 'The standard VAT rate in the UK is 20%. A reduced rate of 5% applies to some goods and services like home energy and childrens car seats. Zero-rated items include most food, books, and childrens clothing.' },
+      { q: 'How do I add VAT to a net price?', a: 'Multiply the net price by the VAT rate and add that to the net price. For 20% VAT on £100: £100 × 1.20 = £120 gross.' },
+      { q: 'Is VAT the same as sales tax?', a: 'Not exactly. VAT is collected at each stage of a supply chain on the value added, with businesses reclaiming input VAT. Sales tax is a single retail tax. In Europe and the UK VAT is standard; in most of the US a sales tax applies at the point of sale.' },
     ],
   },
   'calculator/percentage': {
-    intro: `Calculate percentages quickly and easily. Find percentage of a number, percentage change between two values, percentage increase or decrease, and more. Essential for discounts, taxes, tips, and data analysis.`,
+    intro: `This percentage calculator handles the everyday percentage problems that come up constantly in shopping, finance, cooking, and data analysis — percentage of a number, percentage change, and reverse percentages. Percentages are everywhere: discounts, tips, interest rates, taxes, markups, grade scores, and statistical changes, so being able to do them correctly saves you money and avoids error.
+
+The three most common operations are covered. To find what percent one number is of another, divide the part by the whole and multiply by 100 — 30 is 15% of 200. To find a percentage of a number, multiply the number by the percentage as a decimal — 15% of 200 is 30. To work out percentage change between two values, subtract the old from the new, divide by the old, and multiply by 100 — a price that rises from £50 to £60 is a 20% increase.
+
+Enter the two numbers you have and the calculator works out the result and shows the working, so you can see exactly how it got there. This matters because percentages can mislead when the base changes. A 50% discount followed by a 50% markup does not bring you back to the original price — because the markup is computed on the already-discounted price, the final price is only 75% of the original. Similarly, a stock that falls 50% then rises 50% only recovers to 75% of its original value.
+
+Use this calculator for discounts while shopping, for checking a price rise, for working out tips and taxes, for grading and statistics, and for financial analysis. When a politician or headline says "a 20% increase in cost," this tool quickly shows what that means in real numbers. Accurate percentages protect your money and your decisions.`,
+    howTo: [
+      'Enter the whole amount (the total you are taking a percentage of).',
+      'Enter the part amount or percentage depending on which direction you want.',
+      'Press Calculate to see the result — the percentage, the percentage-of, or the percentage change.',
+    ],
+    useCases: [
+      'Shopping discounts and sales ("how much do I save at 25% off?")',
+      'Restaurant tips and service charges',
+      'Sales price increases, wages rises and financial returns',
+      'Statistical changes in reports and news',
+    ],
     faqs: [
       { q: 'How do I calculate percentage change?', a: 'Percentage change = ((new value - old value) / old value) × 100. A positive result is an increase; a negative result is a decrease.' },
       { q: 'How do I calculate a percentage of a number?', a: 'Multiply the number by the percentage divided by 100. For example, 15% of 200 = 200 × 0.15 = 30.' },
+      { q: 'What is the difference between percentage and percentage points?', a: 'Percentage points refer to an absolute difference in percentages, while percentage change is relative. An increase from 10% to 12% is a 2 percentage point rise but a 20% relative increase.' },
+      { q: 'How do I work out the original price before a discount?', a: 'If an item costs £60 after a 25% discount, the original price is £60 ÷ 0.75 = £80. You divide the discounted price by (1 minus the discount rate).' },
     ],
   },
   'calculator/tip': {
-    intro: `Calculate tips and split bills between any number of people. Enter the bill amount, tip percentage, and number of diners to see how much each person owes. Common tip rates are pre-set for quick calculation.`,
+    intro: `This tip calculator handles the two fiddly dinner maths problems that come up constantly: how much to tip, and how to split the total fairly between a group. Enter the bill amount, pick a tip percentage, and split the bill between however many people are at the table to get a per-person amount, the tip, and the total.
+
+Tipping is one of the most confusing travel subjects in the world because the norms differ wildly by country. In the United States and United States 15-20% is standard for sit-down restaurant service, because waitstaff are paid an hourly base that assumes tips. In the UK and most of Europe, a service charge of 10-12% is often already included in the bill, and an additional tip is optional — often rounding up or adding 5-10% for good service. In Japan tipping is not customary at all and can even be considered rude; excellent service is simply the standard. In some countries such as Australia, Australia a tip of the normal 10% is appreciated but not expected. Knowing the local norm avoids the awkwardness of tipping too much or too little.
+
+To use the calculator, enter the bill amount, choose your tip percentage, and enter the number of diners you are splitting with. It instantly returns how much the tip is, the total including tip, and the exact amount each person owes. If you want to round each person's share to a tidy figure, simply adjust the total up slightly — nobody minds an extra fifty pence for the sake of a clean transaction.
+
+For large groups, watch out for auto-gratuity: many restaurants automatically add 18-20% for parties of six or more, and adding an additional tip on top of that is unnecessary. Check your bill and only tip on top of the auto-gratuity if service went genuinely above and beyond. Use this calculator to keep your share fair and your maths clean.`,
+    howTo: [
+      'Enter the bill amount (the total cost before tip).',
+      'Choose the tip percentage — 15-20% in the US, less or none in Europe and Asia as the norm requires.',
+      'Enter how many people will split the bill.',
+      'Press Calculate to see the tip, total, and per-person share.',
+    ],
+    useCases: [
+      'Dining out with friends or a couple who want a fair split',
+      'Deciding what tip is appropriate in an unfamiliar country',
+      'Working out how much to tip a hairdresser, taxi driver, or tour guide',
+      'Avoiding over-tipping when a service charge is already included',
+    ],
     faqs: [
       { q: 'How much should I tip?', a: 'In the US, 15-20% is standard for sit-down restaurants. In many European countries, a service charge is already included — rounding up or 5-10% is appreciated. In Japan, tipping is not customary.' },
       { q: 'How do I split a bill with tip?', a: 'Calculate the total (bill + tip), then divide by the number of people. This calculator does that for you automatically.' },
+      { q: 'What is auto-gratuity?', a: 'Auto-gratuity is a service charge some restaurants add automatically for large groups, typically 18-20% for parties of six or more. Check your bill before tipping on top.' },
+      { q: 'Do I tip in Europe?', a: 'In many European countries, a service charge is already included in the bill. If not, a 5-10% tip for good service is appreciated but not expected. In Japan and much of East Asia, tipping is not customary.' },
     ],
   },
   'calculator/bmi': {
-    intro: `Calculate your Body Mass Index (BMI) instantly using metric (kg/cm) or imperial (lb/ft-in) units. BMI is a widely used screening tool that estimates body fat based on your weight and height. It categorises results as underweight (below 18.5), normal weight (18.5-24.9), overweight (25-29.9), or obese (30+).`,
+    intro: `This BMI calculator instantly works out your Body Mass Index using either metric (kilograms and centimetres) or imperial (pounds and feet/inches) units, and tells you which category your result falls into — underweight, normal weight, overweight, or obese. BMI, or Body Mass Index, is the simplest widely used tool for screening whether a person's weight is in a healthy range for their height.
+
+BMI is calculated by dividing your weight in kilograms by the square of your height in metres. For the metric version, that is BMI = weight(kg) ÷ height(m)². For imperial users, the calculator handles the feet-and-inches to metres conversion for you and applies the 703 multiplier so you never have to worry about the maths. For most adults, a BMI of 18.5–24.9 is considered normal or healthy, under 18.5 is underweight, 25–29.9 overweight, and 30 or above obese.
+
+BMI is a useful and convenient screening tool, but it is not a perfect measure of body fat. It does not distinguish between muscle and fat, so a muscular athlete may show a BMI in the overweight or even obese range despite having very low body fat — muscle is denser than fat, so heavier at the same height. Similarly, because it is based on overall weight, BMI can underestimate body fat in older adults who lose muscle and bone with age. It also does not account for where the fat is carried, which matters: abdominal fat (apple-shaped) is a higher health risk than fat carried around the hips and thighs.
+
+For this reason BMI is best used as one data point among several, alongside waist circumference, body fat percentage, and blood pressure. Use this calculator to know your own number and category, then speak to a health professional about what it means for you personally. The calculator works for anyone who wants a quick, standardised picture of their weight relative to height.`,
+    howTo: [
+      'Choose between metric (kilograms/centimetres) and imperial (pounds/feet) units.',
+      'Enter your weight and height in the units you have chosen.',
+      'Press Calculate to see your BMI value and its category.',
+      'Use the result as a screening data point alongside a medical consultation.',
+    ],
+    useCases: [
+      'Quickly checking your own BMI category without the maths',
+      'Tracking BMI changes over time as you adjust diet or exercise',
+      'Using the metric and imperial versions interchangeably between countries',
+      'Understanding where your BMI lands on the standard categories chart',
+    ],
     faqs: [
       { q: 'What is BMI?', a: 'Body Mass Index (BMI) is a number calculated from your weight and height. It is a screening tool used by health professionals to categorise weight status and identify potential health risks.' },
       { q: 'How is BMI calculated?', a: 'Metric: BMI = weight (kg) ÷ height² (m). Imperial: BMI = 703 × weight (lb) ÷ height² (in). This calculator handles both formulas automatically.' },
       { q: 'What is a healthy BMI?', a: 'A healthy (normal) BMI is between 18.5 and 24.9. Below 18.5 is underweight, 25-29.9 is overweight, and 30+ is obese. These ranges apply to most adults.' },
       { q: 'Is BMI accurate for everyone?', a: 'BMI is a useful population-level screening tool but has limitations. It does not distinguish between muscle and fat, so athletes may have a high BMI without excess fat. It may also underestimate body fat in older adults.' },
+      { q: 'What are the BMI categories?', a: 'Underweight is below 18.5, normal weight is 18.5–24.9, overweight is 25–29.9, and obese is 30 and above. Some systems subdivide obesity further into classes 1, 2, and 3.' },
     ],
   },
   'calculator/loan': {
-    intro: `Calculate your loan monthly payments, total interest paid, and view an amortization schedule preview. Enter the loan amount, interest rate, and term in months or years to see exactly what you will pay. Works for personal loans, car loans, student loans, and any fixed-rate installment loan.`,
+    intro: `This loan calculator works out your monthly repayments, the total interest you will pay, and gives you a preview amortisation schedule for any fixed-rate installment loan. It is ideal for personal loans, car loans, student loans, or any fixed monthly repayment loan where the rate and term are fixed up front.
+
+Loans are amortised: each monthly payment covers the interest that has accrued since the last payment, and the remainder goes toward reducing the principal. At the start of a loan term most of your payment is interest and very little is principal, so the balance comes down slowly. As the balance falls, the interest portion of each payment shrinks and more goes principal — this is why the final months of the loan pay the balance off quickly. An amortisation schedule shows this breakdown for every single payment, which is exactly what this calculator gives you.
+
+To use the calculator, enter the amount you are borrowing, the annual interest rate, and the term in years or months. It returns your monthly payment, the total repayment figure, the total interest cost, and a preview of the first 12 payments showing how each is split between principal and interest. This is the single most useful insight for understanding the real cost of a loan and where to make savings.
+
+Understanding the true cost matters because the "headline" rate can be misleading. Comparing APRs rather than the flat interest rate gives you the true cost, since APR includes lender fees. And you can often pay a loan off faster — extra principal payments, a refinance to a lower rate, or moving to fortnightly payments (26 half payments a year, equal to 13 full payments instead of 12) all accelerate repayment and slash total interest. Use this calculator to model the scenario before you borrow.`,
+    howTo: [
+      'Enter the loan amount — the principal you plan to borrow.',
+      'Enter the annual interest rate as a percentage.',
+      'Enter the term in years (or switch to months) and press Calculate.',
+      'Read your monthly payment, total interest, and amortisation preview.',
+      'Experiment with the term and rate to compare scenarios before committing.',
+    ],
+    useCases: [
+      'Estimating monthly repayments before taking out a personal or car loan',
+      'Comparing the true cost of different loan terms and rates',
+      'Understanding how much of each payment is interest vs principal',
+      'Planning accelerated repayment strategies to cut total interest',
+    ],
     faqs: [
       { q: 'How are loan payments calculated?', a: 'Loan payments are calculated using the amortisation formula: M = P × [r(1+r)^n] / [(1+r)^n - 1], where M is the monthly payment, P is the principal, r is the monthly interest rate, and n is the total number of payments. Each payment covers interest accrued plus a portion of the principal.' },
       { q: 'What is an amortization schedule?', a: 'An amortization schedule is a table showing each loan payment broken down into principal and interest. Early payments are mostly interest; later payments are mostly principal. The schedule also shows the remaining balance after each payment.' },
       { q: 'How can I pay off my loan faster?', a: 'You can pay off a loan faster by making extra principal payments, refinancing to a lower interest rate, or switching to biweekly payments (26 half-payments per year = 13 full payments instead of 12). Even small extra payments can significantly reduce total interest.' },
       { q: 'What is the difference between APR and interest rate?', a: 'The interest rate is the cost of borrowing the principal. APR (Annual Percentage Rate) includes the interest rate plus other fees (origination, closing costs), giving you the true cost of the loan. Always compare APRs, not just interest rates.' },
+      { q: 'Does paying biweekly save money?', a: 'Biweekly payments mean you make 26 half-payments a year, which equals 13 full monthly payments — one extra payment a year that goes to principal. This can shorten the loan term and cut total interest noticeably.' },
     ],
   },
   // Unit converter modes
   'unit-converter/length': {
-    intro: `Convert between length units instantly — metres, kilometres, miles, feet, inches, centimetres, millimetres, and yards. Common conversions: miles to km (1 mile = 1.609 km), metres to feet (1 m = 3.281 ft), inches to cm (1 inch = 2.54 cm).`,
+    intro: `This length converter converts instantly between the units you actually use: metres, kilometres, miles, feet, inches, centimetres, millimetres, and yards. Whether you are converting a race distance, measuring a room, reading a foreign road sign, or working in construction, this tool gives you precise conversions without mental arithmetic.
+
+The common conversions: 1 mile = 1.609344 kilometres, so running a 10-mile route is just over 16 km. 1 metre = 3.28084 feet, useful when you are measured in metres but a space is described in feet. 1 inch = 2.54 centimetres exactly, which is the key for screen sizes and personal measurements. 1 yard = 0.9144 metres, common in American football and fabric. Knowing these reference points lets you sanity-check any conversion and spot errors.
+
+Which system you use depends on where you are and what you measure. The metric system (metres, kilometres, centimetres) is the standard across most of the world and in science and engineering. The imperial/US customary system (feet, miles, inches, yards) dominates in the United States and is common in construction and sports across some countries. Many people use both day to day: you might weight in kilograms but measure a person's height in feet and inches, or drive in miles in the UK and walk in metres elsewhere.
+
+To use the converter, choose your unit pair, type a value, and the result appears instantly in real time. You can flip between directions to check the reverse conversion. Whether you are converting 26.2 miles to 42.2 km for a marathon, feet to metres for a land purchase, or cm to inches for a TV size, the tool handles exact decimals so you can rely on the answer.`,
+    howTo: [
+      'Select the unit you are converting from in the "From" dropdown.',
+      'Select the unit you are converting to in the "To" dropdown.',
+      'Type the value you want to convert and the result updates instantly.',
+    ],
+    useCases: [
+      'Converting a marathon or route distance between miles and kilometres',
+      'Measuring a room in feet and ordering in metres',
+      'Screen sizes and personal heights between cm and inches',
+      'Construction and engineering dimension checks between metric and imperial',
+    ],
     faqs: [
       { q: 'How many kilometres in a mile?', a: '1 mile = 1.609344 kilometres. To convert miles to km, multiply by 1.609. To convert km to miles, divide by 1.609 (or multiply by 0.6214).' },
       { q: 'How many feet in a metre?', a: '1 metre = 3.28084 feet. To convert metres to feet, multiply by 3.281. To convert feet to metres, divide by 3.281 (or multiply by 0.3048).' },
       { q: 'How many inches in a centimetre?', a: '1 centimetre = 0.393701 inches. To convert cm to inches, multiply by 0.394. To convert inches to cm, multiply by 2.54.' },
+      { q: 'What is a yard in metres?', a: '1 yard = 0.9144 metres. To convert yards to metres, multiply by 0.9144. To convert metres to yards, divide by 0.9144.' },
     ],
   },
   'unit-converter/weight': {
-    intro: `Convert between weight and mass units — kilograms, grams, pounds, ounces, tonnes, stones, and milligrams. Common conversions: kg to lbs (1 kg = 2.205 lbs), pounds to kg (1 lb = 0.454 kg), grams to ounces (1 g = 0.0353 oz).`,
+    intro: `This weight and mass converter converts between kilograms, grams, pounds, ounces, tonnes, stones, and milligrams — every unit you are likely to encounter in cooking, fitness, shipping, and science. Converting weight is one of the most common measurement tasks because the metric and imperial worlds both weigh themselves differently.
+
+The fundamental conversions: 1 kilogram = 2.20462 pounds, the factor that drives all the kg-to-lbs and lbs-to-kg conversions used at the gym and on the scales. 1 pound = 16 ounces, and 1 ounce = 28.3495 grams. The stone, still used in the UK and Ireland for personal body weight, equals 14 pounds or 6.35 kilograms. A tonne (metric ton) is 1,000 kilograms, whereas a US short ton is 2,000 pounds — a common source of confusion in shipping and freight.
+
+The gym is where weight conversion matters most. Plates and barbell loads are often given in kilograms, body weight targets in pounds, and you need to move between them. In the kitchen, recipes switch between grams and ounces. For science and medicine, grams and milligrams are the standard. For people weighing on body scales, stones and pounds persist in the UK — you might weigh 12 stone 3 pounds, which is 77.6 kg.
+
+The converter handles all of these instantly in real time. Select the from and to units, type a value, and read the exact result. Whether you are setting up a barbell, converting a recipe, checking luggage weight, or figuring out shipping rates between kg and lbs, this converter does the heavy lifting for you.`,
+    howTo: [
+      'Select the unit to convert from in the "From" dropdown.',
+      'Select the unit to convert to in the "To" dropdown.',
+      'Type the amount and the result updates instantly.',
+    ],
+    useCases: [
+      'Converting body weight between kg and lbs for fitness goals',
+      'Setting up barbell plates between kg and lb gyms',
+      'Converting recipe ingredients between grams and ounces',
+      'Understanding UK stones and pounds alongside metric kilograms',
+    ],
     faqs: [
       { q: 'How many pounds in a kilogram?', a: '1 kilogram = 2.20462 pounds. To convert kg to lbs, multiply by 2.205. To convert lbs to kg, divide by 2.205 (or multiply by 0.454).' },
       { q: 'How many grams in an ounce?', a: '1 ounce = 28.3495 grams. To convert ounces to grams, multiply by 28.35. To convert grams to ounces, divide by 28.35.' },
       { q: 'How many kg in a stone?', a: '1 stone = 6.35029 kilograms. To convert stones to kg, multiply by 6.35. To convert kg to stones, divide by 6.35.' },
+      { q: 'What is the difference between a tonne and a ton?', a: 'A metric tonne is 1,000 kilograms (2,204.62 lb). A US short ton is 2,000 pounds (907.18 kg). A UK long ton is 2,240 pounds (1,016 kg).' },
     ],
   },
   'unit-converter/temperature': {
-    intro: `Convert between Celsius, Fahrenheit, and Kelvin. Common conversions: Celsius to Fahrenheit (°C × 9/5 + 32), Fahrenheit to Celsius ((°F - 32) × 5/9), Celsius to Kelvin (°C + 273.15).`,
+    intro: `This temperature converter instantly converts between Celsius, Fahrenheit, and Kelvin — the three scales you are most likely to encounter. It is the simplest and most accurate way to get from °C to °F and back, whether you are cooking with a recipe from abroad, checking weather in a different country, or working in science.
+
+The conversion formulas are the heart of it. To convert Celsius to Fahrenheit: °F = (°C × 9/5) + 32. So 20°C is (20 × 1.8) + 32 = 68°F. To convert Fahrenheit to Celsius: °C = (°F − 32) × 5/9. So 68°F is (68 − 32) × 0.556 = 20°C. Two useful anchors: 0°C = 32°F (freezing), and 100°C = 212°F (boiling). And 21°C ≈ 70°F, so room temperature in metric and imperial land are roughly the same.
+
+Kelvin is the SI base unit of temperature and starts at absolute zero, the coldest possible temperature where all molecular motion stops: 0 K = −273.15°C. To convert Celsius to Kelvin, add 273.15; to convert Kelvin to Celsius, subtract 273.15. Kelvin is used in physics, astronomy, and engineering because it has no negative values — useful for doing calculations involving temperature differences and thermochemistry.
+
+People constantly need this in the kitchen and when travelling. A recipe in a German cookbook that says "bake at 180°C" is 356°F for an American oven. A UK weather forecast of 10°C is 50°F for a visitor from the US. And a lab report in Kelvin converts easily to Celsius to compare with everyday experience. The converter handles all three instantly, so you never mis-bake a cake or dress for the wrong weather again.`,
+    howTo: [
+      'Select the temperature scale to convert from in the "From" dropdown.',
+      'Select the scale to convert to in the "To" dropdown.',
+      'Type the temperature and the result updates instantly.',
+    ],
+    useCases: [
+      'Converting a cooking temperature between Celsius and Fahrenheit',
+      'Understanding a weather forecast from a country using the other scale',
+      'Converting scientific measurements into Kelvin',
+      'Comparing oven temperatures between metric and imperial recipes',
+    ],
     faqs: [
       { q: 'How to convert Celsius to Fahrenheit?', a: '°F = (°C × 9/5) + 32. For example, 20°C = (20 × 1.8) + 32 = 68°F.' },
       { q: 'How to convert Fahrenheit to Celsius?', a: '°C = (°F - 32) × 5/9. For example, 68°F = (68 - 32) × 0.556 = 20°C.' },
       { q: 'What is Kelvin?', a: 'Kelvin is the SI base unit of temperature, starting at absolute zero (0 K = -273.15°C). To convert Celsius to Kelvin, add 273.15. To convert Kelvin to Celsius, subtract 273.15.' },
+      { q: 'What temperature are Celsius and Fahrenheit equal?', a: 'Celsius and Fahrenheit are equal at −40° (−40°C = −40°F). It is the only temperature where the two scales give the same number.' },
     ],
   },
   'unit-converter/volume': {
-    intro: `Convert between volume units — millilitres, litres, cups, tablespoons, teaspoons, fluid ounces, pints, and gallons. Essential for cooking, baking, and recipe conversions between metric and imperial measurements.`,
+    intro: `This volume converter converts between millilitres, litres, cups, tablespoons, teaspoons, fluid ounces, pints, and gallons — the units that dominate cooking, baking, and everyday liquid measurements. It is the tool to reach for when a recipe uses cups but you only have a measuring jug in millilitres, or when you need to scale a drink or a meal.
+
+The kitchen is where volume conversion gets messy, because cups are not all the same. A US cup is 236.6 ml, while a metric cup is 250 ml, and a UK imperial cup is 284 ml. This means a recipe written with US cups is genuinely different in volume from one using metric cups. The converter lets you choose which type of cup you are converting from so you get the right amount. A US tablespoon is 14.79 ml, a US teaspoon is 4.93 ml, and there are 16 tablespoons in a US cup.
+
+Fluid ounces also differ: a US fluid ounce is 29.5735 ml, while the UK (imperial) fluid ounce is 28.4131 ml. This matters most when converting a recipe that measures liquids in fl oz. Pints and gallons follow the same US-versus-UK split: a US pint is 473 ml, a UK pint is 568 ml, and there is a comparable difference for gallons. The reason almost all bottle and recipes misuse the labels is this variation.
+
+Use this converter to scale a recipe, convert an ingredient list, work out how many litres are in a gallon of paint, or figure out how many servings are in a bottle. Enter the amount, choose your units, and the result appears instantly in real time. Always check whether you are using US or UK cups and ounces — it is the difference between a perfect cake and a very different volume.`,
+    howTo: [
+      'Select the volume unit to convert from in the "From" dropdown.',
+      'Select the unit to convert to in the "To" dropdown.',
+      'Type the amount and the result updates instantly.',
+      'Pay attention to whether the recipe uses US or metric/UK cups for accuracy.',
+    ],
+    useCases: [
+      'Scaling a recipe written in cups into millilitres you can measure',
+      'Converting fluid ounces and pints between US and UK systems',
+      'Working out how many litres are in gallons of paint or fuel',
+      'Adjusting portions and serving sizes accurately',
+    ],
     faqs: [
       { q: 'How many ml in a cup?', a: '1 US cup = 236.6 ml. 1 metric cup = 250 ml. This calculator uses US cups by default. For metric cups, use the metric cup option.' },
       { q: 'How many tablespoons in a cup?', a: '1 US cup = 16 tablespoons. 1 US tablespoon = 3 teaspoons = 14.7868 ml.' },
       { q: 'How many ml in a fluid ounce?', a: '1 US fluid ounce = 29.5735 ml. 1 UK (imperial) fluid ounce = 28.4131 ml.' },
+      { q: 'How many litres in a gallon?', a: '1 US gallon = 3.785 litres. 1 UK gallon = 4.546 litres. The difference between the US and imperial gallon is significant.' },
     ],
   },
   'unit-converter/speed': {
-    intro: `Convert between speed units — metres per second, kilometres per hour, miles per hour, knots, and feet per second. Common conversions: mph to km/h (1 mph = 1.609 km/h), km/h to mph (1 km/h = 0.621 mph), knots to km/h (1 knot = 1.852 km/h).`,
+    intro: `This speed converter converts between metres per second, kilometres per hour, miles per hour, knots, and feet per second — the units used on roads, in weather reports, and in aviation and maritime. Speed is one of those units you meet in dramatically different forms depending on the context.
+
+On the road: a kilometre per hour is the standard in most of the world, while mph rules the US and the UK still use miles per hour on road signs. 1 mph = 1.60934 km/h, so a 70 mph motorway limit is about 113 km/h. To convert mph to km/h, multiply by 1.609; to convert km/h to mph, divide by 1.609 (or multiply by 0.6214). A 100 km/h limit is about 62 mph.
+
+Knots are the unit of speed used in aviation, maritime, and meteorology. A knot is one nautical mile per hour, equal to 1.852 km/h or 1.151 mph. Wind speeds in marine and aviation forecasts are usually given in knots, which is why pilots and sailors think in knots rather than mph or km/h. The reason a nautical mile exists is that it corresponds to one minute of latitude on the globe, making navigation by chart natural.
+
+Metres per second is the SI unit and is used in physics, weather reports, and engineering — a wind speed of 10 m/s is about 36 km/h or 22 mph. Feet per second is more common in US engineering contexts. The converter moves freely between all of them, giving you the exact result in real time. Whether you are converting car speed limits, checking wind for a day sailing, or comparing an aeroplane's speed, this tool handles it instantly.`,
+    howTo: [
+      'Select the speed unit to convert from in the "From" dropdown.',
+      'Select the unit to convert to in the "To" dropdown.',
+      'Type the value and the result updates instantly.',
+    ],
+    useCases: [
+      'Converting speed limits between mph and km/h when driving abroad',
+      'Reading wind speeds given in knots on marine and aviation forecasts',
+      'Physics and engineering work in metres per second',
+      'Comparing vehicle top speeds across markets',
+    ],
     faqs: [
       { q: 'How to convert mph to km/h?', a: '1 mph = 1.60934 km/h. To convert mph to km/h, multiply by 1.609. To convert km/h to mph, divide by 1.609 (or multiply by 0.6214).' },
       { q: 'What is a knot?', a: 'A knot is one nautical mile per hour, equal to 1.852 km/h or 1.151 mph. It is used in aviation and maritime contexts.' },
+      { q: 'How do I convert m/s to km/h?', a: 'Multiply metres per second by 3.6 to get km/h. So 10 m/s = 36 km/h. To convert km/h to m/s, divide by 3.6.' },
     ],
   },
   'unit-converter/data': {
-    intro: `Convert between digital storage units — bytes, kilobytes, megabytes, gigabytes, terabytes, and petabytes. Uses the binary definition (1 KB = 1024 bytes) by convention. Essential for understanding file sizes, storage capacity, and data transfer rates.`,
+    intro: `This data storage converter converts between bytes, kilobytes, megabytes, gigabytes, terabytes, and petabytes — the units you deal with whenever you buy a hard drive, check a download size, or manage files. Digital storage units trip people up more than almost any other measurement, because of the genuine conflict between two different systems.
+
+The binary system, used by your operating system, counts in powers of 1024: 1 KB = 1024 bytes, 1 MB = 1024 KB, 1 GB = 1024 MB, 1 TB = 1024 GB. The decimal or SI system, used by storage manufacturers, counts in powers of 1000: 1 KB = 1000 bytes, 1 MB = 1000 KB, 1 GB = 1000 MB. This is why a "500 GB" hard drive appears in your operating system as roughly 465 GB — the manufacturer advertises decimal gigabytes (500,000,000,000 bytes) while the OS reports binary gigabytes (each of 1,073,741,824 bytes). No drive is "missing" space; the units are simply different.
+
+The prefix MiB (mebibyte), GiB (gibibyte) exist to remove this confusion by explicitly naming the binary units: 1 MiB = 1,048,576 bytes while 1 MB = 1,000,000 bytes. In practice, most software still prints "MB" and "GB" while meaning binary units, which is the source of the apparent discrepancy you see.
+
+To convert, choose the units and the tool handles the binary conversions for you. Understanding whether you are working in decimal or binary makes a big difference when planning storage: a video file of "4 GB" might actually be 4 decimal gigabytes or binary. Use this converter to figure out how many files fit on a drive, compare storage, and make sense of all the numbers.`,
+    howTo: [
+      'Select the storage unit to convert from in the "From" dropdown.',
+      'Select the unit to convert to in the "To" dropdown.',
+      'Type the value and the result updates instantly.',
+    ],
+    useCases: [
+      'Understanding why a hard drive shows less space than advertised',
+      'Working out how many photos or videos fit on a storage card',
+      'Comparing file sizes and data transfer quotas',
+      'Converting binary units for capacity planning',
+    ],
     faqs: [
-      { q: 'How many MB in a GB?', a: '1 GB = 1024 MB (binary definition). In decimal/SI units (used by storage manufacturers), 1 GB = 1000 MB. This can cause confusion — a "500 GB" hard drive shows as ~465 GB in your operating system because the OS uses binary units.' },
-      { q: 'What is the difference between MB and MiB?', a: 'MB (megabyte) in SI units = 1,000,000 bytes. MiB (mebibyte) = 1,048,576 bytes (1024²). Operating systems often display MiB as MB, causing the apparent "missing" space on storage devices.' },
+      { q: 'How many MB in a GB?', a: '1 GB = 1024 MB (binary definition). In decimal/SI units (used by storage manufacturers), 1 GB = 1000 MB. This can cause confusion — a 500 GB hard drive shows as ~465 GB in your operating system because the OS uses binary units.' },
+      { q: 'What is the difference between MB and MiB?', a: 'MB (megabyte) in SI units = 1,000,000 bytes. MiB (mebibyte) = 1,048,576 bytes (1024²). Operating systems often display MiB as MB, causing the apparent missing space on storage devices.' },
+      { q: 'How many bytes in a kilobyte?', a: 'In binary, 1 KB = 1024 bytes. In decimal/SI, 1 KB = 1000 bytes. Operating systems typically use the binary 1024 definition.' },
     ],
   },
   // Single-page tools
   'word-counter': {
-    intro: `Free online word counter that counts words, characters, sentences, paragraphs, and estimated reading time in real time. Paste or type your text to get instant statistics. Perfect for essays, articles, social media posts, and SEO content where word count matters.`,
+    intro: `This free online word counter counts words, characters, sentences, paragraphs, and estimated reading time in real time as you type or paste. It is the essential tool for anyone who has a limit to meet — essays, articles, social media posts, blog content, SEO copy, ad copy, or any writing where length matters.
+
+Word counts are strict for good reasons. Academic essays have word limits that exams punish you for exceeding or sometimes under-filling. SEO copy needs to be long enough to be substantive but not padded. Social media posts often have hard character caps (a tweet, a YouTube description, a Google ads headline). Job applications with a 500-word limit reward a writer who hits it cleanly. Even a CV or cover letter is judged on word count as well as quality. This tool tells you exactly where you stand as you write.
+
+Reading time is a useful feature many writers need: it is an estimate based on the average adult reading speed of about 200-250 words per minute. A 1,000-word article takes roughly 4-5 minutes to read, which many blogs and apps show to readers. Publishers and editors also target specific read time to match audience attention spans.
+
+The character count matters for places where characters — not words — are the limit. Title tags and meta descriptions have hard character caps (Google roughly 50-60 and 150-160). Twitter (X) limits posts to 280 characters. SMS messages are 160 characters. If you need to fit text into a strict character budget, the character count in this tool tells you at a glance and shows the average word length too, which is useful for reading-level analysis.`,
+    howTo: [
+      'Type or paste your text into the large text area.',
+      'Watch the stats grid update in real time as you type.',
+      'Read words, characters, sentences, paragraphs, and estimated reading time.',
+      'Use the Copy Stats or Copy Text buttons to copy the counts or your text to clipboard.',
+      'Press Clear to start over with a blank text area.',
+    ],
+    useCases: [
+      'Meeting strict academic essay word limits',
+      'Hitting SEO and content marketing word targets',
+      'Fitting within social media and ad character caps',
+      'Estimating reading time for a blog post or article',
+    ],
     faqs: [
       { q: 'How does the word counter work?', a: 'It counts words by splitting text on whitespace and punctuation. Characters include all letters, numbers, and symbols. Reading time is estimated at 200 words per minute (average adult reading speed).' },
       { q: 'What is the ideal word count for SEO?', a: 'Long-form content (1,500-2,500 words) tends to rank better in search results, but quality matters more than length. For blog posts, 1,000+ words is a good target. For product pages, 300-500 words of unique content is sufficient.' },
       { q: 'How many words in a page?', a: 'A typical A4 page with 12pt font and single spacing contains about 500 words. A double-spaced page has about 250 words.' },
+      { q: 'How is reading time calculated?', a: 'Reading time is estimated by dividing the word count by an average reading speed of about 200-250 words per minute. Most adults read at that speed.' },
+      { q: 'Does it count words in real time?', a: 'Yes. The counts update live as you type or paste, so you always see your current word count without pressing any button.' },
     ],
   },
   'case-converter': {
-    intro: `Convert text between different cases instantly — UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and sentence case. Useful for programmers, writers, and anyone working with formatted text.`,
+    intro: `This case converter transforms text between every major case in one click: UPPERCASE, lowercase, Title Case, sentence case, camelCase, PascalCase, snake_case, kebab-case, and CONSTANT_CASE. It is an essential utility for programmers, writers, and anyone who needs to reformat text for a specific style or codebase.
+
+Each case has a specific purpose. For writing, UPPERCASE is for strong emphasis and headings, lowercase for natural text, Title Case capitalises the key words of a headline, and sentence case capitalises only the first word and proper nouns. For programming, the choice of case is part of a code style and, often, by a language's built-in. JavaScript, Java, and many languages conventionally use camelCase for variables (helloWorld). Class names use PascalCase (HelloWorld). Python and database columns use snake_case (hello_world). CSS and file names often use kebab-case (hello-world). Constants in many languages use CONSTANT_CASE (MAX_COUNT).
+
+Consistency matters because most style guides and linters enforce a single naming convention across a whole codebase. Mixing camelCase and snake_case is one of the quickest and easiest signals of messy, hard-to-maintain code, and it can even cause bugs in case-sensitive languages where a variable written one way does not refer to the same thing as it written another way.
+
+For writers, this tool handles the fiddly rules — Title Case capitals the first letter of every word, sentence case handles the punctuation properly, and the converter manages the transitions between cases that people often get wrong. Paste in any text, click the case you want, and copy the result. Perfect for cleaning up names for variables, formatting headers, converting an API response, or fixing a name into a slug.`,
+    howTo: [
+      'Paste your text into the input text area.',
+      'Click the case you want — UPPERCASE, lowercase, Title Case, sentence case, or a programmer case.',
+      'Read the converted result in the output area.',
+      'Use the Copy button to copy the result to your clipboard.',
+    ],
+    useCases: [
+      'Formatting headings and titles with title case or sentence case',
+      'Converting variable and class names between coding conventions',
+      'Creating slugs or file names in kebab-case',
+      'Cleaning up mixed-case text in a hurry',
+    ],
     faqs: [
-      { q: 'What is camelCase?', a: 'camelCase capitalises the first letter of each word except the first: "helloWorld". Used in JavaScript, Java, and many programming languages for variable names.' },
-      { q: 'What is snake_case?', a: 'snake_case uses underscores between lowercase words: "hello_world". Used in Python, Rust, and database column names.' },
-      { q: 'What is PascalCase?', a: 'PascalCase capitalises the first letter of every word: "HelloWorld". Also known as UpperCamelCase. Used for class names in many programming languages.' },
+      { q: 'What is camelCase?', a: 'camelCase capitalises the first letter of each word except the first: helloWorld. Used in JavaScript, Java, and many programming languages for variable names.' },
+      { q: 'What is snake_case?', a: 'snake_case uses underscores between lowercase words: hello_world. Used in Python, Rust, and database column names.' },
+      { q: 'What is PascalCase?', a: 'PascalCase capitalises the first letter of every word: HelloWorld. Also known as UpperCamelCase. Used for class names in many programming languages.' },
+      { q: 'What is kebab-case used for?', a: 'kebab-case joins words with hyphens: hello-world. It is common in CSS class names, file names, slugs, and URLs because it reads cleanly and has no issues with URL encoding.' },
+      { q: 'What is CONSTANT_CASE?', a: 'CONSTANT_CASE is all-caps with underscores: MAX_RETRY_COUNT. It is used for constants in programming languages like JavaScript, Python, and Java.' },
     ],
   },
   'timer': {
-    intro: `Free online timer with countdown, stopwatch, and pomodoro modes. The countdown timer alerts you when time is up. The stopwatch tracks elapsed time with millisecond precision. The pomodoro timer cycles through 25-minute focus sessions and 5-minute breaks — perfect for productivity and time management.`,
+    intro: `This online timer combines a countdown timer, stopwatch, and Pomodoro timer all in one, with the current countdown shown in the browser tab title so you can keep track without having to keep the window open. It is the lightweight focus tool for work, study, cooking, exercise, and productivity sessions.
+
+The Pomodoro Technique is one of the most popular uses of a timer. Invented by Francesco Cirillo in the late 1980s and named after a kitchen timer shaped like a tomato, it works like this: work deeply for 25 minutes, take a 5-minute break, and repeat. After four work-break cycles, you take a longer break of 15-30 minutes. The idea is to break work into focused, manageable bursts and force regular rest, which reduces burnout and helps you get into flow state. Pomodoro timers are popular with students and remote workers because they structure the day and make the overwhelm of a long work block shrink.
+
+The stopwatch mode simply tracks elapsed time with precision, ideal for time-boxing a task, timing a workout rest, or tracking how long something actually takes. The countdown timer lets you set a fixed amount and alerts you when time is up — perfect for a classroom timer, a kitchen timer, or time-boxing a meeting.
+
+Because this timer runs entirely in your browser (client-side), it works offline once the page is loaded, and nothing needs to be installed or synced. That makes it a reliable, private alternative to cloud timer apps. The tab-title countdown is a small quality-of-life feature, but it means you can glance at your tab bar to see the remaining time instead of hunting for the timer window.`,
+    howTo: [
+      'Choose a mode: Countdown, Stopwatch, or Pomodoro.',
+      'For the countdown timer, set the minutes and press start.',
+      'Use the stopwatch to time anything in real time with precision.',
+      'For Pomodoro, run 25-minute focus sessions with 5-minute breaks.',
+      'Watch the countdown in the browser tab title while you work in other tabs.',
+    ],
+    useCases: [
+      'Running a 25-minute Pomodoro focus session and 5-minute break cycle',
+      'Time-boxing a meeting, exam, or kitchen task',
+      'Timing a workout, rest between sets, or exercise circuit',
+      'Running a cooking or baking countdown',
+    ],
     faqs: [
       { q: 'What is the Pomodoro Technique?', a: 'The Pomodoro Technique is a time management method: work for 25 minutes, take a 5-minute break, repeat. After 4 cycles, take a longer 15-30 minute break. Created by Francesco Cirillo in the late 1980s.' },
       { q: 'Does the timer work offline?', a: 'Yes. This is a client-side timer — all functionality runs in your browser. Once the page loads, it works without an internet connection.' },
+      { q: 'How long should a Pomodoro session be?', a: 'The classic cycle is 25 minutes of focused work with a 5-minute break. You can adjust it (e.g. 50/10) to match your attention span and task type.' },
+      { q: 'What is the benefit of a countdown timer in the tab title?', a: 'It shows the remaining time in your browser tab even when you are not looking at the timer, so you can keep working in other tabs and still be aware of the countdown at a glance.' },
     ],
   },
   'colour-picker': {
-    intro: `Pick exact pixel colours from any image. Upload or drag an image, click anywhere on it, and get the HEX, RGB, and HSL colour values. Perfect for designers extracting brand colours, developers matching UI colours, and artists building colour palettes.`,
+    intro: `This image colour picker lets you drop any image and click on a pixel to read its exact colour in HEX, RGB, and HSL. It is an essential free tool for designers extracting brand colours, developers matching UI colours, and artists pulling palette colours from references — the whole colour extraction job that used to require a desktop graphics editor.
+
+To use it, upload or drag an image, then click anywhere on it. The tool reads the exact colour values at that pixel and immediately shows the HEX, RGB, and HSL values you can copy. This is how you match the blue of a logo to your site's accent, pick a skin tone for an illustration, or sample colours from a photograph to build a cohesive palette. No guesswork, no screenshot with the eyedropper in a heavy editor — just drop and click.
+
+HEX is the familiar six-digit code (e.g. #FF5733) representing red, green, and blue values as pairs of hexadecimal digits from 00 (no colour) to FF (full colour). RGB specifies the same thing as decimal numbers — for example 255, 87, 51 — and is how CSS and many APIs expect colour. HSL describes colour differently, by hue (the position on the colour wheel from 0-360 degrees), saturation (the intensity), and lightness, which is far more intuitive for humans to reason about and useful when you want to create lighter or darker tints or shades of the same hue.
+
+The distinction between RGB and HSL matters in design. If you have a colour and want a lighter version of the same hue, you raise the lightness in HSL instead of doing a painful guesswork adjustment in RGB. Many designers use the HSL values from tools like this to systematically build a scale of tints and shades for a UI palette. The HEX output is what you paste into your CSS or your design tool. Having all three formats in one place makes this the single best colour extraction utility.`,
+    howTo: [
+      'Drag and drop or upload an image into the colour picker area.',
+      'Click on any pixel of the image to sample its colour.',
+      'Read the HEX, RGB, and HSL values that appear.',
+      'Copy the colour value you need (e.g. the HEX for your CSS).',
+    ],
+    useCases: [
+      'Extracting the exact brand colour from a logo or a screenshot',
+      'Sampling colours from a photograph to build a palette',
+      'Matching UI colours from a design mockup in a style',
+      'Getting a colour as HEX, RGB, and HSL at once',
+    ],
     faqs: [
-      { q: 'What is HEX colour code?', a: 'HEX is a 6-digit hexadecimal colour code (e.g., #FF5733) representing red, green, and blue values. Each pair of digits is one colour channel, from 00 (no colour) to FF (full colour).' },
+      { q: 'What is HEX colour code?', a: 'HEX is a 6-digit hexadecimal colour code (e.g. #FF5733) representing red, green, and blue values. Each pair of digits is one colour channel, from 00 (no colour) to FF (full colour).' },
       { q: 'What is the difference between RGB and HSL?', a: 'RGB (Red, Green, Blue) defines colour as amounts of each channel. HSL (Hue, Saturation, Lightness) defines colour as hue (0-360° on colour wheel), saturation (intensity), and lightness — more intuitive for humans.' },
       { q: 'How do I pick a colour from an image?', a: 'Drop or upload your image, then click any pixel. The tool reads the exact colour values at that pixel and displays HEX, RGB, and HSL values you can copy.' },
+      { q: 'Can I use the colour values in CSS?', a: 'Yes. Copy the HEX value (e.g. #4169E1) directly into your CSS color property, or use the rgb() or hsl() syntax for more advanced styling. All three formats work in CSS.' },
     ],
   },
 };
@@ -196,6 +557,27 @@ const faqJsonLd = content ? {
         </div>
       )}
 
+      {content.useCases && (
+        <div class="usecases-section">
+          <h3 class="seo-subheading">Common uses</h3>
+          <ul class="usecases-list">
+            {content.useCases.map((use) => <li>{use}</li>)}
+          </ul>
+        </div>
+      )}
+
+      {content.examples && (
+        <div class="examples-section">
+          <h3 class="seo-subheading">Examples</h3>
+          {content.examples.map((ex) => (
+            <div class="example-item">
+              <h4 class="example-title">{ex.title}</h4>
+              <p class="example-body">{ex.body}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
       <div class="faq-section">
         <h3 class="seo-subheading">Frequently asked questions</h3>
         {content.faqs.map((faq) => (
@@ -223,7 +605,7 @@ const faqJsonLd = content ? {
   .seo-content-inner {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 28px;
   }
 
   .seo-heading {
@@ -249,19 +631,53 @@ const faqJsonLd = content ? {
     line-height: 1.7;
     color: #5b5b5b;
     margin: 0;
+    white-space: normal;
   }
 
-  .howto-list {
+  .howto-list, .usecases-list {
     padding-left: 20px;
     margin: 0;
   }
 
-  .howto-list li {
+  .howto-list li, .usecases-list li {
     font-family: 'Inter', sans-serif;
     font-size: 15px;
     line-height: 1.7;
     color: #5b5b5b;
     margin-bottom: 8px;
+  }
+
+  .usecases-list {
+    list-style: disc;
+  }
+
+  .examples-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .example-item {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    padding: 16px;
+    background: #fafafa;
+  }
+
+  .example-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    margin: 0 0 6px;
+  }
+
+  .example-body {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #5b5b5b;
+    margin: 0;
   }
 
   .faq-section {
