@@ -1,43 +1,35 @@
-# Astro Starter Kit: Minimal
+# ReddTools
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Free online tools designed properly. No sign-up, no clutter, no ads (for now).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Live Site
 
-## 🚀 Project Structure
+**[reddtools.com](https://reddtools.com)**
 
-Inside of your Astro project, you'll see the following folders and files:
+## Tools Available
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- **Calculator** — Multi-mode: mortgage, compound interest, simple interest, VAT, percentage, tip, BMI, loan
+- **Unit Converter** — Length, weight, temperature, volume, speed, data storage
+- **Word Counter** — Real-time word, character, sentence, paragraph, and reading time counts
+- **Case Converter** — camelCase, snake_case, kebab-case, PascalCase, UPPER_CASE, and more
+- **Timer & Pomodoro** — Countdown, stopwatch, and Pomodoro modes with tab-title countdown
+- **Image Colour Picker** — Extract HEX, RGB, and HSL values from any image with contrast checking
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Blog
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+In-depth articles on colour theory, brand palettes, unit conversion, BMI science, mortgage calculators, compound interest, text case conventions, and productivity techniques. All with structured data and contextual tool links.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Tech Stack
 
-## 🧞 Commands
+- **Framework:** Astro (static site generation)
+- **Styling:** Tailwind CSS v4
+- **Analytics:** PostHog
+- **Deploy:** Cloudflare Pages
 
-All commands are run from the root of the project, from a terminal:
+## Why ReddTools?
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Most utility tool sites are ad-cluttered, poorly designed, and frustrating to use. ReddTools is built on the principle that simple tools deserve great UX — clean typography, responsive layouts, fast load times, and zero friction.
 
-## 👀 Want to learn more?
+## License
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+MIT
