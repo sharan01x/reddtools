@@ -18,4 +18,8 @@ node_modules/
 npm-debug.log*
 
 # Cloudflare
-.wrangler/AGENTS.md
+.wrangler/
+
+# Internal docs — venture plan symlink (canonical in ~/Documents/ReddGroup/)
+plan.md
+AGENTS.md
