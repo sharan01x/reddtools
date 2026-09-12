@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { toolIconSvg } from '../lib/tools';
+import LongTailConverter from '../components/LongTailConverter.astro';
+
+const title = 'lbs to kg Converter — Pounds to Kilograms';
+const description = 'Convert pounds to kilograms instantly. Free lbs to kg calculator — 1 lb = 0.453592 kg. Enter any weight to see the exact kilograms conversion.';
+const canonicalPath = '/lbs-to-kg/';
+const keywords = ['lbs to kg', 'pounds to kilograms', 'lbs to kilograms', 'pounds to kg', 'weight converter'];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Redd Tools lbs to kg Converter',
+  description,
+  url: 'https://reddtools.com/lbs-to-kg/',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Unit Converter', href: '/unit-converter/weight/' },
+  { name: 'lbs to kg' },
+];
+
+const relatedTools = [
+  { name: 'Weight Converter', href: '/unit-converter/weight/', description: 'Convert between kg, lbs, grams, ounces, tonnes, stones and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Pounds to KG Converter', href: '/pounds-to-kg/', description: 'Convert pounds to kilograms instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'miles to km Converter', href: '/miles-to-km/', description: 'Convert miles to kilometres instantly.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Celsius to Fahrenheit', href: '/celsius-to-fahrenheit/', description: 'Convert °C to °F instantly.', icon: toolIconSvg['unit-converter'] },
+];
+---
+
+<Layout title={title} description={description} activeTool="unit-converter" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
+  <LongTailConverter
+    mode="weight"
+    fromUnit="Kilogram"
+    toUnit="Pound"
+    defaultValue={1}
+    seoIntro={`Converting pounds to kilograms is one of the most frequently needed weight calculations in the world, and this free tool does it instantly with full precision. The metric kilogram and the imperial pound have shared a long and complicated history. The kilogram was defined in 1799 as the mass of one litre of water at its densest, and for over a century the official reference was a platinum-iridium cylinder kept in a vault near Paris. That cylinder, known as the International Prototype Kilogram, was finally retired in 2019 when the kilogram was redefined in terms of Planck's constant — a change that leaves everyday conversions completely unaffected. The pound, meanwhile, derives from the Roman libra, which is why its symbol is "lb". In 1959 the international yard and pound agreement fixed the pound as exactly 0.45359237 kilograms, giving us the figure used everywhere today.
+
+The maths is straightforward: multiply the number of kilograms by 2.20462 to get pounds. For a quick working table, remember that 1 kg = 2.205 lbs, 5 kg = 11.02 lbs, 10 kg = 22.05 lbs, 25 kg = 55.12 lbs, 50 kg = 110.23 lbs, and 100 kg = 220.46 lbs. A helpful real-world anchor is that 70 kg is roughly 154 lbs — a very common body weight reference. In the gym, a standard Olympic plate of 20 kg weighs 44.09 lbs, and a "45 lb" plate converts the other way to 20.41 kg, so counting plates between metric and imperial gyms is far easier with a converter to hand.
+
+Where does this conversion actually come up? Body weight is the biggest single use — medical records, passports and fitness apps may record weight in either system depending on the country. Postage and freight companies quote parcel weight in different units in different regions, so shipping between the UK and the US needs a reliable conversion. Cooking is another frequent case: recipe ingredients scaled in kilograms need converting for bakers who work in pounds. Even luggage allowances at airlines, often quoted in either kg or lbs depending on your destination, rely on this same factor.
+
+For a rough mental estimate when you do not have a calculator, multiply the kilogram value by 2.2 — so 60 kg ≈ 132 lbs, and 90 kg ≈ 198 lbs. This shortcut is within about 0.2 per cent of the exact figure, which is fine for most everyday purposes. When accuracy matters, such as for medical dosing, competition weight classes, or freight pricing, always use the precise factor of 2.20462 or this converter. Because the tool works in both directions, you can also use it to turn pounds back into kilograms whenever a reading in the other unit comes your way. Enter any value below to see the exact equivalent in pounds in both whole numbers and decimals.`}
+    faqs={[
+      { q: 'How many pounds are in a kilogram?', a: 'One kilogram equals exactly 2.20462 pounds. To convert pounds to kilograms, multiply by 2.20462. To go the other way, divide pounds by 2.20462 or multiply by 0.4536.' },
+      { q: 'How do I convert kg to lbs in my head?', a: 'For a quick mental estimate, multiply the kilograms by 2.2. So 70 kg ≈ 154 lbs (the exact figure is 154.32 lbs). For close work, such as luggage allowances, this is accurate enough; use the full 2.20462 factor only when precision matters.' },
+      { q: 'What is 100 kg in pounds?', a: '100 kg is 220.46 pounds. This is a handy reference point in gyms and fitness contexts, because it sits right around the weight class and lifting-milestone markers.' },
+      { q: 'Is 1 kg exactly 2 lbs?', a: 'No — 1 kg is 2.20462 lbs, so slightly more than 2 lbs. The "1 kg ≈ 2.2 lbs" approximation is accurate to within about 0.2 per cent and is fine for everyday use, but it is not exact.' },
+      { q: 'What is 1 lb in kg?', a: 'One pound is exactly 0.45359237 kg, usually rounded to 0.454 kg. This reverse conversion is useful when you have a weight in pounds and need kilograms.' },
+      { q: 'How many kg is 200 lbs?', a: '200 lbs converts to 90.72 kg. This is a commonly used milestone in fitness programmes and weight-loss tracking in countries that use pounds.' },
+      { q: 'Is kg the same as lbs?', a: 'No. The kilogram is the base unit of mass in the metric system, while the pound is an imperial unit. The only way to compare them is with the fixed conversion factor: 1 lb = 0.453592 kg.' },
+      { q: 'How many lbs is 20 kg (a gym plate)?', a: 'A standard 20 kg Olympic plate weighs 44.09 lbs. This is useful when mixing metric and imperial plates in the same barbell or reading gym equipment from different regions.' },
+      { q: 'Why do some recipes need kg to lbs conversion?', a: 'Large commercial and baking recipes are often scaled in kilograms, while many home cooks in the US and the UK work in pounds. Because there are 2.20462 lbs per kg, converting ingredient weights correctly keeps ratios consistent.' },
+      { q: 'How accurate is the 2.2 approximation?', a: 'Multiplying by 2.2 is about 0.2 per cent lower than the true value (2.20462). For everyday weight and fitness it is fine; for freight, dosing or competition you should use the exact factor.' },
+    ]}
+  />
+</Layout>
