@@ -4,7 +4,20 @@
   "total_priority_sites": 135,
   "batch_size": 5,
   "next_index": 0,
-  "submitted": [],
+  "submitted": [
+    {
+      "site": "AlternativeTo",
+      "date": "2026-10-03",
+      "status": "submitted-pending-review",
+      "note": "Manual submission by Sharan; listed under Calculator + Colour Picker alternatives; awaiting editorial review"
+    },
+    {
+      "site": "ProductHunt",
+      "date": "2026-10-03",
+      "status": "launched",
+      "note": "Manual submission by Sharan; launch Oct 4, 2026; live listing https://www.producthunt.com/products/reddtools (verified 2026-10-07)"
+    }
+  ],
   "skipped": [],
   "failed": [],
   "notes": "Submit 5 sites per heartbeat. Read submission_sites.json for the full prioritised list. Update this tracker after each batch."
