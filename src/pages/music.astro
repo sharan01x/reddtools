@@ -1,0 +1,286 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Free Background Music — Play & Download Our Royalty-Free Tracks';
+const description = 'A free collection of background music tracks created by the Redd Group team for our videos. Stream in your browser, download the MP3, use it in your own projects — no paywalls, no attribution required.';
+const canonicalPath = '/music/';
+
+const tracks = [
+  {
+    file: '/music/warm-neoclassical.mp3',
+    title: 'Warm Neoclassical',
+    duration: '3:00',
+    seconds: 180,
+    tags: ['Neoclassical', 'Warm', 'Mid-tempo', 'Cinematic'],
+    description:
+      'A gentle neoclassical piece built around soft piano figures and sustained strings. This is the music bed from our video "SynthID Is a Trap for Designers" — it carried the whole narration without ever competing with it. Works well for explainer videos, product demos, and reflective vlog segments.',
+    attribution: 'Music bed in the SynthID video (published 24 Sep 2026)',
+  },
+  {
+    file: '/music/minimal-electronic.mp3',
+    title: 'Minimal Electronic',
+    duration: '3:00',
+    seconds: 180,
+    tags: ['Electronic', 'Minimal', 'Steady', 'Modern'],
+    description:
+      'A clean, minimal electronic bed with a steady pulse and plenty of space. Created for this collection alongside the warm neoclassical track, it suits tutorials, screen recordings, time-lapses, and any footage that needs a modern, understated rhythm underneath.',
+    attribution: 'Created for this collection — not used in a video',
+  },
+  {
+    file: '/music/neutral-ambient.mp3',
+    title: 'Neutral Ambient',
+    duration: '0:30',
+    seconds: 30,
+    tags: ['Ambient', 'Neutral', 'Slow', 'Textural'],
+    description:
+      'A short, texture-first ambient loop generated as a neutral background bed. Useful as intro/outro sting, a low-volume underscore for spoken content, or a seamless-feeling bed behind quiet b-roll. 30 seconds, designed to sit under dialogue without drawing attention.',
+    attribution: 'Generated for the ReddXF video pipeline',
+  },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Free Background Music — ReddTools',
+    url: 'https://reddtools.com/music/',
+    description,
+    isPartOf: { '@type': 'WebSite', name: 'ReddTools', url: 'https://reddtools.com' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Redd Group Background Music Collection',
+    numberOfItems: tracks.length,
+    itemListElement: tracks.map((t, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'MusicRecording',
+        name: t.title,
+        url: `https://reddtools.com${t.file}`,
+        duration: `PT${Math.floor(t.seconds / 60)}M${t.seconds % 60}S`,
+        encodingFormat: 'audio/mpeg',
+        genre: t.tags[0],
+        isAccessibleForFree: true,
+      },
+    })),
+  },
+];
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd} keywords={['royalty free background music', 'free background music download', 'free music for videos', 'background music for youtube videos', 'creative commons music', 'no copyright background music']}>
+  <section class="music-hero">
+    <div class="section-label">Background Music</div>
+    <h1>Free Background Music, Made By Us</h1>
+    <p class="hero-subtitle">
+      Every track in this collection was created in-house by the Redd Group team for our own videos —
+      and every one of them is free to stream and free to download. No accounts, no paywalls, no attribution required.
+    </p>
+  </section>
+
+  <section class="track-list">
+    {tracks.map((track) => (
+      <article class="track-card">
+        <div class="track-main">
+          <div class="track-title-row">
+            <h2>{track.title}</h2>
+            <span class="track-duration">{track.duration}</span>
+          </div>
+          <p class="track-attribution">{track.attribution}</p>
+          <p class="track-desc">{track.description}</p>
+          <div class="track-tags">
+            {track.tags.map((tag) => <span class="track-tag">{tag}</span>)}
+          </div>
+          <audio controls preload="none" src={track.file} class="track-player"></audio>
+          <div class="track-actions">
+            <a href={track.file} download class="download-btn">Download MP3</a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="music-copy">
+    <h2>About this collection</h2>
+    <p>
+      ReddTools is best known for its free online tools — unit converters, calculators, colour pickers —
+      but the team behind the site also produces videos, and every one of those videos needs music.
+      Rather than licensing stock tracks, we generate our own. Each piece in this collection was composed
+      and produced in-house using AI-assisted music generation tools, then selected, edited, and mixed by us.
+      That means we own the rights to every note — and it means we can share them with you, completely free.
+    </p>
+    <p>
+      Why publish background music at all? Because finding good, genuinely royalty-free music is
+      surprisingly hard. Most "free" music libraries come with fine print: attribution clauses, channel-size
+      limits, monetisation restrictions, or a subscription wall that quietly converts your "free" download
+      into a monthly charge. Tracks get claimed retroactively when a library changes its terms. Creators end
+      up spending more time clearing audio than editing the video it belongs to.
+    </p>
+    <p>
+      This collection takes the opposite approach. These are tracks we made for ourselves — real music that
+      has carried real videos, alongside pieces we created while building out the collection. You can play
+      each one right on this page, download the MP3 with one click, and drop it straight into your video
+      editor. Use them on YouTube, in podcasts, in games, in presentations, in client work. Monetise freely.
+      No attribution needed, though a link back is always appreciated. The only thing we ask is that you
+      don't resell the tracks themselves or upload them to other music libraries claiming them as your own.
+    </p>
+    <p>
+      The collection is small right now — three tracks, from a thirty-second ambient bed to full
+      three-minute pieces — and that's deliberate. We'd rather publish music we've actually used and
+      can stand behind than pad a page with filler. The warm neoclassical track, for example, is the exact
+      bed from our video on SynthID and AI watermarking; we lived with it through the whole edit before
+      it earned its place here. New tracks will be added as we create them, so check back, or follow
+      ReddTools on Product Hunt for updates.
+    </p>
+    <p>
+      If you make something with one of these tracks, we'd love to hear it — reach us through the
+      <a href="/contact/">contact page</a>. And if you're looking for more from us, the
+      <a href="/blog/">blog</a> covers design, colour theory, and the craft behind the tools.
+    </p>
+  </section>
+</Layout>
+
+<style>
+  .music-hero {
+    text-align: center;
+    padding: 120px 0 48px;
+  }
+
+  .music-hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: #000;
+    margin: 0 0 16px;
+  }
+
+  .hero-subtitle {
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #5b5b5b;
+    padding: 0 24px;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 16px;
+  }
+
+  .track-list {
+    display: grid;
+    gap: 16px;
+    padding-bottom: 48px;
+  }
+
+  .track-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    padding: 24px;
+  }
+
+  .track-title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .track-title-row h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+    color: #000;
+  }
+
+  .track-duration {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: #999;
+    white-space: nowrap;
+  }
+
+  .track-attribution {
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #00c2ff;
+    margin: 6px 0 8px;
+  }
+
+  .track-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #444;
+    margin: 0 0 12px;
+  }
+
+  .track-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .track-tag {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.05);
+    color: #666;
+  }
+
+  .track-player {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 12px;
+  }
+
+  .download-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background: #000;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 200ms ease;
+  }
+
+  .download-btn:hover { opacity: 0.85; }
+
+  .music-copy {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 24px 80px;
+  }
+
+  .music-copy h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 0 16px;
+    color: #000;
+  }
+
+  .music-copy p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #3d3d3d;
+    margin: 0 0 16px;
+  }
+
+  .music-copy a { color: #000; text-decoration: underline; }
+</style>
