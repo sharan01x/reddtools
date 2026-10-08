@@ -2,8 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import { tools } from '../lib/tools';
 
-const title = 'Redd Tools — Free Online Calculators, Converters \u0026 Utilities';
-const description = 'Free, fast, no-signup tools for everyday tasks. Mortgage calculator, colour picker, unit converter, case converter, timer, and more.';
+const title = 'Redd Tools — Free Online Tools for Designers & Makers';
+const description = 'Free, fast, no-signup tools built for designers and makers. Free background music, colour picker, unit converter, case converter, timer, and more.';
 const canonicalPath = '/';
 
 const jsonLd = {
@@ -37,14 +37,26 @@ const toolIcons: Record<string, string> = {
         <span class="pulse-dot"></span>
         <span>6 tools · all live</span>
       </div>
-      <h1>Free Online Tools<br>That Just Work</h1>
-      <p class="hero-subtitle">Free, fast, no-signup tools for everyday tasks. Mortgage calculator, colour picker, unit converter, case converter, timer, and more.</p>
+      <h1>Free Online Tools<br>for Designers & Makers</h1>
+      <p class="hero-subtitle">Free, fast, no-signup tools built for design work. Background music for your videos, a colour picker, unit converters, and more — with new music added every week.</p>
     </div>
   </div>
 
   <div class="section-label">Tools</div>
   <div class="tools-grid">
-    {tools.map((tool) => {
+  <a href="/music/" class="tool-card music-feature">
+    <div class="card-icon-wrap">
+      <svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="28" cy="46" r="6"/><path d="M34 46V14l16 4"/><path d="M34 26l16 4"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title-row">
+        <h2 class="card-title">Background Music</h2>
+        <span class="card-badge new">Updated weekly</span>
+      </div>
+      <p class="card-desc">Free royalty-free tracks made by our team — stream in-browser, download the MP3, use in any project. No attribution required. New tracks added every week.</p>
+    </div>
+  </a>
+  {tools.map((tool) => {
       const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}/` : `/${tool.slug}/`;
       return (
       <a href={href} class="tool-card">
@@ -114,7 +126,7 @@ const toolIcons: Record<string, string> = {
   <div class="resources-links">
     <a href="/blog/" class="resource-card">
       <h3>Blog & Guides</h3>
-      <p>In-depth articles on colour theory, unit conversion, mortgage calculations, and more.</p>
+      <p>In-depth articles on colour theory, unit conversion, productivity, and more.</p>
     </a>
     <a href="/music/" class="resource-card">
       <h3>Background Music</h3>
@@ -287,6 +299,21 @@ const toolIcons: Record<string, string> = {
     line-height: 1.5;
     color: #5b5b5b;
     margin: 0;
+  }
+
+  .card-badge.new {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #0afa14;
+    background: rgba(10, 250, 20, 0.08);
+    border: 1px solid rgba(10, 250, 20, 0.2);
+    flex-shrink: 0;
   }
 
   .card-badge.planned {
