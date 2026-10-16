@@ -1,0 +1,272 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { tracks } from '../../data/tracks';
+
+export function getStaticPaths() {
+  return tracks.map((track) => ({
+    params: { slug: track.slug },
+    props: { track },
+  }));
+}
+
+const { track } = Astro.props;
+const idx = tracks.findIndex((t) => t.slug === track.slug);
+const prev = tracks[(idx - 1 + tracks.length) % tracks.length];
+const next = tracks[(idx + 1) % tracks.length];
+
+const canonicalPath = `/music/${track.slug}/`;
+const title = `${track.seoTitle}`;
+const description = `${track.title} — a ${track.duration} ${track.tags.slice(0, 3).join(', ').toLowerCase()} background track. Free MP3 download, royalty-free, no attribution required. Stream it in the browser and use it in your videos, podcasts, or study sessions.`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'MusicRecording',
+    name: track.title,
+    url: `https://reddtools.com${canonicalPath}`,
+    description: description,
+    duration: `PT${Math.floor(track.seconds / 60)}M${track.seconds % 60}S`,
+    genre: track.tags[0],
+    keywords: track.tags.join(', '),
+    isAccessibleForFree: true,
+    inAlbum: {
+      '@type': 'MusicAlbum',
+      name: 'ReddTools Background Music Collection',
+      url: 'https://reddtools.com/music/',
+    },
+    audio: {
+      '@type': 'AudioObject',
+      contentUrl: `https://reddtools.com${track.file}`,
+      encodingFormat: 'audio/mpeg',
+      duration: `PT${Math.floor(track.seconds / 60)}M${track.seconds % 60}S`,
+      isAccessibleForFree: true,
+    },
+    offers: {
+      '@type': 'Offer',
+      price: 0,
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://reddtools.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Music', item: 'https://reddtools.com/music/' },
+      { '@type': 'ListItem', position: 3, name: track.title, item: `https://reddtools.com${canonicalPath}` },
+    ],
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  jsonLd={jsonLd}
+  keywords={track.keywords}
+  breadcrumbs={[{ name: 'Home', href: '/' }, { name: 'Music', href: '/music/' }, { name: track.title }]}
+>
+  <section class="track-hero">
+    <div class="section-label">Free Background Music</div>
+      <h1>{track.seoTitle}</h1>
+      <p class="track-meta">
+        {track.title} · {track.duration} · {track.tags.join(' · ')}
+      </p>
+      <audio controls preload="none" src={track.file} class="track-player"></audio>
+      <div class="track-actions">
+        <a href={track.file} download class="download-btn">Download MP3 — Free</a>
+        <span class="licence-note">Royalty-free · No attribution · Monetisation OK</span>
+      </div>
+  </section>
+
+  <section class="track-copy">
+    <h2>What it sounds like</h2>
+    <p>{track.description}</p>
+    <h2>What to use it for</h2>
+    <p>{track.useCase}</p>
+    <h2>Free download, generous licence</h2>
+    <p>
+      {track.closing}
+      Every track on this page was composed in-house by the ReddTools team, so we hold the rights to every note —
+      that is what lets us release it with no paywall, no attribution clause, and no channel-size limits.
+      Use it on YouTube, Twitch, podcasts, games, presentations, or client work, and monetise freely.
+      The only thing we ask is that you do not resell the track itself or upload it to other music libraries as your own.
+    </p>
+    <p>
+      Looking for a different mood? The <a href="/music/">full background music collection</a> has
+      {tracks.length} free tracks — or try the two neighbouring moods below.
+    </p>
+  </section>
+
+  <section class="neighbours">
+    <h2>More free tracks</h2>
+    <div class="neighbour-grid">
+      <a class="neighbour-card" href={`/music/${prev.slug}/`}>
+        <span class="neighbour-label">Previous</span>
+        <span class="neighbour-title">{prev.title}</span>
+        <span class="neighbour-desc">{prev.tags.join(' · ')}</span>
+      </a>
+      <a class="neighbour-card" href={`/music/${next.slug}/`}>
+        <span class="neighbour-label">Next</span>
+        <span class="neighbour-title">{next.title}</span>
+        <span class="neighbour-desc">{next.tags.join(' · ')}</span>
+      </a>
+    </div>
+    <p class="neighbour-index"><a href="/music/">Browse all {tracks.length} tracks →</a></p>
+  </section>
+</Layout>
+
+<style>
+  .track-hero {
+    text-align: center;
+    padding: 110px 24px 40px;
+  }
+
+  .track-hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: #000;
+    margin: 0 0 12px;
+  }
+
+  .track-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: #777;
+    margin: 0 0 24px;
+  }
+
+  .track-player {
+    width: 100%;
+    max-width: 560px;
+    height: 44px;
+  }
+
+  .track-actions {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .download-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background: #000;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 200ms ease;
+  }
+
+  .download-btn:hover { opacity: 0.85; }
+
+  .licence-note {
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #888;
+  }
+
+  .track-copy {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 32px;
+  }
+
+  .track-copy h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+    color: #000;
+  }
+
+  .track-copy p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #3d3d3d;
+    margin: 0 0 16px;
+  }
+
+  .track-copy a { color: #000; text-decoration: underline; }
+
+  .neighbours {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .neighbours h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 16px;
+    color: #000;
+  }
+
+  .neighbour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+
+  .neighbour-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    text-decoration: none;
+  }
+
+  .neighbour-card:hover { border-color: rgba(0, 0, 0, 0.25); }
+
+  .neighbour-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #999;
+  }
+
+  .neighbour-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .neighbour-desc {
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #666;
+  }
+
+  .neighbour-index {
+    margin-top: 16px;
+    font-size: 14px;
+  }
+
+  .neighbour-index a { color: #000; }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 16px;
+  }
+</style>
