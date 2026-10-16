@@ -90,7 +90,7 @@ export const tools: Tool[] = [
       { slug: 'length', name: 'Length Converter', description: 'Convert between units of length — metres, feet, miles, and more.', seoTitle: 'Length Converter — CM to Inches, Feet to Meters, Miles to KM', seoDescription: 'Convert length units instantly: centimeters, inches, feet, meters, miles, kilometers. Free online length converter with precise results.', seoH1: 'Length Converter', keywords: ['length converter', 'meters to feet', 'cm to inches', 'miles to km', 'feet to meters'] },
       { slug: 'weight', name: 'Weight Converter', description: 'Convert between weight and mass units.', seoTitle: 'Free Weight Converter — KG to LBS, Grams to Ounces', seoDescription: 'Convert weight units instantly: kilograms, grams, pounds, ounces, tonnes, and stones. Free online weight converter, no signup.', seoH1: 'Weight Converter', keywords: ['weight converter', 'kg to lbs', 'grams to ounces'] },
       { slug: 'temperature', name: 'Temperature Converter', description: 'Convert between Celsius, Fahrenheit, and Kelvin.', seoTitle: 'Free Temperature Converter — Celsius, Fahrenheit & Kelvin', seoDescription: 'Convert temperature units instantly: Celsius to Fahrenheit, Fahrenheit to Celsius, Kelvin. Free online temperature converter, no signup.', seoH1: 'Temperature Converter', keywords: ['celsius to fahrenheit', 'temperature converter', 'fahrenheit to celsius'] },
-      { slug: 'volume', name: 'Volume Converter', description: 'Convert between volume units for cooking and baking.', seoTitle: 'Free Volume Converter — ML, Cups, Tablespoons & More', seoDescription: 'Convert volume units instantly: millilitres, litres, cups, tablespoons, teaspoons, pints, and gallons. Free online volume converter, no signup.', seoH1: 'Volume Converter', keywords: ['volume converter', 'cups to ml', 'tablespoons to cups'] },
+      { slug: 'volume', name: 'Volume Converter', description: 'Convert between volume units for cooking and baking.', seoTitle: 'Convert cups to ml, litres to gallons & more — instant volume converter', seoDescription: 'Volume conversions answered instantly: 1 cup = 237 ml, 1 litre = 0.264 gal, 1 tbsp = 15 ml. Convert ml, litres, cups, tablespoons, pints, gallons — free, no signup.', seoH1: 'Volume Converter', keywords: ['volume converter', 'cups to ml', 'tablespoons to cups'] },
       { slug: 'speed', name: 'Speed Converter', description: 'Convert between speed units.', seoTitle: 'Free Speed Converter — MPH to KM/H, Knots & More', seoDescription: 'Convert speed units instantly: m/s, km/h, mph, knots, and ft/s. Free online speed converter, no signup.', seoH1: 'Speed Converter', keywords: ['speed converter', 'mph to kmh', 'knots to kmh'] },
       { slug: 'data', name: 'Data Storage Converter', description: 'Convert between digital storage units.', seoTitle: 'Free Data Storage Converter — Bytes, KB, MB, GB, TB', seoDescription: 'Convert digital storage units instantly: bytes, kilobytes, megabytes, gigabytes, terabytes, and petabytes. Free online data converter, no signup.', seoH1: 'Data Storage Converter', keywords: ['mb to gb', 'data converter', 'bytes to mb'] },
     ],
@@ -119,6 +119,42 @@ export const tools: Tool[] = [
     keywords: ['case converter', 'uppercase to lowercase', 'camelcase converter', 'snake case converter'],
     status: 'live',
   },
+  {
+    slug: 'contrast-checker',
+    name: 'Colour Contrast Checker',
+    shortName: 'Contrast',
+    description: 'Check colour contrast ratios against WCAG AA and AAA standards for accessible text.',
+    seoTitle: 'Free Colour Contrast Checker — WCAG AA & AAA Compliance',
+    seoDescription: 'Check colour contrast ratios for text and UI against WCAG AA and AAA accessibility standards. Free, instant, no signup.',
+    seoH1: 'Colour Contrast Checker',
+    icon: 'contrast',
+    keywords: ['contrast checker', 'color contrast checker', 'wcag contrast checker', 'contrast ratio calculator', 'accessibility contrast'],
+    status: 'live',
+  },
+  {
+    slug: 'palette-generator',
+    name: 'Palette Generator',
+    shortName: 'Palette',
+    description: 'Generate colour palettes from a base colour — analogous, complementary, triadic, and monochromatic harmonies.',
+    seoTitle: 'Free Colour Palette Generator — Analogous, Complementary & Triadic',
+    seoDescription: 'Generate colour palettes from any base colour. Analogous, complementary, triadic, and monochromatic harmonies with HEX values. Free, no signup.',
+    seoH1: 'Colour Palette Generator',
+    icon: 'palette',
+    keywords: ['palette generator', 'color palette generator', 'colour scheme generator', 'color combination generator', 'analogous colors'],
+    status: 'live',
+  },
+  {
+    slug: 'px-to-rem',
+    name: 'PX to REM Converter',
+    shortName: 'REM',
+    description: 'Convert pixels to rem units instantly, with a live reference table for any root font size.',
+    seoTitle: 'Free PX to REM Converter — Pixel to REM with Reference Table',
+    seoDescription: 'Convert px to rem and rem to px instantly for any root font size. Includes a live reference table. Free CSS unit converter, no signup.',
+    seoH1: 'PX to REM Converter',
+    icon: 'px-rem',
+    keywords: ['px to rem', 'px to rem converter', 'rem to px', 'pixel to rem', 'css unit converter'],
+    status: 'live',
+  },
 ];
 
 /** Get all live/in-progress tools for navigation */
@@ -132,6 +168,9 @@ export const toolIconSvg: Record<string, string> = {
   'case-converter': `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 48L24 16l12 32"/><path d="M16 40h16"/><path d="M44 16v32"/><path d="M38 28h12"/></svg>`,
   timer: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="22"/><path d="M32 18v14l10 10"/></svg>`,
   'colour-picker': `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M38 8L16 30l6 6 22-22"/><path d="M22 36L14 50l14-8"/></svg>`,
+  contrast: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="22"/><path d="M32 10a22 22 0 0 1 0 44z" fill="currentColor"/></svg>`,
+  palette: `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 10c12 0 22 9 22 20 0 7-5 10-10 10h-5a5 5 0 0 0-5 5c0 2 1 3 1 5 0 3-2 4-4 4-11 0-21-10-21-22S20 10 32 10z"/><circle cx="22" cy="26" r="2.5" fill="currentColor"/><circle cx="32" cy="20" r="2.5" fill="currentColor"/><circle cx="42" cy="26" r="2.5" fill="currentColor"/></svg>`,
+  'px-rem': `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="20" width="22" height="24" rx="3"/><rect x="34" y="20" width="22" height="24" rx="3" stroke-dasharray="4 3"/><path d="M30 32h4" stroke-width="2"/><path d="M27 27l4 5-4 5" transform="translate(6 -5)"/></svg>`,
 };
 
 /** Get a tool by slug */
