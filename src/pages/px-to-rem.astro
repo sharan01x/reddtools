@@ -1,0 +1,131 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getTool, toolIconSvg } from '../lib/tools';
+import SeoContent from '../components/SeoContent.astro';
+
+const tool = getTool('px-to-rem')!;
+const title = tool.seoTitle || tool.name;
+const description = tool.seoDescription || tool.description;
+const canonicalPath = `/${tool.slug}/`;
+const keywords = tool.keywords;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'ReddTools PX to REM Converter',
+    description: tool.description,
+    url: `https://reddtools.com/${tool.slug}`,
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Any',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  },
+];
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: tool.name },
+];
+
+const relatedTools = [
+  { name: 'Unit Converter', href: '/unit-converter/length/', description: 'Convert between units of length, weight, temperature, volume, speed, and more.', icon: toolIconSvg['unit-converter'] },
+  { name: 'Word Counter', href: '/word-counter/', description: 'Count words, characters, sentences, and reading time in real time.', icon: toolIconSvg['word-counter'] },
+];
+
+const tablePxs = [4, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 80, 96, 112, 128, 144, 160, 192];
+---
+
+<Layout title={title} description={description} activeTool="px-to-rem" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
+  <div class="max-w-2xl mx-auto">
+    <div class="calc-card">
+      <h1>PX to REM Converter</h1>
+
+      <div class="px-root-row">
+        <label for="root-size">Root font size (html):</label>
+        <input type="number" id="root-size" value="16" min="1" step="1" aria-label="Root font size in pixels" />
+        <span>px</span>
+      </div>
+
+      <div class="px-convert-row">
+        <div class="px-input-group">
+          <label for="px-input">Pixels</label>
+          <input type="number" id="px-input" value="24" min="0" step="any" aria-label="Value in pixels" />
+        </div>
+        <div class="px-equals">=</div>
+        <div class="px-input-group">
+          <label for="rem-input">Rem</label>
+          <input type="number" id="rem-input" value="1.5" min="0" step="any" aria-label="Value in rem" />
+        </div>
+      </div>
+
+      <h2 class="px-table-heading">PX → REM reference table</h2>
+      <table class="px-table">
+        <thead><tr><th>Pixels</th><th>Rem</th></tr></thead>
+        <tbody id="px-table-body">
+          {tablePxs.map(() => <tr><td class="px-cell"></td><td class="rem-cell"></td></tr>)}
+        </tbody>
+      </table>
+    </div>
+
+    <SeoContent toolSlug="px-to-rem" />
+  </div>
+</Layout>
+
+<script>
+  const rootSize = document.getElementById('root-size') as HTMLInputElement;
+  const pxInput = document.getElementById('px-input') as HTMLInputElement;
+  const remInput = document.getElementById('rem-input') as HTMLInputElement;
+  const tbody = document.getElementById('px-table-body')!;
+  const tablePxs = [4, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 80, 96, 112, 128, 144, 160, 192];
+
+  function fmt(n: number): string {
+    const r = Math.round(n * 10000) / 10000;
+    return Number.isInteger(r) ? r.toFixed(0) : String(r);
+  }
+
+  function pxToRem(px: number): number { return px / (parseFloat(rootSize.value) || 16); }
+  function remToPx(rem: number): number { return rem * (parseFloat(rootSize.value) || 16); }
+
+  function updateTable() {
+    const root = parseFloat(rootSize.value) || 16;
+    const rows = tbody.querySelectorAll('tr');
+    rows.forEach((row, i) => {
+      const px = tablePxs[i];
+      row.querySelector('.px-cell')!.textContent = px + 'px';
+      row.querySelector('.rem-cell')!.textContent = fmt(px / root) + 'rem';
+    });
+  }
+
+  pxInput.addEventListener('input', () => {
+    const px = parseFloat(pxInput.value);
+    if (!isNaN(px)) remInput.value = String(Math.round(pxToRem(px) * 10000) / 10000);
+  });
+  remInput.addEventListener('input', () => {
+    const rem = parseFloat(remInput.value);
+    if (!isNaN(rem)) pxInput.value = String(Math.round(remToPx(rem) * 100) / 100);
+  });
+  rootSize.addEventListener('input', updateTable);
+
+  pxInput.addEventListener('change', () => {
+    if (typeof (window as any).posthog !== 'undefined') {
+      (window as any).posthog.capture('tool_used', { tool: 'px-to-rem', root: parseFloat(rootSize.value) || 16 });
+    }
+  });
+
+  updateTable();
+</script>
+
+<style>
+  .px-root-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.25rem; font-size: 0.95rem; }
+  .px-root-row label { font-weight: 500; color: var(--text-muted, #555); }
+  .px-root-row input { width: 90px; padding: 0.5rem 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; font-family: 'IBM Plex Mono', monospace; }
+  .px-convert-row { display: flex; gap: 1rem; align-items: end; margin-bottom: 1.5rem; }
+  .px-input-group { flex: 1; }
+  .px-input-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.4rem; color: var(--text-muted, #555); }
+  .px-input-group input { width: 100%; padding: 0.65rem 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1.15rem; font-family: 'IBM Plex Mono', monospace; }
+  .px-equals { font-size: 1.4rem; font-weight: 600; padding-bottom: 0.6rem; }
+  .px-table-heading { font-size: 1.05rem; margin: 1.5rem 0 0.6rem; }
+  .px-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .px-table th, .px-table td { text-align: left; padding: 0.4rem 0.5rem; border-bottom: 1px solid #eee; font-family: 'IBM Plex Mono', monospace; }
+  .px-table th { font-family: inherit; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted, #777); }
+</style>

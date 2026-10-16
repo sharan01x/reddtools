@@ -1,0 +1,188 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getTool, toolIconSvg } from '../lib/tools';
+import SeoContent from '../components/SeoContent.astro';
+
+const tool = getTool('contrast-checker')!;
+const title = tool.seoTitle || tool.name;
+const description = tool.seoDescription || tool.description;
+const canonicalPath = `/${tool.slug}/`;
+const keywords = tool.keywords;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'ReddTools Colour Contrast Checker',
+    description: tool.description,
+    url: `https://reddtools.com/${tool.slug}`,
+    applicationCategory: 'DesignApplication',
+    operatingSystem: 'Any',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  },
+];
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: tool.name },
+];
+
+const relatedTools = [
+  { name: 'Palette Generator', href: '/palette-generator/', description: 'Generate harmonious colour palettes from any base colour.', icon: toolIconSvg['palette'] },
+  { name: 'Image Colour Picker', href: '/colour-picker/', description: 'Drop an image and pick exact pixel colours. Get HEX, RGB, and HSL values instantly.', icon: toolIconSvg['colour-picker'] },
+];
+---
+
+<Layout title={title} description={description} activeTool="contrast-checker" canonicalPath={canonicalPath} keywords={keywords} jsonLd={jsonLd} breadcrumbs={breadcrumbs} relatedTools={relatedTools}>
+  <div class="max-w-2xl mx-auto">
+    <div class="calc-card">
+      <h1>Colour Contrast Checker</h1>
+
+      <div class="cc-inputs">
+        <div class="cc-input-group">
+          <label for="fg-color">Text colour</label>
+          <div class="cc-swatch-row">
+            <input type="color" id="fg-color" value="#111111" aria-label="Foreground text colour" />
+            <input type="text" id="fg-hex" value="#111111" spellcheck="false" aria-label="Foreground hex value" />
+          </div>
+        </div>
+        <div class="cc-input-group">
+          <label for="bg-color">Background colour</label>
+          <div class="cc-swatch-row">
+            <input type="color" id="bg-color" value="#ffffff" aria-label="Background colour" />
+            <input type="text" id="bg-hex" value="#ffffff" spellcheck="false" aria-label="Background hex value" />
+          </div>
+        </div>
+        <button class="btn btn-secondary cc-swap" id="swap-btn">⇄ Swap</button>
+      </div>
+
+      <div class="cc-results">
+        <div class="cc-preview" id="cc-preview">
+          <span id="cc-preview-text">The quick brown fox jumps over the lazy dog. 0123456789</span>
+        </div>
+        <div class="cc-ratio-box">
+          <div class="stat-label">Contrast ratio</div>
+          <div class="stat-value" id="cc-ratio">—</div>
+        </div>
+      </div>
+
+      <table class="cc-grade-table">
+        <thead>
+          <tr><th>WCAG level</th><th>Requirement</th><th>Result</th></tr>
+        </thead>
+        <tbody>
+          <tr id="row-aa-normal"><td>AA — normal text</td><td>≥ 4.5:1</td><td class="cc-grade">—</td></tr>
+          <tr id="row-aa-large"><td>AA — large text (18pt+/14pt bold)</td><td>≥ 3:1</td><td class="cc-grade">—</td></tr>
+          <tr id="row-aaa-normal"><td>AAA — normal text</td><td>≥ 7:1</td><td class="cc-grade">—</td></tr>
+          <tr id="row-aaa-large"><td>AAA — large text</td><td>≥ 4.5:1</td><td class="cc-grade">—</td></tr>
+          <tr id="row-ui"><td>UI components &amp; graphics</td><td>≥ 3:1</td><td class="cc-grade">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <SeoContent toolSlug="contrast-checker" />
+  </div>
+</Layout>
+
+<script>
+  const fgPicker = document.getElementById('fg-color') as HTMLInputElement;
+  const bgPicker = document.getElementById('bg-color') as HTMLInputElement;
+  const fgHex = document.getElementById('fg-hex') as HTMLInputElement;
+  const bgHex = document.getElementById('bg-hex') as HTMLInputElement;
+  const swapBtn = document.getElementById('swap-btn') as HTMLButtonElement;
+  const preview = document.getElementById('cc-preview')!;
+  const previewText = document.getElementById('cc-preview-text')!;
+  const ratioEl = document.getElementById('cc-ratio')!;
+
+  function hexToRgb(hex: string): [number, number, number] | null {
+    let h = hex.trim().replace(/^#/, '');
+    if (h.length === 3) h = h.split('').map(c => c + c).join('');
+    if (!/^[0-9a-fA-F]{6}$/.test(h)) return null;
+    return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+  }
+
+  function relativeLuminance([r, g, b]: [number, number, number]): number {
+    const f = (c: number) => {
+      c /= 255;
+      return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    };
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+  }
+
+  function contrastRatio(fg: string, bg: string): number | null {
+    const a = hexToRgb(fg), b = hexToRgb(bg);
+    if (!a || !b) return null;
+    const l1 = relativeLuminance(a), l2 = relativeLuminance(b);
+    const [hi, lo] = l1 >= l2 ? [l1, l2] : [l2, l1];
+    return (hi + 0.05) / (lo + 0.05);
+  }
+
+  function setGrade(rowId: string, pass: boolean | null) {
+    const cell = document.querySelector(`#${rowId} .cc-grade`)!;
+    if (pass === null) { cell.textContent = '—'; cell.className = 'cc-grade'; return; }
+    cell.textContent = pass ? '✓ Pass' : '✗ Fail';
+    cell.className = 'cc-grade ' + (pass ? 'cc-pass' : 'cc-fail');
+  }
+
+  function update() {
+    const ratio = contrastRatio(fgHex.value, bgHex.value);
+    if (ratio === null) {
+      ratioEl.textContent = 'Invalid hex';
+      ['row-aa-normal','row-aa-large','row-aaa-normal','row-aaa-large','row-ui'].forEach(id => setGrade(id, null));
+      return;
+    }
+    ratioEl.textContent = ratio.toFixed(2) + ':1';
+    preview.style.backgroundColor = bgHex.value;
+    previewText.style.color = fgHex.value;
+    setGrade('row-aa-normal', ratio >= 4.5);
+    setGrade('row-aa-large', ratio >= 3);
+    setGrade('row-aaa-normal', ratio >= 7);
+    setGrade('row-aaa-large', ratio >= 4.5);
+    setGrade('row-ui', ratio >= 3);
+
+    if (typeof (window as any).posthog !== 'undefined') {
+      (window as any).posthog.capture('tool_used', { tool: 'contrast-checker', ratio: Math.round(ratio * 100) / 100 });
+    }
+  }
+
+  fgPicker.addEventListener('input', () => { fgHex.value = fgPicker.value; update(); });
+  bgPicker.addEventListener('input', () => { bgHex.value = bgPicker.value; update(); });
+  fgHex.addEventListener('input', () => {
+    const rgb = hexToRgb(fgHex.value);
+    if (rgb) fgPicker.value = fgHex.value.startsWith('#') ? fgHex.value : '#' + fgHex.value;
+    update();
+  });
+  bgHex.addEventListener('input', () => {
+    const rgb = hexToRgb(bgHex.value);
+    if (rgb) bgPicker.value = bgHex.value.startsWith('#') ? bgHex.value : '#' + bgHex.value;
+    update();
+  });
+  swapBtn.addEventListener('click', () => {
+    [fgHex.value, bgHex.value] = [bgHex.value, fgHex.value];
+    fgPicker.value = fgHex.value.startsWith('#') ? fgHex.value : '#' + fgHex.value;
+    bgPicker.value = bgHex.value.startsWith('#') ? bgHex.value : '#' + bgHex.value;
+    update();
+  });
+
+  update();
+</script>
+
+<style>
+  .cc-inputs { display: flex; gap: 1rem; flex-wrap: wrap; align-items: flex-end; margin-bottom: 1.25rem; }
+  .cc-input-group { flex: 1; min-width: 180px; }
+  .cc-input-group label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 0.4rem; color: var(--text-muted, #555); }
+  .cc-swatch-row { display: flex; gap: 0.5rem; }
+  .cc-swatch-row input[type="color"] { width: 52px; height: 40px; padding: 2px; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; background: #fff; }
+  .cc-swatch-row input[type="text"] { flex: 1; padding: 0.5rem 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 0.95rem; text-transform: lowercase; }
+  .cc-swap { flex-shrink: 0; }
+  .cc-results { display: flex; gap: 1rem; align-items: stretch; margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .cc-preview { flex: 1; min-width: 220px; border-radius: 12px; padding: 1.5rem; border: 1px solid #e5e5e5; font-size: 1.1rem; line-height: 1.6; }
+  .cc-ratio-box { text-align: center; display: flex; flex-direction: column; justify-content: center; min-width: 140px; padding: 1rem; border-radius: 12px; background: var(--bg-subtle, #f7f7f5); }
+  .cc-ratio-box .stat-value { font-size: 1.6rem; font-weight: 600; }
+  .cc-grade-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .cc-grade-table th, .cc-grade-table td { text-align: left; padding: 0.55rem 0.5rem; border-bottom: 1px solid #eee; }
+  .cc-grade-table th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted, #777); }
+  .cc-grade { font-weight: 600; white-space: nowrap; }
+  .cc-pass { color: #15803d; }
+  .cc-fail { color: #b91c1c; }
+</style>

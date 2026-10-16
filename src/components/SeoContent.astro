@@ -521,6 +521,95 @@ The distinction between RGB and HSL matters in design. If you have a colour and 
       { q: 'Can I use the colour values in CSS?', a: 'Yes. Copy the HEX value (e.g. #4169E1) directly into your CSS color property, or use the rgb() or hsl() syntax for more advanced styling. All three formats work in CSS.' },
     ],
   },
+  'contrast-checker': {
+    intro: 'Colour contrast is the single most measurable accessibility factor in web design. The Web Content Accessibility Guidelines (WCAG) define contrast as the ratio between the relative luminance of text and its background, expressed as a value from 1:1 (identical colours) to 21:1 (black on white). Meeting the required thresholds is not optional for professional work: the EU Web Accessibility Directive, the Americans with Disabilities Act, and Section 508 all effectively require WCAG AA for public-facing websites. This checker computes the exact WCAG formula — relative luminance with gamma-corrected sRGB linearisation — so you can validate any text and background pair in seconds, without reading a single specification page.',
+    howTo: [
+      'Enter or paste the text colour as a HEX value (e.g. #111111), or pick it with the colour swatch.',
+      'Enter the background colour the same way. If you have a CSS custom property, resolve its hex value first.',
+      'Read the contrast ratio and the pass/fail result for each WCAG level: AA normal, AA large, AAA normal, AAA large, and UI components.',
+      'If a combination fails, swap the colours to test the inverse, or darken/lighten the text colour until the target threshold passes.',
+      'For each pairing in your design system, record the passing value so the combination is never accidentally changed later.',
+    ],
+    useCases: [
+      'Validating body text (the AA 4.5:1 threshold) and headings before shipping a design.',
+      'Checking placeholder text and disabled-state colours, which designers frequently leave below the legal threshold.',
+      'Auditing an existing site during a redesign or accessibility review — sample the most common text/background pairs.',
+      'Verifying icon, button-border, and focus-ring contrast against the 3:1 non-text requirement (WCAG 1.4.11).',
+      'Testing dark-mode variants: a pair that passes in light mode often fails in dark mode and needs its own values.',
+    ],
+    examples: [
+      { title: 'What the WCAG thresholds mean in practice', body: 'AA for normal text requires 4.5:1, and AA for large text (24px regular or 18.5px bold and above) requires 3:1. AAA raises these to 7:1 and 4.5:1 respectively. AAA matters for long-form reading content — documentation, news, academic sites — where readers spend sustained time. Note that "large text" is defined in CSS pixels, and that WCAG ratios are computed on gamma-corrected luminance, not on perceived lightness, which is why some visually "obvious" pairs still fail.' },
+      { title: 'Common failures designers miss', body: 'Grey-on-grey interfaces are the most frequent failure: #999999 on #FFFFFF is roughly 2.8:1 — below even the large-text AA threshold. Brand colours chosen for vibrancy rather than legibility often fail on white backgrounds; a mid-tone blue like #4299E1 on white sits near 3:1, fine for a large decorative heading but not for body copy. Fixing these usually means darkening the text colour two or three shades while keeping the hue, or moving to an off-black such as #1A202C instead of pure grey.' },
+      { title: 'Contrast is not the whole accessibility story', body: 'A pair can pass the ratio check and still be problematic — red text on a green background can pass while being unreadable to colour-blind users because the hues share perceived lightness. The WCAG ratio is a floor, not a ceiling: combine it with a colour-blindness check and avoid conveying meaning through colour alone (WCAG 1.4.1). Use this checker to clear the measurable requirement, then sanity-check with real content at real sizes.' },
+    ],
+    faqs: [
+      { q: 'What is a good contrast ratio for text?', a: 'WCAG AA requires 4.5:1 for normal-sized text and 3:1 for large text. For long-form reading content, aim for 7:1 (AAA normal text). Black text on a white background is 21:1; pure grey (#888888) on white fails every level.' },
+      { q: 'How is the contrast ratio calculated?', a: 'Each colour is converted from sRGB to linearised RGB, then a relative luminance is computed as a weighted sum (0.2126 red + 0.7152 green + 0.0722 blue). The ratio is (lighter luminance + 0.05) divided by (darker luminance + 0.05), giving a value between 1 and 21.' },
+      { q: 'Does WCAG contrast apply to buttons and icons?', a: 'Yes. WCAG 1.4.11 requires a 3:1 ratio for UI components and graphical objects — button borders, icons, input borders, and focus indicators must be distinguishable from their adjacent background.' },
+      { q: 'What counts as "large text" for the lower thresholds?', a: 'WCAG defines large text as 18pt (24px) regular weight or 14pt (about 18.5px) bold and above. These sizes qualify for the 3:1 AA and 4.5:1 AAA thresholds instead of the normal-text thresholds.' },
+      { q: 'Can I use opacity or rgba() colours with this checker?', a: 'Compute the composited colour first — an rgba() text colour over a background resolves to a single flat hex value. Enter that composited hex in the checker, since WCAG ratios are always computed on the final rendered colours.' },
+      { q: 'Is this contrast checker free?', a: 'Yes — completely free, no signup, no limits. It runs entirely in your browser, so your colour values are never uploaded anywhere.' },
+    ],
+  },
+  'palette-generator': {
+    intro: 'A colour palette is the DNA of a visual identity: five swatches determine whether a product feels calm or urgent, premium or playful. This generator builds palettes from colour-wheel harmonies — the same relationships taught in classical colour theory, formalised in the HSL colour model. You pick a base colour, choose a harmony (analogous, complementary, triadic, split-complementary, tetradic, or monochromatic), and get a five-swatch palette you can copy straight into CSS variables. Because the harmonies are mathematically derived, every palette is internally consistent by construction — the common failure of hand-picked palettes is hues that fight each other, and harmony rules prevent that at the source.',
+    howTo: [
+      'Pick your base colour — ideally your existing brand colour, or one extracted from a key image with the ReddTools Colour Picker.',
+      'Choose a harmony. Analogous for calm and cohesive, complementary for high-contrast accents, triadic for playful variety, split-complementary for contrast with less tension, monochromatic for minimal, elegant systems.',
+      'Click any swatch to copy its HEX value, or copy all values at once.',
+      'Test the palette in context: apply it to a real layout. A palette that looks balanced as five equal stripes often needs re-weighting — see the 60-30-10 note below.',
+      'Run your primary text/background pair through the ReddTools Contrast Checker before committing.',
+    ],
+    useCases: [
+      'Building a design system: generate the hue relationships once, then derive tint/shade scales for each colour.',
+      'Landing pages and marketing sites that need a fresh but coherent palette quickly.',
+      'Dashboards and data visualisations, where triadic or tetradic harmonies give you three to four clearly separated categorical hues.',
+      'Rebrand exploration: take the current brand colour as the base and generate alternatives without losing the underlying identity.',
+      'Themed variants (dark mode, seasonal campaigns) from a single base hue using the monochromatic harmony.',
+    ],
+    examples: [
+      { title: 'Which harmony should you choose?', body: 'Analogous palettes (neighbouring hues, ±20–40°) read as calm and natural — think nature and wellness brands. Complementary palettes (hues 180° apart) create maximum contrast; use the complement sparingly as a call-to-action accent, not as a co-equal surface. Triadic (hues 120° apart) suits playful, energetic brands but needs a dominant hue with the other two as accents. Split-complementary gives you contrast with more nuance than a hard complement. Monochromatic palettes are the safest bet for typography-heavy, editorial, or luxury-feeling sites.' },
+      { title: 'The 60-30-10 rule', body: 'A palette is not used evenly. The classic rule allocates 60% of a layout to a dominant (usually neutral or background) colour, 30% to a secondary colour, and 10% to an accent. When a generated palette looks chaotic applied to a real page, the cause is almost always equal weighting. Pick one or two swatches to carry the design and demote the rest to rare accents — a five-swatch palette that all appear at full strength is a poster, not an interface.' },
+      { title: 'From palette to code', body: 'Copy the five HEX values into CSS custom properties: --color-primary, --color-secondary, --color-accent, --color-surface, --color-text. Derive hover and pressed states by shifting lightness (not hue) so the palette stays coherent under interaction. If a text/background pair fails WCAG contrast, darken the text swatch within its hue rather than switching to grey — hue-consistent neutrals keep the system looking designed rather than assembled.' },
+    ],
+    faqs: [
+      { q: 'What is the best colour harmony for a website?', a: 'There is no single best, but analogous and monochromatic are the safest for beginners — they are hard to make ugly. Complementary works well when you need a high-contrast accent colour for call-to-action buttons. Triadic suits playful brands but demands one clearly dominant hue.' },
+      { q: 'How many colours should a palette have?', body: 'For most products, 3-5 active hues plus neutrals. The 60-30-10 rule is a good starting split: 60% dominant, 30% secondary, 10% accent. More than five active hues tends to create visual chaos and increases maintenance cost.' },
+      { q: 'Are generated palettes accessible?', a: 'Harmony alone does not guarantee accessibility — contrast depends on which swatches you pair for text and backgrounds. Always run your primary text/background pairs through a contrast checker that applies the WCAG formula.' },
+      { q: 'Can I generate a palette from an image?', a: 'Yes, in two steps: use the ReddTools Colour Picker to extract the dominant colour from your image, paste its HEX value here as the base colour, then generate harmonies around it.' },
+      { q: 'What is the difference between HEX and HSL?', a: 'HEX (#4169E1) is the compact sRGB notation used in CSS. HSL (hue, saturation, lightness) is the model this generator uses internally, because harmony rules operate on hue angles — analogous means neighbouring angles, complementary means 180° apart.' },
+      { q: 'Is this palette generator free?', a: 'Yes — completely free, no signup, no limits. Everything runs in your browser; your colours are never uploaded.' },
+    ],
+  },
+  'px-to-rem': {
+    intro: 'The rem unit is the foundation of accessible, scalable CSS typography. One rem equals the computed font-size of the root <html> element — 16px in every mainstream browser by default, which is why 1rem = 16px is the mental model most developers carry. The point of rem is not arithmetic; it is user respect. When a visitor increases their browser default font size (a common accommodation for low-vision users), every rem-based size in your site scales accordingly, while px-based sizes stay frozen and break the layout\'s proportions. Converting px to rem is therefore the last manual step in a professional sizing workflow, and this converter — with a bidirectional field and a reference table for any root size — makes it instant.',
+    howTo: [
+      'Set the root font size if it is not the default 16px (e.g. 10px, a common choice that makes rem values round numbers, or 62.5% setups).',
+      'Type a pixel value — the rem value updates instantly — or type a rem value to convert back to pixels.',
+      'Consult the reference table for the standard scale of sizes from 4px to 192px under your chosen root.',
+      'Copy the rem value into your CSS, and prefer rem for font-size, spacing, and widths that should scale with user preferences.',
+    ],
+    useCases: [
+      'Converting a px-based design mockup into rem-based CSS during implementation.',
+      'Building a type scale (e.g. 0.75rem, 0.875rem, 1rem, 1.25rem, 1.5rem, 2rem) that scales with user font preferences.',
+      'Auditing legacy CSS for hard-coded px font-sizes that ignore the browser zoom and font-size settings.',
+      'Working with the popular "root font-size: 62.5%" trick, where 1rem = 10px and values map 1:10.',
+      'Converting spacing tokens so padding and margins scale proportionally with typography.',
+    ],
+    examples: [
+      { title: 'px, em, and rem — which to use when', body: 'Use px for values that should NOT scale with user font preferences: 1px borders, box-shadow offsets, media-query breakpoints, and some hairline dividers. Use rem for font sizes and for spacing tied to typography rhythm. Use em only for values relative to a component\'s own font size (e.g. padding on a button that must track its label size). The common professional default is: everything scalable in rem, everything cosmetic in px, and em reserved for intra-component coupling.' },
+      { title: 'The 62.5% root trick', body: 'Setting html { font-size: 62.5% } makes 1rem equal 10px, so 1.6rem = 16px, 2.4rem = 24px — every conversion becomes mental arithmetic. The catch: any rem value you fail to reset is now 60% smaller than expected, and third-party components that assume a 16px root will render tiny. If you use the trick, set this converter\'s root field to 10 to see true values. Many teams now avoid the trick and use the 16px default with a tool like this converter instead.' },
+      { title: 'Why not just use px everywhere?', body: 'Modern browsers scale full-page zoom correctly with px, but the "font-size only" preference in browser settings — used by low-vision visitors — only affects rem-based sizes. WCAG 1.4.4 (Resize Text) effectively requires text to scale to 200% without loss of content or functionality. A px-locked site either ignores the user\'s setting or overflows its containers. Converting font sizes to rem is the single cheapest accessibility upgrade in CSS.' },
+    ],
+    faqs: [
+      { q: 'How many px is 1 rem?', a: 'With the default browser root font size of 16px, 1rem = 16px. If a site sets a different root font size (e.g. 10px via the 62.5% trick), 1rem equals that value instead — set it in the root field above for accurate conversions.' },
+      { q: 'How do I convert px to rem manually?', a: 'Divide the pixel value by the root font size. For a 16px root: 24px ÷ 16 = 1.5rem. To go the other way, multiply: 1.5rem × 16 = 24px.' },
+      { q: 'Should I use px or rem for font sizes?', a: 'Use rem. It respects the user\'s browser font-size preference (an accessibility requirement, WCAG 1.4.4), and keeps your whole spacing scale proportional when that preference changes. Use px only for hairline borders, shadows, and breakpoints that must not scale.' },
+      { q: 'What is the 62.5% font-size trick?', a: 'Setting html { font-size: 62.5% } makes 1rem = 10px so rem values are easy to read (2.4rem = 24px). It works but risks breaking components that assume a 16px root — use it deliberately, and remember to set the root field above to 10px.' },
+      { q: 'Does rem work in media queries?', a: 'Rem in media queries is calculated against the browser default (usually 16px) rather than any root font-size your CSS sets, and its behaviour varies slightly across browsers. px is the safer, predictable unit for breakpoints.' },
+      { q: 'Is this converter free?', a: 'Yes — free, instant, no signup. All conversion logic runs in your browser.' },
+    ],
+  },
 };
 
 const key = modeSlug ? `${toolSlug}/${modeSlug}` : toolSlug;
