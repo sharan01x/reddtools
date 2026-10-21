@@ -678,6 +678,20 @@ export const tracks: Track[] = [
     attribution: 'Created for this collection — not used in a video',
     keywords: ["free afrobeat sunset groove background music", "afrobeat sunset groove royalty free music", "afrobeat sunset groove free download mp3", "free background music for videos"],
   },
+  {
+    file: '/music/trip-hop-downtempo.mp3',
+    slug: 'trip-hop-downtempo',
+    title: 'Trip-Hop Downtempo',
+    seoTitle: 'Moody Trip-Hop Background Track for Edits & Atmospheric B-Roll',
+    duration: '4:02',
+    seconds: 243,
+    tags: ["Trip-Hop", "Downtempo", "Moody", "Atmospheric"],
+    description: 'An atmospheric downtempo piece that opens on spacious synth pads before a crisp beat drops in — punchy kicks, deep sub-bass and clean electric guitar arpeggios weaving through bell-like textures. Moody, unhurried and cinematic, ideal for night-city edits, documentary segments and stylish B-roll.',
+    useCase: 'The spacious pads and laid-back beat make this a natural bed for night-city B-roll, documentary segments and editorial montages where a moody, unhurried atmosphere matters. Its steady mid-tempo groove also works well as a focus or writing soundtrack.',
+    closing: 'At 4:02, Trip-Hop Downtempo is easy to loop or trim to fit your edit. The MP3 download above is free for personal and commercial use. It is one of 51 tracks in a collection we made ourselves — see the neighbouring tracks below for similar moods, or the music index for the full library.',
+    attribution: 'Created for this collection — not used in a video',
+    keywords: ["free trip hop downtempo background music", "trip hop royalty free music", "downtempo instrumental free download mp3", "free background music for videos"],
+  },
 ];
 
 export const trackBySlug = new Map(tracks.map((t) => [t.slug, t]));
