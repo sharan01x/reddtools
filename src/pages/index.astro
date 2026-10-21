@@ -56,6 +56,18 @@ const toolIcons: Record<string, string> = {
       <p class="card-desc">Free royalty-free tracks made by our team — stream in-browser, download the MP3, use in any project. No attribution required. New tracks added every week.</p>
     </div>
   </a>
+  <a href="/wallpapers/" class="tool-card music-feature">
+    <div class="card-icon-wrap">
+      <svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="12" width="52" height="40" rx="4"/><path d="M6 44l14-14 10 10 8-8 20 18"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title-row">
+        <h2 class="card-title">HD Wallpapers</h2>
+        <span class="card-badge new">New twice a week</span>
+      </div>
+      <p class="card-desc">Free 2048×1280 desktop wallpapers — nature scenes, wildlife, and minimal typography. Direct JPG download, no signup, no attribution required.</p>
+    </div>
+  </a>
   {tools.map((tool) => {
       const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}/` : `/${tool.slug}/`;
       return (
@@ -131,6 +143,10 @@ const toolIcons: Record<string, string> = {
     <a href="/music/" class="resource-card">
       <h3>Background Music</h3>
       <p>Free royalty-free tracks made by our team. Stream in-browser and download the MP3 — no attribution required.</p>
+    </a>
+    <a href="/wallpapers/" class="resource-card">
+      <h3>HD Wallpapers</h3>
+      <p>Free 2048×1280 desktop wallpapers — nature, animals, and minimal typography. Direct JPG download, no signup.</p>
     </a>
     <a href="/about/" class="resource-card">
       <h3>About ReddTools</h3>

@@ -1,0 +1,255 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { wallpapers } from '../../data/wallpapers';
+
+export function getStaticPaths() {
+  return wallpapers.map((w) => ({
+    params: { slug: w.slug },
+    props: { w },
+  }));
+}
+
+const { w } = Astro.props;
+const idx = wallpapers.findIndex((x) => x.slug === w.slug);
+const prev = wallpapers[(idx - 1 + wallpapers.length) % wallpapers.length];
+const next = wallpapers[(idx + 1) % wallpapers.length];
+
+const canonicalPath = `/wallpapers/${w.slug}/`;
+const title = w.seoTitle;
+const description = `${w.title} — a free HD ${w.theme} desktop wallpaper (2048×1280, 16:10) from the ReddTools collection. ${w.tags.slice(0, 3).join(', ')}. Free JPG download, no signup.`;
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ImageObject',
+    name: w.title,
+    url: `https://reddtools.com${canonicalPath}`,
+    description: w.description,
+    contentUrl: `https://reddtools.com${w.file}`,
+    encodingFormat: 'image/jpeg',
+    width: w.width,
+    height: w.height,
+    isAccessibleForFree: true,
+    keywords: w.tags.join(', '),
+    license: 'https://reddtools.com/terms/',
+    acquireLicensePage: 'https://reddtools.com/terms/',
+    creator: { '@type': 'Organization', name: 'Redd Group', url: 'https://reddtools.com/about/' },
+    creditText: 'ReddTools',
+    copyrightNotice: 'Redd Group',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://reddtools.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Wallpapers', item: 'https://reddtools.com/wallpapers/' },
+      { '@type': 'ListItem', position: 3, name: w.title, item: `https://reddtools.com${canonicalPath}` },
+    ],
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  jsonLd={jsonLd}
+  keywords={[`${w.tags[0].toLowerCase()} wallpaper`, 'free hd desktop wallpaper', `${w.theme} wallpaper`, '16:10 wallpaper download', 'free desktop background']}
+  breadcrumbs={[{ name: 'Home', href: '/' }, { name: 'Wallpapers', href: '/wallpapers/' }, { name: w.title }]}
+>
+  <section class="wp-hero">
+    <div class="section-label">Free HD Wallpaper · {w.width}×{w.height} · 16:10</div>
+    <h1>{w.seoTitle}</h1>
+    <img class="wp-full" src={w.file} alt={w.title} width={w.width} height={w.height} />
+    <div class="wp-actions">
+      <a href={w.file} download class="download-btn">Download JPG — Free</a>
+      <span class="licence-note">Personal & commercial use · No attribution · No watermark</span>
+    </div>
+  </section>
+
+  <section class="wp-copy">
+    <h2>The mood and the palette</h2>
+    <p>{w.description}</p>
+    <h2>How to use it</h2>
+    <p>{w.useCase}</p>
+    <h2>Free download, generous licence</h2>
+    <p>
+      This wallpaper was created in-house by the Redd Group team using AI-assisted image generation,
+      then selected and finished by us — so we hold the rights, and we can share it freely. Download the
+      JPG above with one click: no signup, no email capture, no watermark, and no attribution required.
+      Use it on your desktop, laptop, or in mockups and presentations. The only thing we ask is that
+      you don't resell the image itself or republish it on wallpaper aggregators as your own.
+    </p>
+    <p>
+      Looking for a different mood? Browse the <a href="/wallpapers/">full wallpaper collection</a> —
+      nature scenes, wildlife, and minimal typography designs, with new wallpapers added twice a week —
+      or start with the two neighbours below.
+    </p>
+  </section>
+
+  <section class="neighbours">
+    <h2>More free wallpapers</h2>
+    <div class="neighbour-grid">
+      <a class="neighbour-card" href={`/wallpapers/${prev.slug}/`}>
+        <span class="neighbour-label">Previous</span>
+        <span class="neighbour-title">{prev.title}</span>
+        <span class="neighbour-desc">{prev.tags.slice(0, 3).join(' · ')}</span>
+      </a>
+      <a class="neighbour-card" href={`/wallpapers/${next.slug}/`}>
+        <span class="neighbour-label">Next</span>
+        <span class="neighbour-title">{next.title}</span>
+        <span class="neighbour-desc">{next.tags.slice(0, 3).join(' · ')}</span>
+      </a>
+    </div>
+    <p class="neighbour-index"><a href="/wallpapers/">Browse all wallpapers →</a></p>
+  </section>
+</Layout>
+
+<style>
+  .wp-hero {
+    text-align: center;
+    padding: 110px 24px 40px;
+  }
+
+  .wp-hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: #000;
+    margin: 0 0 24px;
+  }
+
+  .wp-full {
+    display: block;
+    width: 100%;
+    max-width: 960px;
+    height: auto;
+    margin: 0 auto 24px;
+    border-radius: 4px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .wp-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .download-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    background: #000;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 200ms ease;
+  }
+
+  .download-btn:hover { opacity: 0.85; }
+
+  .licence-note {
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #888;
+  }
+
+  .wp-copy {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 8px 24px 32px;
+  }
+
+  .wp-copy h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+    color: #000;
+  }
+
+  .wp-copy p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #3d3d3d;
+    margin: 0 0 16px;
+  }
+
+  .wp-copy a { color: #000; text-decoration: underline; }
+
+  .neighbours {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .neighbours h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 16px;
+    color: #000;
+  }
+
+  .neighbour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+
+  .neighbour-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    text-decoration: none;
+  }
+
+  .neighbour-card:hover { border-color: rgba(0, 0, 0, 0.25); }
+
+  .neighbour-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #999;
+  }
+
+  .neighbour-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .neighbour-desc {
+    font-size: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #666;
+  }
+
+  .neighbour-index {
+    margin-top: 16px;
+    font-size: 14px;
+  }
+
+  .neighbour-index a { color: #000; }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 16px;
+  }
+</style>

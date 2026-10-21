@@ -1,0 +1,293 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { wallpapers, themes } from '../data/wallpapers';
+
+const title = 'Free HD Desktop Wallpapers — Nature, Animals, Typography, Abstract & Fractals';
+const description = 'A free collection of HD desktop wallpapers (2048×1280, 16:10) created in-house by the Redd Group team — nature scenes, wildlife, minimal typography, abstract gradients, and fractal art. Free download, no signup, works on any screen.';
+const canonicalPath = '/wallpapers/';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Free HD Desktop Wallpapers — ReddTools',
+    url: 'https://reddtools.com/wallpapers/',
+    description,
+    isPartOf: { '@type': 'WebSite', name: 'ReddTools', url: 'https://reddtools.com' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'ReddTools Wallpaper Collection',
+    itemListElement: wallpapers.map((w, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'ImageObject',
+        name: w.title,
+        url: `https://reddtools.com/wallpapers/${w.slug}/`,
+        contentUrl: `https://reddtools.com${w.file}`,
+        encodingFormat: 'image/jpeg',
+        width: w.width,
+        height: w.height,
+        isAccessibleForFree: true,
+      },
+    })),
+  },
+];
+---
+
+<Layout title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd} keywords={['free hd wallpapers', 'desktop wallpaper download', 'nature wallpaper', 'animal wallpaper', 'minimal typography wallpaper', '4k desktop background', '16:10 wallpaper']}>
+  <section class="wp-hero">
+    <div class="section-label">Wallpapers</div>
+    <h1>Free HD Desktop Wallpapers, Made By Us</h1>
+    <p class="hero-subtitle">
+      Every wallpaper in this collection was created in-house by the Redd Group team — nature scenes,
+      wildlife, minimal typography, abstract gradients, and fractal art, all at 2048×1280 (16:10). Free to download, free to use,
+      no signup required.
+    </p>
+  </section>
+
+  <section class="theme-filter">
+    {themes.map((t) => (
+      <a class="theme-link" href={`/wallpapers/#theme-${t.id}`}>{t.label}</a>
+    ))}
+  </section>
+
+  <section class="wp-grid">
+    {wallpapers.map((w) => (
+      <article class="wp-card" id={`theme-${w.theme}`}>
+        <a class="wp-thumb-link" href={`/wallpapers/${w.slug}/`}>
+          <img class="wp-thumb" src={w.file} alt={w.title} width={w.width} height={w.height} loading="lazy" />
+        </a>
+        <div class="wp-card-body">
+          <h2><a class="wp-link" href={`/wallpapers/${w.slug}/`}>{w.seoTitle}</a></h2>
+          <p class="wp-desc">{w.description.slice(0, 150)}…</p>
+          <div class="wp-tags">
+            <span class="wp-theme-tag">{w.theme}</span>
+            {w.tags.slice(0, 3).map((tag) => <span class="wp-tag">{tag}</span>)}
+          </div>
+          <div class="wp-actions">
+            <a href={w.file} download class="download-btn">Download JPG</a>
+            <a href={`/wallpapers/${w.slug}/`} class="page-btn">Wallpaper page →</a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </section>
+
+  <section class="wp-copy">
+    <h2>About this collection</h2>
+    <p>
+      ReddTools is best known for its free online tools — unit converters, calculators, colour pickers —
+      but the team behind the site also designs, and every designer eventually needs a desktop that
+      doesn't fight back. This collection is our answer: wallpapers we make for our own screens,
+      created in-house with AI-assisted image generation tools, then art-directed, selected, and
+      finished by us. That means we hold the rights to every pixel — and we can share them with you
+      completely free.
+    </p>
+    <p>
+      Finding a good wallpaper is surprisingly hard. Most wallpaper sites bury the actual image under
+      pop-ups, fake download buttons, and twelve sizes of the same gradient. Everything here is the
+      opposite: one honest JPG per wallpaper, a direct download link, no watermarks, no email capture,
+      no attribution required. Use them on your desktop, laptop, or anywhere else — including client
+      mockups and presentations.
+    </p>
+    <p>
+      Each wallpaper is a 2048×1280 (16:10) JPG, sized for the dominant "HD desktop wallpaper" class.
+      That resolution covers most desktop monitors cleanly and looks sharp on laptops — and because
+      we optimise the JPGs carefully, each file is a few hundred kilobytes rather than the multi-megabyte
+      monsters some sites push. Every wallpaper also gets its own page with the story behind the image,
+      its palette, and styling suggestions for matching your desktop theme.
+    </p>
+    <p>
+      The collection grows on a regular publishing schedule — new wallpapers land twice a week, rotating
+      through nature, animals, typography, abstract, and fractal themes. Bookmark the page and check back, or browse the
+      theme filters above. And if you make something with our wallpapers, or want a theme we haven't
+      covered yet, reach us through the <a href="/contact/">contact page</a>.
+    </p>
+  </section>
+</Layout>
+
+<style>
+  .wp-hero {
+    text-align: center;
+    padding: 120px 0 32px;
+  }
+
+  .wp-hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: #000;
+    margin: 0 0 16px;
+  }
+
+  .hero-subtitle {
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #5b5b5b;
+    padding: 0 24px;
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 16px;
+  }
+
+  .theme-filter {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 0 24px 40px;
+  }
+
+  .theme-link {
+    padding: 8px 18px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .theme-link:hover { border-color: #000; }
+
+  .wp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    padding: 0 24px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .wp-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wp-thumb-link { display: block; }
+
+  .wp-thumb {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .wp-card-body { padding: 20px; }
+
+  .wp-card-body h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    line-height: 1.35;
+  }
+
+  .wp-link { color: #000; text-decoration: none; }
+  .wp-link:hover { text-decoration: underline; }
+
+  .wp-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444;
+    margin: 0 0 12px;
+  }
+
+  .wp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .wp-tag, .wp-theme-tag {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.05);
+    color: #666;
+  }
+
+  .wp-theme-tag {
+    background: #000;
+    color: #fff;
+    text-transform: capitalize;
+  }
+
+  .wp-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .download-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background: #000;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 200ms ease;
+  }
+
+  .download-btn:hover { opacity: 0.85; }
+
+  .page-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #000;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .page-btn:hover { border-color: #000; }
+
+  .wp-copy {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 24px 80px;
+  }
+
+  .wp-copy h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 0 16px;
+    color: #000;
+  }
+
+  .wp-copy p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #3d3d3d;
+    margin: 0 0 16px;
+  }
+
+  .wp-copy a { color: #000; text-decoration: underline; }
+</style>
