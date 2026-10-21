@@ -200,14 +200,56 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <div class="footer-content">
       <div class="footer-brand">ReddTools</div>
       <div class="footer-rule"></div>
-      <div class="footer-links">
-        <a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
-        <a href="/music/">Background Music</a>
-        <a href="/wallpapers/">Wallpapers</a>
-        <a href="/contact/">Contact</a>
-        <a href="/privacy/">Privacy</a>
-        <a href="/terms/">Terms</a>
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h3 class="footer-col-title">Tools</h3>
+          <ul class="footer-col-list">
+            {tools.map((tool) => (
+              <li><a href={tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}/` : `/${tool.slug}/`}>{tool.name}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">Calculators</h3>
+          <ul class="footer-col-list">
+            {tools.flatMap((tool) =>
+              (tool.modes || []).map((mode) => (
+                <li><a href={`/${tool.slug}/${mode.slug}/`}>{mode.name}</a></li>
+              ))
+            )}
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">Unit Conversion</h3>
+          <ul class="footer-col-list">
+            <li><a href="/kg-to-lbs/">KG to LBS</a></li>
+            <li><a href="/lbs-to-kg/">LBS to KG</a></li>
+            <li><a href="/pounds-to-kg/">Pounds to KG</a></li>
+            <li><a href="/kg-to-pounds/">KG to Pounds</a></li>
+            <li><a href="/miles-to-km/">Miles to KM</a></li>
+            <li><a href="/km-to-miles/">KM to Miles</a></li>
+            <li><a href="/feet-to-cm/">Feet to CM</a></li>
+            <li><a href="/cm-to-feet/">CM to Feet</a></li>
+            <li><a href="/inches-to-cm/">Inches to CM</a></li>
+            <li><a href="/metres-to-feet/">Metres to Feet</a></li>
+            <li><a href="/celsius-to-fahrenheit/">Celsius to Fahrenheit</a></li>
+            <li><a href="/fahrenheit-to-celsius/">Fahrenheit to Celsius</a></li>
+            <li><a href="/litres-to-gallons/">Litres to Gallons</a></li>
+            <li><a href="/oz-to-grams/">Ounces to Grams</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">Resources</h3>
+          <ul class="footer-col-list">
+            <li><a href="/blog/">Blog & Guides</a></li>
+            <li><a href="/music/">Background Music</a></li>
+            <li><a href="/wallpapers/">HD Wallpapers</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+            <li><a href="/privacy/">Privacy</a></li>
+            <li><a href="/terms/">Terms</a></li>
+          </ul>
+        </div>
       </div>
       <div class="footer-caption">Built by Redd Group · <a href="https://www.producthunt.com/products/reddtools" rel="noopener" style="color:inherit;text-decoration:none;">Featured on Product Hunt</a></div>
     </div>
@@ -547,12 +589,41 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       color: #999;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 16px;
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px 24px;
+      width: 100%;
+      padding: 12px 0 8px;
     }
 
-    .footer-links a {
+    @media (min-width: 900px) {
+      .footer-columns {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 960px;
+      }
+    }
+
+    .footer-col-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #000;
+      margin: 0 0 12px;
+    }
+
+    .footer-col-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-col-list a {
       font-family: 'Inter', sans-serif;
       font-size: 13px;
       color: #5b5b5b;
@@ -560,7 +631,7 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       transition: color 200ms ease;
     }
 
-    .footer-links a:hover {
+    .footer-col-list a:hover {
       color: #000;
     }
   </style>
