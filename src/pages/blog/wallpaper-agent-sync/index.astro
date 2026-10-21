@@ -1,0 +1,112 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import RelatedTools from '../../../components/RelatedTools.astro';
+
+const title = 'Set a New Wallpaper Every Day With Your AI Agent — No App Needed';
+const description = 'Skip the wallpaper app. Here is how to set up a fully automated wallpaper rotation that syncs new artwork twice a week, cycles images across the day, and updates every Space on your Mac — built entirely by an AI agent.';
+const canonicalPath = '/blog/wallpaper-agent-sync/';
+const date = '2026-10-21';
+const readTime = '9 min read';
+const keywords = ['AI agent', 'automated wallpaper', 'macOS wallpaper automation', 'launchd', 'AI agent workflow', 'desktop wallpaper automation'];
+
+const jsonFeed = JSON.stringify({
+  updated: 8,
+  wallpapers: [{
+    slug: 'crystalline-fractal-bloom',
+    title: 'Crystalline Fractal Bloom',
+    theme: 'fractals',
+    width: 2048,
+    height: 1280,
+    file: 'https://reddtools.com/wallpapers/crystalline-fractal-bloom.jpg',
+    page: 'https://reddtools.com/wallpapers/crystalline-fractal-bloom/',
+  }],
+}, null, 2);
+---
+
+<ArticleLayout title={title} description={description} canonicalPath={canonicalPath} date={date} readTime={readTime} keywords={keywords}>
+
+<p>Wallpaper apps are a strange category. They all want an installer, an account, a login item, and permanent residence in your menu bar — to do something your operating system can already do natively: change a picture. So when we wanted our own machines to cycle the free wallpapers from our <a href="/wallpapers/">wallpapers collection</a>, we skipped the app entirely. Instead, we gave our local AI agent a short brief: set this up, once, and keep it working.</p>
+
+<p>What follows is the complete recipe — what the agent built, the macOS quirks it had to solve, and the exact brief you can paste into your own agent (Hermes, Claude Code, Cursor, or any assistant with shell access to your machine) to get the same result in about five minutes.</p>
+
+<h2>What the system does</h2>
+
+<p>The finished setup behaves like this:</p>
+
+<ul>
+  <li><strong>Once a day</strong>, the machine checks a public JSON feed for new wallpapers and downloads any it does not have.</li>
+  <li><strong>Nothing accumulates.</strong> When a wallpaper drops out of the feed, the local copy is deleted. The image folder never grows past the current collection.</li>
+  <li><strong>Images rotate across the day.</strong> If there are three wallpapers, each one is shown for eight hours. Eight wallpapers means a fresh desktop every three hours.</li>
+  <li><strong>Every Space updates.</strong> macOS keeps wallpaper settings per-Space, which trips up nearly every automation script on the internet. This setup handles it.</li>
+</ul>
+
+<p>Total cost: zero. Total apps installed: zero. The only permanent resident is a small background script your agent wrote for you — which you can read, inspect, and remove at any time.</p>
+
+<h2>The one thing the site needs: a machine-readable feed</h2>
+
+<p>A human browses a gallery page. An agent wants data. The first thing our agent built was a static JSON endpoint that lists every wallpaper with its metadata, newest first:</p>
+
+<pre><code>https://reddtools.com/wallpapers.json</code></pre>
+
+<p>The response looks like this:</p>
+
+<pre><code>{jsonFeed}</code></pre>
+
+<p>Any feed works — this is just ours. The important part is that the client logic becomes trivial: fetch the feed, compare against what you already have, download the difference.</p>
+
+<h2>The sync script</h2>
+
+<p>The core is roughly a hundred lines of standard-library Python. No dependencies, no virtual environment, no package manager. The logic:</p>
+
+<ol>
+  <li><strong>Fetch the feed</strong> and list local files.</li>
+  <li><strong>Download anything new</strong>, with a sanity check on file size (a wallpaper that arrives under 50KB is an error page, not an image).</li>
+  <li><strong>Prune anything stale</strong> — files present locally but absent from the feed get deleted.</li>
+  <li><strong>Pick the current slot image</strong>: with N images in the folder, each image owns a 24/N-hour slice of the day. Three images means the switch happens every eight hours.</li>
+  <li><strong>Apply it via AppleScript</strong>: <code>osascript -e 'tell application "System Events" to tell every desktop to set picture to POSIX file "&lt;path&gt;"'</code></li>
+  <li><strong>Record state</strong> in a tiny JSON file so re-runs are idempotent — the script no-ops unless the image actually needs to change.</li>
+</ol>
+
+<p>Scheduling runs through <strong>launchd</strong>, not cron. Launchd is the native macOS scheduler, it survives reboots without extra plumbing, and — as we learned the hard way — it can hold the Automation permission your script needs. Our agent runs at 00:05, 08:05, and 16:05, which lines up neatly with the three-hour rotation slots.</p>
+
+<h2>The Spaces problem (and the fix)</h2>
+
+<p>Here is the part that defeats most wallpaper scripts. macOS stores wallpaper settings <strong>per-Space</strong>, and Apple's AppleScript interface can only set the picture of the Space that is <em>currently active</em>. So a scheduled script that runs at 8am while you are looking at Space 2 sets the wallpaper on Space 2 — and Space 1 keeps yesterday's image. Worse, <code>tell every desktop</code> enumerates your <em>displays</em>, not your Spaces, so the usual Stack Overflow answer only helps people with multiple monitors.</p>
+
+<p>The fix is a tiny event watcher. macOS broadcasts a notification every time you switch Spaces (<code>NSWorkspace.activeSpaceDidChangeNotification</code>), and a forty-line Swift program can listen for it:</p>
+
+<pre><code>NSWorkspace.shared.notificationCenter.addObserver(
+    forName: NSWorkspace.activeSpaceDidChangeNotification,
+    object: nil, queue: nil) &#123; _ in
+        // re-run the sync script for the newly-active Space
+    &#125;</code></pre>
+
+<p>We compile it once with <code>swiftc</code> (it becomes a 57KB binary) and run it from launchd with KeepAlive. Every time you swipe to another Space, the watcher fires the sync script, and the newly-active Space gets a fresh wallpaper too.</p>
+
+<p>One refinement makes this genuinely pleasant: instead of re-applying the same image, the Space-change trigger <strong>advances to the next wallpaper in the rotation</strong>. Each Space ends up carrying a different image, and switching Spaces becomes part of the slideshow.</p>
+
+<h2>Permissions, the honest version</h2>
+
+<p>On first run, macOS will ask whether your terminal (or launchd) may send Apple events to System Events. This is the same prompt any wallpaper app triggers, and it is one-time — approve it and it persists. This is precisely why the agent-brief approach works so well: the permission request arrives from a context you already trust, with a script you can read, rather than from a downloaded binary of unknown provenance.</p>
+
+<h2>The brief to give your agent</h2>
+
+<p>Everything above compresses into a paragraph. Paste this into any agent with shell access:</p>
+
+<blockquote>
+  <p>Set up a daily wallpaper sync on this Mac: (1) Fetch https://reddtools.com/wallpapers.json once a day; download any wallpapers not already in ~/Pictures/reddtools-wallpapers/, and delete local files that have dropped out of the feed. (2) Cycle the images across the day — N images means each shows for 24/N hours. (3) Apply to every Space via osascript 'tell application "System Events" to tell every desktop to set picture to POSIX file …', and handle the per-Space limitation by adding a Space-change watcher (NSWorkspace.activeSpaceDidChangeNotification) that re-applies on every switch, advancing to the next image. (4) Run the sync from launchd at 00:05/08:05/16:05, idempotent with a state file. (5) Put the Space watcher in launchd with KeepAlive. Approve the one-time Automation permission when macOS asks.</p>
+</blockquote>
+
+<p>On Linux the same brief works with the AppleScript step swapped for <code>gsettings set org.gnome.desktop.background picture-uri "file://…"</code> (GNOME) or <code>feh --bg-fill</code> — everything else is identical.</p>
+
+<h2>Why this pattern generalises</h2>
+
+<p>The wallpaper sync is a small, almost frivolous example of something bigger. The "app" — installer, updater, menu-bar resident, permission dance — is increasingly optional middleware between you and tasks your machine can already do. What is actually needed is a specification: a feed, a policy (rotate, prune, refresh), and a trigger. An agent converts that specification into a small program in your user context, where it runs with the permissions you already granted and the transparency of code you can read.</p>
+
+<p>We expect to see a lot more software shipped this way: not as binaries to install, but as briefs to hand to the agent that already lives on your computer.</p>
+
+<h2>Get the wallpapers</h2>
+
+<p>The collection lives at <a href="/wallpapers/">reddtools.com/wallpapers</a> — free, high-resolution desktop wallpapers across nature, animals, quotes, abstract, and fractal themes, with new work added twice a week. No account, no attribution required. If you run the sync, your desktop will quietly pick up every new drop from here on.</p>
+
+</ArticleLayout>
