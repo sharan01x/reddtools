@@ -138,4 +138,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'Built for dark-mode desktops — the deep indigo ground merges with dark UI chrome. Let the centre sit in open desktop space, not under a dock, so the pattern can breathe. Pair with a teal or gold accent colour for menubar utilities. The indigo-teal-gold palette is a great seed for dark UI themes.',
   },
+  {
+    file: '/wallpapers/indigo-fractal-current.jpg',
+    slug: 'indigo-fractal-current',
+    title: 'Indigo Fractal Current',
+    seoTitle: 'Indigo Fractal Wallpaper — Teal Recursive Flow Desktop Background (HD)',
+    tags: ['Fractals', 'Geometric', 'Flow', 'Indigo', 'Teal'],
+    theme: 'fractals',
+    width: 2048,
+    height: 1170,
+    description:
+      'Where the crystalline bloom in this collection builds outward from a centre, the Indigo Fractal Current moves: recursive ribbon-like structures spiral across the frame like a slow-motion whirlpool rendered in light. The palette is deep indigo and navy — close enough to dark-mode UI chrome to disappear at the edges — with electric teal and soft cyan tracing the flow, and fine silver filaments catching detail between the folds. Density gathers toward the centre and falls away to calm dark margins, so the wallpaper rewards a long look without ever shouting over your icons. It is generative art in the true sense: self-similar, mathematical, and yet somehow organic, like a galaxy photographed mid-rotation. The mood is nocturnal and absorbing — evening deep-work rather than morning calm, an excellent companion for long sessions in front of code or a canvas.',
+    useCase:
+      'Designed for dark mode: the near-black ground means window chrome blends straight in. Keep the central vortex clear of dock and widget clutter so the recursion can breathe; the dark corners are ideal for icon layouts. Pair it with teal, cyan or ice-blue accent colours, and let it drive a matching dark UI theme — the indigo-teal pairing is a ready-made palette seed for terminal and editor colour schemes.',
+  },
 ];
