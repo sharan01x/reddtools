@@ -1,0 +1,13 @@
+# Server-level 301 redirects (Cloudflare Pages).
+# Replaces Astro static redirect stubs (200 + meta-refresh + noindex), which
+# Google Search Console flags as "Excluded by noindex" and soft-404s.
+
+# Tool index pages -> default mode
+/unit-converter/          /unit-converter/length/      301
+/unit-converter           /unit-converter/length/      301
+/calculator/             /calculator/mortgage/        301
+/calculator              /calculator/mortgage/        301
+
+# Legacy URL -> modern equivalent
+/percentage-calculator/  /calculator/percentage/     301
+/percentage-calculator   /calculator/percentage/     301
