@@ -692,6 +692,20 @@ export const tracks: Track[] = [
     attribution: 'Created for this collection — not used in a video',
     keywords: ["free trip hop downtempo background music", "trip hop royalty free music", "downtempo instrumental free download mp3", "free background music for videos"],
   },
+  {
+    file: '/music/krautrock-motorik.mp3',
+    slug: 'krautrock-motorik',
+    title: 'Krautrock Motorik',
+    seoTitle: 'Motorik Krautrock Groove Background Music for Edits & Timelapses',
+    duration: '3:12',
+    seconds: 192,
+    tags: ["Krautrock", "Motorik", "Groove", "Instrumental"],
+    description: 'A steady motorik-style groove built around a chorused electric guitar riff and a round, melodic bassline, locked in by a live-sounding drum kit at a laid-back 94 BPM. It builds through dynamic shifts from a core groove into driving, layered sections with a quiet breakdown before a clean crescendo ending.',
+    useCase: 'The relentless, metronomic pulse makes this an ideal bed for timelapses, driving shots, tech builds and process footage where forward momentum matters without vocal distraction. It also works as an energising writing or coding soundtrack.',
+    closing: 'At 3:12, Krautrock Motorik is easy to loop or trim to fit your edit. The MP3 download above is free for personal and commercial use. It is one of 52 tracks in a collection we made ourselves — see the neighbouring tracks below for similar moods, or the music index for the full library.',
+    attribution: 'Created for this collection — not used in a video',
+    keywords: ["free krautrock background music", "motorik groove royalty free music", "instrumental rock free download mp3", "free background music for videos"],
+  },
 ];
 
 export const trackBySlug = new Map(tracks.map((t) => [t.slug, t]));
