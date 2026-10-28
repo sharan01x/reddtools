@@ -152,4 +152,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'Designed for dark mode: the near-black ground means window chrome blends straight in. Keep the central vortex clear of dock and widget clutter so the recursion can breathe; the dark corners are ideal for icon layouts. Pair it with teal, cyan or ice-blue accent colours, and let it drive a matching dark UI theme — the indigo-teal pairing is a ready-made palette seed for terminal and editor colour schemes.',
   },
+  {
+    file: '/wallpapers/terracotta-arc-abstract.jpg',
+    slug: 'terracotta-arc-abstract',
+    title: 'Terracotta Arc Abstract',
+    seoTitle: 'Terracotta Abstract Wallpaper — Minimal Arc Geometric Desktop Background',
+    tags: ['Abstract', 'Geometric', 'Terracotta', 'Minimal', 'Warm'],
+    theme: 'abstract',
+    width: 2048,
+    height: 1280,
+    description:
+      'A study in restraint built from overlapping translucent arcs: curved bands of terracotta clay sweep across a warm sand-beige ground, with a deep slate-blue band anchoring the lower half of the frame. Nothing here is literal — the composition reads like a modern gallery poster, one confident gesture of geometry instead of a picture of a thing. The palette is warm and earthy on the upper two-thirds, cooled deliberately by that slate counterweight, so the wallpaper never tips into monotone. A subtle paper-grain texture keeps the flat colour fields from feeling digital and synthetic. Generous negative space occupies the upper third, which is exactly where menu bars, widgets and browser tabs live, so nothing on your screen ever clashes with the art. The mood is warm, considered and unhurried — a workspace that feels styled rather than decorated.',
+    useCase:
+      'An excellent base for warm-toned desktops: pair with terracotta, clay or camel accent colours and a light-mode UI. The clean upper third makes it especially forgiving for menu-bar-heavy layouts on macOS and Windows. The slate-blue lower band gives docks and taskbars a natural home without any visual collision.',
+  },
 ];
