@@ -1,0 +1,56 @@
+# ReddTools
+
+> Free, no-signup web utilities plus royalty-free music and wallpapers. Fast, ad-clutter-free tools that run entirely in your browser — no accounts, no downloads required.
+
+## Tools
+
+- https://reddtools.com/colour-picker: Image colour picker — drop an image and get exact HEX, RGB, and HSL values with a contrast checker
+- https://reddtools.com/timer: Countdown timer, stopwatch, and Pomodoro timer with tab-title countdown
+- https://reddtools.com/calculator: Multi-mode calculator for everyday math
+- https://reddtools.com/calculator/mortgage: Mortgage calculator — monthly payment and total interest over the loan term
+- https://reddtools.com/calculator/compound-interest: Compound interest calculator for savings and investments
+- https://reddtools.com/calculator/simple-interest: Simple interest calculator for loans and investments
+- https://reddtools.com/calculator/vat: VAT calculator — add or remove VAT at any rate (UK 20%, Spain 21%, Germany 19%, etc.)
+- https://reddtools.com/calculator/percentage: Percentage calculator — change, difference, and totals
+- https://reddtools.com/calculator/tip: Tip calculator with bill splitting
+- https://reddtools.com/calculator/bmi: BMI calculator with metric and imperial units
+- https://reddtools.com/calculator/loan: Loan calculator with amortization schedule preview
+- https://reddtools.com/unit-converter: Unit converter for length, weight, temperature, volume, speed, and data
+- https://reddtools.com/unit-converter/length: Length converter — metres, feet, miles, cm to inches
+- https://reddtools.com/unit-converter/weight: Weight converter — kg to lbs, grams to ounces, stones
+- https://reddtools.com/unit-converter/temperature: Temperature converter — Celsius, Fahrenheit, Kelvin
+- https://reddtools.com/unit-converter/volume: Volume converter for cooking — cups to ml, litres to gallons
+- https://reddtools.com/unit-converter/speed: Speed converter — mph, km/h, knots, m/s
+- https://reddtools.com/unit-converter/data: Data storage converter — bytes, KB, MB, GB, TB
+- https://reddtools.com/word-counter: Word and character counter with sentence count and reading time, live as you type
+- https://reddtools.com/case-converter: Case converter — UPPER, lower, Title Case, camelCase, snake_case, kebab-case
+- https://reddtools.com/contrast-checker: Colour contrast checker against WCAG AA and AAA accessibility standards
+- https://reddtools.com/palette-generator: Colour palette generator from a base colour — analogous, complementary, triadic, monochromatic
+- https://reddtools.com/px-to-rem: PX to REM converter with live reference table for any root font size
+
+## Music
+
+- https://reddtools.com/music: Index of 52 royalty-free instrumental tracks (ambient, folk, lo-fi, cinematic and more) — each track has its own page with a free MP3 download, playable and usable in personal and commercial projects
+
+## Wallpapers
+
+- https://reddtools.com/wallpapers: Index of 10 free high-resolution wallpapers (nature, abstract, typography) — free to download and use
+
+## Blog
+
+- https://reddtools.com/blog/choose-brand-colour-palette: How to choose a brand colour palette
+- https://reddtools.com/blog/colour-theory-web-design: Colour theory for web design
+- https://reddtools.com/blog/compound-interest-explained: Compound interest explained
+- https://reddtools.com/blog/mortgage-calculators-explained: Mortgage calculators explained
+- https://reddtools.com/blog/pomodoro-technique-guide: The Pomodoro technique guide
+- https://reddtools.com/blog/science-behind-bmi: The science behind BMI
+- https://reddtools.com/blog/text-case-conventions-developers: Text case conventions for developers
+- https://reddtools.com/blog/unit-conversion-mistakes: Common unit conversion mistakes
+- https://reddtools.com/blog/wallpaper-agent-sync: Wallpaper agent sync
+
+## About
+
+- https://reddtools.com/about: About ReddTools
+- https://reddtools.com/contact: Contact
+- https://reddtools.com/privacy: Privacy policy
+- https://reddtools.com/terms: Terms of use
