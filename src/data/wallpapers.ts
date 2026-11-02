@@ -166,4 +166,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'An excellent base for warm-toned desktops: pair with terracotta, clay or camel accent colours and a light-mode UI. The clean upper third makes it especially forgiving for menu-bar-heavy layouts on macOS and Windows. The slate-blue lower band gives docks and taskbars a natural home without any visual collision.',
   },
+  {
+    file: '/wallpapers/quote-invent-the-future.jpg',
+    slug: 'quote-invent-the-future',
+    title: 'Invent the Future — Alan Kay',
+    seoTitle: 'Invent the Future Wallpaper — Alan Kay Quote Desktop Background (Minimal Dark)',
+    tags: ['Quotes', 'Typography', 'Alan Kay', 'Minimal', 'Dark', 'Motivation'],
+    theme: 'quotes',
+    width: 2048,
+    height: 1280,
+    description:
+      'A real, attributed insight set quietly on a near-black ground: "The best way to predict the future is to invent it." — Alan Kay, 1971, the line he delivered at Xerox PARC that has since become the founding instinct of every builder. The typography is the entire design. The quote sits centre-stage in Inter SemiBold at a generous size, split across two balanced lines in a warm off-white, with the attribution set small beneath in IBM Plex Mono — the engineering flavour of the source matching the character of the man behind it. The background is a barely-there radial glow over deep charcoal, so the frame stays calm and the words do all the work. Nothing decorative, nothing platitudinous: a sentence with a citation, the way a good margin note would read. The mood is quietly ambitious — a reminder you meet every time the screen wakes up.',
+    useCase:
+      'Built for dark mode: the charcoal ground blends into window chrome, docks and menu bars on macOS, Windows and Linux alike. The quote block sits in the exact centre with clean margins on every side, so icon layouts, widgets and the dock never collide with the words. Pair it with graphite or slate UI accents, a neutral editor theme, and mono-spaced details elsewhere on the desktop — the Plex Mono attribution sets the tone. A natural backdrop for builders, founders, engineers and students, and a good fit for anyone who wants their workspace to open on intent rather than noise.',
+  },
 ];
