@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import MusicPlayer from '../../components/MusicPlayer.astro';
 import { tracks } from '../../data/tracks';
 
 export function getStaticPaths() {
@@ -63,6 +64,7 @@ const jsonLd = [
 <Layout
   title={title}
   description={description}
+  activeNav="music"
   canonicalPath={canonicalPath}
   jsonLd={jsonLd}
   keywords={track.keywords}
@@ -74,7 +76,9 @@ const jsonLd = [
       <p class="track-meta">
         {track.title} · {track.duration} · {track.tags.join(' · ')}
       </p>
-      <audio controls preload="none" src={track.file} class="track-player"></audio>
+      <div class="track-player-wrap">
+        <MusicPlayer src={track.file} title={track.title} />
+      </div>
       <div class="track-actions">
         <a href={track.file} download class="download-btn">Download MP3 — Free</a>
         <span class="licence-note">Royalty-free · No attribution · Monetisation OK</span>
@@ -88,7 +92,7 @@ const jsonLd = [
     <p>{track.useCase}</p>
     <h2>Free download, generous licence</h2>
     <p>
-      {track.closing}
+      {track.closing}{' '}
       Every track on this page was composed in-house by the ReddTools team, so we hold the rights to every note —
       that is what lets us release it with no paywall, no attribution clause, and no channel-size limits.
       Use it on YouTube, Twitch, podcasts, games, presentations, or client work, and monetise freely.
@@ -140,10 +144,11 @@ const jsonLd = [
     margin: 0 0 24px;
   }
 
-  .track-player {
+  .track-player-wrap {
+    display: block;
     width: 100%;
     max-width: 560px;
-    height: 44px;
+    margin: 0 auto;
   }
 
   .track-actions {

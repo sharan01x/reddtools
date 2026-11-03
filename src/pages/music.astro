@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import MusicPlayer from '../components/MusicPlayer.astro';
 
 const title = 'Free Background Music — Play & Download Our Royalty-Free Tracks';
 const description = 'A free collection of background music tracks created by the Redd Group team for our videos. Stream in your browser, download the MP3, use it in your own projects — no paywalls, no attribution required.';
@@ -38,7 +39,7 @@ const jsonLd = [
 ];
 ---
 
-<Layout title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd} keywords={['royalty free background music', 'free background music download', 'free music for videos', 'background music for youtube videos', 'creative commons music', 'no copyright background music']}>
+<Layout title={title} description={description} activeNav="music" canonicalPath={canonicalPath} jsonLd={jsonLd} keywords={['royalty free background music', 'free background music download', 'free music for videos', 'background music for youtube videos', 'creative commons music', 'no copyright background music']}>
   <section class="music-hero">
     <div class="section-label">Background Music</div>
     <h1>Free Background Music, Made By Us</h1>
@@ -60,7 +61,9 @@ const jsonLd = [
           <div class="track-tags">
             {track.tags.map((tag) => <span class="track-tag">{tag}</span>)}
           </div>
-          <audio controls preload="none" src={track.file} class="track-player"></audio>
+          <div class="track-player-wrap">
+            <MusicPlayer src={track.file} title={track.title} />
+          </div>
           <div class="track-actions">
             <a href={track.file} download class="download-btn">Download MP3</a>
             <a href={`/music/${track.slug}/`} class="page-btn">Track page →</a>
@@ -211,10 +214,8 @@ const jsonLd = [
     color: #666;
   }
 
-  .track-player {
-    width: 100%;
-    height: 40px;
-    margin-bottom: 12px;
+  .track-player-wrap {
+    margin-bottom: 16px;
   }
 
   .download-btn {

@@ -1,0 +1,315 @@
+---
+/**
+ * MusicPlayer — minimal monochrome custom audio player.
+ * Replaces raw <audio controls> elements. The native <audio> element is
+ * visually hidden but still drives playback (preload="none" preserved).
+ *
+ * Props:
+ *   src   — path to the audio file (e.g. '/music/warm-neoclassical.mp3')
+ *   title — optional track title, used for accessible labels (not rendered)
+ *
+ * Vanilla JS only — no dependencies. Multiple instances per page are
+ * supported; a document-level coordinator pauses every other audio
+ * element when one starts playing (one-track-at-a-time).
+ */
+interface Props {
+  src: string;
+  title?: string;
+}
+
+const { src, title } = Astro.props;
+const playLabel = title ? `Play ${title}` : 'Play';
+const pauseLabel = title ? `Pause ${title}` : 'Pause';
+const audioLabel = title ? `${title} — audio player` : 'Audio player';
+const seekLabel = title ? `Seek — ${title}` : 'Seek';
+---
+
+<div class="music-player" data-music-player>
+  <audio class="mp-audio" src={src} preload="none" aria-label={audioLabel}></audio>
+
+  <button
+    class="mp-btn"
+    type="button"
+    aria-label={playLabel}
+    data-playing="false"
+    data-play-label={playLabel}
+    data-pause-label={pauseLabel}
+  >
+    <svg class="mp-icon mp-icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M8.5 5v14l11-7z" />
+    </svg>
+    <svg class="mp-icon mp-icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <rect x="7" y="5" width="3.6" height="14" rx="1.2" />
+      <rect x="13.4" y="5" width="3.6" height="14" rx="1.2" />
+    </svg>
+  </button>
+
+  <div
+    class="mp-seek"
+    role="slider"
+    aria-label={seekLabel}
+    aria-orientation="horizontal"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="0"
+    tabindex="0"
+  >
+    <div class="mp-rail" aria-hidden="true">
+      <div class="mp-fill"></div>
+    </div>
+  </div>
+
+  <div class="mp-time" aria-hidden="true">
+    <span class="mp-current">0:00</span>
+    <span class="mp-sep">/</span>
+    <span class="mp-duration">--:--</span>
+  </div>
+</div>
+
+<script>
+  function formatTime(t: number): string {
+    if (!Number.isFinite(t) || t < 0) return '--:--';
+    const m = Math.floor(t / 60);
+    const s = Math.floor(t % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  }
+
+  function initPlayer(root: HTMLElement) {
+    if (root.dataset.ready) return;
+    root.dataset.ready = 'true';
+
+    const audio = root.querySelector<HTMLAudioElement>('audio.mp-audio');
+    const btn = root.querySelector<HTMLButtonElement>('button.mp-btn');
+    const seek = root.querySelector<HTMLElement>('.mp-seek');
+    const fill = root.querySelector<HTMLElement>('.mp-fill');
+    const current = root.querySelector<HTMLElement>('.mp-current');
+    const durationEl = root.querySelector<HTMLElement>('.mp-duration');
+    if (!audio || !btn || !seek || !fill || !current || !durationEl) return;
+
+    let seeking = false;
+
+    function setPlaying(on: boolean) {
+      btn.dataset.playing = on ? 'true' : 'false';
+      const label = on ? btn.dataset.pauseLabel || 'Pause' : btn.dataset.playLabel || 'Play';
+      btn.setAttribute('aria-label', label);
+    }
+
+    function updateUI() {
+      const d = audio.duration;
+      const t = audio.currentTime;
+      current.textContent = formatTime(t);
+      let pct = 0;
+      if (Number.isFinite(d) && d > 0) pct = Math.min(100, (t / d) * 100);
+      fill.style.width = `${pct}%`;
+      seek.setAttribute('aria-valuenow', String(Math.round(pct)));
+      if (Number.isFinite(d)) {
+        seek.setAttribute('aria-valuetext', `${formatTime(t)} of ${formatTime(d)}`);
+      }
+    }
+
+    btn.addEventListener('click', () => {
+      if (audio.paused || audio.ended) {
+        audio.play().catch(() => {});
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener('play', () => setPlaying(true));
+    audio.addEventListener('pause', () => setPlaying(false));
+    audio.addEventListener('ended', () => {
+      setPlaying(false);
+      audio.currentTime = 0;
+      updateUI();
+    });
+    audio.addEventListener('loadedmetadata', () => {
+      durationEl.textContent = formatTime(audio.duration);
+      updateUI();
+    });
+    audio.addEventListener('durationchange', () => {
+      durationEl.textContent = formatTime(audio.duration);
+    });
+    audio.addEventListener('timeupdate', () => {
+      if (!seeking) updateUI();
+    });
+
+    function ratioFrom(clientX: number): number {
+      const rect = seek.getBoundingClientRect();
+      if (rect.width === 0) return 0;
+      return Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+    }
+
+    function seekTo(ratio: number) {
+      const d = audio.duration;
+      if (!Number.isFinite(d) || d <= 0) return;
+      const t = ratio * d;
+      audio.currentTime = t;
+      current.textContent = formatTime(t);
+      fill.style.width = `${ratio * 100}%`;
+      seek.setAttribute('aria-valuenow', String(Math.round(ratio * 100)));
+    }
+
+    seek.addEventListener('pointerdown', (e) => {
+      seeking = true;
+      try {
+        seek.setPointerCapture(e.pointerId);
+      } catch {
+        /* pointer already released — ignore */
+      }
+      seekTo(ratioFrom(e.clientX));
+    });
+
+    seek.addEventListener('pointermove', (e) => {
+      if (seeking) seekTo(ratioFrom(e.clientX));
+    });
+
+    function endSeek() {
+      seeking = false;
+    }
+    seek.addEventListener('pointerup', endSeek);
+    seek.addEventListener('pointercancel', endSeek);
+    seek.addEventListener('lostpointercapture', endSeek);
+
+    seek.addEventListener('keydown', (e) => {
+      const d = audio.duration;
+      if (!Number.isFinite(d)) return;
+      let t: number | null = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowUp') t = Math.min(d, audio.currentTime + 5);
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') t = Math.max(0, audio.currentTime - 5);
+      else if (e.key === 'Home') t = 0;
+      else if (e.key === 'End') t = d;
+      if (t === null) return;
+      e.preventDefault();
+      audio.currentTime = t;
+      updateUI();
+    });
+
+    updateUI();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-music-player]').forEach(initPlayer);
+
+  // One-track-at-a-time coordinator: when any audio starts, pause every
+  // other audio element on the page. The 'play' event does not bubble,
+  // so listen in the capture phase at the document level.
+  document.addEventListener(
+    'play',
+    (e) => {
+      const el = e.target;
+      if (!(el instanceof HTMLAudioElement)) return;
+      document.querySelectorAll('audio').forEach((a) => {
+        if (a !== el && !a.paused) a.pause();
+      });
+    },
+    true
+  );
+</script>
+
+<style>
+  .music-player {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Visually hidden native audio — still drives playback */
+  .mp-audio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .mp-btn {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 200ms ease;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  .mp-btn:hover { opacity: 0.85; }
+  .mp-btn:focus-visible { outline: 2px solid rgba(0, 0, 0, 0.4); outline-offset: 2px; }
+
+  .mp-icon { width: 16px; height: 16px; display: block; }
+  .mp-btn[data-playing='false'] .mp-icon-pause { display: none; }
+  .mp-btn[data-playing='true'] .mp-icon-play { display: none; }
+
+  .mp-seek {
+    flex: 1;
+    min-width: 0;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    touch-action: none;
+    user-select: none;
+  }
+
+  .mp-seek:focus-visible {
+    outline: 2px solid rgba(0, 0, 0, 0.4);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  .mp-rail {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+  }
+
+  .mp-fill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    max-width: 100%;
+    background: #000;
+    border-radius: 2px;
+  }
+
+  .mp-time {
+    flex-shrink: 0;
+    display: flex;
+    gap: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    line-height: 1;
+    color: #999;
+    white-space: nowrap;
+  }
+
+  .mp-current { color: #000; }
+
+  @media (max-width: 480px) {
+    .music-player { gap: 10px; padding: 10px 12px; }
+    .mp-time { font-size: 11px; }
+  }
+</style>

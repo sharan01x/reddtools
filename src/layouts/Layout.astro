@@ -6,6 +6,7 @@ interface Props {
   title: string;
   description: string;
   activeTool?: string;
+  activeNav?: string;     // nav highlight for non-tool sections: 'music' | 'wallpapers'
   keywords?: string[];
   canonicalPath?: string;  // e.g. '/calculator/mortgage' — used for canonical URL
   jsonLd?: object | object[];  // structured data
@@ -13,7 +14,7 @@ interface Props {
   relatedTools?: { name: string; href: string; description?: string; icon?: string }[];  // contextual links (replaces generic "Other tools" block)
 }
 
-const { title, description, activeTool, keywords, canonicalPath, jsonLd, breadcrumbs, relatedTools } = Astro.props;
+const { title, description, activeTool, activeNav, keywords, canonicalPath, jsonLd, breadcrumbs, relatedTools } = Astro.props;
 const siteName = 'ReddTools';
 const siteUrl = 'https://reddtools.com';
 const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
@@ -99,6 +100,8 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       </a>
 
       <div class="nav-links">
+        <a href="/music/" class:list={['nav-link', activeNav === 'music' ? 'active' : '']}>Music</a>
+        <a href="/wallpapers/" class:list={['nav-link', activeNav === 'wallpapers' ? 'active' : '']}>Wallpapers</a>
         {tools.map((tool) => {
           const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}/` : `/${tool.slug}/`;
           return (
@@ -117,6 +120,8 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       </button>
     </nav>
     <div class="mobile-menu" id="mobile-menu">
+      <a href="/music/" class:list={['mobile-nav-link', activeNav === 'music' ? 'active' : '']}>Music</a>
+      <a href="/wallpapers/" class:list={['mobile-nav-link', activeNav === 'wallpapers' ? 'active' : '']}>Wallpapers</a>
       {tools.map((tool) => {
         const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}/` : `/${tool.slug}/`;
         return (
