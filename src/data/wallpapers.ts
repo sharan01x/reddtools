@@ -167,6 +167,20 @@ export const wallpapers: Wallpaper[] = [
       'An excellent base for warm-toned desktops: pair with terracotta, clay or camel accent colours and a light-mode UI. The clean upper third makes it especially forgiving for menu-bar-heavy layouts on macOS and Windows. The slate-blue lower band gives docks and taskbars a natural home without any visual collision.',
   },
   {
+    file: '/wallpapers/snow-leopard-highland.jpg',
+    slug: 'snow-leopard-highland',
+    title: 'Snow Leopard on Highland Ledge',
+    seoTitle: 'Snow Leopard Wallpaper — Minimal Wildlife Desktop Background (HD)',
+    tags: ['Animals', 'Snow Leopard', 'Mountains', 'Wildlife', 'Calm'],
+    theme: 'animals',
+    width: 2048,
+    height: 1280,
+    description:
+      'A snow leopard at rest on a highland ledge, caught in three-quarter profile with the calm, unbothered gaze only a big cat can manage. The coat is the star: thick pale smoke-grey fur with dark rosettes, rendered softly against a blurred mountain valley washed in cool morning light. The palette is deliberately cool and mineral — stone greys, blue shadows, warm cream in the fur highlights — so the wallpaper feels more like a gallery print than a wildlife snapshot. Shallow depth of field keeps the background out of the way, and the open sky area at the top of the frame stays clean under menu bars and widgets. The mood is quiet mountain solitude: dignified, patient, still. It is a rare animal wallpaper that flatters dark and light desktop themes equally, and it rewards a closer look without ever shouting across the workspace.',
+    useCase:
+      'Excellent for either mode: the cool grey palette blends with dark-mode chrome and stays gentle on light UI. Pair with slate, steel-blue or warm-grey accents and a clean grotesque typeface. The blurred valley in the lower half gives docks and taskbars a natural home. Designers can lift the stone-grey-and-cream palette as a ready-made neutral scheme.',
+  },
+  {
     file: '/wallpapers/quote-invent-the-future.jpg',
     slug: 'quote-invent-the-future',
     title: 'Invent the Future — Alan Kay',
