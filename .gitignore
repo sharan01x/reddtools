@@ -23,3 +23,7 @@ npm-debug.log*
 # Internal docs — venture plan symlink (canonical in ~/Documents/ReddGroup/)
 plan.md
 AGENTS.md
+
+# Internal spec/workflow docs — never commit
+SITE-FIXES-SPEC-*.md
+*-SPEC-*.md
