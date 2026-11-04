@@ -194,4 +194,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'Built for dark mode: the charcoal ground blends into window chrome, docks and menu bars on macOS, Windows and Linux alike. The quote block sits in the exact centre with clean margins on every side, so icon layouts, widgets and the dock never collide with the words. Pair it with graphite or slate UI accents, a neutral editor theme, and mono-spaced details elsewhere on the desktop — the Plex Mono attribution sets the tone. A natural backdrop for builders, founders, engineers and students, and a good fit for anyone who wants their workspace to open on intent rather than noise.',
   },
+  {
+    file: '/wallpapers/quote-feynman-create.jpg',
+    slug: 'quote-feynman-create',
+    title: 'What I Cannot Create — Richard Feynman',
+    seoTitle: 'What I Cannot Create Wallpaper — Richard Feynman Quote Desktop Background (Minimal Dark)',
+    tags: ['Quotes', 'Typography', 'Richard Feynman', 'Minimal', 'Dark', 'Engineering'],
+    theme: 'quotes',
+    width: 2048,
+    height: 1280,
+    description:
+      'A real, attributed insight rendered with typographic discipline: "What I cannot create, I do not understand." — the line Richard Feynman left behind on his Caltech blackboard in 1988, second from the bottom of the two famous closing rules that spelled out everything he refused to fake. It has become the working creed of engineers, scientists and anyone who takes first principles seriously, and it makes a quietly demanding companion for a workspace. The typography is the entire design: the quote sits centred in Inter SemiBold at a generous size, split across two balanced lines in warm off-white, with the attribution set small beneath in IBM Plex Mono — the mono register nodding to the blackboard it came from. The ground is deep charcoal with only a barely-there warm radial glow, so the frame stays calm and the sentence does all the work. The mood is exacting and honest: a daily self-test, pinned where your desktop wakes up.',
+    useCase:
+      'The near-black ground blends seamlessly into dark-mode chrome, docks and menu bars on macOS, Windows and Linux, so the quote appears to float on the desktop itself. The centred block with clean margins on every side leaves icon corners, widgets and a full dock untouched. Pair it with graphite or slate UI accents, a neutral editor theme, and mono details in your terminal — the Plex Mono attribution sets the register. A natural backdrop for developers, researchers, students and anyone who would rather take Feynman\'s daily test than a motivational poster.',
+  },
 ];
