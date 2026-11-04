@@ -706,6 +706,20 @@ export const tracks: Track[] = [
     attribution: 'Created for this collection — not used in a video',
     keywords: ["free krautrock background music", "motorik groove royalty free music", "instrumental rock free download mp3", "free background music for videos"],
   },
+  {
+    file: '/music/surf-rock-twang.mp3',
+    slug: 'surf-rock-twang',
+    title: 'Surf Rock Twang',
+    seoTitle: 'Twangy Surf Rock Instrumental — Free Background Music for Edits',
+    duration: '2:23',
+    seconds: 143,
+    tags: ["Surf Rock", "Guitar", "Energetic", "Instrumental"],
+    description: 'An upbeat surf-rock instrumental driven by two electric guitars with clean, slightly overdriven tones soaked in spring reverb — tremolo picking, slides and a groovy rhythm section in D major. Great for summer travel edits, skate and surf footage, and high-energy B-roll.',
+    useCase: 'The twangy, reverb-drenched lead guitar gives this track instant coastal energy — a natural bed for summer travel edits, skate and surf clips, product reveals and upbeat montages. It also works as a lively backing track for energetic talking-head intros.',
+    closing: 'At 2:23, Surf Rock Twang is easy to loop or trim to fit your edit. The MP3 download above is free for personal and commercial use. It is one of 53 tracks in a collection we made ourselves — see the neighbouring tracks below for similar moods, or the music index for the full library.',
+    attribution: 'Created for this collection — not used in a video',
+    keywords: ["free surf rock background music", "surf rock instrumental royalty free music", "twangy guitar free download mp3", "free background music for videos"],
+  },
 ];
 
 export const trackBySlug = new Map(tracks.map((t) => [t.slug, t]));
