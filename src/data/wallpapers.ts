@@ -208,4 +208,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'The near-black ground blends seamlessly into dark-mode chrome, docks and menu bars on macOS, Windows and Linux, so the quote appears to float on the desktop itself. The centred block with clean margins on every side leaves icon corners, widgets and a full dock untouched. Pair it with graphite or slate UI accents, a neutral editor theme, and mono details in your terminal — the Plex Mono attribution sets the register. A natural backdrop for developers, researchers, students and anyone who would rather take Feynman\'s daily test than a motivational poster.',
   },
+  {
+    file: '/wallpapers/geometric-lattice-abstract.jpg',
+    slug: 'geometric-lattice-abstract',
+    title: 'Geometric Lattice — Indigo & Sand',
+    seoTitle: 'Geometric Lattice Wallpaper — Minimal Abstract Line Grid Desktop Background (Indigo & Sand)',
+    tags: ['Abstract', 'Geometric', 'Lines', 'Minimal', 'Indigo', 'Generative'],
+    theme: 'abstract',
+    width: 1344,
+    height: 768,
+    description:
+      'A quiet exercise in pure structure: thin intersecting lines draw a precise lattice that recedes into depth, tilting from a flat plane into a suggestion of three-dimensional space without ever fully resolving into one. The palette is restrained and considered — a deep indigo ground, warm sand for the primary grid, and a single soft coral line that cuts across the composition once, giving the eye an anchor and the frame a pulse. Generous negative space keeps the whole thing calm; nothing shouts, nothing glows, nothing decorates. The mood is ordered and contemplative — generative-design restraint rather than spectacle, the kind of composition that looks as intentional shrunken to a phone lockscreen as it does full-screen on a monitor. It rewards a second look: follow any line and you notice how the rhythm of the spacing shifts as the grid recedes, a small piece of perceptual depth hidden inside an almost-flat frame.',
+    useCase:
+      'Ideal for anyone who wants a desktop that feels designed rather than decorated: the indigo ground sits comfortably under both dark- and light-mode chrome, and the low visual density means icons, widgets, a full dock and stacked windows never fight the composition. The subtle depth recession gives overlays and menu bars a natural place to land along the lower third, while the coral accent line keeps the frame from feeling sterile. As a styling system, lift the indigo-sand-coral triad directly into your editor theme, terminal palette or UI accents — the wallpaper doubles as a ready-made colour scheme. Pairs especially well with monospaced and grotesque typefaces, minimal window managers and tidy multi-monitor setups where you want continuity that doesn\u2019t compete with work.',
+  },
 ];
