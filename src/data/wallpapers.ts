@@ -222,4 +222,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'Ideal for anyone who wants a desktop that feels designed rather than decorated: the indigo ground sits comfortably under both dark- and light-mode chrome, and the low visual density means icons, widgets, a full dock and stacked windows never fight the composition. The subtle depth recession gives overlays and menu bars a natural place to land along the lower third, while the coral accent line keeps the frame from feeling sterile. As a styling system, lift the indigo-sand-coral triad directly into your editor theme, terminal palette or UI accents — the wallpaper doubles as a ready-made colour scheme. Pairs especially well with monospaced and grotesque typefaces, minimal window managers and tidy multi-monitor setups where you want continuity that doesn\u2019t compete with work.',
   },
-];
+  {
+    file: '/wallpapers/coral-fractal-spiral.jpg',
+    slug: 'coral-fractal-spiral',
+    title: 'Coral Fractal Spiral — Dusty Rose on Near-Black',
+    seoTitle: 'Coral Fractal Spiral Wallpaper — Generative Abstract Desktop Background (Dark)',
+    tags: ['Fractals', 'Spiral', 'Generative', 'Dark', 'Coral', 'Mathematics'],
+    theme: 'fractals',
+    width: 1344,
+    height: 768,
+    description:
+      'A deep spiral fractal coiling outward across a near-black ground, rendered in a restrained dusty-rose-and-coral register that keeps the mathematics feeling elegant rather than electric. Fine filaments trace the recursion: each turn of the spiral resolves into smaller echoes of itself, the detail tightening toward the core and softening at the rim, so the eye is drawn slowly inward the way a good generative composition should be. The palette is deliberately muted — coral highlights, dusky rose mid-tones and generous black breathing room — trading the usual neon fractal spectacle for something closer to a print you would hang. There is no text, no signature glow and no ornament: just recursion, symmetry and light falling along the fold lines. The mood is contemplative and quietly hypnotic, a wallpaper that rewards both the glance and the long stare, and that reads as clearly on a phone lockscreen as it does across a full desktop.',
+    useCase:
+      'Made for dark mode: the near-black ground melts into macOS, Windows and Linux window chrome, so the spiral appears to float behind your windows rather than sit beneath them. The core of the spiral sits slightly off-centre with clean margins, leaving menu bars, widgets and a full dock free to land anywhere without visual collision. Pair it with graphite or slate UI accents, a dark editor theme, and coral or rose highlights carried into your terminal palette for a coordinated setup — the palette doubles as a ready-made colour scheme. Particularly suited to developers, mathematicians and anyone who wants their desktop to open on calm recursion rather than noise.',
+  },
+]
