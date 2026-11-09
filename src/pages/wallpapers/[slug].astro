@@ -16,7 +16,7 @@ const next = wallpapers[(idx + 1) % wallpapers.length];
 
 const canonicalPath = `/wallpapers/${w.slug}/`;
 const title = w.seoTitle;
-const description = `${w.title} — a free HD ${w.theme} desktop wallpaper (2048×1280, 16:10) from the ReddTools collection. ${w.tags.slice(0, 3).join(', ')}. Free JPG download, no signup.`;
+const description = `${w.title} — a free 4K ${w.theme} desktop wallpaper (${w.width}×${w.height}, 16:10) from the ReddTools collection. ${w.tags.slice(0, 3).join(', ')}. Free JPG download, no signup.`;
 
 const jsonLd = [
   {
@@ -55,15 +55,15 @@ const jsonLd = [
   canonicalPath={canonicalPath}
   jsonLd={jsonLd}
   activeNav="wallpapers"
-  keywords={[`${w.tags[0].toLowerCase()} wallpaper`, 'free hd desktop wallpaper', `${w.theme} wallpaper`, '16:10 wallpaper download', 'free desktop background']}
+  keywords={[`${w.tags[0].toLowerCase()} wallpaper`, 'free 4k desktop wallpaper', `${w.theme} wallpaper`, '4k wallpaper download', 'free desktop background']}
   breadcrumbs={[{ name: 'Home', href: '/' }, { name: 'Wallpapers', href: '/wallpapers/' }, { name: w.title }]}
 >
   <section class="wp-hero">
-    <div class="section-label">Free HD Wallpaper · {w.width}×{w.height} · 16:10</div>
+    <div class="section-label">Free 4K Wallpaper · {w.width}×{w.height} · 16:10</div>
     <h1>{w.seoTitle}</h1>
     <img class="wp-full" src={w.file} alt={w.title} width={w.width} height={w.height} />
     <div class="wp-actions">
-      <a href={w.file} download class="download-btn">Download JPG — Free</a>
+      <a href={w.file} download class="download-btn">Download 4K JPG — Free</a>
       <span class="licence-note">Personal & commercial use · No attribution · No watermark</span>
     </div>
   </section>
@@ -77,7 +77,7 @@ const jsonLd = [
     <p>
       This wallpaper was created in-house by the Redd Group team using AI-assisted image generation,
       then selected and finished by us — so we hold the rights, and we can share it freely. Download the
-      JPG above with one click: no signup, no email capture, no watermark, and no attribution required.
+      3840×2400 JPG above with one click: no signup, no email capture, no watermark, and no attribution required.
       Use it on your desktop, laptop, or in mockups and presentations. The only thing we ask is that
       you don't resell the image itself or republish it on wallpaper aggregators as your own.
     </p>

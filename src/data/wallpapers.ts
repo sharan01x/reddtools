@@ -2,7 +2,9 @@
 // Source of truth for both /wallpapers/ (index) and /wallpapers/[slug]/ pages.
 // Add a new wallpaper here (file, slug, title, seoTitle, tags, description,
 // useCase, width, height, theme) and it automatically gets its own page.
-// Images live in public/wallpapers/ (16:10 desktop, 2048x1280, JPG quality 90).
+// Images live in public/wallpapers/ (16:10 desktop, 3840x2400 = 4K, JPG quality 85).
+// Cards load a 640px WebP from public/wallpapers/thumbs/ (see thumbFor); the
+// full-size 4K file is the download target and the detail-page image.
 
 export interface Wallpaper {
   file: string;        // '/wallpapers/<slug>.jpg'
@@ -25,16 +27,19 @@ export const themes: { id: Wallpaper['theme']; label: string }[] = [
   { id: 'fractals', label: 'Fractals' },
 ];
 
+/** 640px WebP card thumbnail for a wallpaper (keeps the /wallpapers/ index light). */
+export const thumbFor = (w: Wallpaper): string => `/wallpapers/thumbs/${w.slug}.webp`;
+
 export const wallpapers: Wallpaper[] = [
   {
     file: '/wallpapers/misty-pine-forest-morning.jpg',
     slug: 'misty-pine-forest-morning',
     title: 'Misty Pine Forest at Morning',
-    seoTitle: 'Misty Pine Forest Wallpaper — Calm Nature Desktop Background (HD)',
+    seoTitle: 'Misty Pine Forest 4K Wallpaper — Calm Nature Desktop Background',
     tags: ['Nature', 'Forest', 'Mist', 'Minimal', 'Calm'],
     theme: 'nature',
-    width: 2048,
-    height: 1280,
+    width: 3840,
+    height: 2400,
     description:
       'This misty pine forest wallpaper captures that quiet half-light just after sunrise, when fog still drifts between the trunks and the whole forest feels like it is holding its breath. The palette is deliberately restrained — muted sage greens, soft greys, and a whisper of warm cream where the light gets through — so the image reads as a soft atmospheric wash rather than a busy photograph. Vertical trunks give it structure, but the fog blurs everything else into gentle layers, which keeps desktop icons and menu bars legible no matter where they sit. The mood is calm and grounded: it is the kind of background that lowers the temperature of a busy screen instead of raising it. If your desktop tends toward neutral themes, this one slots straight in.',
     useCase:
@@ -44,11 +49,11 @@ export const wallpapers: Wallpaper[] = [
     file: '/wallpapers/tranquil-alpine-lake.jpg',
     slug: 'tranquil-alpine-lake',
     title: 'Tranquil Alpine Lake',
-    seoTitle: 'Alpine Lake Reflection Wallpaper — Minimal Mountain Desktop Background',
+    seoTitle: 'Alpine Lake Reflection 4K Wallpaper — Minimal Mountain Desktop Background',
     tags: ['Nature', 'Mountains', 'Lake', 'Pastel', 'Serene'],
     theme: 'nature',
-    width: 2048,
-    height: 1280,
+    width: 3840,
+    height: 2400,
     description:
       'A mirror-still alpine lake doing its best impression of glass. Snow-capped peaks sit on the horizon in a band of cool white, while the reflection doubles everything below into soft teal. The palette is pastel and airy — pale blues, whispering greys, a touch of warm light on the waterline — and the composition is almost symmetric, which gives the wallpaper a settled, balanced feeling. There is a lot of open sky, so the image stays light under icons and widgets. The mood is clean, cold-air calm: the visual equivalent of a deep breath at altitude. It reads equally well on a laptop in a café and a large desktop monitor, where the reflection detail rewards a closer look.',
     useCase:
@@ -58,11 +63,11 @@ export const wallpapers: Wallpaper[] = [
     file: '/wallpapers/curious-red-fox-meadow.jpg',
     slug: 'curious-red-fox-meadow',
     title: 'Curious Red Fox in Autumn Meadow',
-    seoTitle: 'Red Fox Wallpaper — Warm Autumn Animal Desktop Background (HD)',
+    seoTitle: 'Red Fox 4K Wallpaper — Warm Autumn Animal Desktop Background',
     tags: ['Animals', 'Fox', 'Autumn', 'Warm', 'Wildlife'],
     theme: 'animals',
-    width: 2048,
-    height: 1280,
+    width: 3840,
+    height: 2400,
     description:
       'A red fox mid-pause in a golden autumn meadow, ears up, giving the camera exactly the kind of sidelong look that makes foxes feel like tiny sceptics. The warm light rakes across the grass, throwing everything into ambers, russets, and honeyed golds, with the fox\'s coat as the clear focal point against a softly blurred meadow. The mood is cosy and a little bit wild — an autumn-evening kind of warmth that makes a screen feel friendlier. The bokeh background keeps the busy meadow texture from fighting with your icons, and the fox sits just off-centre, leaving clean negative space for app docks and folders. It is the rare animal wallpaper that feels composed rather than snapshot-like.',
     useCase:
@@ -72,53 +77,25 @@ export const wallpapers: Wallpaper[] = [
     file: '/wallpapers/majestic-heron-mist.jpg',
     slug: 'majestic-heron-mist',
     title: 'Grey Heron in Morning Mist',
-    seoTitle: 'Grey Heron Mist Wallpaper — Minimal Wildlife Desktop Background',
+    seoTitle: 'Grey Heron Mist 4K Wallpaper — Minimal Wildlife Desktop Background',
     tags: ['Animals', 'Heron', 'Mist', 'Monochrome', 'Elegant'],
     theme: 'animals',
-    width: 2048,
-    height: 1280,
+    width: 3840,
+    height: 2400,
     description:
       'A grey heron standing in still water at dawn, folded into its own patience, while low mist erases the horizon. The palette is almost monochrome — layered blue-greys, a hint of dawn warmth at the waterline — with the heron\'s sharp profile as the single point of contrast. That restraint is the point: this is a wallpaper that behaves more like a fine-art print than a wildlife photo. The mood is quiet and slightly formal, good for a workspace where you want focus rather than stimulation. Mist does most of the compositional work, so the frame stays clean around the edges and your icons never fight a busy background. It suits both light and dark UI themes, which is rarer than it should be in a wallpaper.',
     useCase:
       'An excellent choice for dark-mode desktops — the cool grey-blue sits comfortably next to charcoal UI without a harsh seam. Pair with slate or steel accent colours and a clean grotesque typeface. The still-water lower half gives plenty of quiet space for a dock or taskbar.',
   },
   {
-    file: '/wallpapers/typography-breathe.jpg',
-    slug: 'typography-breathe',
-    title: 'Breathe — Minimal Typography',
-    seoTitle: 'Breathe Wallpaper — Minimal Typography Desktop Background (Sage Green)',
-    tags: ['Quotes', 'Typography', 'Sage Green', 'Minimal', 'Calm'],
-    theme: 'quotes',
-    width: 2048,
-    height: 1280,
-    description:
-      'A single word — Breathe — set in a thin modern serif and centred on a soft sage-green gradient, with a single delicate leaf motif for company. That is the whole design, and that is the discipline that makes it work: enormous negative space, one quiet gesture of type, one accent. The palette is sage, celadon, and cream — colours borrowed straight from the calm corner of the wellness spectrum — so the wallpaper reads as gentle rather than decorative. Typography wallpapers live or die on the type, and the high-contrast hairlines of this serif hold up crisply at desktop scale. The mood is a small daily instruction to slow down, which is a nicer thing to open a laptop to than a pile of notification badges.',
-    useCase:
-      'A natural fit for light-mode setups and wellness or journaling workspaces. Pair it with sage, cream, or warm-grey UI accents and a matching serif for your notes app. Because the word is centred and the edges stay clean, icon layouts of any shape sit comfortably over it.',
-  },
-  {
-    file: '/wallpapers/typography-stay-focused.jpg',
-    slug: 'typography-stay-focused',
-    title: 'Stay Focused — Minimal Typography',
-    seoTitle: 'Focus Wallpaper — Minimal Dark Typography Desktop Background',
-    tags: ['Quotes', 'Typography', 'Dark', 'Minimal', 'Focus'],
-    theme: 'quotes',
-    width: 2048,
-    height: 1280,
-    description:
-      'A single word — Focus — in a clean, thin white sans-serif, centred on a deep charcoal background with a subtle blue-grey gradient and a faint diagonal line texture that only reveals itself when you look. This is the dark-room version of a typography wallpaper: premium, quiet, and just opinionated enough. The near-black base makes it a natural companion for dark mode, and because the type is white-on-charcoal rather than a loud colour, the wallpaper sets a working tone without ever shouting. There is a deliberate premium-poster feel to the spacing — the word sits slightly small in a large field, which reads as confidence rather than emptiness. The mood: deep-work hours, late sessions, screens that mean business.',
-    useCase:
-      'Made for dark-mode desktops — it blends seamlessly with dark UI chrome, so window edges stop feeling like boxes. Pair it with a single blue or amber accent colour for your dock and menubar utilities. If you use focus wallpapers during deep-work blocks, this one does the job without kitsch.',
-  },
-  {
     file: '/wallpapers/soft-gradient-abstract.jpg',
     slug: 'soft-gradient-abstract',
     title: 'Soft Gradient Abstract',
-    seoTitle: 'Soft Gradient Abstract Wallpaper — Dusty Rose & Lavender Desktop Background',
+    seoTitle: 'Soft Gradient Abstract 4K Wallpaper — Dusty Rose & Lavender Desktop Background',
     tags: ['Abstract', 'Gradient', 'Pastel', 'Minimal', 'Organic'],
     theme: 'abstract',
-    width: 2048,
-    height: 1280,
+    width: 3840,
+    height: 2400,
     description:
       'An abstract wallpaper built entirely from soft colour in motion: dusty rose bleeding into peach, then lavender, in silky organic curves that never quite resolve into shapes. There is no focal point and none is needed — the composition is one continuous, low-contrast wash that behaves beautifully behind a busy desktop. The palette sits in the warm-neutral corner of pastel, so it flatters both light UI themes and the softer end of dark mode. Because every transition is smooth and edge-free, icons, folders and widgets read cleanly at any position on the screen. The mood is quiet and studio-like: the kind of background that makes a workspace feel considered, like a well-chosen paint colour rather than a picture. If you find photographic wallpapers too literal and geometric ones too insistent, this is the middle path.',
     useCase:
@@ -128,11 +105,11 @@ export const wallpapers: Wallpaper[] = [
     file: '/wallpapers/crystalline-fractal-bloom.jpg',
     slug: 'crystalline-fractal-bloom',
     title: 'Crystalline Fractal Bloom',
-    seoTitle: 'Fractal Art Wallpaper — Crystalline Indigo & Teal Desktop Background',
+    seoTitle: 'Fractal Art 4K Wallpaper — Crystalline Indigo & Teal Desktop Background',
     tags: ['Fractals', 'Geometric', 'Crystalline', 'Indigo', 'Detailed'],
     theme: 'fractals',
-    width: 2048,
-    height: 1280,
+    width: 3840,
+    height: 2400,
     description:
       'A fractal bloom that looks like a crystal growing in fast-forward: an intricate, symmetric structure radiating from the centre in filigree layers of indigo and teal, touched with fine golden accents, against a deep dark ground. The detail is genuinely rewardable — zoom in mentally and new structure keeps appearing, which is the quiet pleasure of good fractal art. Symmetry gives it a meditative, mandala-like gravity, so the wallpaper reads as intentional art rather than screensaver filler. Because the pattern is densest in the centre and darker toward the edges, desktop icons at the margins stay legible. The mood is deep-focus and a little cosmic: a strong pick for evening work sessions and dark-mode setups that want one point of visual interest. It is the maximalist counterweight in a collection that otherwise leans minimal.',
     useCase:
@@ -142,11 +119,11 @@ export const wallpapers: Wallpaper[] = [
     file: '/wallpapers/indigo-fractal-current.jpg',
     slug: 'indigo-fractal-current',
     title: 'Indigo Fractal Current',
-    seoTitle: 'Indigo Fractal Wallpaper — Teal Recursive Flow Desktop Background (HD)',
+    seoTitle: 'Indigo Fractal 4K Wallpaper — Teal Recursive Flow Desktop Background',
     tags: ['Fractals', 'Geometric', 'Flow', 'Indigo', 'Teal'],
     theme: 'fractals',
-    width: 2048,
-    height: 1170,
+    width: 3840,
+    height: 2400,
     description:
       'Where the crystalline bloom in this collection builds outward from a centre, the Indigo Fractal Current moves: recursive ribbon-like structures spiral across the frame like a slow-motion whirlpool rendered in light. The palette is deep indigo and navy — close enough to dark-mode UI chrome to disappear at the edges — with electric teal and soft cyan tracing the flow, and fine silver filaments catching detail between the folds. Density gathers toward the centre and falls away to calm dark margins, so the wallpaper rewards a long look without ever shouting over your icons. It is generative art in the true sense: self-similar, mathematical, and yet somehow organic, like a galaxy photographed mid-rotation. The mood is nocturnal and absorbing — evening deep-work rather than morning calm, an excellent companion for long sessions in front of code or a canvas.',
     useCase:
@@ -156,11 +133,11 @@ export const wallpapers: Wallpaper[] = [
     file: '/wallpapers/terracotta-arc-abstract.jpg',
     slug: 'terracotta-arc-abstract',
     title: 'Terracotta Arc Abstract',
-    seoTitle: 'Terracotta Abstract Wallpaper — Minimal Arc Geometric Desktop Background',
+    seoTitle: 'Terracotta Abstract 4K Wallpaper — Minimal Arc Geometric Desktop Background',
     tags: ['Abstract', 'Geometric', 'Terracotta', 'Minimal', 'Warm'],
     theme: 'abstract',
-    width: 2048,
-    height: 1280,
+    width: 3840,
+    height: 2400,
     description:
       'A study in restraint built from overlapping translucent arcs: curved bands of terracotta clay sweep across a warm sand-beige ground, with a deep slate-blue band anchoring the lower half of the frame. Nothing here is literal — the composition reads like a modern gallery poster, one confident gesture of geometry instead of a picture of a thing. The palette is warm and earthy on the upper two-thirds, cooled deliberately by that slate counterweight, so the wallpaper never tips into monotone. A subtle paper-grain texture keeps the flat colour fields from feeling digital and synthetic. Generous negative space occupies the upper third, which is exactly where menu bars, widgets and browser tabs live, so nothing on your screen ever clashes with the art. The mood is warm, considered and unhurried — a workspace that feels styled rather than decorated.',
     useCase:
@@ -170,11 +147,11 @@ export const wallpapers: Wallpaper[] = [
     file: '/wallpapers/snow-leopard-highland.jpg',
     slug: 'snow-leopard-highland',
     title: 'Snow Leopard on Highland Ledge',
-    seoTitle: 'Snow Leopard Wallpaper — Minimal Wildlife Desktop Background (HD)',
+    seoTitle: 'Snow Leopard 4K Wallpaper — Minimal Wildlife Desktop Background',
     tags: ['Animals', 'Snow Leopard', 'Mountains', 'Wildlife', 'Calm'],
     theme: 'animals',
-    width: 2048,
-    height: 1280,
+    width: 3840,
+    height: 2400,
     description:
       'A snow leopard at rest on a highland ledge, caught in three-quarter profile with the calm, unbothered gaze only a big cat can manage. The coat is the star: thick pale smoke-grey fur with dark rosettes, rendered softly against a blurred mountain valley washed in cool morning light. The palette is deliberately cool and mineral — stone greys, blue shadows, warm cream in the fur highlights — so the wallpaper feels more like a gallery print than a wildlife snapshot. Shallow depth of field keeps the background out of the way, and the open sky area at the top of the frame stays clean under menu bars and widgets. The mood is quiet mountain solitude: dignified, patient, still. It is a rare animal wallpaper that flatters dark and light desktop themes equally, and it rewards a closer look without ever shouting across the workspace.',
     useCase:
@@ -184,11 +161,11 @@ export const wallpapers: Wallpaper[] = [
     file: '/wallpapers/quote-invent-the-future.jpg',
     slug: 'quote-invent-the-future',
     title: 'Invent the Future — Alan Kay',
-    seoTitle: 'Invent the Future Wallpaper — Alan Kay Quote Desktop Background (Minimal Dark)',
+    seoTitle: 'Invent the Future 4K Wallpaper — Alan Kay Quote Desktop Background (Minimal Dark)',
     tags: ['Quotes', 'Typography', 'Alan Kay', 'Minimal', 'Dark', 'Motivation'],
     theme: 'quotes',
-    width: 2048,
-    height: 1280,
+    width: 3840,
+    height: 2400,
     description:
       'A real, attributed insight set quietly on a near-black ground: "The best way to predict the future is to invent it." — Alan Kay, 1971, the line he delivered at Xerox PARC that has since become the founding instinct of every builder. The typography is the entire design. The quote sits centre-stage in Inter SemiBold at a generous size, split across two balanced lines in a warm off-white, with the attribution set small beneath in IBM Plex Mono — the engineering flavour of the source matching the character of the man behind it. The background is a barely-there radial glow over deep charcoal, so the frame stays calm and the words do all the work. Nothing decorative, nothing platitudinous: a sentence with a citation, the way a good margin note would read. The mood is quietly ambitious — a reminder you meet every time the screen wakes up.',
     useCase:
@@ -198,11 +175,11 @@ export const wallpapers: Wallpaper[] = [
     file: '/wallpapers/quote-feynman-create.jpg',
     slug: 'quote-feynman-create',
     title: 'What I Cannot Create — Richard Feynman',
-    seoTitle: 'What I Cannot Create Wallpaper — Richard Feynman Quote Desktop Background (Minimal Dark)',
+    seoTitle: 'What I Cannot Create 4K Wallpaper — Richard Feynman Quote Desktop Background (Minimal Dark)',
     tags: ['Quotes', 'Typography', 'Richard Feynman', 'Minimal', 'Dark', 'Engineering'],
     theme: 'quotes',
-    width: 2048,
-    height: 1280,
+    width: 3840,
+    height: 2400,
     description:
       'A real, attributed insight rendered with typographic discipline: "What I cannot create, I do not understand." — the line Richard Feynman left behind on his Caltech blackboard in 1988, second from the bottom of the two famous closing rules that spelled out everything he refused to fake. It has become the working creed of engineers, scientists and anyone who takes first principles seriously, and it makes a quietly demanding companion for a workspace. The typography is the entire design: the quote sits centred in Inter SemiBold at a generous size, split across two balanced lines in warm off-white, with the attribution set small beneath in IBM Plex Mono — the mono register nodding to the blackboard it came from. The ground is deep charcoal with only a barely-there warm radial glow, so the frame stays calm and the sentence does all the work. The mood is exacting and honest: a daily self-test, pinned where your desktop wakes up.',
     useCase:
@@ -212,11 +189,11 @@ export const wallpapers: Wallpaper[] = [
     file: '/wallpapers/geometric-lattice-abstract.jpg',
     slug: 'geometric-lattice-abstract',
     title: 'Geometric Lattice — Indigo & Sand',
-    seoTitle: 'Geometric Lattice Wallpaper — Minimal Abstract Line Grid Desktop Background (Indigo & Sand)',
+    seoTitle: 'Geometric Lattice 4K Wallpaper — Minimal Abstract Line Grid Desktop Background (Indigo & Sand)',
     tags: ['Abstract', 'Geometric', 'Lines', 'Minimal', 'Indigo', 'Generative'],
     theme: 'abstract',
-    width: 1344,
-    height: 768,
+    width: 3840,
+    height: 2400,
     description:
       'A quiet exercise in pure structure: thin intersecting lines draw a precise lattice that recedes into depth, tilting from a flat plane into a suggestion of three-dimensional space without ever fully resolving into one. The palette is restrained and considered — a deep indigo ground, warm sand for the primary grid, and a single soft coral line that cuts across the composition once, giving the eye an anchor and the frame a pulse. Generous negative space keeps the whole thing calm; nothing shouts, nothing glows, nothing decorates. The mood is ordered and contemplative — generative-design restraint rather than spectacle, the kind of composition that looks as intentional shrunken to a phone lockscreen as it does full-screen on a monitor. It rewards a second look: follow any line and you notice how the rhythm of the spacing shifts as the grid recedes, a small piece of perceptual depth hidden inside an almost-flat frame.',
     useCase:
@@ -226,14 +203,28 @@ export const wallpapers: Wallpaper[] = [
     file: '/wallpapers/coral-fractal-spiral.jpg',
     slug: 'coral-fractal-spiral',
     title: 'Coral Fractal Spiral — Dusty Rose on Near-Black',
-    seoTitle: 'Coral Fractal Spiral Wallpaper — Generative Abstract Desktop Background (Dark)',
+    seoTitle: 'Coral Fractal Spiral 4K Wallpaper — Generative Abstract Desktop Background (Dark)',
     tags: ['Fractals', 'Spiral', 'Generative', 'Dark', 'Coral', 'Mathematics'],
     theme: 'fractals',
-    width: 1344,
-    height: 768,
+    width: 3840,
+    height: 2400,
     description:
       'A deep spiral fractal coiling outward across a near-black ground, rendered in a restrained dusty-rose-and-coral register that keeps the mathematics feeling elegant rather than electric. Fine filaments trace the recursion: each turn of the spiral resolves into smaller echoes of itself, the detail tightening toward the core and softening at the rim, so the eye is drawn slowly inward the way a good generative composition should be. The palette is deliberately muted — coral highlights, dusky rose mid-tones and generous black breathing room — trading the usual neon fractal spectacle for something closer to a print you would hang. There is no text, no signature glow and no ornament: just recursion, symmetry and light falling along the fold lines. The mood is contemplative and quietly hypnotic, a wallpaper that rewards both the glance and the long stare, and that reads as clearly on a phone lockscreen as it does across a full desktop.',
     useCase:
       'Made for dark mode: the near-black ground melts into macOS, Windows and Linux window chrome, so the spiral appears to float behind your windows rather than sit beneath them. The core of the spiral sits slightly off-centre with clean margins, leaving menu bars, widgets and a full dock free to land anywhere without visual collision. Pair it with graphite or slate UI accents, a dark editor theme, and coral or rose highlights carried into your terminal palette for a coordinated setup — the palette doubles as a ready-made colour scheme. Particularly suited to developers, mathematicians and anyone who wants their desktop to open on calm recursion rather than noise.',
+  },
+  {
+    file: '/wallpapers/rolling-hills-golden-hour.jpg',
+    slug: 'rolling-hills-golden-hour',
+    title: 'Rolling Hills at Golden Hour',
+    seoTitle: 'Rolling Hills Golden Hour Wallpaper — Calm Nature Scenic Desktop Background (2048×1170)',
+    tags: ['Nature', 'Landscape', 'Golden Hour', 'Hills', 'Calm', 'Warm'],
+    theme: 'nature',
+    width: 2048,
+    height: 1170,
+    description:
+      'Layered waves of grassland rolling toward a hazy distant ridge, caught in the low warm light of golden hour. The palette is soft and pastoral — green and gold grass in the foreground, amber mid-tones where the sun skims the slopes, and a gentle pastel sky above. The composition is deliberately unhurried: each hill sits a half-step behind the last, so the eye travels smoothly from the foreground grass to the horizon without any single element demanding attention. The mood is calm and grounded, closer to an evening walk than a postcard — the kind of landscape that lowers the temperature of a busy screen rather than decorating it. Detail concentrates low in the frame, leaving the sky clean and even, and the overall tonal range stays gentle enough that the image reads as atmosphere rather than photograph. On larger displays the grass texture rewards a closer look; at a distance it settles into quiet bands of colour.',
+    useCase:
+      'A strong pick for both light- and dark-mode setups: the even sky keeps menu bars and widgets legible, while the soft lower third gives docks and trays a natural home. Pair it with olive, moss or warm-grey UI accents, or carry the amber mid-tones into a terminal or editor theme for a coordinated setup. The horizon sits low enough that the upper half stays uncluttered in multi-window layouts, and the muted contrast means notifications and icons never fight the background. Suits anyone who wants a scenic nature wallpaper that feels composed and restful rather than dramatic — a good default for a work machine, a laptop you carry to cafés, or a weekend desktop.',
   },
 ]

@@ -1,16 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { wallpapers, themes } from '../data/wallpapers';
+import { wallpapers, themes, thumbFor } from '../data/wallpapers';
 
-const title = 'Free HD Desktop Wallpapers — Nature, Animals, Typography, Abstract & Fractals';
-const description = 'A free collection of HD desktop wallpapers (2048×1280, 16:10) created in-house by the Redd Group team — nature scenes, wildlife, minimal typography, abstract gradients, and fractal art. Free download, no signup, works on any screen.';
+const title = 'Free 4K Desktop Wallpapers — Nature, Animals, Typography, Abstract & Fractals';
+const description = 'A free collection of 4K desktop wallpapers (3840×2400, 16:10) created in-house by the Redd Group team — nature scenes, wildlife, minimal typography, abstract gradients, and fractal art. Free download, no signup, works on any screen.';
 const canonicalPath = '/wallpapers/';
 
 const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Free HD Desktop Wallpapers — ReddTools',
+    name: 'Free 4K Desktop Wallpapers — ReddTools',
     url: 'https://reddtools.com/wallpapers/',
     description,
     isPartOf: { '@type': 'WebSite', name: 'ReddTools', url: 'https://reddtools.com' },
@@ -37,13 +37,13 @@ const jsonLd = [
 ];
 ---
 
-<Layout title={title} description={description} activeNav="wallpapers" canonicalPath={canonicalPath} jsonLd={jsonLd} keywords={['free hd wallpapers', 'desktop wallpaper download', 'nature wallpaper', 'animal wallpaper', 'minimal typography wallpaper', '4k desktop background', '16:10 wallpaper']}>
+<Layout title={title} description={description} activeNav="wallpapers" canonicalPath={canonicalPath} jsonLd={jsonLd} keywords={['free 4k wallpapers', '4k desktop wallpapers', 'desktop wallpaper download', 'nature wallpaper', 'animal wallpaper', 'minimal typography wallpaper', '4k desktop background', '16:10 wallpaper']}>
   <section class="wp-hero">
     <div class="section-label">Wallpapers</div>
-    <h1>Free HD Desktop Wallpapers, Made By Us</h1>
+    <h1>Free 4K Desktop Wallpapers, Made By Us</h1>
     <p class="hero-subtitle">
       Every wallpaper in this collection was created in-house by the Redd Group team — nature scenes,
-      wildlife, minimal typography, abstract gradients, and fractal art, all at 2048×1280 (16:10). Free to download, free to use,
+      wildlife, minimal typography, abstract gradients, and fractal art, all at 3840×2400 — full 4K, 16:10. Free to download, free to use,
       no signup required.
     </p>
   </section>
@@ -58,17 +58,18 @@ const jsonLd = [
     {wallpapers.map((w) => (
       <article class="wp-card" id={`theme-${w.theme}`}>
         <a class="wp-thumb-link" href={`/wallpapers/${w.slug}/`}>
-          <img class="wp-thumb" src={w.file} alt={w.title} width={w.width} height={w.height} loading="lazy" />
+          <img class="wp-thumb" src={thumbFor(w)} alt={w.title} width="640" height="400" loading="lazy" decoding="async" />
         </a>
         <div class="wp-card-body">
           <h2><a class="wp-link" href={`/wallpapers/${w.slug}/`}>{w.seoTitle}</a></h2>
           <p class="wp-desc">{w.description.slice(0, 150)}…</p>
           <div class="wp-tags">
+            <span class="wp-res-tag">4K</span>
             <span class="wp-theme-tag">{w.theme}</span>
             {w.tags.slice(0, 3).map((tag) => <span class="wp-tag">{tag}</span>)}
           </div>
           <div class="wp-actions">
-            <a href={w.file} download class="download-btn">Download JPG</a>
+            <a href={w.file} download class="download-btn">Download 4K JPG</a>
             <a href={`/wallpapers/${w.slug}/`} class="page-btn">Wallpaper page →</a>
           </div>
         </div>
@@ -94,10 +95,11 @@ const jsonLd = [
       mockups and presentations.
     </p>
     <p>
-      Each wallpaper is a 2048×1280 (16:10) JPG, sized for the dominant "HD desktop wallpaper" class.
-      That resolution covers most desktop monitors cleanly and looks sharp on laptops — and because
-      we optimise the JPGs carefully, each file is a few hundred kilobytes rather than the multi-megabyte
-      monsters some sites push. Every wallpaper also gets its own page with the story behind the image,
+      Each wallpaper is a 3840×2400 (16:10) JPG — full 4K, so it holds up on a 27-inch display
+      and still looks right on a 5K panel scaled down. Because we optimise the JPGs carefully,
+      most files stay well under 1MB rather than the multi-megabyte monsters some sites push,
+      and the grid above loads lightweight WebP thumbnails instead of the full files.
+      Every wallpaper also gets its own page with the story behind the image,
       its palette, and styling suggestions for matching your desktop theme.
     </p>
     <p>
@@ -232,6 +234,17 @@ const jsonLd = [
     background: #000;
     color: #fff;
     text-transform: capitalize;
+  }
+
+  .wp-res-tag {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #c0392b;
+    color: #fff;
   }
 
   .wp-actions {
