@@ -227,4 +227,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'A strong pick for both light- and dark-mode setups: the even sky keeps menu bars and widgets legible, while the soft lower third gives docks and trays a natural home. Pair it with olive, moss or warm-grey UI accents, or carry the amber mid-tones into a terminal or editor theme for a coordinated setup. The horizon sits low enough that the upper half stays uncluttered in multi-window layouts, and the muted contrast means notifications and icons never fight the background. Suits anyone who wants a scenic nature wallpaper that feels composed and restful rather than dramatic — a good default for a work machine, a laptop you carry to cafés, or a weekend desktop.',
   },
+  {
+    file: '/wallpapers/humpback-whale-quiet-ocean.jpg',
+    slug: 'humpback-whale-quiet-ocean',
+    title: 'Humpback Whale in Quiet Ocean',
+    seoTitle: 'Humpback Whale 4K Wallpaper — Minimal Ocean Wildlife Desktop Background',
+    tags: ['Animals', 'Whale', 'Ocean', 'Minimal', 'Calm', 'Dawn'],
+    theme: 'animals',
+    width: 2048,
+    height: 1170,
+    description:
+      'A humpback whale resting at the calm surface of a still ocean, seen from high above so it reads as a single elegant dark silhouette floating on pale silver-blue water, one soft exhale of mist marking the only movement in the frame. The composition is deliberately sparse: the whale sits just off-centre and everything around it is open water — vast, even negative space that gives the image the feel of a gallery print rather than a wildlife snapshot. The palette is muted and cool — pearl grey, soft slate blue and a faint peach dawn light along the waterline — with no hard edges anywhere, so the whole frame stays low-contrast and gentle on the eye. The mood is patient and immense: the quietest animal in the deepest quiet, exactly the kind of backdrop that lowers the temperature of a busy screen. It rewards a closer look at the subtle water texture around the whale without ever competing with the work on top of it.',
+    useCase:
+      'A natural fit for both light and dark desktop themes: the pale water flatters light-mode chrome and the silhouette keeps enough depth to sit comfortably behind dark UI. Pair with slate-blue, steel or warm-grey accent colours, and let the whale occupy open desktop space while docks and taskbars land anywhere in the calm water without collision. The even tonal range keeps menu bars, widgets and stacked windows legible in every corner, making it an especially forgiving choice for multi-monitor and laptop-docked setups. Designers can lift the pearl-grey-slate-peach triad as a ready-made coastal palette, and anyone who wants their workspace to open on stillness rather than noise will find this the calmest animal wallpaper in the collection.',
+  },
 ]
