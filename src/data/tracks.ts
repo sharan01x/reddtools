@@ -720,6 +720,20 @@ export const tracks: Track[] = [
     attribution: 'Created for this collection — not used in a video',
     keywords: ["free surf rock background music", "surf rock instrumental royalty free music", "twangy guitar free download mp3", "free background music for videos"],
   },
+  {
+    file: '/music/vaporwave-mallsoft.mp3',
+    slug: 'vaporwave-mallsoft',
+    title: 'Vaporwave Mallsoft',
+    seoTitle: 'Vaporwave Mallsoft Instrumental — Free Background Music for Videos',
+    duration: '3:00',
+    seconds: 180,
+    tags: ["Vaporwave", "Mallsoft", "Chill", "Hazy"],
+    description: 'A hazy, slow vaporwave piece at 75 BPM in B♭ major — bell-like electric piano chords over a warm synth bass and a relaxed drum-machine groove, capped with a wistful synth lead. Nostalgic, dreamy shopping-centre ambience for lo-fi montages and idle footage.',
+    useCase: 'The hazy, unhurried pulse makes this a natural bed for slow montages, shop and street footage, screensaver-style loops and nostalgic cutaways. It also works as an atmospheric backdrop for reading and focus sessions.',
+    closing: 'At 3:00, Vaporwave Mallsoft is easy to loop or trim to fit your edit. The MP3 download above is free for personal and commercial use. It is one of 54 tracks in a collection we made ourselves — see the neighbouring tracks below for similar moods, or the music index for the full library.',
+    attribution: 'Created for this collection — not used in a video',
+    keywords: ["free vaporwave background music", "mallsoft royalty free music", "vaporwave instrumental free download mp3", "free background music for videos"],
+  },
 ];
 
 export const trackBySlug = new Map(tracks.map((t) => [t.slug, t]));
