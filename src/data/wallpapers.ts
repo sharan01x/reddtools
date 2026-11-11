@@ -241,4 +241,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'A natural fit for both light and dark desktop themes: the pale water flatters light-mode chrome and the silhouette keeps enough depth to sit comfortably behind dark UI. Pair with slate-blue, steel or warm-grey accent colours, and let the whale occupy open desktop space while docks and taskbars land anywhere in the calm water without collision. The even tonal range keeps menu bars, widgets and stacked windows legible in every corner, making it an especially forgiving choice for multi-monitor and laptop-docked setups. Designers can lift the pearl-grey-slate-peach triad as a ready-made coastal palette, and anyone who wants their workspace to open on stillness rather than noise will find this the calmest animal wallpaper in the collection.',
   },
+  {
+    file: '/wallpapers/quote-rams-less-design.jpg',
+    slug: 'quote-rams-less-design',
+    title: 'As Little Design as Possible — Dieter Rams',
+    seoTitle: 'Dieter Rams Quote Wallpaper — Good Design Is As Little Design As Possible (Minimal Dark)',
+    tags: ['Quotes', 'Typography', 'Dieter Rams', 'Minimal', 'Dark', 'Design'],
+    theme: 'quotes',
+    width: 2048,
+    height: 1280,
+    description:
+      'A real, attributed insight rendered with the discipline it preaches: "Good design is as little design as possible." — the fourth of Dieter Rams\u2019 ten principles, written for Braun in the 1970s and still the loudest one-liner in design criticism. The typography is the entire design: the quote sits centred in three balanced lines set in a clean grotesque sans, warm off-white against a near-black ground, with the attribution set small beneath in a quiet monospace. Behind the words, a barely-there warm amber glow rises from deep espresso darkness and fades into plain dark corners — the only gesture in the frame, and a fitting one: the light comes from restraint, not spectacle. Nothing decorative, nothing gilded; a sentence with a citation, exactly as the principle demands. The mood is calm, self-assured and quietly exacting — a daily standard pinned where the screen wakes up, and the natural companion piece to the collection\u2019s other builder-creed quotes.',
+    useCase:
+      'Made for dark mode: the charcoal ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so the quote appears to float on the desktop itself. The centred block leaves generous margins on every side, keeping icon corners, widgets and a full dock free from collision with the words. The amber glow is soft enough that the frame never fights a light-mode setup either. Pair it with graphite or warm-grey UI accents, a restrained editor theme, and monospaced details in your terminal — the attribution sets the register. A natural backdrop for designers, engineers and founders, and a good fit for anyone who wants a workspace that opens on intent, proportion and Rams\u2019 own standard: less, but better.',
+  },
 ]
