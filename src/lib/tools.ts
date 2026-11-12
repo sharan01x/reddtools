@@ -16,6 +16,9 @@ export interface Tool {
   keywords: string[];     // Primary SEO keywords for this tool
   status: 'planned' | 'in-progress' | 'live';
   modes?: ToolMode[];     // Sub-pages (e.g. calculator modes, converter types)
+  nav?: boolean;          // Show in the top nav bar. Default true; set false to keep the tool
+                          // reachable from the home page / footer / cross-promo but out of the header nav.
+                          // Used for cluster-level nav curation (e.g. Q1 zero-click converter/calculator pages).
 }
 
 export interface ToolMode {
@@ -64,6 +67,7 @@ export const tools: Tool[] = [
     icon: 'calculator',
     keywords: ['calculator', 'mortgage calculator', 'interest calculator', 'vat calculator', 'percentage calculator'],
     status: 'live',
+    nav: false, // zero-click calculator cluster (incl. /calculator/tip/): out of the top nav, still linked from home page + footer
     modes: [
       { slug: 'mortgage', name: 'Mortgage Calculator', description: 'Calculate your monthly mortgage payment and total interest over the loan term.', seoTitle: 'Free Mortgage Calculator — Monthly Payments & Total Interest', seoDescription: 'Calculate your monthly mortgage payment and total interest over the loan term. Free, instant, no signup required. Compare 15-year vs 30-year.', seoH1: 'Mortgage Calculator', keywords: ['mortgage calculator', 'home loan calculator', 'mortgage payment calculator', 'mortgage interest calculator'] },
       { slug: 'compound-interest', name: 'Compound Interest Calculator', description: 'Calculate compound interest on your savings or investments.', seoTitle: 'Free Compound Interest Calculator — Savings Growth', seoDescription: 'Calculate compound interest on savings and investments. See how your money grows over time. Free, instant, no signup.', seoH1: 'Compound Interest Calculator', keywords: ['compound interest calculator', 'savings calculator', 'investment growth calculator'] },
@@ -86,6 +90,7 @@ export const tools: Tool[] = [
     icon: 'ruler',
     keywords: ['unit converter', 'kg to lbs', 'miles to km', 'celsius to fahrenheit', 'cups to ml'],
     status: 'live',
+    nav: false, // zero-click converter cluster (kg-to-lbs, oz-to-grams, km-to-miles, ...): out of the top nav, still linked from home page + footer
     modes: [
       { slug: 'length', name: 'Length Converter', description: 'Convert between units of length — metres, feet, miles, and more.', seoTitle: 'Length Converter — CM to Inches, Feet to Meters, Miles to KM', seoDescription: 'Convert length units instantly: centimeters, inches, feet, meters, miles, kilometers. Free online length converter with precise results.', seoH1: 'Length Converter', keywords: ['length converter', 'meters to feet', 'cm to inches', 'miles to km', 'feet to meters'] },
       { slug: 'weight', name: 'Weight Converter', description: 'Convert between weight and mass units.', seoTitle: 'Free Weight Converter — KG to LBS, Grams to Ounces', seoDescription: 'Convert weight units instantly: kilograms, grams, pounds, ounces, tonnes, and stones. Free online weight converter, no signup.', seoH1: 'Weight Converter', keywords: ['weight converter', 'kg to lbs', 'grams to ounces'] },
@@ -159,6 +164,10 @@ export const tools: Tool[] = [
 
 /** Get all live/in-progress tools for navigation */
 export const activeTools = tools.filter(t => t.status !== 'planned');
+
+/** Tools shown in the top nav bar (opt-out via `nav: false`) — home page, footer and
+ *  cross-promo still link every tool regardless. */
+export const navTools = activeTools.filter(t => t.nav !== false);
 
 /** SVG icons for each tool (shared between index page and cross-promo) */
 export const toolIconSvg: Record<string, string> = {
