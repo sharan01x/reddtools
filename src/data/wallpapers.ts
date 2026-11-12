@@ -255,4 +255,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'Made for dark mode: the charcoal ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so the quote appears to float on the desktop itself. The centred block leaves generous margins on every side, keeping icon corners, widgets and a full dock free from collision with the words. The amber glow is soft enough that the frame never fights a light-mode setup either. Pair it with graphite or warm-grey UI accents, a restrained editor theme, and monospaced details in your terminal — the attribution sets the register. A natural backdrop for designers, engineers and founders, and a good fit for anyone who wants a workspace that opens on intent, proportion and Rams\u2019 own standard: less, but better.',
   },
+  {
+    file: '/wallpapers/cobalt-fold-abstract.jpg',
+    slug: 'cobalt-fold-abstract',
+    title: 'Cobalt Fold — Translucent Ribbons on Near-Black',
+    seoTitle: 'Cobalt Fold Abstract 4K Wallpaper — Minimal Geometric Desktop Background (Dark)',
+    tags: ['Abstract', 'Geometric', 'Cobalt', 'Minimal', 'Dark', 'Generative'],
+    theme: 'abstract',
+    width: 2048,
+    height: 1280,
+    description:
+      'A generative composition of smoothly folded translucent ribbons crossing a near-black navy ground, rendered in a restrained cobalt-and-ice-blue register. Each fold carries a thin crisp highlight along its edge, so light behaves like line work: the geometry reads as quiet drawing rather than glossy 3D render. The palette is deliberately narrow — deep cobalt, steel-blue translucency and a very dark ground — trading spectacle for depth, with translucency doing the compositional work as the ribbons pass over and under one another. Generous negative space sits in the lower third so the frame stays calm and the upper half carries the structure. The mood is ordered and contemplative, closer to a generative-design print than a screensaver, and it rewards a second look at how the layers overlap. There is no text, no watermark and no ornament anywhere in the frame.',
+    useCase:
+      'Made for dark mode: the near-black ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so the folds appear to float behind your windows. The strongest structure sits in the upper half while the lower third stays open, giving icons, widgets and a full dock a natural home without fighting the composition. The low contrast keeps stacked windows legible in multi-monitor and laptop-docked setups, and the palette lifts directly into UI accents, terminal colours or a matching dark editor theme. Pairs especially well with monospaced type and minimal window setups, and suits developers, designers and anyone whose desktop should open on calm structure rather than noise.',
+  },
 ]
