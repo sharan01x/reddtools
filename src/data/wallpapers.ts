@@ -269,4 +269,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'Made for dark mode: the near-black ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so the folds appear to float behind your windows. The strongest structure sits in the upper half while the lower third stays open, giving icons, widgets and a full dock a natural home without fighting the composition. The low contrast keeps stacked windows legible in multi-monitor and laptop-docked setups, and the palette lifts directly into UI accents, terminal colours or a matching dark editor theme. Pairs especially well with monospaced type and minimal window setups, and suits developers, designers and anyone whose desktop should open on calm structure rather than noise.',
   },
+  {
+    file: '/wallpapers/emerald-fractal-fern.jpg',
+    slug: 'emerald-fractal-fern',
+    title: 'Emerald Fractal Fern',
+    seoTitle: 'Emerald Fractal Wallpaper — Green Recursive Fern Desktop Background (Dark)',
+    tags: ['Fractals', 'Nature', 'Emerald', 'Organic', 'Dark', 'Generative'],
+    theme: 'fractals',
+    width: 2048,
+    height: 1152,
+    description:
+      'A fractal that borrows its silhouette from the garden: fern-like branching unfolds in deep emerald and sage against a dark charcoal ground, each frond splitting into smaller echoes of itself until the recursion dissolves into fine filigree at the tips. A thin rim of warm gold light catches the outermost branches, giving the geometry a bioluminescent feel without tipping into neon. Unlike the mandala-style and spiral entries in this collection, the composition is directional — the branching sweeps diagonally across the frame, so it reads more like a botanical study rendered in mathematics than a centred ornament. Generous dark negative space above and below keeps the whole frame airy. The mood is quiet and alive: fractal art for people who usually find fractal art too loud.',
+    useCase:
+      'Built for dark mode — the charcoal ground blends into window chrome, docks and menu bars so the fern seems to grow behind your work. Keep the diagonal sweep in open desktop space rather than under a full dock so the recursion can breathe. The green-on-dark palette pairs naturally with terminal themes, dark editor setups and emerald or brass UI accents. Especially good for developers and designers who want a nature reference with mathematical discipline: the palette doubles as a ready-made emerald-sage-gold scheme for dark dashboards and low-light interfaces.',
+  },
 ]
