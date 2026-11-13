@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { tools, toolIconSvg } from '../lib/tools';
+import { tools, navTools, toolIconSvg } from '../lib/tools';
 
 interface Props {
   title: string;
@@ -102,7 +102,7 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
       <div class="nav-links">
         <a href="/music/" class:list={['nav-link', activeNav === 'music' ? 'active' : '']}>Music</a>
         <a href="/wallpapers/" class:list={['nav-link', activeNav === 'wallpapers' ? 'active' : '']}>Wallpapers</a>
-        {tools.map((tool) => {
+        {navTools.map((tool) => {
           const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}/` : `/${tool.slug}/`;
           return (
           <a
@@ -122,7 +122,7 @@ const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <div class="mobile-menu" id="mobile-menu">
       <a href="/music/" class:list={['mobile-nav-link', activeNav === 'music' ? 'active' : '']}>Music</a>
       <a href="/wallpapers/" class:list={['mobile-nav-link', activeNav === 'wallpapers' ? 'active' : '']}>Wallpapers</a>
-      {tools.map((tool) => {
+      {navTools.map((tool) => {
         const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}/` : `/${tool.slug}/`;
         return (
         <a
