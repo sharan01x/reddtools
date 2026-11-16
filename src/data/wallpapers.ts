@@ -283,4 +283,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'Built for dark mode — the charcoal ground blends into window chrome, docks and menu bars so the fern seems to grow behind your work. Keep the diagonal sweep in open desktop space rather than under a full dock so the recursion can breathe. The green-on-dark palette pairs naturally with terminal themes, dark editor setups and emerald or brass UI accents. Especially good for developers and designers who want a nature reference with mathematical discipline: the palette doubles as a ready-made emerald-sage-gold scheme for dark dashboards and low-light interfaces.',
   },
+  {
+    file: '/wallpapers/sea-cliffs-morning-haze.jpg',
+    slug: 'sea-cliffs-morning-haze',
+    title: 'Sea Cliffs in Morning Haze',
+    seoTitle: 'Sea Cliffs Wallpaper — Calm Coastal Nature Desktop Background (2048×1170)',
+    tags: ['Nature', 'Coast', 'Cliffs', 'Ocean', 'Mist', 'Calm'],
+    theme: 'nature',
+    width: 2048,
+    height: 1170,
+    description:
+      'Tall sea cliffs rising from a calm slate-blue ocean, their faces grazed by the first pale light of the day while layered morning haze softens the horizon into bands of grey and warm cream. The palette is cool and mineral — sage and grey-green grass along the clifftop, muted slate water below, and a vast open sky above that stays almost empty by design. The composition is deliberately unhurried: the haze does the atmospheric work that fog does in a forest scene, blurring distance into gentle layers so the frame reads as a gallery print rather than a holiday snapshot. There is no text, no watermark and no hard edge anywhere; detail sits quietly along the cliff line and in the water texture, rewarding a closer look without ever competing with the work on top of it. The mood is coastal calm and steady — the visual equivalent of standing at the edge of the land before the world wakes up.',
+    useCase:
+      'A forgiving base for both light- and dark-mode desktops: the even, nearly empty sky keeps menu bars, widgets and browser tabs fully legible, while the darker water in the lower third gives docks and taskbars a natural home without visual collision. Pair it with slate, steel-blue or sage UI accents, or carry the cool greys into a terminal and editor theme for a coordinated setup. The low-contrast haze means icons and stacked windows stay clean in multi-monitor and laptop-docked layouts. Designers can lift the slate-sage-cream palette as a ready-made coastal scheme, and anyone who wants their workspace to open on still air and open water rather than noise will find this the calmest coastal entry in the collection.',
+  },
 ]
