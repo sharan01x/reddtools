@@ -284,6 +284,20 @@ export const wallpapers: Wallpaper[] = [
       'Built for dark mode — the charcoal ground blends into window chrome, docks and menu bars so the fern seems to grow behind your work. Keep the diagonal sweep in open desktop space rather than under a full dock so the recursion can breathe. The green-on-dark palette pairs naturally with terminal themes, dark editor setups and emerald or brass UI accents. Especially good for developers and designers who want a nature reference with mathematical discipline: the palette doubles as a ready-made emerald-sage-gold scheme for dark dashboards and low-light interfaces.',
   },
   {
+    file: '/wallpapers/barn-owl-twilight.jpg',
+    slug: 'barn-owl-twilight',
+    title: 'Barn Owl at Blue-Hour Twilight',
+    seoTitle: 'Barn Owl Wallpaper — Calm Twilight Wildlife Desktop Background (1792×1024)',
+    tags: ['Animals', 'Owl', 'Twilight', 'Wildlife', 'Calm'],
+    theme: 'animals',
+    width: 1792,
+    height: 1024,
+    description:
+      'A barn owl perched on a weathered fence post in open farmland at blue-hour twilight, caught in quiet profile with its pale facial disc glowing softly and its dark eyes fixed somewhere beyond the frame. The composition is deliberately sparse: the owl sits just off-centre on the horizon line, and everything else is soft negative space — a blurred pastel dusk sky above, dim pasture below. The palette is muted and cool with a warm undertow: umber and cream plumage, slate-blue shadow, and dusky mauve bleeding into the last of the light. Shallow depth of field keeps the bird crisp and the world behind it dissolving, so the frame reads as a gallery print rather than a wildlife snapshot. The mood is patient and watchful — the quietest hunter at the quietest hour, exactly the kind of backdrop that lowers the temperature of a busy screen while still rewarding a closer look at the feather detail.',
+    useCase:
+      'A strong fit for both light- and dark-mode desktops: the even pastel sky keeps menu bars, widgets and browser tabs fully legible, while the dim lower third gives docks and taskbars a natural home with no visual collision. Pair it with slate, mauve or warm-grey UI accents, or carry the umber-and-cream plumage tones into an editor or terminal theme for a coordinated setup. The off-centre composition keeps the bird clear of icon clutter in multi-monitor and laptop-docked layouts. Designers can lift the twilight palette as a ready-made cool-dusk scheme. Suits anyone who wants an animal wallpaper that opens the day on stillness rather than noise.',
+  },
+  {
     file: '/wallpapers/sea-cliffs-morning-haze.jpg',
     slug: 'sea-cliffs-morning-haze',
     title: 'Sea Cliffs in Morning Haze',
