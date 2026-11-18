@@ -734,6 +734,20 @@ export const tracks: Track[] = [
     attribution: 'Created for this collection — not used in a video',
     keywords: ["free vaporwave background music", "mallsoft royalty free music", "vaporwave instrumental free download mp3", "free background music for videos"],
   },
+  {
+    file: '/music/post-rock-crescendo.mp3',
+    slug: 'post-rock-crescendo',
+    title: 'Post-Rock Crescendo',
+    seoTitle: 'Post-Rock Crescendo Instrumental — Free Background Music for Edits',
+    duration: '2:23',
+    seconds: 143,
+    tags: ["Post-Rock", "Guitar", "Building", "Instrumental"],
+    description: 'Interlocking electric guitars with clean, slightly overdriven tones over a punchy drum kit and solid bass, building from a foundational groove into layered lead lines and a dense wall-of-sound climax at 158 BPM in F# major. Great for montage builds, coding timelapses and product reveal sequences.',
+    useCase: 'The slow-building guitar layers give edits a natural ramp — ideal for montages, timelapse builds, and reveal sequences that need momentum toward a climax. It also works as an energising focus or coding soundtrack.',
+    closing: 'At 2:23, Post-Rock Crescendo is easy to loop or trim to fit your edit. The MP3 download above is free for personal and commercial use. It is one of 55 tracks in a collection we made ourselves — see the neighbouring tracks below for similar moods, or the music index for the full library.',
+    attribution: 'Created for this collection — not used in a video',
+    keywords: ["free post rock background music", "post rock instrumental royalty free music", "crescendo rock free download mp3", "free background music for videos"],
+  },
 ];
 
 export const trackBySlug = new Map(tracks.map((t) => [t.slug, t]));
