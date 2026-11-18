@@ -311,4 +311,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'A forgiving base for both light- and dark-mode desktops: the even, nearly empty sky keeps menu bars, widgets and browser tabs fully legible, while the darker water in the lower third gives docks and taskbars a natural home without visual collision. Pair it with slate, steel-blue or sage UI accents, or carry the cool greys into a terminal and editor theme for a coordinated setup. The low-contrast haze means icons and stacked windows stay clean in multi-monitor and laptop-docked layouts. Designers can lift the slate-sage-cream palette as a ready-made coastal scheme, and anyone who wants their workspace to open on still air and open water rather than noise will find this the calmest coastal entry in the collection.',
   },
+  {
+    file: '/wallpapers/quote-hopper-dangerous-phrase.jpg',
+    slug: 'quote-hopper-dangerous-phrase',
+    title: 'The Most Dangerous Phrase — Grace Hopper',
+    seoTitle: 'Grace Hopper Quote Wallpaper — The Most Dangerous Phrase in the Language (Minimal Dark)',
+    tags: ['Quotes', 'Typography', 'Grace Hopper', 'Minimal', 'Dark', 'Engineering'],
+    theme: 'quotes',
+    width: 2048,
+    height: 1280,
+    description:
+      'A real, attributed insight set with typographic discipline: "The most dangerous phrase in the language is ‘we’ve always done it this way.’" — the warning Rear Admiral Grace Hopper, computing’s great iconoclast, kept issuing to anyone who treated precedent as truth. She spent her career breaking exactly that habit: writing compilers when nobody believed machines could translate, and shipping change on schedule while institutions repeated last year’s answer. The typography is the entire design — the quote sits centred in three balanced lines of a clean bold grotesque in warm off-white, the attribution set small beneath in tracked monospace, floating on a deep charcoal ground that carries only a barely-there warm radial glow. Nothing decorative, nothing gilded. The mood is quietly subversive: a daily challenge to inherited defaults, pinned where the screen wakes up, and a fitting companion to the collection’s other builder-creed quotes.',
+    useCase:
+      'Made for dark mode: the charcoal ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so the quote appears to float on the desktop itself. The centred block leaves generous margins on every side, keeping icon corners, widgets and a full dock free from collision with the words, and the soft glow is gentle enough to sit comfortably behind light-mode setups too. Pair it with graphite or warm-grey UI accents, a restrained editor theme, and monospaced details in your terminal — the attribution sets the register. A natural backdrop for engineers, developers and founders who would rather question a default than inherit one.',
+  },
 ]
