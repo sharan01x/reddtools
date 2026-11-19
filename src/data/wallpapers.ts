@@ -325,4 +325,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'Made for dark mode: the charcoal ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so the quote appears to float on the desktop itself. The centred block leaves generous margins on every side, keeping icon corners, widgets and a full dock free from collision with the words, and the soft glow is gentle enough to sit comfortably behind light-mode setups too. Pair it with graphite or warm-grey UI accents, a restrained editor theme, and monospaced details in your terminal — the attribution sets the register. A natural backdrop for engineers, developers and founders who would rather question a default than inherit one.',
   },
+  {
+    file: '/wallpapers/ochre-slipstream-abstract.jpg',
+    slug: 'ochre-slipstream-abstract',
+    title: 'Ochre Slipstream Abstract',
+    seoTitle: 'Ochre Abstract Wallpaper — Warm Flowing Ribbons on Charcoal Desktop Background (1792×1024)',
+    tags: ['Abstract', 'Flow', 'Ochre', 'Minimal', 'Dark'],
+    theme: 'abstract',
+    width: 1792,
+    height: 1024,
+    description:
+      'Slow, layered ribbons of ochre, burnt sienna and warm cream curving across a deep charcoal ground in a single unhurried gesture. The forms read as fluid geometry rather than paint: each band keeps a crisp edge while the layers underneath blur softly into the dark, giving the frame real depth without a single hard seam. The palette is restrained and warm — earth-browns and amber creams lifted cool by the charcoal shadow underneath, with a fine grain that keeps the flat areas from banding on large panels. The composition opens left with breathing room and closes right into a dense fold, so the image has a direction rather than a centred subject. The mood is steady and warm: motion implied, not photographed — the visual equivalent of a current you can hear but not touch, and an abstract that calms a busy screen instead of adding to it.',
+    useCase:
+      'Built for dark mode: the charcoal ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so ribbons appear to sweep behind the desktop rather than sit on it. The warm bands run across the lower half, leaving the upper third quiet enough for menu bars, widgets, clock overlays and browser tabs to stay fully legible. Pair it with amber, cream or warm-grey UI accents, or carry the ochre palette into an editor or terminal theme for a coordinated setup. The horizontal flow sits naturally under split-screen work and reads cleanly on wide and single monitors alike. Designers can lift the sienna-cream-charcoal triad as a ready-made warm-dark scheme, and anyone who wants a generative abstract with real warmth rather than neon will find this a quietly confident daily backdrop.',
+  },
 ]
