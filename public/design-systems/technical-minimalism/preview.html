@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReddTools Design System — Live Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #f5f5f5;
+    --color-surface: #ffffff;
+    --color-surface-dim: #ebebeb;
+    --color-text: #000000;
+    --color-text-muted: #5b5b5b;
+    --color-text-faint: #999999;
+    --color-border: #d0d0d0;
+    --color-cyan: #00c2ff;
+    --color-green: #0afa14;
+    --color-orange: #ff6400;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SF Mono', monospace;
+    --radius-sm: 4px;
+    --radius-full: 9999px;
+    --transition-fast: 150ms ease;
+    --transition-base: 200ms ease;
+  }
+  html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+    color: var(--color-text); background: var(--color-bg);
+    max-width: 960px; margin: 0 auto; padding: 40px 24px 96px;
+  }
+  ::selection { background: rgba(0, 194, 255, 0.15); }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+  a { color: var(--color-text); text-decoration: none; transition: opacity var(--transition-fast); }
+  a:hover { opacity: 0.6; }
+
+  .micro {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--color-text-faint); margin-bottom: 16px;
+  }
+  section { margin-top: 64px; }
+  h2 { font-size: 26px; font-weight: 500; margin: 0 0 8px; }
+  .lede { font-size: 17px; color: var(--color-text-muted); margin: 0 0 32px; max-width: 60ch; }
+
+  /* hero specimen */
+  .hero { margin-top: 0; }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 400;
+    margin: 8px 0 12px; letter-spacing: -0.02em;
+  }
+  .hero p { font-size: 20px; color: var(--color-text-muted); margin: 0 0 16px; max-width: 55ch; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted);
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-green); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* colour chips */
+  .chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; }
+  .chip { background: var(--color-surface); border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius-sm); overflow: hidden; transition: border-color var(--transition-base), box-shadow var(--transition-base); }
+  .chip:hover { border-color: rgba(0,0,0,0.15); box-shadow: 0 3px 8px rgba(0,0,0,0.15); }
+  .chip .swatch { height: 56px; border-bottom: 1px solid rgba(0,0,0,0.04); }
+  .chip .meta { padding: 12px; display: flex; flex-direction: column; gap: 2px; }
+  .chip .meta b { font-weight: 500; font-size: 14px; }
+  .chip .meta code { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-faint); }
+
+  /* type ramp */
+  .ramp div { padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.04); }
+  .ramp div:last-child { border-bottom: none; }
+  .t-hero { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 400; }
+  .t-h2 { font-size: 26px; font-weight: 500; }
+  .t-h3 { font-size: 20px; font-weight: 500; }
+  .t-lede { font-size: 20px; }
+  .t-body { font-size: 16px; }
+  .t-small { font-size: 14px; color: var(--color-text-muted); }
+  .t-micro { font-family: var(--font-mono); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); }
+  .ramp-label { float: right; font-family: var(--font-mono); font-size: 11px; color: var(--color-text-faint); padding-top: 14px; }
+
+  /* tool card specimen */
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .tool-card {
+    display: flex; flex-direction: column; background: var(--color-surface);
+    border: 1px solid rgba(0,0,0,0.08); border-radius: var(--radius-sm);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06); overflow: hidden; text-decoration: none;
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+  .tool-card:hover { border-color: rgba(0,0,0,0.15); box-shadow: 0 3px 8px rgba(0,0,0,0.15); }
+  .tool-card:hover .card-title { color: rgba(0,0,0,0.6); }
+  .icon-wrap { display: flex; align-items: center; justify-content: center; height: 120px; background: var(--color-bg); border-bottom: 1px solid rgba(0,0,0,0.04); }
+  .icon-wrap svg { width: 48px; height: 48px; }
+  .card-body { padding: 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .card-title { font-size: 20px; font-weight: 500; transition: color var(--transition-base); }
+  .card-desc { font-size: 14px; color: var(--color-text-muted); flex: 1; }
+  .card-foot { font-family: var(--font-mono); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); }
+
+  /* controls */
+  .controls { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+  .field label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+  .field input {
+    font-family: var(--font-body); font-size: 16px;
+    padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+    outline: none; transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  .field input:focus { border-color: var(--color-cyan); box-shadow: 0 0 0 3px rgba(0, 194, 255, 0.1); }
+  .btn {
+    display: inline-block; padding: 10px 24px; font-size: 14px; font-weight: 500;
+    background: var(--color-text); color: var(--color-surface);
+    border: 1px solid var(--color-text); border-radius: var(--radius-sm); cursor: pointer;
+    transition: opacity var(--transition-fast);
+  }
+  .btn:hover { opacity: 0.6; }
+  .btn.ghost { background: transparent; color: var(--color-text); }
+  .pill { border-radius: var(--radius-full); }
+
+  footer { margin-top: 96px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; }
+  footer .brand { font-size: 20px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <span class="badge"><span class="dot"></span> 7 TOOLS · MORE COMING</span>
+  <h1>free tools, designed properly.</h1>
+  <p>A monochrome, typography-first utility suite. Black, white, and greys — colour only where it means something.</p>
+  <span class="micro">Technical Minimalism · Kit Preview</span>
+</section>
+
+<section id="colour">
+  <span class="micro">01 — Colour</span>
+  <h2>Monochrome surfaces</h2>
+  <p class="lede">Accent colours (cyan, green, orange) are reserved for focus, selection, and status — never headings or buttons.</p>
+  <div class="chips">
+    <div class="chip"><div class="swatch" style="background:#f5f5f5"></div><div class="meta"><b>bg</b><code>#f5f5f5</code></div></div>
+    <div class="chip"><div class="swatch" style="background:#ffffff;border-bottom-color:rgba(0,0,0,0.04)"></div><div class="meta"><b>surface</b><code>#ffffff</code></div></div>
+    <div class="chip"><div class="swatch" style="background:#ebebeb"></div><div class="meta"><b>surface-dim</b><code>#ebebeb</code></div></div>
+    <div class="chip"><div class="swatch" style="background:#000000"></div><div class="meta"><b>text</b><code>#000000</code></div></div>
+    <div class="chip"><div class="swatch" style="background:#5b5b5b"></div><div class="meta"><b>text-muted</b><code>#5b5b5b</code></div></div>
+    <div class="chip"><div class="swatch" style="background:#999999"></div><div class="meta"><b>text-faint</b><code>#999999</code></div></div>
+    <div class="chip"><div class="swatch" style="background:#d0d0d0"></div><div class="meta"><b>border</b><code>#d0d0d0</code></div></div>
+    <div class="chip"><div class="swatch" style="background:#00c2ff"></div><div class="meta"><b>cyan (focus)</b><code>#00c2ff</code></div></div>
+    <div class="chip"><div class="swatch" style="background:#0afa14"></div><div class="meta"><b>green (status)</b><code>#0afa14</code></div></div>
+    <div class="chip"><div class="swatch" style="background:#ff6400"></div><div class="meta"><b>orange (warn)</b><code>#ff6400</code></div></div>
+  </div>
+</section>
+
+<section id="type">
+  <span class="micro">02 — Typography</span>
+  <h2>The type ramp</h2>
+  <p class="lede">Inter 400/500/600 for everything readable; IBM Plex Mono uppercase micro-labels as the signature voice.</p>
+  <div class="ramp">
+    <div><span class="ramp-label">hero · clamp(2.5–4rem)/400</span><span class="t-hero">Designed properly</span></div>
+    <div><span class="ramp-label">h2 · 26px/500</span><span class="t-h2">A quiet kind of confidence</span></div>
+    <div><span class="ramp-label">h3 · 20px/500</span><span class="t-h3">Subheads carry the structure</span></div>
+    <div><span class="ramp-label">lede · 20px/400</span><span class="t-lede">A lede introduces the section in a larger, lighter voice.</span></div>
+    <div><span class="ramp-label">body · 16px/400</span><span class="t-body">Body text at 16px with a line-height of 1.5. The workhorse of every tool page: instructions, FAQs, and conversion copy all live here, set in Inter 400.</span></div>
+    <div><span class="ramp-label">small · 14px</span><span class="t-small">Small text for captions, helper copy, and card descriptions in a muted grey.</span></div>
+    <div><span class="ramp-label">micro · 11px mono 500</span><span class="t-micro">IBM Plex Mono · Uppercase · Letterspaced</span></div>
+  </div>
+</section>
+
+<section id="components">
+  <span class="micro">03 — Components</span>
+  <h2>Cards, controls, pills</h2>
+  <p class="lede">4px radii, hairline borders, 1–2px shadows. Hover darkens the border and lifts the shadow — never a colour change.</p>
+  <div class="grid2">
+    <a class="tool-card" href="#components">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Unit Converter</span>
+        <span class="card-desc">Weight, length, volume and temperature — all conversions in one quiet place.</span>
+        <span class="card-foot">Tool · Hover me</span>
+      </div>
+    </a>
+    <a class="tool-card" href="#components">
+      <div class="icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 9 9"/></svg>
+      </div>
+      <div class="card-body">
+        <span class="card-title">Colour Picker</span>
+        <span class="card-desc">Pick, convert, and contrast-check colours without the ad clutter.</span>
+        <span class="card-foot">Tool · Hover me</span>
+      </div>
+    </a>
+  </div>
+  <div class="controls" style="margin-top:24px">
+    <div class="field">
+      <label for="demo-input">Focus me — cyan ring</label>
+      <input id="demo-input" type="text" placeholder="16px Inter input">
+    </div>
+    <div class="field" style="padding-top:30px">
+      <button class="btn">Primary</button>
+      <button class="btn ghost">Secondary</button>
+      <button class="btn pill">Pill</button>
+    </div>
+  </div>
+</section>
+
+<section id="motion">
+  <span class="micro">04 — Motion</span>
+  <h2>Fast and forgettable</h2>
+  <p class="lede">150ms for small things, 200ms for surfaces. The pulsing green dot is the only looping animation on the site. Everything above already demonstrates the hover and focus transitions.</p>
+</section>
+
+<footer>
+  <span class="brand">ReddTools</span>
+  <span class="micro" style="margin:0">Built by Redd Group</span>
+</footer>
+
+</body>
+</html>

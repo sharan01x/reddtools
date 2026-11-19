@@ -68,6 +68,18 @@ const toolIcons: Record<string, string> = {
       <p class="card-desc">Free 4K (3840×2400) desktop wallpapers — nature scenes, wildlife, quotes and fractal art. Direct JPG download, no signup, no attribution required.</p>
     </div>
   </a>
+  <a href="/design-systems/" class="tool-card music-feature">
+    <div class="card-icon-wrap">
+      <svg class="card-icon" viewBox="0 0 64 64" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 46V18l10-4 15 6 10-4v28l-10 4-15-6-10 4"/><path d="M22 14v28"/><path d="M37 20v28"/></svg>
+    </div>
+    <div class="card-body">
+      <div class="card-title-row">
+        <h2 class="card-title">Design Systems</h2>
+        <span class="card-badge new">New every 2 weeks</span>
+      </div>
+      <p class="card-desc">Free, copy-paste design system kits — fonts, colour tokens, type ramps, spacing and component rules, with a live preview. No signup, no attribution.</p>
+    </div>
+  </a>
   {tools.map((tool) => {
       const href = tool.modes?.length ? `/${tool.slug}/${tool.modes[0].slug}/` : `/${tool.slug}/`;
       return (
