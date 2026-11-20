@@ -326,6 +326,20 @@ export const wallpapers: Wallpaper[] = [
       'Made for dark mode: the charcoal ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so the quote appears to float on the desktop itself. The centred block leaves generous margins on every side, keeping icon corners, widgets and a full dock free from collision with the words, and the soft glow is gentle enough to sit comfortably behind light-mode setups too. Pair it with graphite or warm-grey UI accents, a restrained editor theme, and monospaced details in your terminal — the attribution sets the register. A natural backdrop for engineers, developers and founders who would rather question a default than inherit one.',
   },
   {
+    file: '/wallpapers/amber-julia-fractal.jpg',
+    slug: 'amber-julia-fractal',
+    title: 'Amber Julia Fractal',
+    seoTitle: 'Amber Julia Fractal Wallpaper — Generative Mathematics Desktop Background (Dark)',
+    tags: ['Fractals', 'Julia Set', 'Generative', 'Dark', 'Amber', 'Mathematics'],
+    theme: 'fractals',
+    width: 2048,
+    height: 1170,
+    description:
+      'A Julia set rendered in warm metal: swirling recursive filaments of amber and burnt copper coil outward from a luminous core, each lobe splitting into smaller echoes of itself until the detail dissolves into fine filigree at the tips. Unlike the cool blue and spiral entries in this collection, the palette sits deliberately warm — molten gold highlights, dusky copper mid-tones, and generous charcoal negative space that keeps the mathematics feeling elegant rather than electric. The composition gathers its density around the core and falls away to calm dark margins, so the recursion rewards a long look without ever shouting over your icons. There is no text, no glow signature and no ornament: just the boundary curve doing what it has done for every zoom level since Julia drew it, lit like a copper plate engraving. The mood is contemplative warmth — evening deep-work rather than neon spectacle.',
+    useCase:
+      'Made for dark mode: the charcoal ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so the recursion appears to float behind your windows. The luminous core sits slightly off-centre with clean margins, leaving room for menu bars, widgets and a full dock anywhere in the frame without visual collision, and the dark corners are ideal for icon-heavy layouts. Pair it with amber, brass or warm-grey UI accents, a dark editor theme, and carry the copper highlights into your terminal palette for a coordinated setup — the amber-copper-charcoal triad lifts directly into UI accents and dashboard themes. Particularly suited to developers, mathematicians and anyone who wants a fractal that warms the workspace instead of electrifying it.',
+  },
+  {
     file: '/wallpapers/ochre-slipstream-abstract.jpg',
     slug: 'ochre-slipstream-abstract',
     title: 'Ochre Slipstream Abstract',
