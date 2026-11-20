@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# Site audit crawler — explicit allow so audits can crawl the full site
+User-agent: OpenSEO-Audit
+Allow: /
+
 Sitemap: https://reddtools.com/sitemap-index.xml

@@ -16,8 +16,10 @@ const prev = tracks[(idx - 1 + tracks.length) % tracks.length];
 const next = tracks[(idx + 1) % tracks.length];
 
 const canonicalPath = `/music/${track.slug}/`;
-const title = `${track.seoTitle}`;
-const description = `${track.title} — a ${track.duration} ${track.tags.slice(0, 3).join(', ').toLowerCase()} background track. Free MP3 download, royalty-free, no attribution required. Stream it in the browser and use it in your videos, podcasts, or study sessions.`;
+// Titles must stay inside a 60-char SERP budget: "Track Name — Free <genre> Music".
+const titleFull = `${track.title} — Free ${track.tags[0]} Music`;
+const title = titleFull.length <= 60 ? titleFull : `${track.title} — Free Music`;
+const description = `${track.title} — free ${track.tags[0].toLowerCase()} background music (${track.duration}). Download the royalty-free MP3 — no attribution needed.`;
 
 const jsonLd = [
   {

@@ -17,7 +17,12 @@ interface Props {
 const { title, description, activeTool, activeNav, keywords, canonicalPath, jsonLd, breadcrumbs, relatedTools } = Astro.props;
 const siteName = 'ReddTools';
 const siteUrl = 'https://reddtools.com';
-const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
+// Brand suffix only when the whole title still fits the 60-char SERP budget.
+// Long descriptive titles stay suffix-free rather than getting truncated.
+const titleSuffix = ` — ${siteName}`;
+const fullTitle = title === siteName
+  ? title
+  : (title.length + titleSuffix.length <= 60 ? `${title}${titleSuffix}` : title);
 const canonical = canonicalPath ? `${siteUrl}${canonicalPath}` : siteUrl;
 const ogImage = `${siteUrl}/og-image.png`;
 const keywordsStr = keywords?.length ? keywords.join(', ') : undefined;

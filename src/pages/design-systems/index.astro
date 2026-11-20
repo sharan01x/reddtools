@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 
 const title = 'Free Design Systems — Copy-Paste Design System Kits';
-const description = 'Free, copy-paste design system kits for the web: fonts, colour tokens, type ramps, spacing and component rules — with a live preview and downloadable files. A new kit every two weeks.';
+const description = 'Free copy-paste design systems: fonts, colour tokens, type ramps, spacing and component rules, with a live HTML preview. A new kit every two weeks.';
 const canonicalPath = '/design-systems/';
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -41,15 +41,15 @@ const kits = [
   </div>
 
   <div class="how">
-    <div class="section-label">How it works</div>
+    <h2 class="section-label">How it works</h2>
     <div class="how-grid">
-      <div class="how-step"><span class="step-num">01</span><h4>Pick a design system</h4><p>Each kit is one complete design system — the spec, the tokens, and a working preview.</p></div>
-      <div class="how-step"><span class="step-num">02</span><h4>Download the files</h4><p>One spec markdown plus preview.html, the reference implementation.</p></div>
-      <div class="how-step"><span class="step-num">03</span><h4>Ship it</h4><p>Copy tokens into your project, swap fonts if you like, done. Free for anything.</p></div>
+      <div class="how-step"><span class="step-num">01</span><h3>Pick a design system</h3><p>Each kit is one complete design system — the spec, the tokens, and a working preview.</p></div>
+      <div class="how-step"><span class="step-num">02</span><h3>Download the files</h3><p>One spec markdown plus preview.html, the reference implementation.</p></div>
+      <div class="how-step"><span class="step-num">03</span><h3>Ship it</h3><p>Copy tokens into your project, swap fonts if you like, done. Free for anything.</p></div>
     </div>
   </div>
 
-  <div class="section-label">Design systems</div>
+  <h2 class="section-label">Design systems</h2>
   <div class="kit-grid">
     {kits.filter(kit => !kit.coming).map((kit) => (
       <a href={`/design-systems/${kit.slug}/`} class="kit-card">
@@ -103,6 +103,6 @@ const kits = [
   @media (min-width: 768px) { .how-grid { grid-template-columns: repeat(3, 1fr); } }
   .how-step { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 4px; padding: 24px; }
   .step-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; color: #999; letter-spacing: 0.08em; }
-  .how-step h4 { font-size: 17px; font-weight: 500; margin: 8px 0 4px; }
+  .how-step h3 { font-size: 17px; font-weight: 500; margin: 8px 0 4px; }
   .how-step p { font-size: 14px; color: #5b5b5b; margin: 0; }
 </style>

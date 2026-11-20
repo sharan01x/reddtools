@@ -10,7 +10,7 @@ export interface Wallpaper {
   file: string;        // '/wallpapers/<slug>.jpg'
   slug: string;
   title: string;
-  seoTitle: string;
+  seoTitle: string;    // legacy: pages now build <title> as "<title> — 4K Wallpaper" to stay <=60 chars
   tags: string[];
   description: string;  // mood + palette, ~150-200 words of real copy
   useCase: string;      // why it works as a wallpaper, styling suggestions

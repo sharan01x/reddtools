@@ -7,7 +7,7 @@ export interface Track {
   file: string;
   slug: string;
   title: string;
-  seoTitle: string;
+  seoTitle: string;   // legacy: pages now build <title> as "<title> — Free <genre> Music" to stay <=60 chars
   duration: string;
   seconds: number;
   tags: string[];

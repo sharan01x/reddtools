@@ -60,7 +60,7 @@ const jsonLd = {
     </div>
 
     <div class="preview-block">
-      <span class="spec-label block">Live preview</span>
+      <h2 class="spec-label block">Live preview</h2>
       <div class="preview-frame">
         <iframe src="/design-systems/technical-minimalism/preview.html" title="Technical Minimalism live preview" loading="lazy"></iframe>
       </div>
@@ -68,7 +68,7 @@ const jsonLd = {
     </div>
 
     <div class="usage">
-      <span class="spec-label block">How to use it</span>
+      <h2 class="spec-label block">How to use it</h2>
       <ol>
         <li>Download both files. The spec keeps the <code>Redd Tools — [Name].md</code> naming so kits never collide on disk. <code>Redd Tools — Technical Minimalism.md</code> is the spec; <code>preview.html</code> is the reference implementation with every token as a CSS variable.</li>
         <li>Copy the <code>:root</code> variables from <code>preview.html</code> into your project — they carry the whole system.</li>
@@ -103,7 +103,7 @@ const jsonLd = {
   .spec-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 40px; }
   @media (min-width: 768px) { .spec-grid { grid-template-columns: repeat(4, 1fr); } }
   .spec-card { background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 4px; padding: 16px; }
-  .spec-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: #999; }
+  .spec-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: #999; margin: 0; }
   .spec-label.block { display: block; margin-bottom: 12px; }
   .spec-value { font-size: 14px; font-weight: 500; margin: 8px 0 0; }
 

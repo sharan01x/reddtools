@@ -15,8 +15,10 @@ const prev = wallpapers[(idx - 1 + wallpapers.length) % wallpapers.length];
 const next = wallpapers[(idx + 1) % wallpapers.length];
 
 const canonicalPath = `/wallpapers/${w.slug}/`;
-const title = w.seoTitle;
-const description = `${w.title} — a free 4K ${w.theme} desktop wallpaper (${w.width}×${w.height}, 16:10) from the ReddTools collection. ${w.tags.slice(0, 3).join(', ')}. Free JPG download, no signup.`;
+// Keep titles inside the 60-char SERP budget: "<Wallpaper Name> — 4K Wallpaper".
+const titleFull = `${w.title} — 4K Wallpaper`;
+const title = titleFull.length <= 60 ? titleFull : `${w.title.split(' — ')[0]} — 4K Wallpaper`;
+const description = `${w.title} — free 4K ${w.theme} desktop wallpaper (${w.width}×${w.height}). Download the JPG, no signup required.`;
 
 const jsonLd = [
   {
