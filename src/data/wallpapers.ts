@@ -353,4 +353,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'Built for dark mode: the charcoal ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so ribbons appear to sweep behind the desktop rather than sit on it. The warm bands run across the lower half, leaving the upper third quiet enough for menu bars, widgets, clock overlays and browser tabs to stay fully legible. Pair it with amber, cream or warm-grey UI accents, or carry the ochre palette into an editor or terminal theme for a coordinated setup. The horizontal flow sits naturally under split-screen work and reads cleanly on wide and single monitors alike. Designers can lift the sienna-cream-charcoal triad as a ready-made warm-dark scheme, and anyone who wants a generative abstract with real warmth rather than neon will find this a quietly confident daily backdrop.',
   },
+  {
+    file: '/wallpapers/aspen-grove-autumn-gold.jpg',
+    slug: 'aspen-grove-autumn-gold',
+    title: 'Aspen Grove Autumn Gold',
+    seoTitle: 'Aspen Grove Wallpaper — Golden Autumn Forest Desktop Background (1344×768)',
+    tags: ['Nature', 'Forest', 'Autumn', 'Aspen', 'Gold', 'Warm'],
+    theme: 'nature',
+    width: 1344,
+    height: 768,
+    description:
+      'A quiet aspen grove photographed at first light: slender white trunks rise vertically through the frame, their black bark markings drawing clean graphic lines against the trees behind them. The canopy is a translucent ceiling of golden and amber leaves, backlit by a low sun so the foliage glows from within rather than merely standing in colour. Below, the forest floor holds a soft fern-green scattered with fallen leaves, and a gentle atmospheric haze separates each trunk into its own plane, giving the scene real depth without a single dramatic focal point. The palette balances warm gold and amber against cool blue-grey shadow, so the image feels like early morning rather than mid-afternoon sepia. No path, no people, no text — just the calm vertical rhythm of the grove, and the mood is stillness: a forest holding its breath before the day starts, photographed to settle a busy screen rather than energise it.',
+    useCase:
+      'Suits any workspace that wants warmth without glare: the soft vertical trunks give windows, docks and menu bars a calm, non-competing backdrop on macOS, Windows and Linux, and the even lighting keeps white text legible in both light and dark UI modes. The upper canopy band is gentle enough for clock and widget overlays, and the darker lower third grounds a full dock without visual noise. On ultrawide displays the repeating trunk rhythm extends naturally; on standard 16:9 and 16:10 screens the composition sits comfortably without cropping. Pair it with cream, sage or warm-grey desktop accents, a paper-toned editor theme, or lift the gold-green-shadow triad into autumn-themed UI work. Ideal for writers, students and anyone who wants the quiet of a morning forest behind their windows all day.',
+  },
 ]
