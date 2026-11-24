@@ -354,6 +354,20 @@ export const wallpapers: Wallpaper[] = [
       'Built for dark mode: the charcoal ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so ribbons appear to sweep behind the desktop rather than sit on it. The warm bands run across the lower half, leaving the upper third quiet enough for menu bars, widgets, clock overlays and browser tabs to stay fully legible. Pair it with amber, cream or warm-grey UI accents, or carry the ochre palette into an editor or terminal theme for a coordinated setup. The horizontal flow sits naturally under split-screen work and reads cleanly on wide and single monitors alike. Designers can lift the sienna-cream-charcoal triad as a ready-made warm-dark scheme, and anyone who wants a generative abstract with real warmth rather than neon will find this a quietly confident daily backdrop.',
   },
   {
+    file: '/wallpapers/red-crowned-cranes-snow.jpg',
+    slug: 'red-crowned-cranes-snow',
+    title: 'Red-Crowned Cranes in Snowfield Dawn',
+    seoTitle: 'Red-Crowned Cranes Wallpaper — Minimal Winter Wildlife Desktop Background (1344×768)',
+    tags: ['Animals', 'Cranes', 'Winter', 'Wildlife', 'Calm', 'Minimal'],
+    theme: 'animals',
+    width: 1344,
+    height: 768,
+    description:
+      'Two red-crowned cranes standing in a quiet snowfield at soft winter dawn, their ivory plumage and black wing tips drawing the only real contrast in a frame built almost entirely from gentle whites and cold blues. The composition is deliberately sparse: one crane sits just off-centre with the second close behind, and everything else is open snowspace — vast, even negative space that gives the image the feel of a Japanese woodblock print or a gallery photograph rather than a wildlife snapshot. The palette is muted and cool — pale blue-grey snow, ivory feathers, and a faint touch of pink dawn light along the horizon — with shallow depth of field keeping the birds crisp and the world behind them dissolving into soft wash. The mood is patient and ceremonial: cranes stand in stillness for hours, and the wallpaper carries exactly that kind of quiet gravity. It rewards a closer look at the feather texture without ever competing with the work layered on top of it.',
+    useCase:
+      'A natural fit for both light- and dark-mode desktops: the pale snow flatters light UI chrome, while the dark wing tips and subtle blue shadow give the frame enough depth to sit comfortably behind dark themes. The even sky and snowfield keep menu bars, widgets and stacked windows legible in every corner, making it an especially forgiving backdrop for multi-monitor and laptop-docked setups — docks and taskbars land anywhere in the open snow without visual collision. Pair it with slate, ice-blue or warm-grey accent colours, or lift the ivory-blue-pink triad as a ready-made winter scheme for editor and terminal themes. Suits designers, writers and anyone who wants their workspace to open on stillness rather than noise — the calmest minimalist wildlife entry in the collection.',
+  },
+  {
     file: '/wallpapers/aspen-grove-autumn-gold.jpg',
     slug: 'aspen-grove-autumn-gold',
     title: 'Aspen Grove Autumn Gold',
