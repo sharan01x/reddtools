@@ -748,6 +748,20 @@ export const tracks: Track[] = [
     attribution: 'Created for this collection — not used in a video',
     keywords: ["free post rock background music", "post rock instrumental royalty free music", "crescendo rock free download mp3", "free background music for videos"],
   },
+  {
+    file: '/music/contemplative-piano.mp3',
+    slug: 'contemplative-piano',
+    title: 'Contemplative Piano',
+    seoTitle: 'Contemplative Piano Instrumental — Free Background Music for Edits',
+    duration: '3:00',
+    seconds: 180,
+    tags: ["Piano", "Classical", "Calm", "Instrumental"],
+    description: 'A delicate, introspective solo piano piece built on a gentle repeating arpeggiated figure in F major at 94 BPM, with a clean bright tone and soft hall reverb. Subtle harmonic shifts keep a consistent, contemplative mood from start to a peaceful resolving close. Great for reflective vlogs, study sessions and quiet storytelling.',
+    useCase: 'The hypnotic, gently melancholic arpeggios give edits a calm emotional undertone — ideal for reflective narration, study and focus videos, or quiet transition scenes that need mood without distraction.',
+    closing: 'At 3:00, Contemplative Piano is easy to loop or trim to fit your edit. The MP3 download above is free for personal and commercial use. It is one of 56 tracks in a collection we made ourselves — see the neighbouring tracks below for similar moods, or the music index for the full library.',
+    attribution: 'Created for this collection — not used in a video',
+    keywords: ["free contemplative piano background music", "calm piano instrumental royalty free music", "melancholy piano free download mp3", "free background music for videos"],
+  },
 ];
 
 export const trackBySlug = new Map(tracks.map((t) => [t.slug, t]));
