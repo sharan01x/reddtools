@@ -381,4 +381,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'Suits any workspace that wants warmth without glare: the soft vertical trunks give windows, docks and menu bars a calm, non-competing backdrop on macOS, Windows and Linux, and the even lighting keeps white text legible in both light and dark UI modes. The upper canopy band is gentle enough for clock and widget overlays, and the darker lower third grounds a full dock without visual noise. On ultrawide displays the repeating trunk rhythm extends naturally; on standard 16:9 and 16:10 screens the composition sits comfortably without cropping. Pair it with cream, sage or warm-grey desktop accents, a paper-toned editor theme, or lift the gold-green-shadow triad into autumn-themed UI work. Ideal for writers, students and anyone who wants the quiet of a morning forest behind their windows all day.',
   },
+  {
+    file: '/wallpapers/quote-curie-understood.jpg',
+    slug: 'quote-curie-understood',
+    title: 'To Be Understood — Marie Curie',
+    seoTitle: 'Marie Curie Wallpaper — "Nothing in Life Is to Be Feared" Minimal Typographic Quote Desktop Background',
+    tags: ['Quotes', 'Typography', 'Marie Curie', 'Science', 'Minimal', 'Dark'],
+    theme: 'quotes',
+    width: 2048,
+    height: 1280,
+    description:
+      'A real, attributed insight set with typographic discipline: "Nothing in life is to be feared, it is only to be understood." — Marie Curie\'s quiet credo, first spoken by the only person to win Nobel Prizes in two different sciences. She paid for that philosophy more than anyone: her breakthroughs in radioactivity were made in a leaking shed, her notes remain radioactive to this day, and she pursued "understanding" through grief, sexism and lethal material. The typography is the entire design — the quote sits centred in three balanced lines of a bold geometric grotesque in warm cream, the attribution set small beneath in wide-tracked monospace caps, floating on a deep charcoal ground with only a faint warm glow at its heart. No ornament, no display type, no clutter. The mood is scientific calm: a reminder that curiosity beats dread, pinned where your workday begins, and a natural companion to the collection\'s other builder and scientist quotes.',
+    useCase:
+      'Made for dark mode: the near-black ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so the words appear to float on the desktop itself. The centred block leaves generous margins on every side, keeping icon corners, widgets and a full dock free from collision with the text, and the subtle glow is gentle enough to sit comfortably behind light-mode setups too. Pair it with warm-grey, graphite or brass UI accents, a restrained dark editor theme, and monospaced details in your terminal — the attribution sets the register. Especially fitting for researchers, students, scientists and anyone whose week needs replacing fear with understanding, one unknown at a time.',
+  },
 ]
