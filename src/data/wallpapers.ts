@@ -395,4 +395,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'Made for dark mode: the near-black ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so the words appear to float on the desktop itself. The centred block leaves generous margins on every side, keeping icon corners, widgets and a full dock free from collision with the text, and the subtle glow is gentle enough to sit comfortably behind light-mode setups too. Pair it with warm-grey, graphite or brass UI accents, a restrained dark editor theme, and monospaced details in your terminal — the attribution sets the register. Especially fitting for researchers, students, scientists and anyone whose week needs replacing fear with understanding, one unknown at a time.',
   },
+  {
+    file: '/wallpapers/chromatic-strata-abstract.jpg',
+    slug: 'chromatic-strata-abstract',
+    title: 'Chromatic Strata Abstract',
+    seoTitle: 'Chromatic Strata Abstract Wallpaper — Minimal Layered Bands Desktop Background (1792×1024)',
+    tags: ['Abstract', 'Strata', 'Slate', 'Teal', 'Minimal', 'Generative'],
+    theme: 'abstract',
+    width: 1792,
+    height: 1024,
+    description:
+      'A quietly disciplined generative composition built from stacked horizontal strata: deep slate, dusty teal, soft coral and pale sand laid down in fine, precise bands like geological sediment or a woven textile seen edge-on, with a single thin luminous line threading through the layers as the only accent. The finish is flat and matte — subtle film grain keeps the wide colour fields from banding on large panels, and there are no gradients, no glow and no noise fighting for the eye. Every band runs full-bleed, so the frame reads as calm horizontal rhythm rather than an image with a subject; the upper third is deliberately held to the palest, quietest tones so the eye settles where desktop chrome lives. The mood is ordered and restful: geometry without coldness, colour without volume. It sits naturally between the collection\'s earth-toned ochre slipstream and its cooler cobalt fold — the midpoint for people who want structure with a hint of warmth.',
+    useCase:
+      'A forgiving backdrop for any density of desktop: the even horizontal bands give icons, widgets, menu bars and a full dock a stable, non-competing ground on macOS, Windows and Linux, and the pale upper register keeps white or black system text legible in both light and dark UI modes. The regular rhythm extends gracefully on ultrawide and multi-monitor layouts, and the flat matte finish means no glare artifacts on glossy laptop panels in daylight. Pair it with slate, teal or sand UI accents, a low-contrast editor theme, or lift the slate-teal-coral triad as a ready-made palette for design systems and branding mockups. Ideal for developers, architects and anyone who wants a background with real compositional intent that still stays out of the way for eight-hour stretches.',
+  },
 ]
