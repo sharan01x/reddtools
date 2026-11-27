@@ -409,4 +409,18 @@ export const wallpapers: Wallpaper[] = [
     useCase:
       'A forgiving backdrop for any density of desktop: the even horizontal bands give icons, widgets, menu bars and a full dock a stable, non-competing ground on macOS, Windows and Linux, and the pale upper register keeps white or black system text legible in both light and dark UI modes. The regular rhythm extends gracefully on ultrawide and multi-monitor layouts, and the flat matte finish means no glare artifacts on glossy laptop panels in daylight. Pair it with slate, teal or sand UI accents, a low-contrast editor theme, or lift the slate-teal-coral triad as a ready-made palette for design systems and branding mockups. Ideal for developers, architects and anyone who wants a background with real compositional intent that still stays out of the way for eight-hour stretches.',
   },
+  {
+    file: '/wallpapers/viridis-mandelbrot-depth.jpg',
+    slug: 'viridis-mandelbrot-depth',
+    title: 'Viridis Mandelbrot Depth',
+    seoTitle: 'Viridis Mandelbrot Wallpaper — Teal & Emerald Fractal Desktop Background (1792×1024)',
+    tags: ['Fractals', 'Mandelbrot', 'Generative', 'Viridis', 'Teal', 'Dark'],
+    theme: 'fractals',
+    width: 1792,
+    height: 1024,
+    description:
+      'A deep-zoom Mandelbrot coastline rendered in the Viridis palette matplotlib made famous: deep indigo and teal voids, luminous emerald and chartreuse filaments, and faint sulphur-yellow sparks concentrated where the recursion is sharpest. The set boundary arcs diagonally across the frame like a mountain range drawn by iteration itself, every lobe splitting into smaller echoes of its parent until the detail dissolves into filigree. Around it, calm near-empty dark-teal margins keep the mathematics from crowding the screen — the composition gathers where the recursion is rich and relaxes everywhere else, so the frame rewards a long look without competing with what you layer on top. There is no text and no glow signature; a subtle film grain keeps the wide colour fields from banding on large panels. The mood is scientific and contemplative: data-visualisation colours applied to the most famous object in mathematics.',
+    useCase:
+      'Made for dark mode: the deep teal ground dissolves into window chrome, docks and menu bars on macOS, Windows and Linux, so the coastline appears to slide behind your windows. The brightest recursion sits in the lower two-thirds with clean dark margins in the upper right, leaving room for menu bars, widgets, clock overlays and a full dock anywhere in the frame. Pair it with teal, emerald or chartreuse UI accents, a dark editor theme, or lift the chartreuse-teal-indigo triad straight into a terminal and dashboard palette — this is a wallpaper that doubles as a colour scheme reference. Especially suited to developers, data scientists and mathematicians who want a fractal with the palette of work, not neon fantasy.',
+  },
 ]
